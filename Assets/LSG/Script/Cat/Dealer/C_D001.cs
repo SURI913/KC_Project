@@ -31,7 +31,6 @@ public class C_D001 : Cat, IAttack
     {
         //데이터가 없으면
         InitData();
-        printData();    //check
         //데이터가 있으면
     }
 

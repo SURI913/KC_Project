@@ -8,7 +8,7 @@ public class Attack : Projectile
     public Transform bulletPos;
 
     float Cooltime;
-    public string IDset = "Atk";
+    private string IDset = "Atk";
 
 
     void initData() 

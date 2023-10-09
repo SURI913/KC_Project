@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AllUnit;
+using System.Globalization;
+using TMPro;
 
 public class C_T001 : Cat, IAttack
 {
@@ -17,7 +19,7 @@ public class C_T001 : Cat, IAttack
     private void InitData()
     {
         //첫 데이터 보내기
-        ID = "C_D001";
+        ID = "C_T001";
         maxHp = 3000;
         hp = maxHp;
         attack = 10;
@@ -31,8 +33,11 @@ public class C_T001 : Cat, IAttack
     {
         //데이터가 없으면
         InitData();
-        printData();    //check
         //데이터가 있으면
+
+        //이동 을 위한 선언
+        playerRb = GetComponent<Rigidbody2D>();
+        //myAnim = GetComponent<Animator>();
     }
 
     public double OnSkill(RaycastHit2D hit)
@@ -60,5 +65,47 @@ public class C_T001 : Cat, IAttack
     {
         this.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(skillEft);
+    }
+
+    public bool isAttack { get; set; }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!isAttack)
+        {
+            isAttack = true;
+            //다시 작업 필요 탱커용 스크립트 수정 필요
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+            //적과 부딪치는 동안 적의 피를 깎음
+            if (damageable != null)
+            {
+                RaycastHit2D EnemyRayHit = collision.collider.GetComponent<RaycastHit2D>();
+                collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(EnemyRayHit), EnemyRayHit);
+            }
+        }
+        
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isAttack = false;
+    }
+
+    private Rigidbody2D playerRb;
+    //private Animator myAnim;
+    public float playerMoveSpeed =1.0f;
+    public Transform targetPosition;
+    Vector2 vel = Vector2.zero;
+    
+
+    private void FixedUpdate()
+    {
+        if (!isAttack) { Move(); }
+    }
+    void Move()
+    {
+        // 레이캐스트로 타겟 위치 체크, 그 방향으로 스무스하게 이동하도록 잡음 Y값 변화x
+        float delta = Mathf.SmoothDamp(gameObject.transform.position.x, targetPosition.position.x, ref vel.x, 2f);
+        this.transform.position = new Vector2(delta,this.transform.position.y);
+        /*myAnim.SetFloat("MoveX", playerRb.velocity.x);
+        myAnim.SetFloat("MoveY", playerRb.velocity.y);*/
     }
 }

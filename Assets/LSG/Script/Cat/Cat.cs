@@ -5,7 +5,7 @@ using AllUnit;
 
 public class Cat : MonoBehaviour, IDamageable
 {
-    protected string ID;    //캐릭터 넘버
+    public string ID { get; set; }    //캐릭터 넘버
     protected int Lv = 0;  //레벨
     public double hp { get; set; }      //체력   valueType? : null값이 들어가 있으면
     public double maxHp { get; set; }   //최대체력

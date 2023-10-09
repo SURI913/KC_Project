@@ -12,27 +12,26 @@ public class C_S001 : Cat, IAttack
     public bool AtiveSkill { get; set; }   //스킬 활성화 시 공격 멈춤
 
     //스킬을 위한 함수 일정범위 내의 영웅들을 골라냄
-    public Vector2 SkillPos;
     List<Cat> catsHealing = new List<Cat>();
-    Collider[] cats;   
 
     //캐릭터 값 초기화
-    //DB에서 끌어옴
+    //DB에서 끌어옴     
     //레벨업 할때마다 저장 호출 + 값 다시 가져오기
     private void InitData()
     {
         // 활성화 된 고양이 Cat클래스에 첫 데이터 보내기
-        ID = "C_D001";
+        ID = "C_S001";
         maxHp = 1500;
         hp = maxHp;
         attack = 10;
         Lv = 1;
-        speed = 15f;    //임의
+        speed = 20f;    //임의
         skillTime = 10f;
         atkTime = 2f;
 
+        Vector2 skillpos = this.transform.position;
         //스킬특기
-        cats = Physics.OverlapSphere(SkillPos, 100.0f);
+        Collider2D[] cats = Physics2D.OverlapCircleAll(skillpos, 1000.0f);
         foreach (var Cats in cats)
         {
             if (Cats.CompareTag("Player"))
@@ -47,16 +46,18 @@ public class C_S001 : Cat, IAttack
     {
         //데이터가 없으면
         InitData();
-        printData();    //check
         //데이터가 있으면
     }
 
     public double OnSkill(RaycastHit2D hit)
     {
+        Debug.Log( "힐링스킬 발동");
+        Debug.Log(catsHealing.Count);
         //요새 범위 안에있는 사람한테만 힐이 들어감
         foreach (var Cats in catsHealing)
         {
             Cats.hp += Cats.maxHp * skillEft;
+            Debug.Log(Cats.ID+ "힐링");
             if(hp > maxHp) //maxHp를 넘지않게 처리
             {
                 hp = maxHp;
