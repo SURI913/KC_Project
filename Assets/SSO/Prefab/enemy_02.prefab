@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1007704142134399344}
   - component: {fileID: 1007704142134399347}
   - component: {fileID: 7669223160342126613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy_02
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -139,3 +139,4 @@ MonoBehaviour:
   enemySpeed: 3
   StartPosition: {x: 14, y: -2}
   enemy_attack_2: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
+  attackCooldown: 2
