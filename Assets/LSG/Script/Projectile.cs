@@ -25,22 +25,32 @@ public class Projectile : MonoBehaviour
 
     protected GameObject newBullet;
 
+    protected RaycastHit2D target;
+
     protected virtual void Fire()   //총알 생성 및 발사
     {
-        newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
-        rb = newBullet.GetComponent<Rigidbody2D>();
-        rb.velocity = fireTransform.right * GrandParentIAttack.speed;
+        int layerMask = 1 << LayerMask.NameToLayer("Target");
+        target = Physics2D.Raycast(fireTransform.position, Vector2.right, 15f, layerMask);
+
+        if (target)
+        {
+            Vector2 Pos = target.transform.position - fireTransform.position;
+            newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
+            rb = newBullet.GetComponent<Rigidbody2D>();
+            rb.velocity = Pos.normalized * GrandParentIAttack.speed;
+
+            state = State.Empty;
+        }
+
     }
 
     protected virtual void OnBullet() //스킬이면 오버라이드
-    {
-        int layerMask = 1 << LayerMask.NameToLayer("Target");
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right, layerMask);
-        IDamageable hitDamage = hit.collider.GetComponent<IDamageable>();
+    {      
+        IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
-            Debug.Log(hit.collider.name);
-            hitDamage.OnDamage(GrandParentIAttack.OnAttack(hit), hit);
+            Debug.Log(target.collider.name);
+            hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
             Destroy(newBullet);   //다 파괴됨
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
@@ -54,7 +64,7 @@ public class Projectile : MonoBehaviour
         {
             //Debug.Log("생성");
             Fire();
-            state = State.Empty;
+            
         }
         if (state == State.Empty) { //데미지 체크
             //Debug.Log("데미지");

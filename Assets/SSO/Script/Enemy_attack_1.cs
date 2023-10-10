@@ -7,7 +7,7 @@ public class Enemy_attack_1 : MonoBehaviour
     // 공격 당했을떄 데미지를 입히는 스크립트
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Castle"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
             Debug.Log("공격당함");
         }

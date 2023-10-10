@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Skill : Projectile
 {
@@ -28,12 +29,11 @@ public class Skill : Projectile
 
     protected override void OnBullet() //스킬이면 오버라이드
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right, 1);
-        IDamageable hitDamage = hit.collider.GetComponent<IDamageable>();
+        IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null)
         {
-            Debug.Log(hit.collider.name);
-            hit.collider.GetComponent<IDamageable>().OnDamage(GrandParentIAttack.OnSkill(hit), hit);
+            Debug.Log(target.collider.name);
+            target.collider.GetComponent<IDamageable>().OnDamage(GrandParentIAttack.OnSkill(target), target);
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
             Destroy(newBullet);   //다 파괴됨
         }
