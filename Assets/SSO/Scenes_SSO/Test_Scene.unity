@@ -187,6 +187,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1110462634754812886, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462634754812887, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -195,13 +199,29 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1110462634955476821, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462634976469672, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462634976469673, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1110462635494016202, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462635494016203, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462635681544977, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1110462635681544982, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
@@ -259,9 +279,21 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1110462635861010207, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462636396487122, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462636396487123, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462636420853306, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1110462636420853307, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
@@ -271,13 +303,29 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1110462636422971069, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462636457158176, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1110462636457158179, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1110462636762147776, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462636762147779, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110462636860820529, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1110462636860820534, guid: 252d77e17ad16a14db3229d8608b769d, type: 3}
       propertyPath: m_Constraints
@@ -355,7 +403,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0.21921672, b: 0.5566038, a: 1}
   m_FlipX: 0
