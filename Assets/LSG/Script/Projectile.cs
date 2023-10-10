@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnBullet() //스킬이면 오버라이드
     {
-        int layerMask = 1 << LayerMask.NameToLayer("Raycase");
+        int layerMask = 1 << LayerMask.NameToLayer("Target");
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.right, layerMask);
         IDamageable hitDamage = hit.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면

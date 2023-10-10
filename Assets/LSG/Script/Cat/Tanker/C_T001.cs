@@ -102,9 +102,16 @@ public class C_T001 : Cat, IAttack
     }
     void Move()
     {
-        // 레이캐스트로 타겟 위치 체크, 그 방향으로 스무스하게 이동하도록 잡음 Y값 변화x
-        float delta = Mathf.SmoothDamp(gameObject.transform.position.x, targetPosition.position.x, ref vel.x, 2f);
-        this.transform.position = new Vector2(delta,this.transform.position.y);
+        int layerMask = 1 << LayerMask.NameToLayer("Target");
+        RaycastHit2D target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, layerMask);
+
+       if(target)
+        {
+            //타겟이 잡히는 경우 타겟쪽으로 이동
+            float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, 3f);
+            this.transform.position = new Vector2(delta, this.transform.position.y);
+        }
+        
         /*myAnim.SetFloat("MoveX", playerRb.velocity.x);
         myAnim.SetFloat("MoveY", playerRb.velocity.y);*/
     }
