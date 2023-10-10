@@ -70,8 +70,8 @@ namespace AllUnit{
                 //  10의 거듭제곱을 구해서 자릿수 표현값을 만들어 준다.
                 var temp = double.Parse(partsSplit[0].Replace("E", "")) * System.Math.Pow(10, remainder);
 
-                //  소수 둘째자리까지만 출력한다.
-                showNumber = temp.ToString("F").Replace(".00", "");
+                //  소수 첫째자리까지만 출력한다.
+                showNumber = temp.ToString("F1");
             }
 
             unityString = CurrencyUnits[quotient];
