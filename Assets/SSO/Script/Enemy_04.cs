@@ -20,7 +20,7 @@ public class Enemy_04 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Castle"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
             Debug.Log("Ãæµ¹");
             enemySpeed = 0;

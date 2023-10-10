@@ -103,7 +103,7 @@ public class C_T001 : Cat, IAttack
     void Move()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Target");
-        RaycastHit2D target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, layerMask);
+        RaycastHit2D target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
 
        if(target)
         {

@@ -17,7 +17,7 @@ public class enemy_attack_2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Castle"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
             Debug.Log("공격당함");
             Destroy(gameObject);  // 발사체 삭제
