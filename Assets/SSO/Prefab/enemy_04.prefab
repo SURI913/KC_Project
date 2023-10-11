@@ -142,6 +142,8 @@ MonoBehaviour:
   enemy_attack_4: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
   attackCooldown: 2
   speed: 5
+  hp: 3
+  damage: 1
 --- !u!61 &7055361872779583787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.8328035, y: 0}
+  m_Offset: {x: 2.8328035, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -166,5 +168,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.625606, y: 0.96}
+  m_Size: {x: 6.625606, y: 3}
   m_EdgeRadius: 0
