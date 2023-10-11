@@ -1,19 +1,35 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
+
 {
     // 근거리 몬스터 1
     public float enemySpeed = 0;
     public Vector2 StartPosition;
     public GameObject enemy_attack_1; // 공격 스타일 (일반 공격)
     public float attackCooldown = 2f;  // 공격 쿨타임
+    public float hp = 3.0f;
+    public float damage = 1.0f;
 
-    void Start()
+    public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
+    {
+        hp -= damage;
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("몬스터1 처치");
+        }
+    }
+
+void Start()
     {
         transform.position = StartPosition;
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,7 +38,6 @@ public class Enemy : MonoBehaviour
             Debug.Log("충돌");
             enemySpeed = 0;
             StartCoroutine(SpawnWithCooldown()); // Coroutine 시작
-
         }
     }
 

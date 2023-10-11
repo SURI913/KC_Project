@@ -9,7 +9,7 @@ public class PoolManager : MonoBehaviour
 
 
     // 리스폰 담당을 하는 리스트들 2
-    List<GameObject>[] pools;
+    public List<GameObject>[] pools;
 
     void Awake()
     {
@@ -27,7 +27,7 @@ public class PoolManager : MonoBehaviour
 
         // 선택한 리스폰의 비활성화 된 오브젝트에 접근하고, 그것을 발견하면 select 변수에 할당
 
-        foreach (GameObject item in pools[index])
+        /*foreach (GameObject item in pools[index])
         {
             if (!item.activeSelf) //비활성화된
             {
@@ -35,7 +35,7 @@ public class PoolManager : MonoBehaviour
                 select.SetActive(true);
                 break;
             }
-        }
+        }*/
 
         // 비활성화된 오브젝트가 없다면 새롭게 생성하여 select에 할당
         if (!select)
