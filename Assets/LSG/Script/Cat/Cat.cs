@@ -7,7 +7,7 @@ public class Cat : MonoBehaviour, IDamageable
 {
     public string ID { get; set; }    //캐릭터 넘버
     protected int Lv = 0;  //레벨
-    public double hp { get; set; }      //체력   valueType? : null값이 들어가 있으면
+    public double hp { get; set; }      //체력
     public double maxHp { get; set; }   //최대체력
     protected double attack;  //공격력
     //protected double? protect = null; //방어력
@@ -22,8 +22,7 @@ public class Cat : MonoBehaviour, IDamageable
 
     protected virtual void hpInit(){    //체력 초기화
             if(hp == -999 || maxHp == -999){
-                Debug.Log("ID");
-                Debug.Log("hp error!");
+                Debug.Log(ID + "hp error!");
             }
             else
             {
@@ -56,7 +55,7 @@ public class Cat : MonoBehaviour, IDamageable
     public virtual double attackApply(){
         //일반 공격값 반환
         if(attack == 0){
-            Debug.Log("ID");
+            Debug.Log(ID);
             Debug.Log("attack error!");
             return 0;
         }
