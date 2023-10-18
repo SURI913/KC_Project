@@ -7,7 +7,7 @@ public interface IDamageable
     void OnDamage(double Damage, RaycastHit2D hit);   //데미지를 입힘
 }
 
-public interface IAttack
+public interface IAttack //수정필요함 공격이랑 스킬 따로 분리할 것
 {
     float speed { get; set; }   //공격 속도
     float atkTime { get; set; } //일반공격 쿨타임

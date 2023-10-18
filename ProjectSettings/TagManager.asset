@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Castle
   - Enemy
+  - boss
   layers:
   - Default
   - TransparentFX

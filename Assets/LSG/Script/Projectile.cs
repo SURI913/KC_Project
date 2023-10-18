@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
     protected virtual void Fire()   //총알 생성 및 발사
     {
         int layerMask = 1 << LayerMask.NameToLayer("Target");
-        target = Physics2D.Raycast(fireTransform.position, Vector2.right, 15f, layerMask);
+        target = Physics2D.Raycast(fireTransform.position, Vector2.right, 5f, layerMask);
 
         if (target)
         {
@@ -38,7 +38,6 @@ public class Projectile : MonoBehaviour
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
             rb.velocity = Pos.normalized * GrandParentIAttack.speed;
-
             state = State.Empty;
         }
 
@@ -51,7 +50,7 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log(target.collider.name);
             hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
-            Destroy(newBullet);   //다 파괴됨
+            Destroy(newBullet, 2f);   //다 파괴됨
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
     }

@@ -29,9 +29,10 @@ public class Attack : Projectile
     }
     protected void Update()
     {
+        //이 부분도 수정 필요
         if (GrandParentIAttack.AtiveSkill == true)   //스킬 사용 상태면 일시적으로 멈춤
         {
-            state = State.Reloading;
+                state = State.Reloading;
         }
         StateCheck();
         if (Cooltime <= 0)
