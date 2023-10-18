@@ -47,13 +47,13 @@ void Start()
         {
             Vector3 spawnPosition = transform.position - Vector3.right;         // 공격이 생성되는 위치
             GameObject attackInstance = Instantiate(enemy_attack_1, spawnPosition, Quaternion.identity);  // 공격 생성
-            StartCoroutine(DestroyAfterSeconds(attackInstance, 1f));  // 오브젝트 파괴 코루틴 생성
+            StartCoroutine(DestroyAttack(attackInstance, 1f));  // 오브젝트 파괴 코루틴 생성
 
             yield return new WaitForSeconds(attackCooldown); // 쿨타임 동안 대기
         }
     }
 
-    IEnumerator DestroyAfterSeconds(GameObject obj, float seconds)
+    IEnumerator DestroyAttack(GameObject obj, float seconds)   // 공격 없애기
     {
         yield return new WaitForSeconds(seconds); // 지정된 시간 동안 대기
         Destroy(obj); // 오브젝트 파괴
@@ -62,14 +62,12 @@ void Start()
 
     void Update()
     {
-
         transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
 
         if (transform.position.x < -15)
         {
             gameObject.SetActive(false);
         }
-
     }
 }
 
