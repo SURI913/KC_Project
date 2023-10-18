@@ -24,7 +24,7 @@ public class C_T001 : Cat, IAttack
         hp = maxHp;
         attack = 10;
         Lv = 1;
-        speed = 15f;    //임의
+        speed = 0f;    //임의
         skillTime = 5f;
         atkTime = 2f;
     }
