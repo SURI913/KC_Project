@@ -10,18 +10,20 @@ public class TowerItem : MonoBehaviour
     public string ID { get; set; }
     protected int Lv = 0;  //레벨
     protected int MaxLv = 100;  //레벨
-    public double effect { get; set; }
+    public double effect { get; set; }//착용효과
     public double increase  { get; set; }
-    public double RetentionEffect { get; set; }
+    public double RetentionEffect { get; set; } //보유효과
     public double RetentionIncrease { get; set; }
     public int ItemCount { get; set; }
     public bool Ative { get; set; }
+    public bool ChoiceItem { get; set; }
 
     Text LvText;
     //Text Count;
     //int Maxnum = 4;
 
     private Button MyButton;
+    private Button[] InfoButton;
     protected void initData()
     {
         Lv = 1;
@@ -43,6 +45,7 @@ public class TowerItem : MonoBehaviour
             MyButton.interactable = false; //버튼 비활성화 상태
         }
         InfoPlane.SetActive(false);
+        InfoButton = InfoPlane.transform.GetChild(2).GetComponentsInChildren<Button>();
     }
 
     public void Print()
@@ -55,7 +58,7 @@ public class TowerItem : MonoBehaviour
         //처음이라면
         initData();
         //아니라면 유저 데이터 불러오기
-        Print();
+        //Print();
         //info버튼 연결해주기
         MyButton.onClick.AddListener(ClickInfoButton);
     }
@@ -75,7 +78,7 @@ public class TowerItem : MonoBehaviour
             effect *= 2;
             RetentionEffect *= 2;
             //모든 효과 두배로 만들고 현재 레벨업 버튼 비활성화 다음 레벨업 버튼 생성
-            InfoPlane.transform.GetChild(2).GetComponentInChildren<Button>().onClick.RemoveListener(LevelUP);
+            InfoButton[0].onClick.RemoveListener(LevelUP);
         }
         SetInfo();
     }
@@ -88,7 +91,7 @@ public class TowerItem : MonoBehaviour
     {
         InfoPlane.SetActive(true);
         SetInfo();
-        InfoPlane.transform.GetChild(2).GetComponentInChildren<Button>().onClick.AddListener(LevelUP); //레벨업 버튼 연결
+        InfoButton[0].onClick.AddListener(LevelUP); //레벨업 버튼 연결
         //착용도 작업해야함
     }
 

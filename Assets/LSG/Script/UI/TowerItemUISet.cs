@@ -37,6 +37,8 @@ public class TowerItemUISet : MonoBehaviour
             }
             Setcannon[0].Ative = true;
             Setrepairman[0].Ative = true;
+            Setcannon[0].ChoiceItem = true;
+            Setrepairman[0].ChoiceItem = true;
         }
     }
 
@@ -48,6 +50,7 @@ public class TowerItemUISet : MonoBehaviour
         target.RetentionEffect = getData.RetentionAttack;
         target.RetentionIncrease = getData.RetentionIncrease;
         target.Ative = false;
+        target.ChoiceItem = false;
     }
 
     void SetItem(TowerItem target, RepairManData getData)
@@ -58,7 +61,6 @@ public class TowerItemUISet : MonoBehaviour
         target.RetentionEffect = getData.RetentionHp;
         target.RetentionIncrease = getData.RetentionIncrease;
         target.Ative = false;
-
-
+        target.ChoiceItem = false;
     }
 }
