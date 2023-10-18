@@ -58,6 +58,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
 
         //데이터 가져오기
         //레벨효과 = 1 + 0.01*레벨
+        initData();
     }
 
     public double OnAttack(RaycastHit2D hit)

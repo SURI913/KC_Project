@@ -35,10 +35,13 @@ public class Cat : MonoBehaviour, IDamageable
     //캐릭터 데미지를 입히고 싶을 때 레이캐스트 판정(tag) Cat걸리면 실행시키면 됨 당사자의 데미지를 까고 0이면 hit 캐릭터 삭제?
     public virtual void OnDamage(double Damage, RaycastHit2D hit) //캐릭터 데미지 입히는 호출
     {
-        //데미지 입음                 
-        double damageAdd = Damage;//-(영웅 방어력*방어력(보유효과)*성급효과(뭔지모르겠음)*패시브스킬(유무))
-        hp -= damageAdd;
-        if(hp <= 0 && !dead!) { Die(); }    //죽음처리
+        if (!dead)
+        {
+            //데미지 입음                 
+            double damageAdd = Damage;//-(영웅 방어력*방어력(보유효과)*성급효과(뭔지모르겠음)*패시브스킬(유무))
+            hp -= damageAdd;
+            if (hp <= 0 && !dead!) { Die(); }    //죽음처리
+        }
         //패시브 스킬이 있는경우 오버라이딩으로 작업
     }
 

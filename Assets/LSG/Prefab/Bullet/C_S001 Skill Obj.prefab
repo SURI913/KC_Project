@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7975682887442928558}
   - component: {fileID: 6331108421834102940}
+  - component: {fileID: 7729655093997954906}
   m_Layer: 0
   m_Name: C_S001 Skill Obj
   m_TagString: Untagged
@@ -53,3 +54,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7729655093997954906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7975682887442928559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9235e5e8ea40e67429893f6d3a01bff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
