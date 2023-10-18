@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log(target.collider.name);
             hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
-            //Destroy(newBullet);   //다 파괴됨
+            Destroy(newBullet);   //다 파괴됨
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
     }
