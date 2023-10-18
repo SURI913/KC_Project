@@ -9,16 +9,16 @@ public class MonsterSpawn : MonoBehaviour
     private GameObject Monster;
 
     [SerializeField]
-    private float movespeed = 5.0f;
-    [SerializeField]
-    private float sign = -1.0f;
+   // private float movespeed = 5.0f;
+   // [SerializeField]
+    //private float sign = -1.0f;
 
     void Start()
     {
         //몬스터 복사 
         for (int i = 0; i < 2; i++)
         {
-            Instantiate(Monster, transform.position, Quaternion.identity);
+           // Instantiate(Monster, transform.position, Quaternion.identity);
         }
     }
 
