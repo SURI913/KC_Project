@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy_attack_2 : MonoBehaviour
+public class Enemy_attack_2 : MonoBehaviour
 {
     public float speed = 5f;
     private Transform target;
