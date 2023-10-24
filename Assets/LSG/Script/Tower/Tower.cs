@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     public float speed { get; set; }   //공격 속도
     public float atkTime { get; set; } //일반공격 쿨타임
     public float skillTime { get; set; } = 0;
-    public bool AtiveSkill { get; set; } = false;
+    public bool ativeSkill { get; set; } = false;
 
     void initData()
     {

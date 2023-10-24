@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
         Reloading   //쿨타임 대기중
     }
     protected string ID;
-    protected State state {  get; set; }    //현재 발사체 상태
+    protected State state { get; set; } = State.Ready;    //현재 발사체 상태
     public bool isAttack { get; set; }
 
     protected GameObject bullet;    // 총알 //
