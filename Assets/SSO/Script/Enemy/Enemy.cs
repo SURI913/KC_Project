@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour, IDamageable
     public Vector2 StartPosition;
     public GameObject enemy_attack_1; // 공격 스타일 (일반 공격)
     public float attackCooldown = 2f;  // 공격 쿨타임
-    public float hp = 3.0f;
-    public float damage = 1.0f;
+    private double hp;
+    private float damage;
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
-        hp -= damage;
+        hp -= Damage;
         if(hp <= 0)
         {
             Destroy(gameObject);
@@ -24,7 +24,13 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-void Start()
+    public void SetStats(double health, float dmg)
+    {
+        hp = health;
+        damage = dmg;
+    }
+
+    void Start()
     {
         transform.position = StartPosition;
     }

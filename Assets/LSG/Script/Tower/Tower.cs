@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     public float speed { get; set; }   //공격 속도
     public float atkTime { get; set; } //일반공격 쿨타임
     public float skillTime { get; set; } = 0;
-    public bool AtiveSkill { get; set; } = false;
+    public bool ativeSkill { get; set; } = false;
 
     void initData()
     {
@@ -58,6 +58,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
 
         //데이터 가져오기
         //레벨효과 = 1 + 0.01*레벨
+        initData();
     }
 
     public double OnAttack(RaycastHit2D hit)
