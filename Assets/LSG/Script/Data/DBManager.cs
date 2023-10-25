@@ -39,7 +39,7 @@ public class DBManager : MonoBehaviour
     public IEnumerator DownloadGrowthAtk()
     {
         //캐논 데이터 가져오기
-        UnityWebRequest www = UnityWebRequest.Get(GrowthHpURL);
+        UnityWebRequest www = UnityWebRequest.Get(GrowthAtkURL);
         yield return www.SendWebRequest();
         SetGrowthAtk(www.downloadHandler.text);
     }
@@ -47,7 +47,7 @@ public class DBManager : MonoBehaviour
     public IEnumerator DownloadGrowthHp()
     {
         //캐논 데이터 가져오기
-        UnityWebRequest www = UnityWebRequest.Get(GrowthAtkURL);
+        UnityWebRequest www = UnityWebRequest.Get(GrowthHpURL);
         yield return www.SendWebRequest();
         SetGrowthHp(www.downloadHandler.text);
     }
@@ -76,6 +76,7 @@ public class DBManager : MonoBehaviour
         }
     }
     [SerializeField] GrowthData growthData;
+    [SerializeField] GrowingData growingSetData;
 
     void SetRepairManData(string tvc)
     {
@@ -119,6 +120,7 @@ public class DBManager : MonoBehaviour
                 targetData.Increase = double.Parse(column[3]);
             }
         }
+        growingSetData.Attack = growthData.GrowthAttack[0].Attack;
     }
     void SetGrowthHp(string tvc)
     {
@@ -139,5 +141,6 @@ public class DBManager : MonoBehaviour
                 targetData.Increase = double.Parse(column[3]);
             }
         }
+        growingSetData.Hp = growthData.GrowthHp[0].Hp;
     }
 }
