@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AllUnit;
 
 public class M_D01 : Monster
-{ 
+{
+    
 
-    //protected int Stage[];
-    //스테이지를 어떻게 확인하고 
-    //해당 스테이지마다 체력과 공격력을 다르게 할것인지 조금만 고민해보자 
+   /* private void Start()
+    {
+        HP_m();
+    }
     protected override void HP_m()
     {
         ID_m = "M_D01";
         HP = maxHP;
-        maxHP = 30.0f;
+      //  maxHP = data.HP;
+       // Debug.Log("체력" + Unit.ToUnitString(maxHP));
+
+
 
     }
 
@@ -26,19 +32,27 @@ public class M_D01 : Monster
     protected override void Attack_m()
     {
         Attack = 10.0f;
-        AtcTime = 3;
+        AtkTime = 3;
+    }*/
+
+
+    /*private float sign = -1.0f;
+    private bool iswalk = true;*/
+
+    private void FixedUpdate()
+    {
+        move_m();
     }
-
-
-    private float sign = -1.0f;
-    private bool iswalk = true;
     protected override void move_m()
     {
-        movespeed = 3.0f;
+       //이동관련 코드 넣기
+       // 플레이어와 만났을때 멈추도록 
+        /*// private float movespeed = 3.0f;
+       
         if (Time.time >= 0 && iswalk)
         {
-            transform.position += new Vector3(movespeed * Time.deltaTime * sign, 0, 0);
-        }
+            transform.position += new Vector3(base.movespeed * Time.deltaTime * sign, 0, 0);
+        }*/
 
         //이전코드
 
@@ -54,12 +68,12 @@ public class M_D01 : Monster
              }
 
          }*/
-    
+
     }
-    private void Awake()
+   /* private void Awake()
     {
         HP_m();
         Attack_m();
-    }
+    }*/
 
 }
