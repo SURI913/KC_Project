@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class M_D02 : Monster
 {
     //protected int Stage[];
@@ -9,7 +10,7 @@ public class M_D02 : Monster
     //해당 스테이지마다 체력과 공격력을 다르게 할것인지 조금만 고민해보자 
     protected override void HP_m()
     {
-        ID_m = "M_D01";
+        ID_m = "M_D02";
         HP = maxHP;
         maxHP = 30.0f;
 
@@ -25,19 +26,19 @@ public class M_D02 : Monster
     protected override void Attack_m()
     {
         Attack = 10.0f;
-        AtcTime = 3;
+        AtkTime = 3;
     }
 
 
-    private float sign = -1.0f;
-    private bool iswalk = true;
+   /* private float sign = -1.0f;
+    private bool iswalk = true;*/
     protected override void move_m()
     {
-        movespeed = 3.0f;
+      /*  movespeed = 3.0f;
         if (Time.time >= 0 && iswalk)
         {
             transform.position += new Vector3(movespeed * Time.deltaTime * sign, 0, 0);
-        }
+        }*/
 
         //이전코드
 

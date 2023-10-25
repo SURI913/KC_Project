@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c79d72559cf754e99c6232ed0c9d76, type: 3}
+  m_Name: Monster Data
+  m_EditorClassIdentifier: 
+  monsterdatas:
+  - stageID: A-1
+    hp: 30
+    attack: 10
+    atktime: 3
+    recommattack: 300
+    recommdefense: 1000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-3
+    hp: 400
+    attack: 300
+    atktime: 3
+    recommattack: 4000
+    recommdefense: 30000
+  - stageID: A-4
+    hp: 700
+    attack: 800
+    atktime: 3
+    recommattack: 7000
+    recommdefense: 80000
+  - stageID: A-5
+    hp: 14000
+    attack: 5200
+    atktime: 3
+    recommattack: 140000
+    recommdefense: 520000
+  - stageID: A-6
+    hp: 44000
+    attack: 16000
+    atktime: 3
+    recommattack: 440000
+    recommdefense: 1600000
+  - stageID: A-7
+    hp: 140000
+    attack: 50000
+    atktime: 3
+    recommattack: 1400000
+    recommdefense: 5000000
+  - stageID: A-8
+    hp: 420000
+    attack: 150000
+    atktime: 3
+    recommattack: 4200000
+    recommdefense: 15000000
+  - stageID: A-9
+    hp: 1300000
+    attack: 480000
+    atktime: 3
+    recommattack: 13000000
+    recommdefense: 48000000
+  - stageID: A-10
+    hp: 4200000
+    attack: 1500000
+    atktime: 3
+    recommattack: 42000000
+    recommdefense: 150000000
+  - stageID: A-11
+    hp: 13000000
+    attack: 4700000
+    atktime: 3
+    recommattack: 130000000
+    recommdefense: 470000000
+  - stageID: A-12
+    hp: 40000000
+    attack: 15000000
+    atktime: 3
+    recommattack: 400000000
+    recommdefense: 1500000000
+  - stageID: A-13
+    hp: 130000000
+    attack: 46000000
+    atktime: 3
+    recommattack: 1300000000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
+  - stageID: A-2
+    hp: 100
+    attack: 70
+    atktime: 3
+    recommattack: 1000
+    recommdefense: 7000
