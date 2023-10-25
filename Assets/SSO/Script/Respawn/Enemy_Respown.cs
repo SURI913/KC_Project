@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy_Respown : MonoBehaviour
 {
@@ -10,31 +11,54 @@ public class Enemy_Respown : MonoBehaviour
     public UnityEngine.UI.Image screenOverlay; // 화면 깜빡임을 위한 UI Image
     float timer;
     bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
+    public GameObject stageClearUI;  // 클리어 텍스트
+    public static Enemy_Respown Instance;  // 싱글톤 인스턴스
+    public double enemyHp;
+    public float enemyDamage;
 
-    void Update()
+    private void Awake()
     {
-        timer += Time.deltaTime;
-
-        if (timer > 3f && pool.enemyCount < 3) // 10마리 이하일 때만 적을 생성
+        if (Instance == null)
         {
-            timer = 0;
-            Spawn();
+            Instance = this;
         }
-        else if (pool.enemyCount >= 3 && !bossSpawned) // 10마리가 되면 보스 소환
+        else
         {
-            SpawnBoss();
-            StartCoroutine(FlashRedScreen());
-            ShowWarning();
-        }
-        if (Input.GetKeyDown("space"))
-        {
-            pool.Get(1);
+            Destroy(gameObject);
         }
     }
 
     void Spawn()
     {
-        pool.Get(Random.Range(0, 4));
+        //Enemy_Respown 스크립트의 Spawn 메서드에서 적을 생성할 때마다
+        //Enemy 스크립트의  SetStats 메서드를 사용하여 hp와 damage 값을 전달
+        GameObject enemyObject = pool.Get(Random.Range(0, 4));
+        Enemy enemyScript = enemyObject.GetComponent<Enemy>();
+        if (enemyScript)
+        {
+            enemyScript.SetStats(enemyHp, enemyDamage);
+        }
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer > 3f && pool.enemyCount < 3) // 3마리 이하일 때만 적을 생성
+        {
+            timer = 0;
+            Spawn();
+        }
+        else if (pool.enemyCount >= 3 && !bossSpawned) // 3마리가 되면 보스 소환
+        {
+            SpawnBoss();   // 보스 소환
+            StartCoroutine(FlashRedScreen());  // 빨간화면 이미지 생성
+            ShowWarning();  // warning ui 생성
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            pool.Get(1);
+        }
     }
 
     void SpawnBoss()
@@ -59,13 +83,25 @@ public class Enemy_Respown : MonoBehaviour
     void ShowWarning()
     {
         warningUI.SetActive(true);  // 경고 UI 활성화
-        StartCoroutine(HideWarningAfterSeconds(3)); // 3초 후에 경고 UI 숨기기
+        StartCoroutine(UIWait(3)); // 3초 후에 경고 UI 숨기기
     }
 
-    IEnumerator HideWarningAfterSeconds(float seconds)
+    IEnumerator UIWait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         warningUI.SetActive(false);
     }
 
+    public void ShowStageClear()
+    {
+        stageClearUI.SetActive(true);  // "Stage Clear!!" 텍스트 활성화
+        StartCoroutine(TransitionToNextStage());
+    }
+
+    IEnumerator TransitionToNextStage()
+    {
+        yield return new WaitForSeconds(3f);  // 3초 대기
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);  // 다음 씬으로 전환
+    }
 }
