@@ -9,8 +9,8 @@ public class Enemy_02 : MonoBehaviour, IDamageable
     public Vector2 StartPosition;
     public GameObject enemy_attack_2;   // attack1보다 더 큰 공격
     public float attackCooldown = 2f;  // 공격 쿨타임
-    public float hp = 3.0f;
-    public float damage = 1.0f;
+    private double hp;
+    private float damage;
 
 
     void Start()
@@ -20,12 +20,18 @@ public class Enemy_02 : MonoBehaviour, IDamageable
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
-        hp -= damage;
+        hp -= Damage;
         if (hp <= 0)
         {
             Destroy(gameObject);
             Debug.Log("몬스터2 처치");
         }
+    }
+
+    public void SetStats(double health, float dmg)
+    {
+        hp = health;
+        damage = dmg;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
