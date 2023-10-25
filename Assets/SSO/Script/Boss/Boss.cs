@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour, IDamageable
 {
@@ -13,11 +14,13 @@ public class Boss : MonoBehaviour, IDamageable
     public float damage = 10.0f;
     private bool bossSpawned = false;   // 페이즈가 여러번 일어나는것을 방지하는 변수
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
+    private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
 
 
     void Start()
     {
         transform.position = StartPosition;
+        respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
@@ -36,6 +39,7 @@ public class Boss : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
             Debug.Log("보스 처치");
+            respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
         }
     }
 
@@ -102,4 +106,5 @@ public class Boss : MonoBehaviour, IDamageable
         }
 
     }
+
 }
