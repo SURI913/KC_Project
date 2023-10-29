@@ -24,7 +24,7 @@ public class Skill : Projectile
     private void Awake()
     {
         initData();
-        GrandParentIAttack.AtiveSkill = true;
+        GrandParentIAttack.ativeSkill = true;
     }
 
     protected override void OnBullet() //스킬이면 오버라이드
@@ -33,9 +33,11 @@ public class Skill : Projectile
         if (hitDamage != null)
         {
             Debug.Log(target.collider.name);
-            target.collider.GetComponent<IDamageable>().OnDamage(GrandParentIAttack.OnSkill(target), target);
+            Debug.Log(GrandParent.transform.GetComponent<Cat>().ID+"가 스킬 사용 중");
+            hitDamage.OnDamage(GrandParentIAttack.OnSkill(target), target);
+            Debug.Log(GrandParent.transform.tag + "가 " + GrandParentIAttack.OnAttack(target) + "만큼의 데미지를 입혔습니다");
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
-            Destroy(newBullet);   //다 파괴됨
+            Destroy(newBullet, 2f);   //2초 뒤 파괴
         }
     }
     protected void Update()
@@ -50,7 +52,7 @@ public class Skill : Projectile
         }
         else
         {
-            GrandParentIAttack.AtiveSkill = false;
+            GrandParentIAttack.ativeSkill = false;
             Cooltime -= Time.deltaTime;
         }
     }

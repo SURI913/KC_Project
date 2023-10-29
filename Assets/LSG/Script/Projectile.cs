@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -13,7 +14,7 @@ public class Projectile : MonoBehaviour
         Reloading   //쿨타임 대기중
     }
     protected string ID;
-    protected State state {  get; set; }    //현재 발사체 상태
+    protected State state { get; set; } = State.Ready;    //현재 발사체 상태
     public bool isAttack { get; set; }
 
     protected GameObject bullet;    // 총알 //
@@ -30,31 +31,30 @@ public class Projectile : MonoBehaviour
     protected virtual void Fire()   //총알 생성 및 발사
     {
         int layerMask = 1 << LayerMask.NameToLayer("Target");
-        target = Physics2D.Raycast(fireTransform.position, Vector2.right, 15f, layerMask);
-
+         target = Physics2D.Raycast(fireTransform.position, Vector2.right, 5f, layerMask);
         if (target)
         {
             Vector2 Pos = target.transform.position - fireTransform.position;
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
             rb.velocity = Pos.normalized * GrandParentIAttack.speed;
-
             state = State.Empty;
         }
-
     }
 
     protected virtual void OnBullet() //스킬이면 오버라이드
-    {      
+    {
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
             Debug.Log(target.collider.name);
             hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
-            Destroy(newBullet);   //다 파괴됨
+            Debug.Log(GrandParent.transform.tag+"가 "+ GrandParentIAttack.OnAttack(target)+"만큼의 데미지를 입혔습니다");
+            Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
     }
+
 
     protected void StateCheck()
     {

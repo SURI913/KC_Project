@@ -5,29 +5,42 @@ using AllUnit;
 
 public class C_S001 : Cat, IAttack
 {
-    float skillEft = 0.05f;
+    //public string name { get;, private set; }
+    float skillEft = 0.05f; //힐 들어가는 퍼센트
     public float speed { get; set; } //공격 속도
     public float atkTime { get; set; } //일반공격 쿨타임
     public float skillTime { get; set; } //스킬 공격 쿨타임
-    public bool AtiveSkill { get; set; }   //스킬 활성화 시 공격 멈춤
+    public bool ativeSkill { get; set; }   //스킬 활성화 시 공격 멈춤
 
     //스킬을 위한 함수 일정범위 내의 영웅들을 골라냄
     List<Cat> catsHealing = new List<Cat>();
+    [SerializeField] GrowingData growingdata;
 
     //캐릭터 값 초기화
     //DB에서 끌어옴     
     //레벨업 할때마다 저장 호출 + 값 다시 가져오기
-    private void InitData()
+    private void InitData() //대신에 생성자로 값 넣는방식으로 변경해 볼 것
     {
         // 활성화 된 고양이 Cat클래스에 첫 데이터 보내기
         ID = "C_S001";
-        maxHp = 1500;
-        hp = maxHp;
-        attack = 10;
         Lv = 1;
+
+        xhp = 2f;
+        hpIncrease = 0.1f;
+        maxHp = growingdata.Hp*xhp;
+        hp = maxHp;
+
+        xattack = 1.5f;
+        attackIncrease = 0.1f;
+
         speed = 20f;    //임의
         skillTime = 10f;
         atkTime = 2f;
+
+        growingData = growingdata;
+        Debug.Log(ID + "growingData 저장 완료");
+
+
 
         Vector2 skillpos = this.transform.position;
         //스킬특기
@@ -65,7 +78,6 @@ public class C_S001 : Cat, IAttack
         }
         return 0;
     }
-
     public double OnAttack(RaycastHit2D hit) //공격 체크
     {
         if (hit.collider.CompareTag("Respawn")) //보스 공격의 경우
@@ -75,8 +87,4 @@ public class C_S001 : Cat, IAttack
         return attackApply();
     }
 
-    public void levelUP()
-    {
-        LevelUP();
-    }
 }

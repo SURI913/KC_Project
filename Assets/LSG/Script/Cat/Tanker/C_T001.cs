@@ -11,7 +11,9 @@ public class C_T001 : Cat, IAttack
     public float speed { get; set; } //공격 속도
     public float atkTime { get; set; } //일반공격 쿨타임
     public float skillTime { get; set; } //스킬 공격 쿨타임
-    public bool AtiveSkill { get; set; }   //스킬 활성화 시 공격 멈춤
+    public bool ativeSkill { get; set; }   //스킬 활성화 시 공격 멈춤
+
+    [SerializeField] GrowingData growingdata;
 
     //캐릭터 값 초기화
     //DB에서 끌어옴
@@ -20,13 +22,24 @@ public class C_T001 : Cat, IAttack
     {
         //첫 데이터 보내기
         ID = "C_T001";
-        maxHp = 3000;
-        hp = maxHp;
-        attack = 10;
         Lv = 1;
-        speed = 15f;    //임의
+
+        xhp = 3f;
+        hpIncrease = 0.3f;
+        maxHp = growingdata.Hp * xhp;
+        hp = maxHp;
+
+        xattack = 0.7f;
+        attackIncrease = 0.05f;
+
+        speed = 0f;    //임의
         skillTime = 5f;
         atkTime = 2f;
+
+        growingData = growingdata;
+        Debug.Log(ID+"growingData 저장 완료");
+
+
     }
 
     private void Awake()
@@ -56,18 +69,13 @@ public class C_T001 : Cat, IAttack
         return attackApply();
     }
 
-    public void levelUP()
-    {
-        LevelUP();
-    }
-
     IEnumerator Skill()
     {
         this.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(skillEft);
     }
 
-    public bool isAttack { get; set; }
+    private bool isAttack;
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (!isAttack)
@@ -89,26 +97,28 @@ public class C_T001 : Cat, IAttack
         isAttack = false;
     }
 
+    //캐릭터 이동 관련 변수
     private Rigidbody2D playerRb;
     //private Animator myAnim;
-    public float playerMoveSpeed =1.0f;
-    public Transform targetPosition;
-    Vector2 vel = Vector2.zero;
+    private float playerMoveSpeed =1.0f;
+    private Transform targetPosition;
+    private Vector2 vel = Vector2.zero;
     
 
     private void FixedUpdate()
     {
         if (!isAttack) { Move(); }
     }
-    void Move()
+    private void Move()
     {
+        //한 캐릭터 공격중이면 더이상 움직임 x
         int layerMask = 1 << LayerMask.NameToLayer("Target");
         RaycastHit2D target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
 
        if(target)
         {
             //타겟이 잡히는 경우 타겟쪽으로 이동
-            float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, 3f);
+            float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
             this.transform.position = new Vector2(delta, this.transform.position.y);
         }
         
