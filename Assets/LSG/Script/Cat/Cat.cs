@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AllUnit;
+using UnityEngine.UI;
 
 public class Cat : MonoBehaviour, IDamageable
 {
@@ -103,22 +104,27 @@ public class Cat : MonoBehaviour, IDamageable
 
     private void UpdateData()
     {
+
         //작성
     }
 
     public void LevelUP()
     {
-        Debug.Log(ID + "레벨업!");
-        if(growingData == null)
+        if(ativelevelup)
         {
-            Debug.Log("레벨업 중 growingData Error!");
-            
+            Debug.Log(ID + "레벨업!");
+            if (growingData == null)
+            {
+                Debug.Log("레벨업 중 growingData Error!");
+
+            }
+            Lv++;
+            xattack += attackIncrease;
+            xhp += hpIncrease;
+            maxHp = growingData.Hp * xhp; //여기서 왜 오류남?
+                                          //데이터 전달 후 값 업데이트
+            ativelevelup = false;
         }
-        Lv++;
-        xattack += attackIncrease;
-        xhp += hpIncrease;
-        maxHp = growingData.Hp * xhp; //여기서 왜 오류남?
-        //데이터 전달 후 값 업데이트
     }
 
     protected void printData()
@@ -127,5 +133,24 @@ public class Cat : MonoBehaviour, IDamageable
         Debug.Log(ID + "maxHp: " +Unit.ToUnitString(maxHp));
         Debug.Log(ID + "attack: " +Unit.ToUnitString(xattack));
         Debug.Log(ID + "Lv: " +Lv);
+    }
+
+    //일시적으로 제한
+    private float cooltime = 10f;
+    private bool ativelevelup = true;
+
+    private void Update()
+    {
+        if (cooltime >= 0 && !ativelevelup)
+        {
+            cooltime -= Time.deltaTime;
+
+        }
+        else
+        {
+            ativelevelup = true;
+            cooltime = 10f;
+        }
+
     }
 }
