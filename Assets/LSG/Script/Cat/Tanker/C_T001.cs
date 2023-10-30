@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using AllUnit;
 using System.Globalization;
 using TMPro;
@@ -14,6 +15,7 @@ public class C_T001 : Cat, IAttack
     public bool ativeSkill { get; set; }   //스킬 활성화 시 공격 멈춤
 
     [SerializeField] GrowingData growingdata;
+
 
     //캐릭터 값 초기화
     //DB에서 끌어옴
