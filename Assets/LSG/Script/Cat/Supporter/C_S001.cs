@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using AllUnit;
 
 public class C_S001 : Cat, IAttack
@@ -39,7 +40,6 @@ public class C_S001 : Cat, IAttack
 
         growingData = growingdata;
         Debug.Log(ID + "growingData 저장 완료");
-
 
 
         Vector2 skillpos = this.transform.position;

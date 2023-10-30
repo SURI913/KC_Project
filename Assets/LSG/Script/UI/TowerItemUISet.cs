@@ -11,8 +11,8 @@ public class TowerItemUISet : MonoBehaviour
     public GameObject cannonScollBar;
     public GameObject repairmanScollBar;
 
-    public CannonData[] FindcannonData;
-    public RepairManData[] FindrepairmanData;
+    private CannonData[] FindcannonData;
+    private RepairManData[] FindrepairmanData;
 
     TowerItem[] Setcannon;
     TowerItem[] Setrepairman;

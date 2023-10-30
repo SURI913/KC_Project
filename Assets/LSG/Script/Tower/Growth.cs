@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class Growth : MonoBehaviour
 {
     public double attack {  get; private set; }
@@ -25,6 +27,8 @@ public class Growth : MonoBehaviour
         GetHpData();
         indexAttack = 0;
         GetAttackData();
+
+        btn = GetComponentsInChildren<Button>();
     }
 
     void GetHpData()
@@ -51,7 +55,9 @@ public class Growth : MonoBehaviour
     }
     public void attackGrowUp()
     {
-        if(attackLv <= attackMaxLv)
+        atkativelevelup = false;
+
+        if (attackLv <= attackMaxLv)
         {
             //성장가능
             attack += attackIncrease;
@@ -71,6 +77,8 @@ public class Growth : MonoBehaviour
 
     public void hpGrowUp()
     {
+        hpativelevelup = false;
+
         if (hpLv <= hpMaxLv) 
         {
             //성장가능
@@ -85,6 +93,43 @@ public class Growth : MonoBehaviour
                 indexHp++;
                 GetHpData();
             }
+        }
+    }
+
+    //일시적으로 제한
+    private float atkcooltime = 10f;
+    private bool atkativelevelup = true;
+    private Button[] btn;
+
+    private float hpcooltime = 10f;
+    private bool hpativelevelup = true;
+
+    private void Update()
+    {
+        if (atkcooltime >= 0 && !atkativelevelup)
+        {
+            atkcooltime -= Time.deltaTime;
+            btn[0].interactable = false;
+
+        }
+        else
+        {
+            atkativelevelup = true;
+            atkcooltime = 10f;
+            btn[0].interactable = true;
+        }
+
+        if (hpcooltime >= 0 && !hpativelevelup)
+        {
+            hpcooltime -= Time.deltaTime;
+            btn[1].interactable = false;
+
+        }
+        else
+        {
+            hpativelevelup = true;
+            hpcooltime = 10f;
+            btn[1].interactable = true;
         }
     }
 }
