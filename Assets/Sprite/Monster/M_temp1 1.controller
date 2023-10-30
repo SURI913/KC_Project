@@ -1,37 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< Updated upstream:Assets/Sprite/Monster/M_temp1.controller
---- !u!1101 &-6223162004257319688
-AnimatorStateTransition:
-=======
 --- !u!1102 &-6806093106417457818
 AnimatorState:
   serializedVersion: 6
->>>>>>> Stashed changes:Assets/Monster/M_temp1.controller
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Sprite/Monster/M_temp1.controller
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7080043851018099051}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.625
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-1458641483019137619
-AnimatorStateTransition:
-=======
   m_Name: M_temp1_attack 0
   m_Speed: 1
   m_CycleOffset: 0
@@ -54,32 +29,10 @@ AnimatorStateTransition:
 --- !u!1102 &-3178336442700785265
 AnimatorState:
   serializedVersion: 6
->>>>>>> Stashed changes:Assets/Monster/M_temp1.controller
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Sprite/Monster/M_temp1.controller
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Enemy_attack
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 2598192518876403525}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0.625
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
-=======
   m_Name: M_temp1_moving 0
   m_Speed: 1
   m_CycleOffset: 0
@@ -99,22 +52,15 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
->>>>>>> Stashed changes:Assets/Monster/M_temp1.controller
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_temp1
+  m_Name: M_temp1 1
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: Enemy_attack
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -169,8 +115,7 @@ AnimatorState:
   m_Name: M_temp1_attack
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -6223162004257319688}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -196,8 +141,7 @@ AnimatorState:
   m_Name: M_temp1_moving
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -1458641483019137619}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
