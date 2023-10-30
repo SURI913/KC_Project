@@ -46,6 +46,8 @@ public class TowerItem : MonoBehaviour
         }
         InfoPlane.SetActive(false);
         InfoButton = InfoPlane.transform.GetChild(2).GetComponentsInChildren<Button>();
+        InfoButton[0].interactable = true;
+
     }
 
     public void Print()
@@ -62,24 +64,38 @@ public class TowerItem : MonoBehaviour
         //info버튼 연결해주기
         MyButton.onClick.AddListener(ClickInfoButton);
     }
+
+    //코드 수정 1순위
     public void LevelUP()
     {
-        if(Lv < MaxLv)
+
+        if(Lv < MaxLv-1)
         {
-            Lv++;
+            Lv++; //변경된 값 이상함 체크 필요
             print(ID +" 레벌업 1회");
             effect += increase;
             RetentionEffect += RetentionIncrease;
             
             LvText.text = Lv.ToString();
+            InfoButton[0].onClick.RemoveListener(LevelUP);
+
         }
-        else
+        else if(Lv==MaxLv-1)
         {
             effect *= 2;
             RetentionEffect *= 2;
-            //모든 효과 두배로 만들고 현재 레벨업 버튼 비활성화 다음 레벨업 버튼 생성
+            //모든 효과 두배로 만들고 현재 레벨업 버튼 비활성
             InfoButton[0].onClick.RemoveListener(LevelUP);
+            //다음 레벨업 버튼 생성
         }
+        else
+        {
+            InfoButton[0].onClick.RemoveListener(LevelUP);
+            InfoButton[0].interactable = false;
+            return;
+        }
+        InfoButton[0].interactable = false;
+
         SetInfo();
     }
 
@@ -108,5 +124,22 @@ public class TowerItem : MonoBehaviour
             Info.text = "Lv : " + Lv + '\n' + "체력 : " + effect + '\n' + " 보유 체력 : " + RetentionEffect;
         }
     }
-    
+
+    //일시적으로 제한
+    private float cooltime = 10f;
+    private void Update()
+    {
+        if(cooltime >= 0 && !InfoButton[0].interactable)
+        {
+            cooltime -= Time.deltaTime;
+
+        }
+        else
+        {
+            cooltime = 10f;
+
+            InfoButton[0].interactable = true;
+        }
+
+    }
 }

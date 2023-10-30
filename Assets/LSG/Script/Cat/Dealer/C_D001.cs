@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AllUnit;
+using UnityEngine.UI;
 
 public class C_D001 : Cat, IAttack
 {
