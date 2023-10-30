@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2083785225522128867}
   m_Bounds:
-    m_Center: {x: 0.000000059604645, y: -0.0003849864, z: 0}
+    m_Center: {x: 0, y: -0.0003849864, z: 0}
     m_Extent: {x: 0.45499998, y: 0.53581494, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 2312999928248754251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 46739720360551089}
@@ -174,7 +174,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.344142, y: -2.2336442}
+  m_Offset: {x: -6.654328, y: -3.8732548}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -185,7 +185,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.357199, y: 9.212168}
+  m_Size: {x: 15.977571, y: 12.491388}
   m_EdgeRadius: 0
 --- !u!95 &2881919970416624407
 Animator:
@@ -358,7 +358,7 @@ MonoBehaviour:
   - {fileID: 6126530923335942108}
   m_Bounds:
     m_Center: {x: -0.001224935, y: -0.000034928322, z: 0}
-    m_Extent: {x: 0.98737496, y: 0.963825, z: 0}
+    m_Extent: {x: 0.9873751, y: 0.9638251, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

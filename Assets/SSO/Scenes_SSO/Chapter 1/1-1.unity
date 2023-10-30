@@ -309,14 +309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1636402918}
-  bossPrefab: {fileID: 2188626133044830061, guid: bb4cbaeee2e91874fb9b5c8acfc6d6a7, type: 3}
+  bossPrefab: {fileID: 5137185107316824593, guid: 5146429637a006046879d4f16f60d0d8, type: 3}
   warningUI: {fileID: 1064833462}
   stageClearUI: {fileID: 2039898056}
-  bossHp: 200
+  bossHp: 500
   bossDamage: 5
-  enemyHp: 20
+  enemyHp: 10000
   enemyDamage: 1
-  enemeyStageCount: 5
+  enemeyStageCount: 200
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0

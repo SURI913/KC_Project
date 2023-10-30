@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private double hp;
     private float damage;
     private float originalEnemySpeed;  // 초기 enemySpeed 값을 저장하기 위한 변수
+    private Animator enemy_attack_animation;
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
+        enemy_attack_animation = GetComponent<Animator>();
+
         transform.position = StartPosition;
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
     }
@@ -61,6 +64,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         while (true) // 무한 반복
         {
+            enemy_attack_animation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);         // 공격이 생성되는 위치
             GameObject attackInstance = Instantiate(enemy_attack_1, spawnPosition, Quaternion.identity);  // 공격 생성
             StartCoroutine(DestroyAttack(attackInstance, 1f));  // 오브젝트 파괴 코루틴 생성
