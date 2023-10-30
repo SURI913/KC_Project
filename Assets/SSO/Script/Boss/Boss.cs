@@ -10,8 +10,8 @@ public class Boss : MonoBehaviour, IDamageable
     public Vector2 StartPosition;
     public GameObject boss_attack;
     public float attackCooldown = 2f;  // 공격 쿨타임
-    public float hp = 1000.0f;
-    public float damage = 10.0f;
+    private double hp;
+    private float damage;
     private bool bossSpawned = false;   // 페이즈가 여러번 일어나는것을 방지하는 변수
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
     private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
@@ -23,9 +23,15 @@ public class Boss : MonoBehaviour, IDamageable
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
     }
 
+    public void SetStats(double health, float dmg)
+    {
+        hp = health;
+        damage = dmg;
+    }
+
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
-        hp -= damage;
+        hp -= Damage;
         Debug.Log("보스 공격당함");
         if (hp <= 500 && hp > 0 && !bossSpawned && isCollidedCastle)  
             // 체력이 반틈이하, 죽지않은상태, 이 코드가 아직 실행되지않았다면, Castle과 충돌했다면 2페이즈 시작
