@@ -64,12 +64,9 @@ public class TowerItem : MonoBehaviour
         //info버튼 연결해주기
         MyButton.onClick.AddListener(ClickInfoButton);
     }
-
-    //코드 수정 1순위
     public void LevelUP()
     {
-
-        if(Lv < MaxLv-1)
+        if(Lv < MaxLv)
         {
             Lv++; //변경된 값 이상함 체크 필요
             print(ID +" 레벌업 1회");
@@ -77,22 +74,14 @@ public class TowerItem : MonoBehaviour
             RetentionEffect += RetentionIncrease;
             
             LvText.text = Lv.ToString();
-            InfoButton[0].onClick.RemoveListener(LevelUP);
-
         }
-        else if(Lv==MaxLv-1)
+        else
         {
             effect *= 2;
             RetentionEffect *= 2;
             //모든 효과 두배로 만들고 현재 레벨업 버튼 비활성
             InfoButton[0].onClick.RemoveListener(LevelUP);
             //다음 레벨업 버튼 생성
-        }
-        else
-        {
-            InfoButton[0].onClick.RemoveListener(LevelUP);
-            InfoButton[0].interactable = false;
-            return;
         }
         InfoButton[0].interactable = false;
 
