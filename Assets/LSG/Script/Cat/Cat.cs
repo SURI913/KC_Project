@@ -31,7 +31,7 @@ public class Cat : MonoBehaviour, IDamageable
     //장비 멀로 처리하냐
 
     //-----------------------------------------------------------------------------------------------------------애니메이션
-    protected Animator CatMotion;    
+    //protected Animator CatMotion;    
 
     public float respawnTime = 8f;
 
@@ -88,7 +88,7 @@ public class Cat : MonoBehaviour, IDamageable
         //영웅 공격력*공격력(보유효과)*성급효과*장비장착효과*패시브스킬*별자리
         //패시브 스킬은 어떻게 짤건지 고민 + 크리티컬 데미지 작업도 필요함
         //-----------------------------------------------------------------------------------------------------------애니메이션 추가
-        CatMotion.SetTrigger("AttackAnim");
+        //CatMotion.SetTrigger("AttackAnim");
         return AllAttack;
     }
 
