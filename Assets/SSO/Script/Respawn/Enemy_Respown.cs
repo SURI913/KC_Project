@@ -8,13 +8,15 @@ public class Enemy_Respown : MonoBehaviour
     public PoolManager pool;
     public GameObject bossPrefab; // 보스 프리팹
     public GameObject warningUI;  // 경고 UI
-    public UnityEngine.UI.Image screenOverlay; // 화면 깜빡임을 위한 UI Image
     float timer;
     bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
     public GameObject stageClearUI;  // 클리어 텍스트
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
+    public double bossHp;
+    public float bossDamage;
     public double enemyHp;
     public float enemyDamage;
+    public float enemeyStageCount; // 이 스테이지에서 소환할 몬스터의 수
 
     private void Awake()
     {
@@ -28,15 +30,41 @@ public class Enemy_Respown : MonoBehaviour
         }
     }
 
+    void SpawnBoss()
+    {
+        GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옵니다.
+        Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss 스크립트의 참조를 가져옵니다.
+        if (bossScript)
+        {
+            bossScript.SetStats(bossHp, bossDamage); // Boss의 hp와 damage 값을 설정합니다.
+        }
+        bossSpawned = true; // 보스가 소환되었음을 표시
+    }
+
     void Spawn()
     {
         //Enemy_Respown 스크립트의 Spawn 메서드에서 적을 생성할 때마다
         //Enemy 스크립트의  SetStats 메서드를 사용하여 hp와 damage 값을 전달
         GameObject enemyObject = pool.Get(Random.Range(0, 4));
         Enemy enemyScript = enemyObject.GetComponent<Enemy>();
+        Enemy_02 enemyScript2 = enemyObject.GetComponent<Enemy_02>();
+        Enemy_03 enemyScript3 = enemyObject.GetComponent<Enemy_03>();
+        Enemy_04 enemyScript4 = enemyObject.GetComponent<Enemy_04>();
         if (enemyScript)
         {
             enemyScript.SetStats(enemyHp, enemyDamage);
+        }
+        if (enemyScript2)
+        {
+            enemyScript2.SetStats(enemyHp, enemyDamage);
+        }
+        if (enemyScript3)
+        {
+            enemyScript3.SetStats(enemyHp, enemyDamage);
+        }
+        if (enemyScript4)
+        {
+            enemyScript4.SetStats(enemyHp, enemyDamage);
         }
     }
 
@@ -44,38 +72,22 @@ public class Enemy_Respown : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 3f && pool.enemyCount < 3) // 3마리 이하일 때만 적을 생성
+        if (timer > 3f && pool.enemyCount < enemeyStageCount) // 3초에 한번씩, n마리 이하일 때만 적을 생성
         {
             timer = 0;
-            Spawn();
+            Spawn();     // enemy 소환하면 타이머 0으로 초기화
         }
-        else if (pool.enemyCount >= 3 && !bossSpawned) // 3마리가 되면 보스 소환
+        else if (pool.enemyCount >= enemeyStageCount && !bossSpawned) // n마리가 되면 보스 소환
         {
             SpawnBoss();   // 보스 소환
-            StartCoroutine(FlashRedScreen());  // 빨간화면 이미지 생성
             ShowWarning();  // warning ui 생성
         }
         if (Input.GetKeyDown("space"))
         {
+            pool.Get(0);
             pool.Get(1);
-        }
-    }
-
-    void SpawnBoss()
-    {
-        Instantiate(bossPrefab, transform);
-        bossSpawned = true; // 보스가 소환되었음을 표시
-    }
-
-    IEnumerator FlashRedScreen() // 화면 빨간색 깜빡임
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            screenOverlay.color = Color.red;
-            yield return new WaitForSeconds(0.5f);
-            screenOverlay.color = Color.clear; // 초기 화면으로
-            yield return new WaitForSeconds(0.5f);
-
+            pool.Get(2);
+            pool.Get(3);
         }
     }
 
