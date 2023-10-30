@@ -26,17 +26,6 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // 선택한 리스폰의 비활성화된 오브젝트에 접근하고, 그것을 발견하면 select 변수에 할당
-        /*foreach (GameObject item in pools[index])
-        {
-            if (!item.activeSelf) // 비활성화된 오브젝트를 찾습니다.
-            {
-                select = item;
-                select.SetActive(true);
-                break;
-            }
-        }*/
-
         // 비활성화된 오브젝트가 없다면 새롭게 생성하여 select에 할당
         if (!select)
         {
@@ -49,7 +38,6 @@ public class PoolManager : MonoBehaviour
                 //Debug.Log("enemy소환");
             }
         }
-
         return select;
     }
 }

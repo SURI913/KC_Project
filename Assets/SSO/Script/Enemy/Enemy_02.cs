@@ -11,11 +11,13 @@ public class Enemy_02 : MonoBehaviour, IDamageable
     public float attackCooldown = 2f;  // 공격 쿨타임
     private double hp;
     private float damage;
+    private float originalEnemySpeed;  // 초기 enemySpeed 값을 저장하기 위한 변수
 
 
     void Start()
     {
         transform.position = StartPosition;
+        originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
@@ -44,11 +46,19 @@ public class Enemy_02 : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)  // 충돌이 끝나면 호출되는 함수
+    {
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
+        {
+            enemySpeed = originalEnemySpeed;  // enemySpeed 값을 원래 값으로 재설정
+        }
+    }
+
     IEnumerator SpawnWithCooldown()
     {
         while (true) // 무한 반복
         {
-            Vector3 spawnPosition = transform.position - Vector3.right;
+            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
             GameObject attackInstance = Instantiate(enemy_attack_2, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 1f));
 
@@ -65,7 +75,7 @@ public class Enemy_02 : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
         if (transform.position.x < -15)
         {
