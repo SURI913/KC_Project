@@ -14,9 +14,12 @@ public class Enemy_04 : MonoBehaviour, IDamageable
     private double hp;
     private float damage;
     private float originalEnemySpeed;  // 초기 enemySpeed 값을 저장하기 위한 변수
+    private Animator enemy_attack_animation;
 
     void Start()
     {
+        enemy_attack_animation = GetComponent<Animator>();
+
         transform.position = StartPosition;
         target = GameObject.FindGameObjectWithTag("Castle").transform; // "Castle" 태그를 가진 오브젝트를 찾습니다.
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
@@ -60,6 +63,7 @@ public class Enemy_04 : MonoBehaviour, IDamageable
     {
         while (true) // 무한 반복
         {
+            enemy_attack_animation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right;
             GameObject attackInstance = Instantiate(enemy_attack_4, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(attackCooldown); // 쿨타임 동안 대기

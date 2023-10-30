@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Boss : MonoBehaviour, IDamageable
 {
     // 보스 몬스터
@@ -15,16 +16,21 @@ public class Boss : MonoBehaviour, IDamageable
     private bool bossSpawned = false;   // 페이즈가 여러번 일어나는것을 방지하는 변수
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
     private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
+    private double currentHp;
+    private Animator boss_attack_animation;
 
 
     void Start()
     {
+        boss_attack_animation = GetComponent<Animator>();
+
         transform.position = StartPosition;
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
     }
 
     public void SetStats(double health, float dmg)
     {
+        currentHp = health;
         hp = health;
         damage = dmg;
     }
@@ -33,7 +39,7 @@ public class Boss : MonoBehaviour, IDamageable
     {
         hp -= Damage;
         Debug.Log("보스 공격당함");
-        if (hp <= 500 && hp > 0 && !bossSpawned && isCollidedCastle)  
+        if (hp <= (currentHp / 2) && hp > 0 && !bossSpawned && isCollidedCastle)  
             // 체력이 반틈이하, 죽지않은상태, 이 코드가 아직 실행되지않았다면, Castle과 충돌했다면 2페이즈 시작
         {
             bossSpawned = true; // 이 변수를 추가하여 BossSecondPage()가 한 번만 실행되도록 함
@@ -66,9 +72,12 @@ public class Boss : MonoBehaviour, IDamageable
 
     IEnumerator BossFirstPage()   // 1페이즈
     {
+        
         while (true) // 무한 반복
         {
-            Vector3 spawnPosition = transform.position - Vector3.right*3;
+            boss_attack_animation.SetTrigger("M_boss_attack");  // isAttacking 파라미터를 true로 설정
+
+            Vector3 spawnPosition = transform.position - Vector3.right*5+ Vector3.up*5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 0.5f));
 
@@ -78,9 +87,11 @@ public class Boss : MonoBehaviour, IDamageable
 
     IEnumerator BossSecondPage()   // 2페이즈
     {
+        
         while (true) // 무한 반복
         {   // 공격 3개생성
-            Vector3 spawnPosition = transform.position - Vector3.right * 3;                   // 중간공격
+            boss_attack_animation.SetTrigger("M_boss_attack");  // isAttacking 파라미터를 true로 설정
+            Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // 중간공격
             Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // 위
             Vector3 spawnPosition3 = spawnPosition - Vector3.right - Vector3.down;  // 아래
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
@@ -104,7 +115,7 @@ public class Boss : MonoBehaviour, IDamageable
     void Update()
     {
 
-        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
         if (transform.position.x < -15)
         {

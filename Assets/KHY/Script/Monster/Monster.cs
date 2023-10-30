@@ -6,14 +6,14 @@ public class Monster : MonoBehaviour
 {
    
 
-    public string ID_m { get; set; } //몬스터명
-    protected double HP { get; set; } //체력
-    protected double maxHP { get; set; } //최대체력
+    public string ID_m { get; set; } //명
+    public double HP { get; set; } //체력
+    public double maxHP { get; set; } //최대체력
 
-    protected bool Dead = false;
-    protected double Attack { get; set; } //공격력
-    protected int AtkTime { get; set; } //공격쿨타임
-    protected double movespeed { get; set; }// 이동
+    public bool Dead = false;
+    public double Attack { get; set; } //공격력
+    public int AtkTime { get; set; } //공격쿨타임
+    public double movespeed { get; set; }// 이동
 
     protected virtual void HP_m()
     {
