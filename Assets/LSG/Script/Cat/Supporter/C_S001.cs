@@ -41,8 +41,6 @@ public class C_S001 : Cat, IAttack
         growingData = growingdata;
         Debug.Log(ID + "growingData 저장 완료");
 
-        catMotion = GetComponentInChildren<Animator>();
-
 
         Vector2 skillpos = this.transform.position;
         //스킬특기
@@ -82,7 +80,7 @@ public class C_S001 : Cat, IAttack
     }
     public double OnAttack(RaycastHit2D hit) //공격 체크
     {
-        if (hit.collider.CompareTag("boss")) //보스 공격의 경우
+        if (hit.collider.CompareTag("Respawn")) //보스 공격의 경우
         {
             return attackApply() + bossAttack;
         }
