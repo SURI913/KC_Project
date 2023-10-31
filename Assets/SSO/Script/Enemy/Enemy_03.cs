@@ -7,7 +7,7 @@ public class Enemy_03 : MonoBehaviour, IDamageable
     // 원거리 몬스터
     public float enemySpeed;              // 이동속도
     public Vector2 StartPosition;         // 소환 위치
-    public float attackCooldown = 2f;  // 공격 쿨타임
+    public float attackCooldown = 5f;  // 공격 쿨타임
     private double hp;                         // 체력
     private float damage;                    // 몬스터 데미지
     public GameObject enemy_attack_3;             // 공격 스타일 (원거리 공격)
