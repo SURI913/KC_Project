@@ -74,7 +74,7 @@ public class C_T001 : Cat, IAttack
     {
         isAttack = true;
         Destroy(Instantiate(attackEffect, collision.transform.position, Quaternion.identity), atkTime);
-        collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(target), target);
+        collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(target), target); //데미지 주는 스크립트
         yield return new WaitForSeconds(atkTime);
         isAttack = false;
 
@@ -87,19 +87,17 @@ public class C_T001 : Cat, IAttack
         GetComponent<Collider2D>().enabled = true;
         Debug.Log("��Ŀ ��ų �����");
     }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 6)
         {
             Debug.Log("공격중");
-
+            playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             //데미지 스크립트 확인시 공격 시작
-            if (damageable != null && !isAttack) //=>Target Layer
+            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>()) //=>Target Layer
             {
                 StartCoroutine(AttackEft(collision));
-                
             }
         }
     }
@@ -108,6 +106,7 @@ public class C_T001 : Cat, IAttack
     {
         Debug.Log("탱커 공격 대기중");
         isLookTarget = false;
+        playerRb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
 
     }
 
@@ -131,9 +130,12 @@ public class C_T001 : Cat, IAttack
     private void Move()
     {
         //레이캐스트로 타겟 체크
-        int layerMask = 1 << LayerMask.NameToLayer("Target");
-        target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
-       if(target && !isLookTarget)
+        if(!isLookTarget) {
+            int layerMask = 1 << LayerMask.NameToLayer("Target");
+            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 10f, layerMask);
+        }
+       
+       if(target && !isAttack)
         {
             isLookTarget= true;
             //타겟 확인 후 움직임

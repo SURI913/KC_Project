@@ -32,15 +32,21 @@ public class M_D01 : Monster
             Debug.LogError("Monster data is not assigned or empty.");
             //위 코드가 실패하면 나오눈 출력
         }
-       
+
+
+     
+
     }
+
 
     
 
     private float movespeed = 2.0f;
     private bool isAttack = false;
     private float distance = 5.0f;
-    private LayerMask Player;
+    private LayerMask LayerMask;
+   
+ 
 
     private void FixedUpdate()
     {
@@ -49,23 +55,29 @@ public class M_D01 : Monster
             move_m(); 
         }
     }
+
+
     private void move_m()
+       
     {
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.left, distance, Player);
+        
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.left, distance, LayerMask);
+
 
         if (ray.collider != null && ray.collider.CompareTag("Player"))
         {
             // 레이캐스트가 플레이어를 충돌 감지하면 몬스터가 공격
             isAttack = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+           
         }
         else
         {
             // 레이캐스트가 플레이어를 감지하지 않으면 몬스터의 이동 상태로 유지
             isAttack = false;
             // 애니메이션?
-            Vector2 movement = new Vector2(-movespeed, 0); // 음수 값으로 x 성분을 설정하여 왼쪽으로 이동합니다.
-            GetComponent<Rigidbody2D>().velocity = movement;
+           /* Vector2 movement = new Vector2(-movespeed, 0); // 음수 값으로 x 성분을 설정하여 왼쪽으로 이동합니다.
+            GetComponent<Rigidbody2D>().velocity = movement;*/
         }
 
 
@@ -73,26 +85,41 @@ public class M_D01 : Monster
     }
     protected override void OnAttack_m(RaycastHit2D hit)
     {
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        if (isAttack)
         {
-            isAttack = true;
-            Debug.Log("플레이어에게 공격");
-            
+
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
+            {
+                isAttack = true;
+                Debug.Log("플레이어에게 공격");
+
+            }
+
         }
     }
-   
 
 
-    protected override void OnDamage_m(float damage, RaycastHit2D hit)
+
+
+    protected override void OnDamage(float damage, RaycastHit2D hit)
     {
-      if(!Dead)
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.left, distance, LayerMask);
+
+        if (ray.collider != null && ray.collider.CompareTag("Player"))
         {
-            HP -= damage;
+            IDamageable target = ray.collider.GetComponent<IDamageable>();
+            if (target != null&& HP > 0)
+            {
+
+            }
+            else
+            {
+                DIe_m();
+
+                //다이함수, 오브젝트 디스트로이 
+            }
         }
-      else if(HP<=0)
-        {
-            DIe_m();
-        }
+
     }
 
 
