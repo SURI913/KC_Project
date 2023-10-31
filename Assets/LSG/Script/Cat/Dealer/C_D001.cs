@@ -38,7 +38,6 @@ public class C_D001 : Cat, IAttack
         growingData = growingdata;
         Debug.Log(ID + "growingData 저장 완료");
 
-        catMotion = GetComponentInChildren<Animator>();
     }
 
     private void Awake()
