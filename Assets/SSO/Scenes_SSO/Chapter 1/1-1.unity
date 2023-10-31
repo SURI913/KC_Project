@@ -370,13 +370,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 1636402918}
   bossPrefab: {fileID: 5137185107316824593, guid: 5146429637a006046879d4f16f60d0d8, type: 3}
-  warningUI: {fileID: 0}
-  stageClearUI: {fileID: 0}
-  bossHp: 500
-  bossDamage: 5
-  enemyHp: 10000
-  enemyDamage: 1
-  enemeyStageCount: 200
+  warningUI: {fileID: 113528498}
+  stageClearUI: {fileID: 995008930}
+  bossHp: 5000
+  bossDamage: 50000
+  enemyHp: 500
+  enemyDamage: 50000
+  enemeyStageCount: 20
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0
@@ -1767,7 +1767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579312926562806288, guid: f7b46158b91b4704ab4fe76cc891646b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 76.73
+      value: 76.6
       objectReference: {fileID: 0}
     - target: {fileID: 5579312926562806288, guid: f7b46158b91b4704ab4fe76cc891646b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1787,7 +1787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579312926584101898, guid: f7b46158b91b4704ab4fe76cc891646b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.35
+      value: 38.3
       objectReference: {fileID: 0}
     - target: {fileID: 5579312926584101898, guid: f7b46158b91b4704ab4fe76cc891646b, type: 3}
       propertyPath: m_LocalPosition.y
