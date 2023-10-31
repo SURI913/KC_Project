@@ -373,10 +373,10 @@ MonoBehaviour:
   stageClearUI: {fileID: 995008930}
   bossPrefab: {fileID: 5137185107316824593, guid: 5146429637a006046879d4f16f60d0d8, type: 3}
   bossHp: 200
-  bossDamage: 1000000
-  enemyHp: 10
-  enemyDamage: 100000
-  enemeyStageCount: 3
+  bossDamage: 1000
+  enemyHp: 40
+  enemyDamage: 1000
+  enemeyStageCount: 10
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0

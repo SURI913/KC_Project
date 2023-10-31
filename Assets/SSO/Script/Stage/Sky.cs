@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sky : MonoBehaviour
 {
-    public SpriteRenderer[] floor;
+    public SpriteRenderer[] floor = new SpriteRenderer[3]; // 크기 3의 배열로 변경
     public Sprite[] sky;
     SpriteRenderer temp;
     public float speed;
