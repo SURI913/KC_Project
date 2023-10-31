@@ -188,6 +188,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dead: 0
   monsterData: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
-  TargetP:
-    serializedVersion: 2
-    m_Bits: 0

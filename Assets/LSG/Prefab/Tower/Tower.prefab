@@ -49,7 +49,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.90602255, y: 2.90794}
+  m_Offset: {x: 0.20335245, y: 2.90794}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -60,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.7977533, y: 4.863697}
+  m_Size: {x: 5.392413, y: 4.863697}
   m_EdgeRadius: 0
 --- !u!50 &1809733181646062366
 Rigidbody2D:
@@ -250,29 +250,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: b7828b9800bc6324b98f2bc54d03deaf, type: 3}
   m_PrefabInstance: {fileID: 1794479866119206092}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2233937360553153905 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: b7828b9800bc6324b98f2bc54d03deaf, type: 3}
-  m_PrefabInstance: {fileID: 1794479866119206092}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &5789902888655419894
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233937360553153905}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 95a7a1fa56f5ce94d8f9208fdf4f60fd, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

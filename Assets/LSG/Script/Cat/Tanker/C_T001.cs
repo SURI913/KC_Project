@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using AllUnit;
+using System.Globalization;
+using TMPro;
 
 public class C_T001 : Cat, IAttack
 {
     float skillEft = 5.0f;
-    public float speed { get; set; } //ê³µê²© ì†ë„
-    public float atkTime { get; set; } //ê³µê²© ì¿¨íƒ€ì„
-    public float skillTime { get; set; } //ìŠ¤í‚¬ ì¿¨íƒ€ì„
-    public bool ativeSkill { get; set; }   //ê³µê²© í™œì„±í™”
+    public float speed { get; set; } //°ø°İ ¼Óµµ
+    public float atkTime { get; set; } //ÀÏ¹İ°ø°İ ÄğÅ¸ÀÓ
+    public float skillTime { get; set; } //½ºÅ³ °ø°İ ÄğÅ¸ÀÓ
+    public bool ativeSkill { get; set; }   //½ºÅ³ È°¼ºÈ­ ½Ã °ø°İ ¸ØÃã
 
     [SerializeField] GrowingData growingdata;
 
-    [SerializeField] GameObject attackEffect;
 
-
+    //Ä³¸¯ÅÍ °ª ÃÊ±âÈ­
+    //DB¿¡¼­ ²ø¾î¿È
+    //·¹º§¾÷ ÇÒ¶§¸¶´Ù ÀúÀå È£Ãâ + °ª ´Ù½Ã °¡Á®¿À±â
     private void InitData()
     {
-
-        //Ã¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //Ã¹ µ¥ÀÌÅÍ º¸³»±â
         ID = "C_T001";
         Lv = 1;
 
@@ -31,88 +34,74 @@ public class C_T001 : Cat, IAttack
         xattack = 0.7f;
         attackIncrease = 0.05f;
 
-        speed = 0f;    //ï¿½ï¿½ï¿½ï¿½
+        speed = 0f;    //ÀÓÀÇ
         skillTime = 5f;
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID+"growingData ì ìš©ì™„ë£Œ");
-
-        catMotion = GetComponentInChildren<Animator>();
+        Debug.Log(ID+"growingData ÀúÀå ¿Ï·á");
 
 
     }
 
     private void Awake()
     {
-        //ì´ˆê¸°í™”
+        //µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é
         InitData();
+        //µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é
 
+        //ÀÌµ¿ À» À§ÇÑ ¼±¾ğ
         playerRb = GetComponent<Rigidbody2D>();
+        //myAnim = GetComponent<Animator>();
     }
 
     public double OnSkill(RaycastHit2D hit)
     {
-        //ìŠ¤í‚¬ ì‚¬ìš©
+        //5ÃÊµ¿¾È ¹Ş´Â ÇÇÇØ·® 0
         StartCoroutine(Skill());
         return 0;
     }
 
-    public double OnAttack(RaycastHit2D hit) //ê³µê²©ê°’ ê³„ì‚°
+    public double OnAttack(RaycastHit2D hit) //°ø°İ Ã¼Å©
     {
-        if (hit.collider.CompareTag("boss")) //ë³´ìŠ¤ë¼ë©´
+        if (hit.collider.CompareTag("Respawn")) //º¸½º °ø°İÀÇ °æ¿ì
         {
             return attackApply() + bossAttack;
         }
         return attackApply();
     }
 
-    //ê³µê²© íš¨ê³¼ ë° ì ìš©
-
-    private GameObject targetEvent;
-    IEnumerator AttackEft(Collider2D collision)
-    {
-        isAttack = true;
-        targetEvent = Instantiate(attackEffect, collision.transform.position, Quaternion.identity);
-        collision.GetComponent<IDamageable>().OnDamage(OnAttack(target), target);
-        yield return new WaitForSeconds(atkTime);
-        Destroy(targetEvent);
-        isAttack = false;
-
-    }
-
     IEnumerator Skill()
-    {// ï¿½Ê±â¿¡ ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½ ï¿½ï¿½ï¿½ï¿½  ï¿½Ê¿ï¿½
-        GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(skillEft); //ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-        GetComponent<Collider2D>().enabled = true;
-        Debug.Log("ï¿½ï¿½Ä¿ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½");
+    {
+        this.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(skillEft);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private bool isAttack;
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½
-        if (collision.gameObject.layer == 6)
+        if (!isAttack)
         {
-            Debug.Log("ê³µê²©ì¤‘");
-
-            IDamageable damageable = collision.GetComponent<IDamageable>();
-            //ë°ë¯¸ì§€ ìŠ¤í¬ë¦½íŠ¸ í™•ì¸ì‹œ ê³µê²© ì‹œì‘
-            if (damageable != null && isAttack == false) //=>Target Layer
+            isAttack = true;
+            //´Ù½Ã ÀÛ¾÷ ÇÊ¿ä ÅÊÄ¿¿ë ½ºÅ©¸³Æ® ¼öÁ¤ ÇÊ¿ä
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+            //Àû°ú ºÎµúÄ¡´Â µ¿¾È ÀûÀÇ ÇÇ¸¦ ±ğÀ½
+            if (damageable != null)
             {
-                StartCoroutine(AttackEft(collision));
+                RaycastHit2D EnemyRayHit = collision.collider.GetComponent<RaycastHit2D>();
+                collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(EnemyRayHit), EnemyRayHit);
             }
         }
+        
     }
-    private bool isAttack = false;
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("íƒ±ì»¤ ê³µê²© ëŒ€ê¸°ì¤‘");
         isAttack = false;
     }
 
-   //ìºë¦­í„° ì›€ì§ì„ì„ ìœ„í•œ ë³€ìˆ˜
+    //Ä³¸¯ÅÍ ÀÌµ¿ °ü·Ã º¯¼ö
     private Rigidbody2D playerRb;
+    //private Animator myAnim;
     private float playerMoveSpeed =1.0f;
     private Transform targetPosition;
     private Vector2 vel = Vector2.zero;
@@ -120,24 +109,19 @@ public class C_T001 : Cat, IAttack
 
     private void FixedUpdate()
     {
-        catMotion.SetBool("isLookTarget", !isAttack);
-
         if (!isAttack) { Move(); }
     }
-
-    RaycastHit2D target;
     private void Move()
     {
-        //ë ˆì´ìºìŠ¤íŠ¸ë¡œ íƒ€ê²Ÿ ì²´í¬
+        //ÇÑ Ä³¸¯ÅÍ °ø°İÁßÀÌ¸é ´õÀÌ»ó ¿òÁ÷ÀÓ x
         int layerMask = 1 << LayerMask.NameToLayer("Target");
-        target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
+        RaycastHit2D target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
 
        if(target)
         {
-            //íƒ€ê²Ÿ í™•ì¸ í›„ ì›€ì§ì„
-            catMotion.SetBool("isLookTarget", true);
+            //Å¸°ÙÀÌ ÀâÈ÷´Â °æ¿ì Å¸°ÙÂÊÀ¸·Î ÀÌµ¿
             float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
-            transform.position = new Vector2(delta, transform.position.y);
+            this.transform.position = new Vector2(delta, this.transform.position.y);
         }
         
         /*myAnim.SetFloat("MoveX", playerRb.velocity.x);
