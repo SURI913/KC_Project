@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 public class Enemy_Respown : MonoBehaviour
 {
     public PoolManager pool;
-    public GameObject bossPrefab; // 보스 프리팹
     public GameObject warningUI;  // 경고 UI
-    float timer;
-    bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
     public GameObject stageClearUI;  // 클리어 텍스트
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
+    public GameObject bossPrefab; // 보스 프리팹
     public double bossHp;
     public float bossDamage;
     public double enemyHp;
     public float enemyDamage;
     public float enemeyStageCount; // 이 스테이지에서 소환할 몬스터의 수
+    private bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
+    private float timer;
 
     private void Awake()
     {
@@ -30,18 +30,18 @@ public class Enemy_Respown : MonoBehaviour
         }
     }
 
-    public double GetEnemyDamage()
+    public double GetEnemyDamage()  // 입력받은 enemey의 데미지값을 반환
     {
         return enemyDamage;
     }
 
     void SpawnBoss()
     {
-        GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옵니다.
-        Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss 스크립트의 참조를 가져옵니다.
+        GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옴
+        Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss 스크립트의 참조를 가져옴
         if (bossScript)
         {
-            bossScript.SetStats(bossHp, bossDamage); // Boss의 hp와 damage 값을 설정합니다.
+            bossScript.SetStats(bossHp, bossDamage); // Boss의 hp와 damage 값을 설정
         }
         bossSpawned = true; // 보스가 소환되었음을 표시
     }
@@ -75,7 +75,7 @@ public class Enemy_Respown : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.deltaTime;  // enemy 소환의 쿨타임 역할
 
         if (timer > 3f && pool.enemyCount < enemeyStageCount) // 3초에 한번씩, n마리 이하일 때만 적을 생성
         {
@@ -87,7 +87,7 @@ public class Enemy_Respown : MonoBehaviour
             SpawnBoss();   // 보스 소환
             ShowWarning();  // warning ui 생성
         }
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space"))  // 실험용
         {
             pool.Get(0);
             pool.Get(1);
