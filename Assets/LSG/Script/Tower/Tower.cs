@@ -24,6 +24,9 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     public float skillTime { get; set; } = 0;
     public bool ativeSkill { get; set; } = false;
 
+    //-----------------------------------------------------------------------애니메이션
+    private GameObject towerWheel;
+    private float wheelSpeed = 15f;
     void initData()
     {
         TowerUI.SetActive(false); //기본 설정
@@ -36,6 +39,8 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         atkTime = 5f;
         speed = 15f;
 
+        towerWheel = transform.GetChild(1).GetChild(0).gameObject;
+        Debug.Log(towerWheel.name);
     }
 
     [SerializeField] GameObject cannonData;
@@ -81,10 +86,11 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     public double OnSkill(RaycastHit2D hit)
     {
         return 0;
-    }
+    }   
 
     public void hpApply() //이후에 실시간으로 값 저장되면 수정하는 걸로
     {
+        
         //지금은 닫기 버튼 눌렀을때 저장되게끔 설정
         foreach (var item in Allrepairman)
         {
@@ -127,6 +133,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         Debug.Log("타워 확인");
         
     }
+
     [SerializeField] GameObject TowerUI;
     public void OnMouseUp()
     {
@@ -135,5 +142,28 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         TowerUI.SetActive(true);
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 6) //=> Target Layer
+        {
+            //적  에게 막혔음
+            wheelSpeed = 0f;
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 6) //=> Target Layer
+        {
+            //적 사라짐 바퀴 움직일 것
+            wheelSpeed = 15f;
+        }
+    }
+
+    private void Update()
+    {
+        
+        towerWheel.transform.Rotate(Vector3.forward * Time.deltaTime * wheelSpeed);
+        
+    }
 }
