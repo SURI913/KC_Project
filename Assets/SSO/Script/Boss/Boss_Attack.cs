@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Boss_Attack : MonoBehaviour
 {
-    // 보스 공격 당했을떄 데미지를 입히는 스크립트
+    // 공격 당했을떄 데미지를 입히는 스크립트
     [SerializeField]
     private Enemy_Respown enemyRespawner;
 
     private void Start()
     {
-        // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
-        // 이렇게 하면 에디터에서 수동으로 설정하지 않아도 자동으로 참조를 찾아줌
+        // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정합니다.
+        // (이렇게 하면 에디터에서 수동으로 설정하지 않아도 자동으로 참조를 찾아줍니다.)
         if (!enemyRespawner)
         {
             enemyRespawner = FindObjectOfType<Enemy_Respown>();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            IDamageable target = collision.collider.GetComponent<IDamageable>();
+            IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();

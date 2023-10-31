@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class CountTime : MonoBehaviour
 {
     [SerializeField]
-    private float countdownTime = 20.0f;
+    private float countdownTime = 40.0f;
    
     private float currentTime;
     [SerializeField]
@@ -29,7 +29,7 @@ public class CountTime : MonoBehaviour
         }
        else if (currentTime<=0)
         {
-            SceneManager.LoadScene("StageSelection");
+            SceneManager.LoadScene("Stage Selection");
             //40초가 끝나면 던전이 실패하고 다시 던전 메인씬으로 넘어간다
             //실패했다는 이미지는 1.5초정도 보여준후 
             //몬스터 디스트로이

@@ -252,9 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1636402918}
+  bossPrefab: {fileID: 5137185107316824593, guid: 5146429637a006046879d4f16f60d0d8, type: 3}
   warningUI: {fileID: 485496810}
   stageClearUI: {fileID: 2054873161}
-  bossPrefab: {fileID: 5137185107316824593, guid: 5146429637a006046879d4f16f60d0d8, type: 3}
   bossHp: 1000
   bossDamage: 1
   enemyHp: 100

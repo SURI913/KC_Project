@@ -38,10 +38,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SSO/Scenes_SSO/Chapter 1/1-10.unity
     guid: bc190ac209ea6ab46bb0a0a7334ff709
-  - enabled: 1
-    path: Assets/KHY/Scenes_KHY/StageSelection.unity
-    guid: 7b4df487568406f409d59dba047589f3
-  - enabled: 1
-    path: Assets/KHY/Scenes_KHY/Dungeon.unity
-    guid: 31b6988b6b7363c42886576b0aceb645
   m_configObjects: {}
