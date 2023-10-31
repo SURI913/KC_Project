@@ -41,7 +41,7 @@ public class Enemy_02 : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Castle"))
+        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
         {
             Debug.Log("Ãæµ¹");
             enemySpeed = 0;
