@@ -163,7 +163,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     private void Update()
     {
         
-        towerWheel.transform.Rotate(Vector3.forward * Time.deltaTime * wheelSpeed);
+        towerWheel.transform.Rotate(-Vector3.forward * Time.deltaTime * wheelSpeed);
         
     }
 }
