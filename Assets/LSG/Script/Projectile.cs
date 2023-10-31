@@ -47,7 +47,9 @@ public class Projectile : MonoBehaviour
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
+            Debug.Log(target.collider.name);
             hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
+            Debug.Log(GrandParent.transform.tag+"가 "+ GrandParentIAttack.OnAttack(target)+"만큼의 데미지를 입혔습니다");
             Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }

@@ -47,3 +47,5 @@ MonoBehaviour:
   towerData: {fileID: 11400000, guid: 0c927e4640448cc4dabebbd0169a4781, type: 2}
   cannonScollBar: {fileID: 0}
   repairmanScollBar: {fileID: 0}
+  FindcannonData: []
+  FindrepairmanData: []
