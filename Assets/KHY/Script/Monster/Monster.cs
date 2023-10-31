@@ -13,8 +13,7 @@ public class Monster : MonoBehaviour
     public bool Dead = false;
     public double Attack { get; set; } //공격력
     public int AtkTime { get; set; } //공격쿨타임
-
-   
+    public double movespeed { get; set; }// 이동
 
     protected virtual void HP_m()
     {
@@ -24,25 +23,24 @@ public class Monster : MonoBehaviour
     protected virtual void DIe_m()
     {
         Dead = true;
-        //몬스터 죽는 애니메이션 추가 
     }
 
-    protected virtual void OnAttack_m(RaycastHit2D hit)
+    protected virtual void Attack_m()
     {
         Attack = Attack;
         AtkTime = AtkTime;
     }
 
-    protected virtual void OnDamage_m(float damage, RaycastHit2D hit)
+    protected virtual void Damage_m(float damage)
     {
         HP -= damage;
     }
 
 
 
-    /*protected virtual void move_m()
+    protected virtual void move_m()
     {
 
         movespeed = movespeed;
-    }*/
+    }
 }
