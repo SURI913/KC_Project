@@ -7,16 +7,16 @@ public class Enemy : MonoBehaviour, IDamageable
 
 {
     // 근거리 몬스터 1
-    public float enemySpeed;              // 이동속도
-    public Vector2 StartPosition;         // 소환 위치
+    public float enemySpeed = 0;
+    public Vector2 StartPosition;
+    public GameObject enemy_attack_1; // 공격 스타일 (일반 공격)
     public float attackCooldown = 2f;  // 공격 쿨타임
-    private double hp;                         // 체력
-    private float damage;                    // 몬스터 데미지
-    public GameObject enemy_attack_1;             // 공격 스타일 (일반 근거리 공격)
-    private float originalEnemySpeed;                 // 초기 enemySpeed 값을 저장하기 위한 변수
-    private Animator enemy_attack_animation;  //애니메이션
+    private double hp;
+    private float damage;
+    private float originalEnemySpeed;  // 초기 enemySpeed 값을 저장하기 위한 변수
+    private Animator enemy_attack_animation;
 
-    public void OnDamage(double Damage, RaycastHit2D hit)   // 몬스터에게 데미지를 입히는 함수
+    public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
         hp -= Damage;
         if(hp <= 0)
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void SetStats(double health, float dmg)  // enemy_respown에서 설정한 체력, 데미지 불러오기
+    public void SetStats(double health, float dmg)
     {
         hp = health;
         damage = dmg;
@@ -40,21 +40,23 @@ public class Enemy : MonoBehaviour, IDamageable
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
             Debug.Log("충돌");
-            enemySpeed = 0;                                    // 충돌했다면, 이동을 멈춤
+            enemySpeed = 0;
             StartCoroutine(SpawnWithCooldown()); // Coroutine 시작
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)  // 충돌이 끝나면 호출되는 함수
     {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            enemySpeed = originalEnemySpeed;  // 충돌이 없어졌다면, 다시 이동
+            enemySpeed = originalEnemySpeed;  // enemySpeed 값을 원래 값으로 재설정
         }
     }
 
@@ -82,7 +84,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
-        if (transform.position.x < -20)    // x축으로 -20까지 가면 (화면 밖)
+        if (transform.position.x < -15)
         {
             gameObject.SetActive(false);
         }

@@ -70,12 +70,13 @@ public class C_T001 : Cat, IAttack
     //공격 효과 및 적용
 
     private GameObject targetEvent;
-    IEnumerator AttackEft(Collision2D collision)
+    IEnumerator AttackEft(Collider2D collision)
     {
         isAttack = true;
-        Destroy(Instantiate(attackEffect, collision.transform.position, Quaternion.identity), atkTime);
-        collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(target), target); //데미지 주는 스크립트
+        targetEvent = Instantiate(attackEffect, collision.transform.position, Quaternion.identity);
+        collision.GetComponent<IDamageable>().OnDamage(OnAttack(target), target);
         yield return new WaitForSeconds(atkTime);
+        Destroy(targetEvent);
         isAttack = false;
 
     }
@@ -87,30 +88,30 @@ public class C_T001 : Cat, IAttack
         GetComponent<Collider2D>().enabled = true;
         Debug.Log("��Ŀ ��ų �����");
     }
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        //���� �ȸ���
         if (collision.gameObject.layer == 6)
         {
             Debug.Log("공격중");
-            playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
-            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+
+            IDamageable damageable = collision.GetComponent<IDamageable>();
             //데미지 스크립트 확인시 공격 시작
-            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>()) //=>Target Layer
+            if (damageable != null && isAttack == false) //=>Target Layer
             {
                 StartCoroutine(AttackEft(collision));
             }
         }
     }
     private bool isAttack = false;
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("탱커 공격 대기중");
-        isLookTarget = false;
-        playerRb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-
+        isAttack = false;
     }
 
-    //캐릭터 움직임을 위한 변수
+   //캐릭터 움직임을 위한 변수
     private Rigidbody2D playerRb;
     private float playerMoveSpeed =1.0f;
     private Transform targetPosition;
@@ -120,25 +121,21 @@ public class C_T001 : Cat, IAttack
     private void FixedUpdate()
     {
         catMotion.SetBool("isLookTarget", !isAttack);
-        catMotion.SetBool("isLookTarget", isLookTarget);
 
         if (!isAttack) { Move(); }
     }
 
     RaycastHit2D target;
-    private bool isLookTarget = false;
     private void Move()
     {
         //레이캐스트로 타겟 체크
-        if(!isLookTarget) {
-            int layerMask = 1 << LayerMask.NameToLayer("Target");
-            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 10f, layerMask);
-        }
-       
-       if(target && !isAttack)
+        int layerMask = 1 << LayerMask.NameToLayer("Target");
+        target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
+
+       if(target)
         {
-            isLookTarget= true;
             //타겟 확인 후 움직임
+            catMotion.SetBool("isLookTarget", true);
             float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
             transform.position = new Vector2(delta, transform.position.y);
         }
