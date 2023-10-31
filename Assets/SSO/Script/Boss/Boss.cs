@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour, IDamageable
     public GameObject boss_attack;  // 보스 공격 오브젝트
     private bool bossSpawned = false;   // 페이즈가 여러번 일어나는것을 방지하는 변수
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
+    private float originalEnemySpeed;     // 초기 enemySpeed 값을 저장하기 위한 변수
 
     private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
     private Animator boss_attack_animation;  // 보스의 공격 애니메이션
@@ -25,6 +26,7 @@ public class Boss : MonoBehaviour, IDamageable
     {
         boss_attack_animation = GetComponent<Animator>();
 
+        originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
         transform.position = StartPosition;
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
     }
@@ -58,16 +60,24 @@ public class Boss : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Castle"))
+        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
         {
             Debug.Log("보스 충돌");
             enemySpeed = 0;              // 움직임 멈추기
-            if (hp > 500)
+            if (hp > (currentHp / 2))
             {
                 Debug.Log("1페이즈 시작");
                 StartCoroutine(BossFirstPage()); // 1페이즈 시작
             }
             isCollidedCastle = true; // Castle과 충돌했음을 표시
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
+        {
+            enemySpeed = originalEnemySpeed;  // 충돌이 없어졌다면, 다시 이동
         }
     }
 
