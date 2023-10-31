@@ -23,16 +23,16 @@ public class M_D02 : Monster
             Dead = true;
         }
     }
-    protected override void Attack_m()
+  /*  protected override void OnAttack_m(RaycastHit2D hit)
     {
         Attack = 10.0f;
         AtkTime = 3;
-    }
+    }*/
 
 
-   /* private float sign = -1.0f;
-    private bool iswalk = true;*/
-    protected override void move_m()
+    /* private float sign = -1.0f;
+     private bool iswalk = true;*/
+    private void move_m()
     {
       /*  movespeed = 3.0f;
         if (Time.time >= 0 && iswalk)
@@ -56,9 +56,9 @@ public class M_D02 : Monster
          }*/
 
     }
-    private void Awake()
+ /*   private void Awake()
     {
         HP_m();
         Attack_m();
-    }
+    }*/
 }
