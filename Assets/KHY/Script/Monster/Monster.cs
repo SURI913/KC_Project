@@ -24,6 +24,7 @@ public class Monster : MonoBehaviour
     protected virtual void DIe_m()
     {
         Dead = true;
+        Destroy(gameObject);
         //몬스터 죽는 애니메이션 추가 
     }
 
@@ -33,7 +34,7 @@ public class Monster : MonoBehaviour
         AtkTime = AtkTime;
     }
 
-    protected virtual void OnDamage_m(float damage, RaycastHit2D hit)
+    protected virtual void OnDamage(float damage, RaycastHit2D hit)
     {
         HP -= damage;
     }
