@@ -38,7 +38,7 @@ public class Enemy_04 : MonoBehaviour, IDamageable
     public void SetStats(double health, float dmg)
     {
         hp = health;
-        damage = dmg;
+       damage = dmg;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
