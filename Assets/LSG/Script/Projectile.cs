@@ -30,10 +30,10 @@ public class Projectile : MonoBehaviour
 
     protected virtual void Fire()   //총알 생성 및 발사
     {
-        int layerMask = 1 << LayerMask.NameToLayer("Target");
-         target = Physics2D.Raycast(fireTransform.position, Vector2.right, 5f, layerMask);
+      
         if (target)
         {
+            Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
             Vector2 Pos = target.transform.position - fireTransform.position;
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
@@ -47,30 +47,48 @@ public class Projectile : MonoBehaviour
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
+            Debug.Log(ID + "공격중");
             hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
             Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
     }
-
+    bool checkTarget = false;
 
     protected void StateCheck()
     {
-        //이것도 적마다 방향 생각해서 작업해야하나
-        //일반 공격
-        if (state == State.Ready) //장전완료
+        if (!target)
         {
-            //Debug.Log("생성");
-            Fire();
-            
+            checkTarget=false;
         }
-        if (state == State.Empty) { //데미지 체크
-            //Debug.Log("데미지");
+        if (!checkTarget)
+        {
+            int layerMask = 1 << LayerMask.NameToLayer("Target");
+            target = Physics2D.Raycast(fireTransform.position, Vector2.right, 7f, layerMask);
+            checkTarget = true;
+        }
+        //이것도 적마
+        //다 방향 생각해서 작업해야하나
+        //일반 공격
+        
+        else
+        {
+            if (state == State.Ready) //장전완료
+            {
+                //Debug.Log("생성");
+                Fire();
 
-            OnBullet();
-            state = State.Reloading;
+            }
+            if (state == State.Empty)
+            { //데미지 체크
+              //Debug.Log("데미지");
+
+                OnBullet();
+                state = State.Reloading;
+            }
+            //처치 완료 했을 경우 로딩상태로
         }
-        //처치 완료 했을 경우 로딩상태로
+
     }
 
 }
