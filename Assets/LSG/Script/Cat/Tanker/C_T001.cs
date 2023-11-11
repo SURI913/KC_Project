@@ -11,6 +11,8 @@ public class C_T001 : Cat, IAttack
     public float skillTime { get; set; } //스킬 쿨타임
     public bool ativeSkill { get; set; }   //공격 활성화
 
+    //스폰 값 필요
+
     [SerializeField] GrowingData growingdata;
 
     [SerializeField] GameObject attackEffect;
@@ -73,7 +75,7 @@ public class C_T001 : Cat, IAttack
     IEnumerator AttackEft(Collision2D collision)
     {
         isAttack = true;
-        Destroy(Instantiate(attackEffect, collision.transform.position, Quaternion.identity), atkTime);
+        Destroy(Instantiate(attackEffect, collision.transform.position, Quaternion.identity), atkTime-1);
         collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(target), target); //데미지 주는 스크립트
         yield return new WaitForSeconds(atkTime);
         isAttack = false;
@@ -89,9 +91,8 @@ public class C_T001 : Cat, IAttack
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if(collision.collider == target.collider) //같은 콜라이더 일 경우
         {
-            Debug.Log("공격중");
             playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             //데미지 스크립트 확인시 공격 시작
@@ -101,49 +102,49 @@ public class C_T001 : Cat, IAttack
             }
         }
     }
+
     private bool isAttack = false;
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("탱커 공격 대기중");
-        isLookTarget = false;
-        playerRb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        if(collision.collider == target.collider)
+        {
+            Debug.Log("탱커 공격 대기중");
+            isLookTarget = false;
+            playerRb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //이전위치로 돌아가게 수정해야함
+        }
 
     }
 
     //캐릭터 움직임을 위한 변수
     private Rigidbody2D playerRb;
     private float playerMoveSpeed =1.0f;
-    private Transform targetPosition;
     private Vector2 vel = Vector2.zero;
     
 
     private void FixedUpdate()
     {
-        catMotion.SetBool("isLookTarget", !isAttack);
+        //catMotion.SetBool("isLookTarget", !isAttack);
         catMotion.SetBool("isLookTarget", isLookTarget);
 
-        if (!isAttack) { Move(); }
+        Move();
     }
 
     RaycastHit2D target;
     private bool isLookTarget = false;
     private void Move()
     {
-        //레이캐스트로 타겟 체크
-        if(!isLookTarget) {
+        //레이캐스트로 타겟 체크 후 움직임
+        if(!isLookTarget && !isAttack) {
             int layerMask = 1 << LayerMask.NameToLayer("Target");
-            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 10f, layerMask);
+            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
         }
-       
-       if(target && !isAttack)
+        if (target)
         {
-            isLookTarget= true;
-            //타겟 확인 후 움직임
             float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
             transform.position = new Vector2(delta, transform.position.y);
         }
         
-        /*myAnim.SetFloat("MoveX", playerRb.velocity.x);
+        /*myAnim.SetFloat("MoveX", playerRb.velocity.x); //나중에 맞춰서 수정
         myAnim.SetFloat("MoveY", playerRb.velocity.y);*/
     }
 }
