@@ -208,7 +208,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -3.7728915, y: -3.8732548}
@@ -259,9 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 3
   StartPosition: {x: 26, y: 2}
-  attackCooldown: 2
-  enemy_attack_4: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
-  speed: 5
+  attackCooldown: 5.5
+  enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
+  speed: 8
 --- !u!1 &2495146543349989520
 GameObject:
   m_ObjectHideFlags: 0
