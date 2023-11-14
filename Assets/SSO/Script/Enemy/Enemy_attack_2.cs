@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_attack_2 : MonoBehaviour
 {
     // 공격 당했을떄 데미지를 입히는 스크립트
-    public float speed = 5f;     // 발사체의 속도
+    public float speed = 8f;     // 발사체의 속도
     private Transform target;
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
