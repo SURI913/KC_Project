@@ -176,8 +176,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.079107404, y: 1.2141}
-  m_Size: {x: 2.3306339, y: 2.3306339}
+  m_Offset: {x: -1.4313507, y: 0.18073082}
+  m_Size: {x: 5.351556, y: 6.879928}
   m_Direction: 0
 --- !u!61 &2881919970416624411
 BoxCollider2D:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 3
-  StartPosition: {x: 26, y: 2}
+  StartPosition: {x: 26, y: 0.7}
   attackCooldown: 5.5
   enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
   speed: 8

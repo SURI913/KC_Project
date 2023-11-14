@@ -17,6 +17,8 @@ public class Boss : MonoBehaviour, IDamageable
     private bool bossSpawned = false;   // 페이즈가 여러번 일어나는것을 방지하는 변수
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
     private float originalEnemySpeed;     // 초기 enemySpeed 값을 저장하기 위한 변수
+    private Coroutine attackCoroutine;  // Attack 코루틴을 저장하기 위한 변수
+    private bool isAttack = true; // 코루틴을 시작할 때 공격을 허용하는 플래그
 
     private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
     private Animator boss_attack_animation;  // 보스의 공격 애니메이션
