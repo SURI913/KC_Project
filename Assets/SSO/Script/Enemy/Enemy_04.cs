@@ -30,12 +30,12 @@ public class Enemy_04 : MonoBehaviour, IDamageable
 
     public void OnDamage(double Damage, RaycastHit2D hit)   //몬스터에게 데미지를 입힘
     {
-        hp -= Damage;
+        /*hp -= Damage;
         if (hp <= 0)
         {
             Destroy(gameObject);
             Debug.Log("몬스터4 처치");
-        }
+        }*/
     }
 
     public void SetStats(double health, float dmg)
