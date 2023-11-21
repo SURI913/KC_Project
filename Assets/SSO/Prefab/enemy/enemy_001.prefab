@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 5478954785259756731}
   - component: {fileID: 6568216735492706598}
   - component: {fileID: 6568216735492706592}
-  - component: {fileID: 6568216735492706599}
+  - component: {fileID: -6316419632076311660}
   m_Layer: 6
   m_Name: enemy_001
   m_TagString: Enemy
@@ -473,7 +473,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6568216735492706599
+--- !u!114 &-6316419632076311660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,13 +482,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6683677807536424152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac6ecb23a136264790c476652d777d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 06b5cdbe01f0eb6409375c639d4ed424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 3
   StartPosition: {x: 26, y: -6.5}
-  attackCooldown: 2
+  attackCooldown: 3
   enemy_attack_1: {fileID: 753739220374717880, guid: 3bbe3cadfe2b3bd4b8b431b7bd0560be, type: 3}
+  rayLength: 1
 --- !u!1 &6807426322402386947
 GameObject:
   m_ObjectHideFlags: 0

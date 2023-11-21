@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_attack_1 : MonoBehaviour
 {
+    // 근거리 몬스터 공격
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
 
@@ -26,22 +27,8 @@ public class Enemy_attack_1 : MonoBehaviour
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();
                 target.OnDamage(damageValue, new RaycastHit2D());  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
-                Debug.Log("enemy의 공격당함");
+                Debug.Log("enemy가 공격함");
             }
         }
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)  
-    {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
-        {   // 공격이 플레이어나 캐슬에 충돌했다면
-            IDamageable target = collision.collider.GetComponent<IDamageable>();
-            if (target != null && enemyRespawner)
-            {
-                double damageValue = enemyRespawner.GetEnemyDamage();
-                target.OnDamage(damageValue, new RaycastHit2D());  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
-                Debug.Log("enemy의 공격당함");
-            }
-        }
-    }*/
 }
