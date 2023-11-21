@@ -92,12 +92,14 @@ public class C_T001 : Cat, IAttack
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.collider == target.collider) //같은 콜라이더 일 경우
+        
+
+        if (collision.gameObject.layer == 6) //타겟레이어의 경우
         {
-            
+            Debug.Log(collision.collider.name);
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             //데미지 스크립트 확인시 공격 시작
-            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>() &&target.distance < 0.3f) //=>Target Layer
+            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>() && !collision.collider.GetComponent<Enemy_03>())
             {
                 playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
                 StartCoroutine(AttackEft(collision));
@@ -108,7 +110,7 @@ public class C_T001 : Cat, IAttack
     private bool isAttack = false;
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.collider == target.collider)
+        if(collision.gameObject.layer == 6)
         {
             Debug.Log("탱커 공격 대기중");
             isLookTarget = false;
@@ -119,7 +121,7 @@ public class C_T001 : Cat, IAttack
 
     //캐릭터 움직임을 위한 변수
     private Rigidbody2D playerRb;
-    private float playerMoveSpeed =1.0f;
+    private float playerMoveSpeed =1f;
     private Vector2 vel = Vector2.zero;
     
 
@@ -136,15 +138,22 @@ public class C_T001 : Cat, IAttack
     {
         //레이캐스트로 타겟 체크 후 움직임
         if(!isLookTarget && !isAttack) {
+            //타겟 방향으로 이동을 시키나
             int layerMask = 1 << LayerMask.NameToLayer("Target");
             target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 1f, layerMask);
-            if (target)
+            if (target && !target.collider.GetComponent<Enemy_04>() && !target.collider.GetComponent<Enemy_03>())
             {
-                float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
-                transform.position = new Vector2(delta, transform.position.y);
+                isLookTarget = true;
             }
+
         }
-        
+        if(isLookTarget)
+        {
+            //물리로 움직이는 방향 변경
+            float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
+            transform.position = new Vector2(delta, transform.position.y);
+        }
+
         /*myAnim.SetFloat("MoveX", playerRb.velocity.x); //나중에 맞춰서 수정
         myAnim.SetFloat("MoveY", playerRb.velocity.y);*/
     }
