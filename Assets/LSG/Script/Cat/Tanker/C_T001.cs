@@ -75,6 +75,7 @@ public class C_T001 : Cat, IAttack
     IEnumerator AttackEft(Collision2D collision)
     {
         isAttack = true;
+        catMotion.SetTrigger("AttackAnim");
         Destroy(Instantiate(attackEffect, collision.transform.position, Quaternion.identity), atkTime-1);
         collision.collider.GetComponent<IDamageable>().OnDamage(OnAttack(target), target); //데미지 주는 스크립트
         yield return new WaitForSeconds(atkTime);
@@ -83,21 +84,22 @@ public class C_T001 : Cat, IAttack
     }
 
     IEnumerator Skill()
-    {// �ʱ⿡ �� �ٲ���� �ɷ� ����  �ʿ�
+    {
         GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(skillEft); //�Ͻ������� ������ ���� ����
+        yield return new WaitForSeconds(skillEft); 
         GetComponent<Collider2D>().enabled = true;
-        Debug.Log("��Ŀ ��ų �����");
+        Debug.Log(ID+"스킬 사용중");
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.collider == target.collider) //같은 콜라이더 일 경우
         {
-            playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
+            
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             //데미지 스크립트 확인시 공격 시작
-            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>()) //=>Target Layer
+            if (damageable != null && !isAttack && !collision.collider.GetComponent<Enemy_04>() &&target.distance < 0.3f) //=>Target Layer
             {
+                playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
                 StartCoroutine(AttackEft(collision));
             }
         }
@@ -123,7 +125,6 @@ public class C_T001 : Cat, IAttack
 
     private void FixedUpdate()
     {
-        //catMotion.SetBool("isLookTarget", !isAttack);
         catMotion.SetBool("isLookTarget", isLookTarget);
 
         Move();
@@ -136,12 +137,12 @@ public class C_T001 : Cat, IAttack
         //레이캐스트로 타겟 체크 후 움직임
         if(!isLookTarget && !isAttack) {
             int layerMask = 1 << LayerMask.NameToLayer("Target");
-            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 5f, layerMask);
-        }
-        if (target)
-        {
-            float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
-            transform.position = new Vector2(delta, transform.position.y);
+            target = Physics2D.Raycast(gameObject.transform.position, Vector2.right, 1f, layerMask);
+            if (target)
+            {
+                float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
+                transform.position = new Vector2(delta, transform.position.y);
+            }
         }
         
         /*myAnim.SetFloat("MoveX", playerRb.velocity.x); //나중에 맞춰서 수정

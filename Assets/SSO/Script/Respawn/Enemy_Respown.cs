@@ -35,6 +35,11 @@ public class Enemy_Respown : MonoBehaviour
         return enemyDamage;
     }
 
+    public double GetBossDamage()
+    {
+        return bossDamage;
+    }
+
     void SpawnBoss()
     {
         GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옴
