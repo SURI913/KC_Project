@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamageable
 {
 
 
@@ -24,17 +24,19 @@ public class Monster : MonoBehaviour
      스테이지 버튼에서 버튼에 인덱스를 줌
      인덱스는 시트의 행 순서랑 값을 같게 했고
      예를 들어 인덱스 값이 3일경우 3행의 데이터를 가저온다.*/
-    public int stageIndex;
+
     public void Awake()
     {
 
-       
+      /*  MonsterD monster = monsterData.monsterdatas[0];
+        stageID = monster.stageID;
+        HP = monster.hp;
+        Attack = monster.attack;
+        AtkTime = monster.atktime;*/
 
     }
 
-   
-    public void SetMonsterData(MonsterD monsdata)
-    {
+    public virtual void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
             stageID = monsdata.stageID;
@@ -43,23 +45,20 @@ public class Monster : MonoBehaviour
             AtkTime = monsdata.atktime;
             Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
-           //여기선 데이터가 온다 !
+            //여기선 데이터가 온다 !
         }
         else
         {
             Debug.Log("데이터가 전달되지않음");
         }
+    }
+    
 
-    }
-    void printData()
-    {
-        Debug.Log("하이하이SetMonsterData: " + "StageID: " + stageID + "" +
-           ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
-    }
    
 
-    public void OnDamage(double Damage, RaycastHit2D hit)   // 몬스터에게 데미지를 입히는 함수
+    public virtual void OnDamage(double Damage, RaycastHit2D hit) 
     {
+
         HP -= Damage;
         if (HP <= 0)
         {
@@ -67,6 +66,7 @@ public class Monster : MonoBehaviour
             Debug.Log("던전 몬스터 처치");
         }
     }
+    // 몬스터에게 데미지를 입히는 함수{}
 
     /* protected virtual void HP_m()
      {
