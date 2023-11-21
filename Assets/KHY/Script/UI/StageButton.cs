@@ -14,33 +14,36 @@ public class StageButton : MonoBehaviour
     {
         Button button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
+       
     }
 
     private void OnButtonClick()
     {
+
         if (monster != null)
         {
-            // 스프레드시트의 행 인덱스는 0부터 시작하므로 rowIndex를 사용
+
             int rowIndex = stageIndex;
 
-            if (rowIndex >= 0 && rowIndex < monster.monsterData.monsterdatas.Length)
+            if (rowIndex >= 1 && rowIndex <= monster.monsterData.monsterdatas.Length)
             {
                 // 해당 스테이지에 대한 데이터를 가져오고 처리
                 //MonsterD 에서 저장한 리스트를 접근 (데이터가 저장되어있음)
-                MonsterD stageData = monster.monsterData.monsterdatas[rowIndex];
-                
+                //스프레드시트는 행이 1부터 시작함 그래사 rowindex -1
+                MonsterD stageData = monster.monsterData.monsterdatas[rowIndex - 1];
+                 monster.SetMonsterData(stageData);
 
                 // 스테이지 데이터를 사용하여 몬스터의 속성을 설정
-                monster.ID_m = stageData.stageID;
+            /*    monster.stageID = stageData.stageID;
                 monster.HP = stageData.hp;
                 monster.Attack = stageData.attack;
-                monster.AtkTime = stageData.atktime;
+                monster.AtkTime = stageData.atktime;*/
 
                 //확인을 위한 출력 
                 Debug.Log("Clicked stage button with stageIndex: " + stageIndex);
-                Debug.Log("Stage " + stageIndex + " - ID: " + monster.ID_m + "," +
+                Debug.Log("Stage " + stageIndex + " - ID: " + monster.stageID + "," +
                     " HP: " + monster.HP + ", Attack: " + monster.Attack + ", Attack Time: " + monster.AtkTime);
-               
+                
             }
             else
             {
