@@ -90,38 +90,6 @@ public class Enemy_02 : MonoBehaviour, IDamageable
         }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
-        {
-            Debug.Log("충돌");
-            enemySpeed = 0;
-            StartCoroutine(SpawnWithCooldown()); // Coroutine 시작
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
-        {
-            enemySpeed = originalEnemySpeed;  // enemySpeed 값을 원래 값으로 재설정
-        }
-    }
-
-    IEnumerator SpawnWithCooldown()
-    {
-        while (true) // 무한 반복
-        {
-            enemy_attack_animation.SetTrigger("Enemy_attack");
-            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
-            GameObject attackInstance = Instantiate(enemy_attack_2, spawnPosition, Quaternion.identity);
-            StartCoroutine(DestroyAttack(attackInstance, 1f));
-
-            yield return new WaitForSeconds(attackCooldown); // 쿨타임 동안 대기
-            Destroy(attackInstance);
-        }
-    }*/
-
     IEnumerator DestroyAttack(GameObject obj, float seconds)    // 공격없애기
     {
         yield return new WaitForSeconds(seconds); // 지정된 시간 동안 대기

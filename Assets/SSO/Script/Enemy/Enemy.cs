@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            Debug.Log("enemy_04의 충돌");
+            Debug.Log("enemy_01의 충돌");
             enemySpeed = 0;
 
             // 공격 플래그가 true인 경우에만 공격 코루틴을 시작
@@ -90,38 +90,6 @@ public class Enemy : MonoBehaviour, IDamageable
             Destroy(attackInstance);
         }
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
-        {
-            Debug.Log("충돌");
-            enemySpeed = 0;                                    // 충돌했다면, 이동을 멈춤
-            StartCoroutine(SpawnWithCooldown()); // Coroutine 시작
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Castle") || collision.collider.CompareTag("Player"))
-        {
-            enemySpeed = originalEnemySpeed;  // 충돌이 없어졌다면, 다시 이동
-        }
-    }
-
-    IEnumerator SpawnWithCooldown()
-    {
-        while (true) // 무한 반복
-        {
-            enemy_attack_animation.SetTrigger("Enemy_attack");
-            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);         // 공격이 생성되는 위치
-            GameObject attackInstance = Instantiate(enemy_attack_1, spawnPosition, Quaternion.identity);  // 공격 생성
-            StartCoroutine(DestroyAttack(attackInstance, 1f));  // 오브젝트 파괴 코루틴 생성
-
-            yield return new WaitForSeconds(attackCooldown); // 쿨타임 동안 대기
-            Destroy(attackInstance);
-        }
-    }*/
 
     IEnumerator DestroyAttack(GameObject obj, float seconds)   // 공격 없애기
     {
