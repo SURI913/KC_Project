@@ -92,48 +92,6 @@ public class Enemy_04 : MonoBehaviour, IDamageable
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
-        {
-            Debug.Log("enemy_04의 충돌");
-            enemySpeed = 0;
-
-            // 이전에 실행 중이던 Attack 코루틴을 중지
-            if (attackCoroutine != null)
-            {
-                StopCoroutine(attackCoroutine);
-            }
-
-            // Attack 코루틴을 시작
-            attackCoroutine = StartCoroutine(Attack());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
-        {
-            enemySpeed = originalEnemySpeed;  // enemySpeed 값을 원래 값으로 재설정
-        }
-    }
-
-    IEnumerator Attack()
-    {
-        while (true) // 무한 반복
-        {
-            enemy_attack_animation.SetTrigger("Enemy_attack");
-            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
-            GameObject attackInstance = Instantiate(enemy_attack_4, spawnPosition, Quaternion.identity);
-
-            // 대기
-            yield return new WaitForSeconds(attackCooldown);
-
-            // 발사체 수명이 끝나면 제거
-            Destroy(attackInstance);
-        }
-    }*/
-
     void Update()
     {
         transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
