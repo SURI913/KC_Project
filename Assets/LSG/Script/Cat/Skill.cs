@@ -13,9 +13,9 @@ public class Skill : Projectile
 
     void initData()
     {
-        GrandParent = this.transform.parent.gameObject;
-        GrandParentIAttack = GrandParent.GetComponent<IAttack>(); //캐릭터에다가 넣어줘야하는 스크립트
-        Cooltime = GrandParentIAttack.skillTime;  //쿨타임 초기화
+        grandParent = this.transform.parent.gameObject;
+        grandParentIAttack = grandParent.GetComponent<IAttack>(); //캐릭터에다가 넣어줘야하는 스크립트
+        Cooltime = grandParentIAttack.skillTime;  //쿨타임 초기화
         bullet = bulletSet; //총알 오브젝트 초기화
         fireTransform = bulletPos;
         ID = IDset;
@@ -24,7 +24,7 @@ public class Skill : Projectile
     private void Awake()
     {
         initData();
-        GrandParentIAttack.ativeSkill = true;
+        grandParentIAttack.ativeSkill = true;
     }
 
     protected override void OnBullet() //스킬이면 오버라이드
@@ -33,9 +33,9 @@ public class Skill : Projectile
         if (hitDamage != null)
         {
             Debug.Log(target.collider.name);
-            Debug.Log(GrandParent.transform.GetComponent<Cat>().ID+"가 스킬 사용 중");
-            hitDamage.OnDamage(GrandParentIAttack.OnSkill(target), target);
-            Debug.Log(GrandParent.transform.tag + "가 " + GrandParentIAttack.OnAttack(target) + "만큼의 데미지를 입혔습니다");
+            Debug.Log(grandParent.transform.GetComponent<Cat>().ID+"가 스킬 사용 중");
+            hitDamage.OnDamage(grandParentIAttack.OnSkill(target), target);
+            Debug.Log(grandParent.transform.tag + "가 " + grandParentIAttack.OnAttack(target) + "만큼의 데미지를 입혔습니다");
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
             Destroy(newBullet, 2f);   //2초 뒤 파괴
         }
@@ -48,11 +48,11 @@ public class Skill : Projectile
         {
             //Debug.Log("스킬 생성 가능");
             state = State.Ready;    //쿨타임 종료
-            Cooltime = GrandParentIAttack.skillTime;
+            Cooltime = grandParentIAttack.skillTime;
         }
         else
         {
-            GrandParentIAttack.ativeSkill = false;
+            grandParentIAttack.ativeSkill = false;
             Cooltime -= Time.deltaTime;
         }
     }
