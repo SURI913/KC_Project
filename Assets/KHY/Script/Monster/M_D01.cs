@@ -6,8 +6,6 @@ using AllUnit;
 
 public class M_D01 : Monster
 {
-    
-
     public void Update()
     {
 
