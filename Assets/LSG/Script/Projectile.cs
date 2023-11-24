@@ -21,8 +21,8 @@ public class Projectile : MonoBehaviour
     protected Transform fireTransform;  //발사될 위치
     protected Rigidbody2D rb;       //총알 리지드바디
 
-    protected GameObject GrandParent;   //Attack or Skill 에서 부모 오브젝트 저장
-    protected IAttack GrandParentIAttack;
+    protected GameObject grandParent;   //Attack or Skill 에서 부모 오브젝트 저장
+    protected IAttack grandParentIAttack;
 
     protected GameObject newBullet;
 
@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
             Vector2 Pos = target.transform.position - fireTransform.position;
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
-            rb.velocity = Pos.normalized * GrandParentIAttack.speed;
+            rb.velocity = Pos.normalized * grandParentIAttack.speed;
             state = State.Empty;
         }
     }
@@ -48,9 +48,12 @@ public class Projectile : MonoBehaviour
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
             Debug.Log(ID + "공격중");
-            hitDamage.OnDamage(GrandParentIAttack.OnAttack(target), target);
+            hitDamage.OnDamage(grandParentIAttack.OnAttack(target), target);
             Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
+        }
+        {
+            Debug.Log(ID + "대상이 없습니다");
         }
     }
     bool checkTarget = false;
@@ -60,11 +63,13 @@ public class Projectile : MonoBehaviour
         if (!target)
         {
             checkTarget=false;
+            Debug.Log(ID + "타겟이 없습니다");
         }
         if (!checkTarget)
         {
             int layerMask = 1 << LayerMask.NameToLayer("Target");
-            target = Physics2D.Raycast(fireTransform.position, Vector2.right, 7f, layerMask);
+            target = Physics2D.Raycast(fireTransform.position, Vector2.right, 10f, layerMask);
+            Debug.DrawRay(fireTransform.position, Vector2.right * 7f, Color.green);
             checkTarget = true;
         }
         //이것도 적마
