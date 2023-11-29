@@ -36,7 +36,7 @@ public class Monster : MonoBehaviour, IDamageable
 
     }
 
-    public virtual void SetMonsterData(MonsterD monsdata) {
+    public void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
             stageID = monsdata.stageID;
@@ -56,10 +56,11 @@ public class Monster : MonoBehaviour, IDamageable
 
    
 
-    public virtual void OnDamage(double Damage, RaycastHit2D hit) 
+    public void OnDamage(double Damage, RaycastHit2D hit) 
     {
 
         HP -= Damage;
+        Debug.Log("몬스터가 공격받는다");
         if (HP <= 0)
         {
             Destroy(gameObject);
