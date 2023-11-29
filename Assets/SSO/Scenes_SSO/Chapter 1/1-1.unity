@@ -374,7 +374,7 @@ MonoBehaviour:
   bossDamage: 1000
   enemyHp: 10000
   enemyDamage: 1000
-  enemeyStageCount: 1
+  enemeyStageCount: 10
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0
@@ -387,7 +387,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1636402919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426514994
@@ -1852,12 +1853,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636402917}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 285245053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1736581808
 PrefabInstance:
@@ -2476,7 +2477,6 @@ SceneRoots:
   - {fileID: 1995580563}
   - {fileID: 2120913703}
   - {fileID: 285245053}
-  - {fileID: 1636402919}
   - {fileID: 1770669659}
   - {fileID: 5579312925872329630}
   - {fileID: 2001123521}
