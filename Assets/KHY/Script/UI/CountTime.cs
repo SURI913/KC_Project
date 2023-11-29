@@ -12,6 +12,7 @@ public class CountTime : MonoBehaviour
     private float currentTime;
     [SerializeField]
     private Text countdownText;
+   
     void Start()
     {
         currentTime = countdownTime;
@@ -22,6 +23,7 @@ public class CountTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
        if(currentTime>0)
         {
             currentTime -= Time.deltaTime; //
