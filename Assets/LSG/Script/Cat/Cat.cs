@@ -17,8 +17,10 @@ public class Cat : MonoBehaviour, IDamageable
     protected float xattack;  //공격력배수
     protected float attackIncrease;  //레벨에 따른 공격배수 증가값
 
-    //protected float xprotect; //방어력X
-    protected float xhealing = 0; //회복력배수
+    protected float xprotect; //방어력X
+    protected float xprotectIncrease; //방어력X
+    protected float xhealing; //회복력배수
+    protected float xhealingIncrease ; //회복력배수
 
     protected float criticalHit = 1f; //치명타율
     protected float criticalDamage = 0; //치명타데미지 
