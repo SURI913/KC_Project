@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class DBManager : MonoBehaviour
 {
-    const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=C8:J";
-    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=C11:J";
-    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=G39:J";
-    const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=L39:O";
+    const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B7:L";
+    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B11:L";
+    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I38:J";
+    const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=N38:Q";
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadCannon()
     {
-        //ƒ≥≥Ì µ•¿Ã≈Õ ∞°¡Æø¿±‚
+        //Ï∫êÎÖº Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞
         UnityWebRequest www = UnityWebRequest.Get(CannonURL);
         yield return www.SendWebRequest();
         SetCannonData(www.downloadHandler.text);
@@ -30,7 +30,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadRepairMan()
     {
-        //ƒ≥≥Ì µ•¿Ã≈Õ ∞°¡Æø¿±‚
+        //Ï∫êÎÖº Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞
         UnityWebRequest www = UnityWebRequest.Get(RepairmanURL);
         yield return www.SendWebRequest();
         SetRepairManData(www.downloadHandler.text);
@@ -38,7 +38,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthAtk()
     {
-        //ƒ≥≥Ì µ•¿Ã≈Õ ∞°¡Æø¿±‚
+        //Ï∫êÎÖº Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞
         UnityWebRequest www = UnityWebRequest.Get(GrowthAtkURL);
         yield return www.SendWebRequest();
         SetGrowthAtk(www.downloadHandler.text);
@@ -46,7 +46,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthHp()
     {
-        //ƒ≥≥Ì µ•¿Ã≈Õ ∞°¡Æø¿±‚
+        //Ï∫êÎÖº Îç∞Ïù¥ÌÑ∞ Í∞ÄÏ†∏Ïò§Í∏∞
         UnityWebRequest www = UnityWebRequest.Get(GrowthHpURL);
         yield return www.SendWebRequest();
         SetGrowthHp(www.downloadHandler.text);
@@ -66,12 +66,12 @@ public class DBManager : MonoBehaviour
             {
                 CannonData targetData = towerData.Cannon[i];
 
-                targetData.ID = column[0];
-                targetData.Tier = column[1];
-                targetData.RetentionAttack = double.Parse(column[2]);
-                targetData.RetentionIncrease = double.Parse(column[3]);
-                targetData.Attack = double.Parse(column[6]);
-                targetData.Increase = double.Parse(column[7]);
+                targetData.ID = column[1];
+                targetData.Tier = column[2];
+                targetData.RetentionAttack = double.Parse(column[3]);
+                targetData.RetentionIncrease = double.Parse(column[4]);
+                targetData.Attack = double.Parse(column[7]);
+                targetData.Increase = double.Parse(column[8]);
             }
         }
     }
@@ -91,12 +91,12 @@ public class DBManager : MonoBehaviour
             {
                 RepairManData targetData = towerData.RepairMan[i];
 
-                targetData.ID = column[0];
-                targetData.Tier = column[1];
-                targetData.RetentionHp = double.Parse(column[2]);
-                targetData.RetentionIncrease = double.Parse(column[3]);
-                targetData.Hp = double.Parse(column[6]);
-                targetData.Increase = double.Parse(column[7]);
+                targetData.ID = column[1];
+                targetData.Tier = column[2];
+                targetData.RetentionHp = double.Parse(column[3]);
+                targetData.RetentionIncrease = double.Parse(column[4]);
+                targetData.Hp = double.Parse(column[7]);
+                targetData.Increase = double.Parse(column[8]);
             }
         }
     }
