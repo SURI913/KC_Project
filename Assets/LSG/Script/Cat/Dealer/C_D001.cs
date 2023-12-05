@@ -50,12 +50,14 @@ public class C_D001 : Cat, IAttack
     private void Awake()
     {
         //데이터가 없으면
-        InitData();
+        InitData(); //생성자로 수정해야함
         //데이터가 있으면
     }
 
     public double OnSkill(RaycastHit2D hit)
     {
+        catMotion.SetTrigger("isSkill");
+
         double skillDamage = attackApply() * (double)skillEft;
         if (hit.collider.CompareTag("boss")) //보스 공격의 경우
         {
@@ -68,6 +70,7 @@ public class C_D001 : Cat, IAttack
 
     public double OnAttack(RaycastHit2D hit) //공격 체크
     {
+        catMotion.SetTrigger("isAttack");
         if (hit.collider.CompareTag("boss")) //보스 공격의 경우
         {
             return attackApply() + bossAttack;

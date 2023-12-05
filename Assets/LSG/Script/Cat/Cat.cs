@@ -30,6 +30,7 @@ public class Cat : MonoBehaviour, IDamageable
     protected bool passiveAct = false; //패시브 활성화 유무
     protected bool dead = false;    //죽음확인
     protected GrowingData growingData;
+
     //장비 멀로 처리하냐
 
     //-----------------------------------------------------------------------------------------------------------애니메이션
@@ -90,7 +91,6 @@ public class Cat : MonoBehaviour, IDamageable
         //영웅 공격력*공격력(보유효과)*성급효과*장비장착효과*패시브스킬*별자리
         //패시브 스킬은 어떻게 짤건지 고민 + 크리티컬 데미지 작업도 필요함
         //-----------------------------------------------------------------------------------------------------------애니메이션 추가
-        catMotion.SetTrigger("AttackAnim");
         return AllAttack;
     }
 
@@ -99,6 +99,7 @@ public class Cat : MonoBehaviour, IDamageable
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(respawnTime);
+        catMotion.SetBool("isDead", false);
         hpInit();
     }
 
@@ -106,6 +107,7 @@ public class Cat : MonoBehaviour, IDamageable
     {
         dead = true;
         //캐릭터 죽는 모션
+        catMotion.SetBool("isDead", true);
         StartCoroutine(Respawn());
     }
 

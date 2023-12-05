@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Skill : Projectile
 {
-    public GameObject bulletSet;    // ÃÑ¾Ë ¿ÀºêÁ§Æ® ÀÔ·Â
+    public GameObject bulletSet;    // ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ì…ë ¥
     public Transform bulletPos;
     private string IDset = "Skill";
 
@@ -14,9 +14,9 @@ public class Skill : Projectile
     void initData()
     {
         grandParent = this.transform.parent.gameObject;
-        grandParentIAttack = grandParent.GetComponent<IAttack>(); //Ä³¸¯ÅÍ¿¡´Ù°¡ ³Ö¾îÁà¾ßÇÏ´Â ½ºÅ©¸³Æ®
-        Cooltime = grandParentIAttack.skillTime;  //ÄğÅ¸ÀÓ ÃÊ±âÈ­
-        bullet = bulletSet; //ÃÑ¾Ë ¿ÀºêÁ§Æ® ÃÊ±âÈ­
+        grandParentIAttack = grandParent.GetComponent<IAttack>(); //ìºë¦­í„°ì—ë‹¤ê°€ ë„£ì–´ì¤˜ì•¼í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+        Cooltime = grandParentIAttack.skillTime;  //ì¿¨íƒ€ì„ ì´ˆê¸°í™”
+        bullet = bulletSet; //ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ì´ˆê¸°í™”
         fireTransform = bulletPos;
         ID = IDset;
     }
@@ -27,17 +27,17 @@ public class Skill : Projectile
         grandParentIAttack.ativeSkill = true;
     }
 
-    protected override void OnBullet() //½ºÅ³ÀÌ¸é ¿À¹ö¶óÀÌµå
+    protected override void OnBullet() //ìŠ¤í‚¬ì´ë©´ ì˜¤ë²„ë¼ì´ë“œ
     {
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null)
         {
-            Debug.Log(target.collider.name);
-            Debug.Log(grandParent.transform.GetComponent<Cat>().ID+"°¡ ½ºÅ³ »ç¿ë Áß");
+            Debug.Log(target.collider.tag);
+            Debug.Log(grandParent.transform.GetComponent<Cat>().ID+"ê°€ ìŠ¤í‚¬ ì‚¬ìš© ì¤‘");
             hitDamage.OnDamage(grandParentIAttack.OnSkill(target), target);
-            Debug.Log(grandParent.transform.tag + "°¡ " + grandParentIAttack.OnAttack(target) + "¸¸Å­ÀÇ µ¥¹ÌÁö¸¦ ÀÔÇû½À´Ï´Ù");
-            //hitµÈ ¿ÀºêÁ§Æ®¿¡ ÀÚ½Ä Attack°ª¸¸Å­ µ¥¹ÌÁöÀÔÈû
-            Destroy(newBullet, 2f);   //2ÃÊ µÚ ÆÄ±«
+            Debug.Log(grandParent.transform.tag + "ê°€ " + grandParentIAttack.OnAttack(target) + "ë§Œí¼ì˜ ë°ë¯¸ì§€ë¥¼ ì…í˜”ìŠµë‹ˆë‹¤");
+            //hitëœ ì˜¤ë¸Œì íŠ¸ì— ìì‹ Attackê°’ë§Œí¼ ë°ë¯¸ì§€ì…í˜
+            Destroy(newBullet, 2f);   //2ì´ˆ ë’¤ íŒŒê´´
         }
     }
     protected void Update()
@@ -46,8 +46,8 @@ public class Skill : Projectile
         
         if (Cooltime <= 0)
         {
-            //Debug.Log("½ºÅ³ »ı¼º °¡´É");
-            state = State.Ready;    //ÄğÅ¸ÀÓ Á¾·á
+            //Debug.Log("ìŠ¤í‚¬ ìƒì„± ê°€ëŠ¥");
+            state = State.Ready;    //ì¿¨íƒ€ì„ ì¢…ë£Œ
             Cooltime = grandParentIAttack.skillTime;
         }
         else
