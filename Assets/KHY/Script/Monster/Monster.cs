@@ -6,22 +6,22 @@ public class Monster : MonoBehaviour, IDamageable
 {
 
 
-    public string stageID { get; set; } //¸í
-    public double HP { get; set; } //Ã¼·Â
-    public double maxHP { get; set; } //ÃÖ´ëÃ¼·Â
-    public double Attack { get; set; } //°ø°İ·Â
-    public int AtkTime { get; set; } //°ø°İÄğÅ¸ÀÓ
+    public string stageID { get; set; } //ëª…
+    public double HP { get; set; } //ì²´ë ¥
+    public double maxHP { get; set; } //ìµœëŒ€ì²´ë ¥
+    public double Attack { get; set; } //ê³µê²©ë ¥
+    public int AtkTime { get; set; } //ê³µê²©ì¿¨íƒ€ì„
 
     StageButton s;
 
-    public MonsterData monsterData; // ÀÎ½ºÆåÅÍ¿¡¼­ ÇÒ´ç Áï ½ºÅ©¸³ÅÍºí ¸ó½ºÅÍ µ¥ÀÌÅÍ ³Ö±â 
+    public MonsterData monsterData; // ì¸ìŠ¤í™í„°ì—ì„œ í• ë‹¹ ì¦‰ ìŠ¤í¬ë¦½í„°ë¸” ëª¬ìŠ¤í„° ë°ì´í„° ë„£ê¸° 
 
-    /* µ¥ÀÌÅÍ ¸Å´ÏÀú¿¡¼­ ½ÃÆ®ÀÇ µ¥ÀÌÅÍ¸¦ ¹Ş¾Ò°í
-     ¸ó½ºÅÍ µ¥ÀÌÅÍ ¾È¿¡ ¸®½ºÆ®¿¡ ¹Ş¾Æ¿Â µ¥ÀÌÅÍ¸¦ ÀúÀåÇß´Ù.
-     ÀÌ¸¦ M_D01¿¡¼­ ÀüºÎ ÃÊ±âÈ­ ½ÃÄÑÁÖ°í
-     ½ºÅ×ÀÌÁö ¹öÆ°¿¡¼­ ¹öÆ°¿¡ ÀÎµ¦½º¸¦ ÁÜ
-     ÀÎµ¦½º´Â ½ÃÆ®ÀÇ Çà ¼ø¼­¶û °ªÀ» °°°Ô Çß°í
-     ¿¹¸¦ µé¾î ÀÎµ¦½º °ªÀÌ 3ÀÏ°æ¿ì 3ÇàÀÇ µ¥ÀÌÅÍ¸¦ °¡Àú¿Â´Ù.*/
+    /* ë°ì´í„° ë§¤ë‹ˆì €ì—ì„œ ì‹œíŠ¸ì˜ ë°ì´í„°ë¥¼ ë°›ì•˜ê³ 
+     ëª¬ìŠ¤í„° ë°ì´í„° ì•ˆì— ë¦¬ìŠ¤íŠ¸ì— ë°›ì•„ì˜¨ ë°ì´í„°ë¥¼ ì €ì¥í–ˆë‹¤.
+     ì´ë¥¼ M_D01ì—ì„œ ì „ë¶€ ì´ˆê¸°í™” ì‹œì¼œì£¼ê³ 
+     ìŠ¤í…Œì´ì§€ ë²„íŠ¼ì—ì„œ ë²„íŠ¼ì— ì¸ë±ìŠ¤ë¥¼ ì¤Œ
+     ì¸ë±ìŠ¤ëŠ” ì‹œíŠ¸ì˜ í–‰ ìˆœì„œë‘ ê°’ì„ ê°™ê²Œ í–ˆê³ 
+     ì˜ˆë¥¼ ë“¤ì–´ ì¸ë±ìŠ¤ ê°’ì´ 3ì¼ê²½ìš° 3í–‰ì˜ ë°ì´í„°ë¥¼ ê°€ì €ì˜¨ë‹¤.*/
 
 
    
@@ -29,7 +29,7 @@ public class Monster : MonoBehaviour, IDamageable
     public void FixedUpdate()
     {
        
-        Move();
+       // Move();
         OnAttack();
     }
 
@@ -54,11 +54,11 @@ public class Monster : MonoBehaviour, IDamageable
             AtkTime = monsdata.atktime;
             Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
-            //¿©±â¼± µ¥ÀÌÅÍ°¡ ¿Â´Ù !
+            //ì—¬ê¸°ì„  ë°ì´í„°ê°€ ì˜¨ë‹¤ !
         }
         else
         {
-            Debug.Log("µ¥ÀÌÅÍ°¡ Àü´ŞµÇÁö¾ÊÀ½");
+            Debug.Log("ë°ì´í„°ê°€ ì „ë‹¬ë˜ì§€ì•ŠìŒ");
         }
     }
 
@@ -67,9 +67,9 @@ public class Monster : MonoBehaviour, IDamageable
 
 
 
-    private float rayLen=10f;// ·¹ÀÌÄ³½ºÆ®ÀÇ ±æÀÌ 
-    private LayerMask layerMask; //·¹ÀÌ¾î ÇÃ·¹ÀÌ¾î 
-    private bool isatk = false; // °ø°İÁßÀÌ ¾Æ´Ò¶§
+    private float rayLen=10f;// ë ˆì´ìºìŠ¤íŠ¸ì˜ ê¸¸ì´ 
+    private LayerMask layerMask; //ë ˆì´ì–´ í”Œë ˆì´ì–´ 
+    private bool isatk = false; // ê³µê²©ì¤‘ì´ ì•„ë‹ë•Œ
    // private bool ismove = true;
     RaycastHit2D hit;
     private float moveSpeed = 4f;
@@ -79,7 +79,7 @@ public class Monster : MonoBehaviour, IDamageable
         Debug.Log(" HP:" + HP);
         /*if (!isatk)
         {
-            //hit¿¡ ÀúÀåµÇ¾îÀÖ´Â Player ·¹ÀÌ¸¶½ºÅ© Áï nullÀÌ ¾Æ´Ï¸é ÀÌµ¿
+            //hitì— ì €ì¥ë˜ì–´ìˆëŠ” Player ë ˆì´ë§ˆìŠ¤í¬ ì¦‰ nullì´ ì•„ë‹ˆë©´ ì´ë™
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         }
         else
@@ -90,24 +90,26 @@ public class Monster : MonoBehaviour, IDamageable
     }
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
-        Debug.Log(" µ¥Áö¹ÌHP:" + HP);
+        Debug.Log(" ë°ì§€ë¯¸HP:" + HP);
+        Debug.Log(" ë°ì§€ë¯¸HP:" + Attack);
+
         HP -= Damage;
-        Debug.Log("¸ó½ºÅÍ°¡ °ø°İ¹Ş´Â´Ù  HP:" + HP);
+        Debug.Log("ëª¬ìŠ¤í„°ê°€ ê³µê²©ë°›ëŠ”ë‹¤  HP:" + HP);
         if (HP <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("´øÀü ¸ó½ºÅÍ Ã³Ä¡");
+            Debug.Log("ë˜ì „ ëª¬ìŠ¤í„° ì²˜ì¹˜");
         }
     }
     public void OnAttack()
     {
-        // Ã£À» ·¹ÀÌ¾î ÀúÀå
+        // ì°¾ì„ ë ˆì´ì–´ ì €ì¥
         layerMask = LayerMask.GetMask("Player");
-        //·¹ÀÌ¸¦ Ç¥½ÃÇÒ Æ÷Áö¼Ç
+        //ë ˆì´ë¥¼ í‘œì‹œí•  í¬ì§€ì…˜
         Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 2);
-        //hit¿¡ ÀúÀå
+        //hitì— ì €ì¥
         hit = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
-        //·¹ÀÌ »ö Áà¼­ Ç¥½Ã
+        //ë ˆì´ ìƒ‰ ì¤˜ì„œ í‘œì‹œ
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
         if (hit.collider != null)
@@ -123,14 +125,14 @@ public class Monster : MonoBehaviour, IDamageable
 }
  /*   public void SpawnMonster(Vector2 spawnPosition)
     {
-        // ¸ó½ºÅÍ¸¦ »ı¼ºÇÏ°í ½ºÆù À§Ä¡·Î ÀÌµ¿
+        // ëª¬ìŠ¤í„°ë¥¼ ìƒì„±í•˜ê³  ìŠ¤í° ìœ„ì¹˜ë¡œ ì´ë™
         Instantiate(gameObject, spawnPosition, Quaternion.identity);
 
-        // »ı¼ºµÈ ¸ó½ºÅÍ¿¡ ´ëÇÑ ÃÊ±âÈ­
+        // ìƒì„±ëœ ëª¬ìŠ¤í„°ì— ëŒ€í•œ ì´ˆê¸°í™”
        // SetMonsterData(monsterData);
-        // Ãß°¡ÀûÀÎ ÃÊ±âÈ­ ÀÛ¾÷ÀÌ ÇÊ¿äÇÏ´Ù¸é ¿©±â¿¡ Ãß°¡
+        // ì¶”ê°€ì ì¸ ì´ˆê¸°í™” ì‘ì—…ì´ í•„ìš”í•˜ë‹¤ë©´ ì—¬ê¸°ì— ì¶”ê°€
     }*/
-    // ¸ó½ºÅÍ¿¡°Ô µ¥¹ÌÁö¸¦ ÀÔÈ÷´Â ÇÔ¼ö{}
+    // ëª¬ìŠ¤í„°ì—ê²Œ ë°ë¯¸ì§€ë¥¼ ì…íˆëŠ” í•¨ìˆ˜{}
 
  
 
