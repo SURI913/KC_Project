@@ -6,18 +6,24 @@ using AllUnit;
 
 public class M_D01 : Monster
 {
-    
+    public void Start()
+    {
+        
+    }
 
     public void Update()
     {
+        printData();
+
 
     }
 
     void printData()
     {
-       /* Start나 Awake에 printData()를 넣으면 시작하자마자 실행되서;
-        데이터 값이 0이다.
-        하지만 버튼을 누르면 값이 전달된다.(수경이 발사체 넣고 데미지 깎이는지 확인하기)*/
+      //  Debug.Log("Monster 데이터 확인: " + monsterData);
+        /* Start나 Awake에 printData()를 넣으면 시작하자마자 실행되서;
+         데이터 값이 0이다.
+         하지만 버튼을 누르면 값이 전달된다.(수경이 발사체 넣고 데미지 깎이는지 확인하기)*/
         if (!string.IsNullOrEmpty(stageID))
         {
             Debug.Log("스테이지-" + stageID);
@@ -30,25 +36,27 @@ public class M_D01 : Monster
             Debug.Log("Monster에서 데이터 전달 안됨");
         }
     }
-  /*  public override void SetMonsterData(MonsterD monsdata)
-    {
-        if (monsdata != null)
-        {
-            stageID = monsdata.stageID;
-            HP = monsdata.hp;
-            Attack = monsdata.attack;
-            AtkTime = monsdata.atktime;
-            Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
-                ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
-            //여기선 데이터가 온다 !
-        }
-        else
-        {
-            Debug.Log("데이터가 전달되지않음");
-        }
 
-    }*/
-  
+
+    /*  public override void SetMonsterData(MonsterD monsdata)
+      {
+          if (monsdata != null)
+          {
+              stageID = monsdata.stageID;
+              HP = monsdata.hp;
+              Attack = monsdata.attack;
+              AtkTime = monsdata.atktime;
+              Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
+                  ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
+              //여기선 데이터가 온다 !
+          }
+          else
+          {
+              Debug.Log("데이터가 전달되지않음");
+          }
+
+      }*/
+
 
 }
     //  private float movespeed = 2.0f;

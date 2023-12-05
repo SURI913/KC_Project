@@ -6,15 +6,12 @@ using AllUnit;
 [System.Serializable]
 public class MonsterD
 {
-
     public string stageID;
     public double hp;
     public double attack;
     public int atktime;
     public double recommattack;
-    public double recommdefense;
-
-   
+    public double recommdefense;   
 }
 
 
@@ -22,7 +19,4 @@ public class MonsterD
 public class MonsterData : ScriptableObject
 {
     public MonsterD[] monsterdatas;
-
-
-    
 }

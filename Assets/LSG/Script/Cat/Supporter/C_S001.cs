@@ -7,22 +7,22 @@ using AllUnit;
 public class C_S001 : Cat, IAttack
 {
     //public string name { get;, private set; }
-    float skillEft = 0.05f; //Èú µé¾î°¡´Â ÆÛ¼¾Æ®
-    public float speed { get; set; } //°ø°İ ¼Óµµ
-    public float atkTime { get; set; } //ÀÏ¹İ°ø°İ ÄğÅ¸ÀÓ
-    public float skillTime { get; set; } //½ºÅ³ °ø°İ ÄğÅ¸ÀÓ
-    public bool ativeSkill { get; set; }   //½ºÅ³ È°¼ºÈ­ ½Ã °ø°İ ¸ØÃã
+    float skillEft = 0.05f; //í ë“¤ì–´ê°€ëŠ” í¼ì„¼íŠ¸
+    public float speed { get; set; } //ê³µê²© ì†ë„
+    public float atkTime { get; set; } //ì¼ë°˜ê³µê²© ì¿¨íƒ€ì„
+    public float skillTime { get; set; } //ìŠ¤í‚¬ ê³µê²© ì¿¨íƒ€ì„
+    public bool ativeSkill { get; set; }   //ìŠ¤í‚¬ í™œì„±í™” ì‹œ ê³µê²© ë©ˆì¶¤
 
-    //½ºÅ³À» À§ÇÑ ÇÔ¼ö ÀÏÁ¤¹üÀ§ ³»ÀÇ ¿µ¿õµéÀ» °ñ¶ó³¿
+    //ìŠ¤í‚¬ì„ ìœ„í•œ í•¨ìˆ˜ ì¼ì •ë²”ìœ„ ë‚´ì˜ ì˜ì›…ë“¤ì„ ê³¨ë¼ëƒ„
     List<Cat> catsHealing = new List<Cat>();
     [SerializeField] GrowingData growingdata;
 
-    //Ä³¸¯ÅÍ °ª ÃÊ±âÈ­
-    //DB¿¡¼­ ²ø¾î¿È     
-    //·¹º§¾÷ ÇÒ¶§¸¶´Ù ÀúÀå È£Ãâ + °ª ´Ù½Ã °¡Á®¿À±â
-    private void InitData() //´ë½Å¿¡ »ı¼ºÀÚ·Î °ª ³Ö´Â¹æ½ÄÀ¸·Î º¯°æÇØ º¼ °Í
+    //ìºë¦­í„° ê°’ ì´ˆê¸°í™”
+    //DBì—ì„œ ëŒì–´ì˜´     
+    //ë ˆë²¨ì—… í• ë•Œë§ˆë‹¤ ì €ì¥ í˜¸ì¶œ + ê°’ ë‹¤ì‹œ ê°€ì ¸ì˜¤ê¸°
+    private void InitData() //ëŒ€ì‹ ì— ìƒì„±ìë¡œ ê°’ ë„£ëŠ”ë°©ì‹ìœ¼ë¡œ ë³€ê²½í•´ ë³¼ ê²ƒ
     {
-        // È°¼ºÈ­ µÈ °í¾çÀÌ CatÅ¬·¡½º¿¡ Ã¹ µ¥ÀÌÅÍ º¸³»±â
+        // í™œì„±í™” ëœ ê³ ì–‘ì´ Catí´ë˜ìŠ¤ì— ì²« ë°ì´í„° ë³´ë‚´ê¸°
         ID = "C_S001";
         Lv = 1;
 
@@ -34,18 +34,24 @@ public class C_S001 : Cat, IAttack
         xattack = 1.5f;
         attackIncrease = 0.1f;
 
-        speed = 20f;    //ÀÓÀÇ
+        xhealing = 3f;
+        xhealingIncrease = 0.25f;
+
+        xprotect = 1.5f;
+        xprotectIncrease = 0.2f;
+
+        speed = 20f;    //ì„ì˜
         skillTime = 10f;
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID + "growingData ÀúÀå ¿Ï·á");
+        Debug.Log(ID + "growingData ì €ì¥ ì™„ë£Œ");
 
         catMotion = GetComponentInChildren<Animator>();
 
 
         Vector2 skillpos = this.transform.position;
-        //½ºÅ³Æ¯±â
+        //ìŠ¤í‚¬íŠ¹ê¸°
         Collider2D[] cats = Physics2D.OverlapCircleAll(skillpos, 1000.0f);
         foreach (var Cats in cats)
         {
@@ -59,31 +65,31 @@ public class C_S001 : Cat, IAttack
 
     private void Awake()
     {
-        //µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é
+        //ë°ì´í„°ê°€ ì—†ìœ¼ë©´
         InitData();
-        //µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é
+        //ë°ì´í„°ê°€ ìˆìœ¼ë©´
     }
 
     public double OnSkill(RaycastHit2D hit)
     {
         catMotion.SetTrigger("AttackAnim");
-        Debug.Log( "Èú¸µ½ºÅ³ ¹ßµ¿");
+        Debug.Log( "íë§ìŠ¤í‚¬ ë°œë™");
         Debug.Log(catsHealing.Count);
-        //¿ä»õ ¹üÀ§ ¾È¿¡ÀÖ´Â »ç¶÷ÇÑÅ×¸¸ ÈúÀÌ µé¾î°¨
+        //ìš”ìƒˆ ë²”ìœ„ ì•ˆì—ìˆëŠ” ì‚¬ëŒí•œí…Œë§Œ íì´ ë“¤ì–´ê°
         foreach (var Cats in catsHealing)
         {
             Cats.hp += Cats.maxHp * skillEft;
-            Debug.Log(Cats.ID+ "Èú¸µ");
-            if(hp > maxHp) //maxHp¸¦ ³ÑÁö¾Ê°Ô Ã³¸®
+            Debug.Log(Cats.ID+ "íë§");
+            if(hp > maxHp) //maxHpë¥¼ ë„˜ì§€ì•Šê²Œ ì²˜ë¦¬
             {
                 hp = maxHp;
             }
         }
         return 0;
     }
-    public double OnAttack(RaycastHit2D hit) //°ø°İ Ã¼Å©
+    public double OnAttack(RaycastHit2D hit) //ê³µê²© ì²´í¬
     {
-        if (hit.collider.CompareTag("boss")) //º¸½º °ø°İÀÇ °æ¿ì
+        if (hit.collider.CompareTag("boss")) //ë³´ìŠ¤ ê³µê²©ì˜ ê²½ìš°
         {
             return attackApply() + bossAttack;
         }

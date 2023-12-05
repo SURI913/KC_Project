@@ -31,6 +31,12 @@ public class C_D001 : Cat, IAttack
         xattack = 1.8f;
         attackIncrease = 0.17f;
 
+        xhealing = 1.2f;
+        xhealingIncrease = 0.1f;
+
+        xprotect = 0.8f;
+        xprotectIncrease = 0.08f;
+
         speed = 15f;    //임의
         skillTime = 5f;
         atkTime = 2f;
