@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -27,6 +28,10 @@ public class Projectile : MonoBehaviour
     protected GameObject newBullet;
 
     protected RaycastHit2D target;
+
+    //부채꼴 범위를 위한 변수
+    public float angleRange = 30f;
+    public float radius = 3f;
 
     protected virtual void Fire()   //총알 생성 및 발사
     {
@@ -58,6 +63,16 @@ public class Projectile : MonoBehaviour
     }
     bool checkTarget = false;
 
+    private void OnDrawGizmos()
+    {
+        if (target)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(transform.position + new Vector3(target.point.x, target.point.y, 0), transform.lossyScale * 10);
+
+        }
+    }
+
     protected void StateCheck()
     {
         if (!target)
@@ -67,9 +82,8 @@ public class Projectile : MonoBehaviour
         }
         if (!checkTarget)
         {
-            int layerMask = 1 << LayerMask.NameToLayer("Target");
-            target = Physics2D.Raycast(fireTransform.position, Vector2.right, 10f, layerMask);
-            Debug.DrawRay(fireTransform.position, Vector2.right * 7f, Color.green);
+            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*10, 0f, Vector2.right,10f, LayerMask.GetMask("Target"));
+
             checkTarget = true;
         }
         //이것도 적마

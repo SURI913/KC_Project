@@ -4,20 +4,26 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void OnDamage(double Damage, RaycastHit2D hit);   //µ¥¹ÌÁö¸¦ ÀÔÈû
+    void OnDamage(double Damage, RaycastHit2D hit);   //ë°ë¯¸ì§€ë¥¼ ì…í˜
 }
 
-public interface IAttack //¼öÁ¤ÇÊ¿äÇÔ °ø°İÀÌ¶û ½ºÅ³ µû·Î ºĞ¸®ÇÒ °Í
+public interface IAttack //ìˆ˜ì •í•„ìš”í•¨ ê³µê²©ì´ë‘ ìŠ¤í‚¬ ë”°ë¡œ ë¶„ë¦¬í•  ê²ƒ
 {
-    float speed { get; set; }   //°ø°İ ¼Óµµ
-    float atkTime { get; set; } //ÀÏ¹İ°ø°İ ÄğÅ¸ÀÓ
-    float skillTime { get; set; }   //½ºÅ³ °ø°İ ÄğÅ¸ÀÓ
-    bool ativeSkill { get; set; }   //½ºÅ³ È°¼ºÈ­ ½Ã °ø°İ ¸ØÃã º¸½º ¹× ÀÏ¹İ¸ó½ºÅÍ´Â ÇØ´ç x Awake¿¡¼­ AiveSkill = false;Ã³¸®
+    float speed { get; set; }   //ê³µê²© ì†ë„
+    float atkTime { get; set; } //ì¼ë°˜ê³µê²© ì¿¨íƒ€ì„
+    float skillTime { get; set; }   //ìŠ¤í‚¬ ê³µê²© ì¿¨íƒ€ì„
+    bool ativeSkill { get; set; }   //ìŠ¤í‚¬ í™œì„±í™” ì‹œ ê³µê²© ë©ˆì¶¤ ë³´ìŠ¤ ë° ì¼ë°˜ëª¬ìŠ¤í„°ëŠ” í•´ë‹¹ x Awakeì—ì„œ AiveSkill = false;ì²˜ë¦¬
     double OnAttack(RaycastHit2D hit);
-    double OnSkill(RaycastHit2D hit); //º¸½º ¹× ÀÏ¹İ¸ó½ºÅÍ´Â ÇØ´ç x return 0;·Î Á¾·á
+    double OnSkill(RaycastHit2D hit); //ë³´ìŠ¤ ë° ì¼ë°˜ëª¬ìŠ¤í„°ëŠ” í•´ë‹¹ x return 0;ë¡œ ì¢…ë£Œ
 }
 
 public interface IPassiveActive
 {
     void OnPassive();
+}
+
+interface IUsableItem
+{
+    // ì•„ì´í…œ ì‚¬ìš© : ì„±ê³µ ì—¬ë¶€ ë¦¬í„´
+    bool Use(double _amount);
 }

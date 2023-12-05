@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "InventoryObject", menuName = "Scriptable Objest/MyInventoryObject")]
 public abstract class ItemData : ScriptableObject //아이템 공통 데이터
 {
     [SerializeField] private int id;
-    [SerializeField] private string name;
+    [SerializeField] private new string name;
 
     [Multiline]
     [SerializeField] private string description;
@@ -23,5 +21,5 @@ public abstract class Item : ItemData
     public ItemData Data { get; private set; }
     public Item(ItemData data) => Data = data; //값저장 람다함수
 
-    bool stackable; //쌓일 수 있는 데이터인가
+    protected bool stackable; //쌓일 수 있는 데이터인가
 }
