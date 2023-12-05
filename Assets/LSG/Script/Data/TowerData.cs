@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TowerData", menuName = "Scriptable Objest/Data")]
+[CreateAssetMenu(fileName = "TowerData", menuName = "Scriptable Objest/TowerData")]
 public class TowerData : ScriptableObject
 {
-    //½ÃÆ® ÀÌ¸§ÀÌ¶û µ¿ÀÏÇÏ°Ô
+    //ì‹œíŠ¸ ì´ë¦„ì´ë‘ ë™ì¼í•˜ê²Œ
     public CannonData[] Cannon;
     public RepairManData[] RepairMan;
 }
