@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: TowerData
   m_EditorClassIdentifier: 
   Cannon:
-  - ID: R01
+  - ID: C01
     Tier: "\uB178\uBA40"
-    RetentionAttack: 400
-    RetentionIncrease: 40
+    RetentionAttack: 5
+    RetentionIncrease: 1
     Attack: 1
     Increase: 0.1
-  - ID: R02
+  - ID: C02
     Tier: "\uB178\uBA40"
-    RetentionAttack: 800
-    RetentionIncrease: 80
-    Attack: 1.2
+    RetentionAttack: 10
+    RetentionIncrease: 1
+    Attack: 1
     Increase: 0.12
-  - ID: R03
+  - ID: C03
     Tier: "\uB178\uBA40"
     RetentionAttack: 20
     RetentionIncrease: 2
@@ -62,51 +62,51 @@ MonoBehaviour:
     Attack: 4.95
     Increase: 0.55
   RepairMan:
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
-  - ID: 
-    Tier: 
-    RetentionHp: 0
-    RetentionIncrease: 0
-    Hp: 0
-    Increase: 0
+  - ID: R01
+    Tier: "\uB178\uBA40"
+    RetentionHp: 1
+    RetentionIncrease: 0.1
+    Hp: 400
+    Increase: 40
+  - ID: R02
+    Tier: "\uB178\uBA40"
+    RetentionHp: 1.2
+    RetentionIncrease: 0.12
+    Hp: 800
+    Increase: 80
+  - ID: R03
+    Tier: "\uB178\uBA40"
+    RetentionHp: 1.5
+    RetentionIncrease: 0.15
+    Hp: 1600
+    Increase: 160
+  - ID: R04
+    Tier: "\uB178\uBA40"
+    RetentionHp: 1.8
+    RetentionIncrease: 0.18
+    Hp: 4000
+    Increase: 400
+  - ID: R11
+    Tier: "\uC5D8\uB9AC\uD2B8"
+    RetentionHp: 3
+    RetentionIncrease: 0.3
+    Hp: 8000
+    Increase: 800
+  - ID: R12
+    Tier: "\uC5D8\uB9AC\uD2B8"
+    RetentionHp: 3.5
+    RetentionIncrease: 0.35
+    Hp: 16000
+    Increase: 1600
+  - ID: R13
+    Tier: "\uC5D8\uB9AC\uD2B8"
+    RetentionHp: 4
+    RetentionIncrease: 0.4
+    Hp: 24000
+    Increase: 2400
+  - ID: R14
+    Tier: "\uC5D8\uB9AC\uD2B8"
+    RetentionHp: 5.5
+    RetentionIncrease: 0.55
+    Hp: 40000
+    Increase: 4000
