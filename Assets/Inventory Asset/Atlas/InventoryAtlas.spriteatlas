@@ -46,8 +46,11 @@ SpriteAtlas:
     - b16577501aa0b9c4bbe3dafb77c6d904: 21300000
     - 49c8b7601d3c2914aa09aa93eb6a236d: 21300000
     - 9f1ae181750a93243986f42d9849abe9: 21300000
+    - bbbc4d818a2e0c74abc31589d356c9fa: 21300000
     - 48b9b5b2326acd341a04dc1201f2628f: 21300000
+    - 557b0bc2c4223c349800d985715a3b83: 21300000
     - dacd08f2013e45d458be6c386984b0db: 21300000
+    - 23c67923d7d42bd4e973ee65f373bc23: 21300000
     - fa99840564e4d804b8e64b099590183c: 21300000
     - 1afe4f45e5c185c4abd8f32455a67be8: 21300000
     - a0446fc571078bd44a01c01b99f41cc6: 21300000
@@ -57,6 +60,7 @@ SpriteAtlas:
     - 56e4ed48a792eaf499511830ca21460b: 21300000
     - 9d058c19af669484bab041583cf1bb29: 21300000
     - ddc87939c1db34645b445a3ae766eb7b: 21300000
+    - fd53d13ace3338144b337c4725c5fb47: 21300000
     - 1a7a4d7af441de043b9d043963264fbd: 21300000
     - 7172ef7ab2222924581c47e7b39d97a8: 21300000
     - 48030b8ab035b1346a4b8376a3accb0f: 21300000
@@ -76,8 +80,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b16577501aa0b9c4bbe3dafb77c6d904, type: 3}
   - {fileID: 21300000, guid: 49c8b7601d3c2914aa09aa93eb6a236d, type: 3}
   - {fileID: 21300000, guid: 9f1ae181750a93243986f42d9849abe9, type: 3}
+  - {fileID: 21300000, guid: bbbc4d818a2e0c74abc31589d356c9fa, type: 3}
   - {fileID: 21300000, guid: 48b9b5b2326acd341a04dc1201f2628f, type: 3}
+  - {fileID: 21300000, guid: 557b0bc2c4223c349800d985715a3b83, type: 3}
   - {fileID: 21300000, guid: dacd08f2013e45d458be6c386984b0db, type: 3}
+  - {fileID: 21300000, guid: 23c67923d7d42bd4e973ee65f373bc23, type: 3}
   - {fileID: 21300000, guid: fa99840564e4d804b8e64b099590183c, type: 3}
   - {fileID: 21300000, guid: 1afe4f45e5c185c4abd8f32455a67be8, type: 3}
   - {fileID: 21300000, guid: a0446fc571078bd44a01c01b99f41cc6, type: 3}
@@ -87,6 +94,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 56e4ed48a792eaf499511830ca21460b, type: 3}
   - {fileID: 21300000, guid: 9d058c19af669484bab041583cf1bb29, type: 3}
   - {fileID: 21300000, guid: ddc87939c1db34645b445a3ae766eb7b, type: 3}
+  - {fileID: 21300000, guid: fd53d13ace3338144b337c4725c5fb47, type: 3}
   - {fileID: 21300000, guid: 1a7a4d7af441de043b9d043963264fbd, type: 3}
   - {fileID: 21300000, guid: 7172ef7ab2222924581c47e7b39d97a8, type: 3}
   - {fileID: 21300000, guid: 48030b8ab035b1346a4b8376a3accb0f, type: 3}
@@ -105,8 +113,11 @@ SpriteAtlas:
   - Backpack_26
   - Backpack_20
   - Backpack_15
+  - Deco_Clip
   - Backpack_21
+  - HighLighter
   - Backpack_07
+  - Slot
   - Backpack_04
   - Backpack_08
   - Backpack_14
@@ -116,6 +127,7 @@ SpriteAtlas:
   - Backpack_01
   - Backpack_19
   - Backpack_05
+  - Title
   - Backpack_17
   - Backpack_16
   - Backpack_09
