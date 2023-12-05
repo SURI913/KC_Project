@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class DBManager : MonoBehaviour
 {
     const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B7:L";
-    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B11:L";
-    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I38:J";
+    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B11:J";
+    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I38:L";
     const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=N38:Q";
 
     private void Awake()
@@ -56,7 +56,7 @@ public class DBManager : MonoBehaviour
     void SetCannonData(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = row.Length;
+        int rowSize = 8;  //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for(int i = 0; i< rowSize; i++)
@@ -64,14 +64,14 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split("\t");
             for(int j = 0; j< columnSize; j++)
             {
-                CannonData targetData = towerData.Cannon[i];
 
-                targetData.ID = column[1];
-                targetData.Tier = column[2];
-                targetData.RetentionAttack = double.Parse(column[3]);
-                targetData.RetentionIncrease = double.Parse(column[4]);
-                targetData.Attack = double.Parse(column[7]);
-                targetData.Increase = double.Parse(column[8]);
+                towerData.Cannon[i].ID = column[1];
+                towerData.Cannon[i].Tier = column[2];
+                towerData.Cannon[i].RetentionAttack = double.Parse(column[3]);
+                towerData.Cannon[i].RetentionIncrease = double.Parse(column[4]);
+                towerData.Cannon[i].Attack = double.Parse(column[7]);
+                towerData.Cannon[i].Increase = double.Parse(column[8]);
+                if (i == 8) return;
             }
         }
     }
@@ -81,7 +81,7 @@ public class DBManager : MonoBehaviour
     void SetRepairManData(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = row.Length;
+        int rowSize = 8; //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)
@@ -93,10 +93,12 @@ public class DBManager : MonoBehaviour
 
                 targetData.ID = column[1];
                 targetData.Tier = column[2];
-                targetData.RetentionHp = double.Parse(column[3]);
-                targetData.RetentionIncrease = double.Parse(column[4]);
-                targetData.Hp = double.Parse(column[7]);
-                targetData.Increase = double.Parse(column[8]);
+                targetData.RetentionHp = double.Parse(column[7]);
+                targetData.RetentionIncrease = double.Parse(column[8]);
+                targetData.Hp = double.Parse(column[3]);
+                targetData.Increase = double.Parse(column[4]);
+
+                if (i == 8) return;
             }
         }
     }
@@ -104,7 +106,7 @@ public class DBManager : MonoBehaviour
     void SetGrowthAtk(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = row.Length;
+        int rowSize = 2;  //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)
@@ -125,7 +127,7 @@ public class DBManager : MonoBehaviour
     void SetGrowthHp(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = row.Length;
+        int rowSize = 2;  //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)
