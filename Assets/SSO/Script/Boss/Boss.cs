@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,77 +7,79 @@ using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour, IDamageable
 {
-    // º¸½º ¸ó½ºÅÍ
-    public float enemySpeed;              // ÀÌµ¿¼Óµµ
-    public Vector2 StartPosition;         // ¼ÒÈ¯ µÉ À§Ä¡
-    public float attackCooldown;  // °ø°İ ÄğÅ¸ÀÓ
-    private double hp;                         // º¸½º Ã¼·Â
-    private double currentHp;             // º¸½ºÀÇ ÇöÀçÃ¼·Â
-    private float damage;                    // º¸½º°ø°İÀÇ µ¥¹ÌÁö
-    public GameObject boss_attack;  // º¸½º °ø°İ ¿ÀºêÁ§Æ®
-    private bool isCollidedCastle = false; // 'Castle'°ú Ãæµ¹Çß´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
-    private float originalEnemySpeed;     // ÃÊ±â enemySpeed °ªÀ» ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
-    private Coroutine attackCoroutine;  // Attack ÄÚ·çÆ¾À» ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
-    private bool isAttack = true; // ÄÚ·çÆ¾À» ½ÃÀÛÇÒ ¶§ °ø°İÀ» Çã¿ëÇÏ´Â ÇÃ·¡±×
-    public float rayLength;           // ·¹ÀÌÄ³½ºÆ®ÀÇ ±æÀÌ
+    // ë³´ìŠ¤ ëª¬ìŠ¤í„°
+    public float enemySpeed;              // ì´ë™ì†ë„
+    public Vector2 StartPosition;         // ì†Œí™˜ ë  ìœ„ì¹˜
+    public float attackCooldown;  // ê³µê²© ì¿¨íƒ€ì„
+    private double hp;                         // ë³´ìŠ¤ ì²´ë ¥
+    private double currentHp;             // ë³´ìŠ¤ì˜ í˜„ì¬ì²´ë ¥
+    private float damage;                    // ë³´ìŠ¤ê³µê²©ì˜ ë°ë¯¸ì§€
+    public GameObject boss_attack;  // ë³´ìŠ¤ ê³µê²© ì˜¤ë¸Œì íŠ¸
+    private bool isCollidedCastle = false; // 'Castle'ê³¼ ì¶©ëŒí–ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+    private float originalEnemySpeed;     // ì´ˆê¸° enemySpeed ê°’ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    private Coroutine attackCoroutine;  // Attack ì½”ë£¨í‹´ì„ ì €ì¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    private bool isAttack = true; // ì½”ë£¨í‹´ì„ ì‹œì‘í•  ë•Œ ê³µê²©ì„ í—ˆìš©í•˜ëŠ” í”Œë˜ê·¸
+    public float rayLength;           // ë ˆì´ìºìŠ¤íŠ¸ì˜ ê¸¸ì´
 
-    private Enemy_Respown respawner;  // Enemy_Respown ½ºÅ©¸³Æ®ÀÇ ÂüÁ¶
-    private Animator boss_attack_animation;  // º¸½ºÀÇ °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç
+    private Enemy_Respown respawner;  // Enemy_Respown ìŠ¤í¬ë¦½íŠ¸ì˜ ì°¸ì¡°
+    private SkeletonAnimation spine; // Spine ì• ë‹ˆë©”ì´ì…˜
 
     void Start()
     {
-        boss_attack_animation = GetComponent<Animator>();
-
-        originalEnemySpeed = enemySpeed;  // Ã³À½ enemySpeed °ªÀ» ÀúÀå
+        originalEnemySpeed = enemySpeed;  // ì²˜ìŒ enemySpeed ê°’ì„ ì €ì¥
         transform.position = StartPosition;
-        respawner = Enemy_Respown.Instance;  // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º¸¦ ÅëÇØ ÂüÁ¶ ¼³Á¤
+        respawner = Enemy_Respown.Instance;  // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í†µí•´ ì°¸ì¡° ì„¤ì •
+
+        // spine ì»´í¬ë„ŒíŠ¸ê°€ ì˜¬ë°”ë¥´ê²Œ ì—°ê²°ë˜ì—ˆëŠ”ì§€ í™•ì¸
+        spine = GetComponent<SkeletonAnimation>();
     }
 
-    public void SetStats(double health, float dmg)   // enemy_respown¿¡¼­ ¼³Á¤ÇÑ Ã¼·Â, µ¥¹ÌÁö ºÒ·¯¿À±â
+    public void SetStats(double health, float dmg)   // enemy_respownì—ì„œ ì„¤ì •í•œ ì²´ë ¥, ë°ë¯¸ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
     {
-        currentHp = health;   // ÇöÀçÃ¼·Â(ÀÌ ½ºÅ×ÀÌÁöÀÇ º¸½ºÃ¼·Â)À» ÀúÀåÇØ¼­, 2ÆäÀÌÁî Á¶°Ç(Ã¼·Â ¹İÆ´ÀÌÇÏ °è»ê¿¡¼­ »ç¿ë)
+        currentHp = health;   // í˜„ì¬ì²´ë ¥(ì´ ìŠ¤í…Œì´ì§€ì˜ ë³´ìŠ¤ì²´ë ¥)ì„ ì €ì¥í•´ì„œ, 2í˜ì´ì¦ˆ ì¡°ê±´(ì²´ë ¥ ë°˜í‹ˆì´í•˜ ê³„ì‚°ì—ì„œ ì‚¬ìš©)
         hp = health;
         damage = dmg;
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)   //µ¥¹ÌÁö¸¦ ÀÔÈû
+    public void OnDamage(double Damage, RaycastHit2D hit)   //ë°ë¯¸ì§€ë¥¼ ì…í˜
     {
         hp -= Damage;
-        Debug.Log("º¸½º°¡ °ø°İ´çÇÔ");
-        if (hp <= 0)  // º¸½º°¡ Á×À¸¸é
+        Debug.Log("ë³´ìŠ¤ê°€ ê³µê²©ë‹¹í•¨");
+        if (hp <= 0)  // ë³´ìŠ¤ê°€ ì£½ìœ¼ë©´
         {
+            spine.AnimationState.SetAnimation(0, "Dead", false);
             Destroy(gameObject);
-            Debug.Log("º¸½º Ã³Ä¡");
-            respawner.ShowStageClear();  // º¸½º°¡ Á×¾úÀ» ¶§ "Stage Clear!!" Ç¥½Ã
+            Debug.Log("ë³´ìŠ¤ ì²˜ì¹˜");
+            respawner.ShowStageClear();  // ë³´ìŠ¤ê°€ ì£½ì—ˆì„ ë•Œ "Stage Clear!!" í‘œì‹œ
         }
     }
 
-    IEnumerator BossFirstPage()   // 1ÆäÀÌÁî
+    IEnumerator BossFirstPage()   // 1í˜ì´ì¦ˆ
     {
-        Debug.Log("1ÆäÀÌÁî ½ÃÀÛ");
+        Debug.Log("1í˜ì´ì¦ˆ ì‹œì‘");
 
-        while (true) // ¹«ÇÑ ¹İº¹
+        while (true) // ë¬´í•œ ë°˜ë³µ
         {
-            boss_attack_animation.SetTrigger("M_boss_attack");  // isAttacking ÆÄ¶ó¹ÌÅÍ¸¦ true·Î ¼³Á¤
+            spine.AnimationState.SetAnimation(0, "Attack", false);
 
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 0.5f));
 
-            yield return new WaitForSeconds(attackCooldown); // ÄğÅ¸ÀÓ µ¿¾È ´ë±â
+            yield return new WaitForSeconds(attackCooldown); // ì¿¨íƒ€ì„ ë™ì•ˆ ëŒ€ê¸°
         }
     }
 
-    IEnumerator BossSecondPage()   // 2ÆäÀÌÁî
+    IEnumerator BossSecondPage()   // 2í˜ì´ì¦ˆ
     {
-        Debug.Log("2ÆäÀÌÁî ½ÃÀÛ");
+        Debug.Log("2í˜ì´ì¦ˆ ì‹œì‘");
 
-        while (true) // ¹«ÇÑ ¹İº¹
-        {   // °ø°İ 3°³»ı¼º
-            boss_attack_animation.SetTrigger("M_boss_attack");  // isAttacking ÆÄ¶ó¹ÌÅÍ¸¦ true·Î ¼³Á¤
-            Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // Áß°£°ø°İ
-            Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // À§
-            Vector3 spawnPosition3 = spawnPosition - Vector3.right - Vector3.down;  // ¾Æ·¡
+        while (true) // ë¬´í•œ ë°˜ë³µ
+        {   // ê³µê²© 3ê°œìƒì„±
+            spine.AnimationState.SetAnimation(0, "Attack", false);
+            Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // ì¤‘ê°„ê³µê²©
+            Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // ìœ„
+            Vector3 spawnPosition3 = spawnPosition - Vector3.right - Vector3.down;  // ì•„ë˜
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
             GameObject attackInstance2 = Instantiate(boss_attack, spawnPosition2, Quaternion.identity);
             GameObject attackInstance3 = Instantiate(boss_attack, spawnPosition3, Quaternion.identity);
@@ -84,19 +87,19 @@ public class Boss : MonoBehaviour, IDamageable
             StartCoroutine(DestroyAttack(attackInstance2, 0.5f));
             StartCoroutine(DestroyAttack(attackInstance3, 0.5f));
 
-            yield return new WaitForSeconds(attackCooldown); // ÄğÅ¸ÀÓ µ¿¾È ´ë±â
+            yield return new WaitForSeconds(attackCooldown); // ì¿¨íƒ€ì„ ë™ì•ˆ ëŒ€ê¸°
         }
     }
 
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
 
-        // Raycast¸¦ »ç¿ëÇÏ¿© "Castle" ¶Ç´Â "Player"¸¦ °¨Áö
+        // Raycastë¥¼ ì‚¬ìš©í•˜ì—¬ "Castle" ë˜ëŠ” "Player"ë¥¼ ê°ì§€
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 5);
         RaycastHit2D hit = Physics2D.Raycast(raycastStartPosition, Vector2.left, rayLength, LayerMask.GetMask("Castle", "Player"));
 
-        // Ray¸¦ ½Ã°¢ÀûÀ¸·Î Ç¥½Ã
+        // Rayë¥¼ ì‹œê°ì ìœ¼ë¡œ í‘œì‹œ
         Debug.DrawRay(raycastStartPosition, Vector2.left * rayLength, Color.red);
 
         if (hit.collider != null)
@@ -105,16 +108,16 @@ public class Boss : MonoBehaviour, IDamageable
             {
                 enemySpeed = 0;
 
-                // °ø°İ ÇÃ·¡±×°¡ trueÀÎ °æ¿ì¿¡¸¸ °ø°İ ÄÚ·çÆ¾À» ½ÃÀÛ
+                // ê³µê²© í”Œë˜ê·¸ê°€ trueì¸ ê²½ìš°ì—ë§Œ ê³µê²© ì½”ë£¨í‹´ì„ ì‹œì‘
                 if (isAttack)
                 {
-                    // ÀÌÀü¿¡ ½ÇÇà ÁßÀÌ´ø Attack ÄÚ·çÆ¾À» ÁßÁö
+                    // ì´ì „ì— ì‹¤í–‰ ì¤‘ì´ë˜ Attack ì½”ë£¨í‹´ì„ ì¤‘ì§€
                     if (attackCoroutine != null)
                     {
                         StopCoroutine(attackCoroutine);
                     }
 
-                    // Attack ÄÚ·çÆ¾À» ½ÃÀÛ
+                    // Attack ì½”ë£¨í‹´ì„ ì‹œì‘
                     if (hp > (currentHp / 2))
                     {
                         attackCoroutine = StartCoroutine(BossFirstPage());
@@ -123,7 +126,7 @@ public class Boss : MonoBehaviour, IDamageable
                     {
                         attackCoroutine = StartCoroutine(BossSecondPage());
                     }
-                    isAttack = false; // °ø°İ ÄÚ·çÆ¾À» ÇÑ ¹ø ½ÃÀÛÇÏ¸é ÇÃ·¡±×¸¦ false·Î º¯°æ
+                    isAttack = false; // ê³µê²© ì½”ë£¨í‹´ì„ í•œ ë²ˆ ì‹œì‘í•˜ë©´ í”Œë˜ê·¸ë¥¼ falseë¡œ ë³€ê²½
                 }
             }
         }
@@ -139,9 +142,9 @@ public class Boss : MonoBehaviour, IDamageable
         }
     }
 
-    IEnumerator DestroyAttack(GameObject obj, float seconds)  // °ø°İ ¾ø¾Ö±â
+    IEnumerator DestroyAttack(GameObject obj, float seconds)  // ê³µê²© ì—†ì• ê¸°
     {
-        yield return new WaitForSeconds(seconds); // ÁöÁ¤µÈ ½Ã°£ µ¿¾È ´ë±â
-        Destroy(obj); // ¿ÀºêÁ§Æ® ÆÄ±«
+        yield return new WaitForSeconds(seconds); // ì§€ì •ëœ ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
+        Destroy(obj); // ì˜¤ë¸Œì íŠ¸ íŒŒê´´
     }
 }
