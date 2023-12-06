@@ -77,7 +77,6 @@ public class Monster : MonoBehaviour, IDamageable
     private float rayLen=10f;// 레이캐스트의 길이 
     private LayerMask layerMask; //레이어 플레이어 
     public bool isAtk = false; // 공격중 확인
-    public bool isGetdamage = false; //공격받는중 확인
     public bool isDead = false;
    // private bool ismove = true;
     RaycastHit2D hit;
@@ -102,7 +101,7 @@ public class Monster : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         HP -= Damage;
-        isGetdamage = true;
+        
         Debug.Log("몬스터가 공격받는다  HP:" + HP);
         if (HP <= 0)
         {
@@ -112,7 +111,7 @@ public class Monster : MonoBehaviour, IDamageable
             Debug.Log("던전 몬스터 처치");
         }
     }
-
+    
     public void OnAttack()
     {
         // 찾을 레이어 저장
@@ -125,30 +124,30 @@ public class Monster : MonoBehaviour, IDamageable
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
 
+        Cat cat = GameObject.FindWithTag("Player").GetComponent<Cat>();
+        double catHP = cat.hp;
+        Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
             if(hit.collider.CompareTag("Player"))
             {
+
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
                 Debug.Log("hit 이 플레이어 태그 찾음");
-                
+                IDamageable target = GetComponent<IDamageable>();
+                cat.OnDamage(Attack, hit);
+              
+                Debug.Log("플레이어 HP:" + catHP);
+                Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
+
             }
         }
     }
   
 
 }
- /*   public void SpawnMonster(Vector2 spawnPosition)
-    {
-        // 몬스터를 생성하고 스폰 위치로 이동
-        Instantiate(gameObject, spawnPosition, Quaternion.identity);
 
-        // 생성된 몬스터에 대한 초기화
-       // SetMonsterData(monsterData);
-        // 추가적인 초기화 작업이 필요하다면 여기에 추가
-    }*/
-    // 몬스터에게 데미지를 입히는 함수{}
 
  
 
