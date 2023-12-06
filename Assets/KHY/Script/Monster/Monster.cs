@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class Monster : MonoBehaviour, IDamageable
 {
@@ -11,6 +12,8 @@ public class Monster : MonoBehaviour, IDamageable
     public double maxHP { get; set; } //최대체력
     public double Attack { get; set; } //공격력
     public int AtkTime { get; set; } //공격쿨타임
+
+    
 
     StageButton s;
 
@@ -23,9 +26,12 @@ public class Monster : MonoBehaviour, IDamageable
      인덱스는 시트의 행 순서랑 값을 같게 했고
      예를 들어 인덱스 값이 3일경우 3행의 데이터를 가저온다.*/
 
+    public void Awake()
+    {
+        //몬스터 스택들 처음 초기화 해주기 
+    }
 
-   
-    
+
     public void FixedUpdate()
     {
        
@@ -45,6 +51,7 @@ public class Monster : MonoBehaviour, IDamageable
             Debug.LogError("Invalid stage index: " + index);
         }
     }
+
     public void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
@@ -69,10 +76,13 @@ public class Monster : MonoBehaviour, IDamageable
 
     private float rayLen=10f;// 레이캐스트의 길이 
     private LayerMask layerMask; //레이어 플레이어 
-    private bool isatk = false; // 공격중이 아닐때
+    public bool isAtk = false; // 공격중 확인
+    public bool isDead = false;
    // private bool ismove = true;
     RaycastHit2D hit;
     private float moveSpeed = 4f;
+   
+  
 
     public void Move()
     {
@@ -90,17 +100,18 @@ public class Monster : MonoBehaviour, IDamageable
     }
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
-        Debug.Log(" 데지미HP:" + HP);
-        Debug.Log(" 데지미HP:" + Attack);
-
         HP -= Damage;
+        
         Debug.Log("몬스터가 공격받는다  HP:" + HP);
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            //체력이 0 이하일때 아래 코드 실행
+            isDead = true;
+            Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
             Debug.Log("던전 몬스터 처치");
         }
     }
+    
     public void OnAttack()
     {
         // 찾을 레이어 저장
@@ -112,27 +123,31 @@ public class Monster : MonoBehaviour, IDamageable
         //레이 색 줘서 표시
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
+
+        Cat cat = GameObject.FindWithTag("Player").GetComponent<Cat>();
+        double catHP = cat.hp;
+        Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
             if(hit.collider.CompareTag("Player"))
             {
-                isatk = true;
+
+                //플레이어 태그를 찾고 공격
+                isAtk = true;
+                Debug.Log("hit 이 플레이어 태그 찾음");
+                IDamageable target = GetComponent<IDamageable>();
+                cat.OnDamage(Attack, hit);
+              
+                Debug.Log("플레이어 HP:" + catHP);
+                Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
+
             }
         }
     }
+  
 
-        
 }
- /*   public void SpawnMonster(Vector2 spawnPosition)
-    {
-        // 몬스터를 생성하고 스폰 위치로 이동
-        Instantiate(gameObject, spawnPosition, Quaternion.identity);
 
-        // 생성된 몬스터에 대한 초기화
-       // SetMonsterData(monsterData);
-        // 추가적인 초기화 작업이 필요하다면 여기에 추가
-    }*/
-    // 몬스터에게 데미지를 입히는 함수{}
 
  
 

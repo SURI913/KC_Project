@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,27 +14,44 @@ public class Enemy_002 : MonoBehaviour, IDamageable
     public GameObject enemy_attack_2;   // 공격시 소환할 공격개체
     private Transform target;                       // 타겟
     private float originalEnemySpeed;        // 공격이 끝난 후 다시 움직일때 할당할 이동값
-    private Animator enemy_attack_animation;  // 공격 애니메이션
     private Coroutine attackCoroutine;               // 코루틴이 여러번 겹치지 않게할 변수
     private bool isAttack = true;
     public float rayLength;           // 레이캐스트의 길이
+    private SkeletonAnimation spine; // Spine 애니메이션
+    private bool deadAnimation = false; // 캐릭터가 죽었는지 확인하고, update문에서 이동을 멈추는 역할
+    private bool isDead = true;
+
 
     void Start()
     {
-        enemy_attack_animation = GetComponent<Animator>();
         transform.position = StartPosition;
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         originalEnemySpeed = enemySpeed;
+
+        // spine 컴포넌트가 올바르게 연결되었는지 확인
+        spine = GetComponent<SkeletonAnimation>();
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            Destroy(gameObject);
-            Debug.Log("몬스터2 처치");
+            if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
+            {
+                StartCoroutine(DeadAnimation());
+                isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
+            }
         }
+    }
+    IEnumerator DeadAnimation()
+    {
+        spine.AnimationState.SetAnimation(0, "Dead", false);  // 죽는 애니메이션 재생
+        deadAnimation = true;                             // enemy가 죽었다는걸 체크 (update문에서 이동을 멈출때 조건문으로 사용)
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
+        Debug.Log(gameObject.name + "처치");
     }
 
     public void SetStats(double health, float dmg)
@@ -44,7 +62,7 @@ public class Enemy_002 : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);  // enemy의 이동
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
@@ -55,14 +73,15 @@ public class Enemy_002 : MonoBehaviour, IDamageable
 
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Castle") || hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Castle") || hit.collider.CompareTag("Player"))  // target을 찾으면
             {
-                enemySpeed = 0;
+
+                enemySpeed = 0;  // 움직임 멈춤
 
                 // 공격 플래그가 true인 경우에만 공격 코루틴을 시작
                 if (isAttack)
                 {
-                    // 이전에 실행 중이던 Attack 코루틴을 중지
+                    // 이전에 실행 중이던 Attack 코루틴을 중지 (공격이 여러번 나가는걸 방지)
                     if (attackCoroutine != null)
                     {
                         StopCoroutine(attackCoroutine);
@@ -74,13 +93,20 @@ public class Enemy_002 : MonoBehaviour, IDamageable
                 }
             }
         }
-        else
+        else  // target과 충돌이 없다면,
         {
-            enemySpeed = originalEnemySpeed;
-            isAttack = true;
+            if (deadAnimation)   // enemy가 죽었다면,
+            {
+                enemySpeed = 0; // 움직임 멈춤
+            }
+            else      //죽지않고, 충돌이 없어지면,
+            {
+                enemySpeed = originalEnemySpeed;  // 다시 이동
+                isAttack = true;
+            }
         }
 
-        if (transform.position.x < -20)
+        if (transform.position.x < -20)  // 맵 밖으로 나가면,
         {
             gameObject.SetActive(false);
         }
@@ -90,10 +116,10 @@ public class Enemy_002 : MonoBehaviour, IDamageable
     {
         while (true) // 무한 반복
         {
-            enemy_attack_animation.SetTrigger("Enemy_attack");
-            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
+            spine.AnimationState.SetAnimation(0, "Attack", false);
+            Vector3 spawnPosition = transform.position - (Vector3.right * 4) + (Vector3.up / 2);
             GameObject attackInstance = Instantiate(enemy_attack_2, spawnPosition, Quaternion.identity);
-            StartCoroutine(DestroyAttack(attackInstance, 1f));
+            StartCoroutine(DestroyAttack(attackInstance, 1.5f));
 
             // 대기
             yield return new WaitForSeconds(attackCooldown);
