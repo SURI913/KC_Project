@@ -1,38 +1,44 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using Spine.Unity;
 
 public class Enemy_004 : MonoBehaviour, IDamageable
 {
-    // °øÁßÇü ¿ø°Å¸® ¸ó½ºÅÍ
-    public float enemySpeed;    // ¸ó½ºÅÍ ÀÌµ¿¼Óµµ
-    public Vector2 StartPosition;  // ¸ó½ºÅÍ ½ÃÀÛÀ§Ä¡ 
-    public float attackCooldown;  // °ø°İ ÄğÅ¸ÀÓ
-    private double hp;                  // ¸ó½ºÅÍ Ã¼·Â
-    private float damage;             // ¸ó½ºÅÍÀÇ µ¥¹ÌÁö
-    public GameObject enemy_attack_4;   // °ø°İ½Ã ¼ÒÈ¯ÇÒ °ø°İ°³Ã¼
-    private Transform target;                       // Å¸°Ù
-    private float originalEnemySpeed;        // °ø°İÀÌ ³¡³­ ÈÄ ´Ù½Ã ¿òÁ÷ÀÏ¶§ ÇÒ´çÇÒ ÀÌµ¿°ª
-    private Animator enemy_attack_animation;  // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç
-    private Coroutine attackCoroutine;               // ÄÚ·çÆ¾ÀÌ ¿©·¯¹ø °ãÄ¡Áö ¾Ê°ÔÇÒ º¯¼ö
+    // ê³µì¤‘í˜• ì›ê±°ë¦¬ ëª¬ìŠ¤í„°
+    public float enemySpeed;    // ëª¬ìŠ¤í„° ì´ë™ì†ë„
+    public Vector2 StartPosition;  // ëª¬ìŠ¤í„° ì‹œì‘ìœ„ì¹˜ 
+    public float attackCooldown;  // ê³µê²© ì¿¨íƒ€ì„
+    private double hp;                  // ëª¬ìŠ¤í„° ì²´ë ¥
+    private float damage;             // ëª¬ìŠ¤í„°ì˜ ë°ë¯¸ì§€
+    public GameObject enemy_attack_4;   // ê³µê²©ì‹œ ì†Œí™˜í•  ê³µê²©ê°œì²´
+    private Transform target;                       // íƒ€ê²Ÿ
+    private float originalEnemySpeed;        // ê³µê²©ì´ ëë‚œ í›„ ë‹¤ì‹œ ì›€ì§ì¼ë•Œ í• ë‹¹í•  ì´ë™ê°’
+    private Coroutine attackCoroutine;               // ì½”ë£¨í‹´ì´ ì—¬ëŸ¬ë²ˆ ê²¹ì¹˜ì§€ ì•Šê²Œí•  ë³€ìˆ˜
     private bool isAttack = true;                          
-    public float rayLength;           // ·¹ÀÌÄ³½ºÆ®ÀÇ ±æÀÌ
+    public float rayLength;           // ë ˆì´ìºìŠ¤íŠ¸ì˜ ê¸¸ì´
+    private SkeletonAnimation spine; // Spine ì• ë‹ˆë©”ì´ì…˜
 
     void Start()
     {
-        enemy_attack_animation = GetComponent<Animator>();
         transform.position = StartPosition;
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         originalEnemySpeed = enemySpeed;
+
+        // spine ì»´í¬ë„ŒíŠ¸ê°€ ì˜¬ë°”ë¥´ê²Œ ì—°ê²°ë˜ì—ˆëŠ”ì§€ í™•ì¸
+        spine = GetComponent<SkeletonAnimation>();
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        Debug.Log("ëª¬ìŠ¤í„°4ê°€ " + Damage + "ë§Œí¼ ë°ë¯¸ì§€ë¥¼ ì…ì—ˆìŠµë‹ˆë‹¤.");
          if (hp <= 0)
          {
-             Destroy(gameObject);
-             Debug.Log("¸ó½ºÅÍ4 Ã³Ä¡");
+            // Spine ì• ë‹ˆë©”ì´ì…˜ì„ "Dead"ë¡œ ì„¤ì •í•˜ì—¬ ì¬ìƒ
+            spine.AnimationState.SetAnimation(0, "Dead", false);
+            Destroy(gameObject);
+            Debug.Log("ëª¬ìŠ¤í„°4 ì²˜ì¹˜");
          }
     }
 
@@ -44,13 +50,13 @@ public class Enemy_004 : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
 
-        // Raycast¸¦ »ç¿ëÇÏ¿© "Castle" ¶Ç´Â "Player"¸¦ °¨Áö
+        // Raycastë¥¼ ì‚¬ìš©í•˜ì—¬ "Castle" ë˜ëŠ” "Player"ë¥¼ ê°ì§€
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
         RaycastHit2D hit = Physics2D.Raycast(raycastStartPosition, Vector2.left, rayLength, LayerMask.GetMask("Castle", "Player"));
 
-        // Ray¸¦ ½Ã°¢ÀûÀ¸·Î Ç¥½Ã
+        // Rayë¥¼ ì‹œê°ì ìœ¼ë¡œ í‘œì‹œ
         Debug.DrawRay(raycastStartPosition, Vector2.left * rayLength, Color.red);
 
         if (hit.collider != null)
@@ -59,18 +65,18 @@ public class Enemy_004 : MonoBehaviour, IDamageable
             {
                 enemySpeed = 0;
 
-                // °ø°İ ÇÃ·¡±×°¡ trueÀÎ °æ¿ì¿¡¸¸ °ø°İ ÄÚ·çÆ¾À» ½ÃÀÛ
+                // ê³µê²© í”Œë˜ê·¸ê°€ trueì¸ ê²½ìš°ì—ë§Œ ê³µê²© ì½”ë£¨í‹´ì„ ì‹œì‘
                 if (isAttack)
                 {
-                    // ÀÌÀü¿¡ ½ÇÇà ÁßÀÌ´ø Attack ÄÚ·çÆ¾À» ÁßÁö
+                    // ì´ì „ì— ì‹¤í–‰ ì¤‘ì´ë˜ Attack ì½”ë£¨í‹´ì„ ì¤‘ì§€
                     if (attackCoroutine != null)
                     {
                         StopCoroutine(attackCoroutine);
                     }
 
-                    // Attack ÄÚ·çÆ¾À» ½ÃÀÛ
+                    // Attack ì½”ë£¨í‹´ì„ ì‹œì‘
                     attackCoroutine = StartCoroutine(Attack());
-                    isAttack = false; // °ø°İ ÄÚ·çÆ¾À» ÇÑ ¹ø ½ÃÀÛÇÏ¸é ÇÃ·¡±×¸¦ false·Î º¯°æ
+                    isAttack = false; // ê³µê²© ì½”ë£¨í‹´ì„ í•œ ë²ˆ ì‹œì‘í•˜ë©´ í”Œë˜ê·¸ë¥¼ falseë¡œ ë³€ê²½
                 }
             }
         }
@@ -90,10 +96,10 @@ public class Enemy_004 : MonoBehaviour, IDamageable
     {
         while (true)
         {
-            enemy_attack_animation.SetTrigger("Enemy_attack");
-            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
+            spine.AnimationState.SetAnimation(0, "Attack", true);
+            yield return new WaitForSeconds(0.6f);
+            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up * 2);
             GameObject attackInstance = Instantiate(enemy_attack_4, spawnPosition, Quaternion.identity);
-
             yield return new WaitForSeconds(attackCooldown);
 
             Destroy(attackInstance);

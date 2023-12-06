@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class Enemy_Respown : MonoBehaviour
 {
     public PoolManager pool;
-    public GameObject warningUI;  // °æ°í UI
-    public GameObject stageClearUI;  // Å¬¸®¾î ÅØ½ºÆ®
-    public static Enemy_Respown Instance;  // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
-    public GameObject bossPrefab; // º¸½º ÇÁ¸®ÆÕ
+    public GameObject warningUI;  // ê²½ê³  UI
+    public GameObject stageClearUI;  // í´ë¦¬ì–´ í…ìŠ¤íŠ¸
+    public static Enemy_Respown Instance;  // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
+    public GameObject bossPrefab; // ë³´ìŠ¤ í”„ë¦¬íŒ¹
     public double bossHp;
     public float bossDamage;
     public double enemyHp;
     public float enemyDamage;
-    public float enemeyStageCount; // ÀÌ ½ºÅ×ÀÌÁö¿¡¼­ ¼ÒÈ¯ÇÒ ¸ó½ºÅÍÀÇ ¼ö
-    private bool bossSpawned = false; // º¸½º°¡ ÀÌ¹Ì ¼ÒÈ¯µÆ´ÂÁö È®ÀÎ
+    public float enemeyStageCount; // ì´ ìŠ¤í…Œì´ì§€ì—ì„œ ì†Œí™˜í•  ëª¬ìŠ¤í„°ì˜ ìˆ˜
+    private bool bossSpawned = false; // ë³´ìŠ¤ê°€ ì´ë¯¸ ì†Œí™˜ëëŠ”ì§€ í™•ì¸
     private float timer;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class Enemy_Respown : MonoBehaviour
         }
     }
 
-    public double GetEnemyDamage()  // ÀÔ·Â¹ŞÀº enemeyÀÇ µ¥¹ÌÁö°ªÀ» ¹İÈ¯
+    public double GetEnemyDamage()  // ì…ë ¥ë°›ì€ enemeyì˜ ë°ë¯¸ì§€ê°’ì„ ë°˜í™˜
     {
         return enemyDamage;
     }
@@ -42,27 +42,27 @@ public class Enemy_Respown : MonoBehaviour
 
     void SpawnBoss()
     {
-        GameObject bossInstance = Instantiate(bossPrefab, transform); // »ı¼ºµÈ BossÀÇ ÂüÁ¶¸¦ °¡Á®¿È
-        Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss ½ºÅ©¸³Æ®ÀÇ ÂüÁ¶¸¦ °¡Á®¿È
+        GameObject bossInstance = Instantiate(bossPrefab, transform); // ìƒì„±ëœ Bossì˜ ì°¸ì¡°ë¥¼ ê°€ì ¸ì˜´
+        Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss ìŠ¤í¬ë¦½íŠ¸ì˜ ì°¸ì¡°ë¥¼ ê°€ì ¸ì˜´
         if (bossScript)
         {
-            bossScript.SetStats(bossHp, bossDamage); // BossÀÇ hp¿Í damage °ªÀ» ¼³Á¤
+            bossScript.SetStats(bossHp, bossDamage); // Bossì˜ hpì™€ damage ê°’ì„ ì„¤ì •
         }
-        bossSpawned = true; // º¸½º°¡ ¼ÒÈ¯µÇ¾úÀ½À» Ç¥½Ã
+        bossSpawned = true; // ë³´ìŠ¤ê°€ ì†Œí™˜ë˜ì—ˆìŒì„ í‘œì‹œ
     }
 
     void Spawn()
     {
-        //Enemy_Respown ½ºÅ©¸³Æ®ÀÇ Spawn ¸Ş¼­µå¿¡¼­ ÀûÀ» »ı¼ºÇÒ ¶§¸¶´Ù
-        //Enemy ½ºÅ©¸³Æ®ÀÇ  SetStats ¸Ş¼­µå¸¦ »ç¿ëÇÏ¿© hp¿Í damage °ªÀ» Àü´Ş
+        //Enemy_Respown ìŠ¤í¬ë¦½íŠ¸ì˜ Spawn ë©”ì„œë“œì—ì„œ ì ì„ ìƒì„±í•  ë•Œë§ˆë‹¤
+        //Enemy ìŠ¤í¬ë¦½íŠ¸ì˜  SetStats ë©”ì„œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ hpì™€ damage ê°’ì„ ì „ë‹¬
         GameObject enemyObject = pool.Get(Random.Range(0, 4));
-        Enemy enemyScript = enemyObject.GetComponent<Enemy>();
-        Enemy_02 enemyScript2 = enemyObject.GetComponent<Enemy_02>();
-        Enemy_03 enemyScript3 = enemyObject.GetComponent<Enemy_03>();
-        Enemy_04 enemyScript4 = enemyObject.GetComponent<Enemy_04>();
-        if (enemyScript)
+        Enemy_001 enemyScript1 = enemyObject.GetComponent<Enemy_001>();
+        Enemy_002 enemyScript2 = enemyObject.GetComponent<Enemy_002>();
+        Enemy_003 enemyScript3 = enemyObject.GetComponent<Enemy_003>();
+        Enemy_004 enemyScript4 = enemyObject.GetComponent<Enemy_004>();
+        if (enemyScript1)
         {
-            enemyScript.SetStats(enemyHp, enemyDamage);
+            enemyScript1.SetStats(enemyHp, enemyDamage);
         }
         if (enemyScript2)
         {
@@ -80,19 +80,19 @@ public class Enemy_Respown : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;  // enemy ¼ÒÈ¯ÀÇ ÄğÅ¸ÀÓ ¿ªÇÒ
+        timer += Time.deltaTime;  // enemy ì†Œí™˜ì˜ ì¿¨íƒ€ì„ ì—­í• 
 
-        if (timer > 3f && pool.enemyCount < enemeyStageCount) // 3ÃÊ¿¡ ÇÑ¹ø¾¿, n¸¶¸® ÀÌÇÏÀÏ ¶§¸¸ ÀûÀ» »ı¼º
+        if (timer > 3f && pool.enemyCount < enemeyStageCount) // 3ì´ˆì— í•œë²ˆì”©, në§ˆë¦¬ ì´í•˜ì¼ ë•Œë§Œ ì ì„ ìƒì„±
         {
             timer = 0;
-            Spawn();     // enemy ¼ÒÈ¯ÇÏ¸é Å¸ÀÌ¸Ó 0À¸·Î ÃÊ±âÈ­
+            Spawn();     // enemy ì†Œí™˜í•˜ë©´ íƒ€ì´ë¨¸ 0ìœ¼ë¡œ ì´ˆê¸°í™”
         }
-        else if (pool.enemyCount >= enemeyStageCount && !bossSpawned) // n¸¶¸®°¡ µÇ¸é º¸½º ¼ÒÈ¯
+        else if (pool.enemyCount >= enemeyStageCount && !bossSpawned) // në§ˆë¦¬ê°€ ë˜ë©´ ë³´ìŠ¤ ì†Œí™˜
         {
-            SpawnBoss();   // º¸½º ¼ÒÈ¯
-            ShowWarning();  // warning ui »ı¼º
+            SpawnBoss();   // ë³´ìŠ¤ ì†Œí™˜
+            ShowWarning();  // warning ui ìƒì„±
         }
-        if (Input.GetKeyDown("space"))  // ½ÇÇè¿ë
+        if (Input.GetKeyDown("space"))  // ì‹¤í—˜ìš©
         {
             pool.Get(0);
             pool.Get(1);
@@ -101,11 +101,11 @@ public class Enemy_Respown : MonoBehaviour
         }
     }
 
-    // °æ°í ¸Ş½ÃÁö Ç¥½Ã ¹× ¼û±â±â¸¦ À§ÇÑ ÇÔ¼ö Ãß°¡
+    // ê²½ê³  ë©”ì‹œì§€ í‘œì‹œ ë° ìˆ¨ê¸°ê¸°ë¥¼ ìœ„í•œ í•¨ìˆ˜ ì¶”ê°€
     void ShowWarning()
     {
-        warningUI.SetActive(true);  // °æ°í UI È°¼ºÈ­
-        StartCoroutine(UIWait(3)); // 3ÃÊ ÈÄ¿¡ °æ°í UI ¼û±â±â
+        warningUI.SetActive(true);  // ê²½ê³  UI í™œì„±í™”
+        StartCoroutine(UIWait(3)); // 3ì´ˆ í›„ì— ê²½ê³  UI ìˆ¨ê¸°ê¸°
     }
 
     IEnumerator UIWait(float seconds)
@@ -116,14 +116,14 @@ public class Enemy_Respown : MonoBehaviour
 
     public void ShowStageClear()
     {
-        stageClearUI.SetActive(true);  // "Stage Clear!!" ÅØ½ºÆ® È°¼ºÈ­
+        stageClearUI.SetActive(true);  // "Stage Clear!!" í…ìŠ¤íŠ¸ í™œì„±í™”
         StartCoroutine(TransitionToNextStage());
     }
 
     IEnumerator TransitionToNextStage()
     {
-        yield return new WaitForSeconds(3f);  // 3ÃÊ ´ë±â
+        yield return new WaitForSeconds(3f);  // 3ì´ˆ ëŒ€ê¸°
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);  // ´ÙÀ½ ¾ÀÀ¸·Î ÀüÈ¯
+        SceneManager.LoadScene(currentSceneIndex + 1);  // ë‹¤ìŒ ì”¬ìœ¼ë¡œ ì „í™˜
     }
 }

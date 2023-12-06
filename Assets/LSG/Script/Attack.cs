@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : Projectile
 {
-    public GameObject bulletSet;    // ÃÑ¾Ë ¿ÀºêÁ§Æ® ÀÔ·Â
+    public GameObject bulletSet;    // ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ì…ë ¥
     public Transform bulletPos;
 
     float Cooltime;
@@ -14,30 +14,42 @@ public class Attack : Projectile
     void initData() 
     {
         grandParent = this.transform.parent.gameObject;
-        //ÀÚ½Ä Awake ¸ÕÀú ½ÃÀÛ
-        grandParentIAttack = grandParent.GetComponent<IAttack>(); //Ä³¸¯ÅÍ¿¡´Ù°¡ ³Ö¾îÁà¾ßÇÏ´Â ½ºÅ©¸³Æ®
-        Cooltime = grandParentIAttack.atkTime;  //ÄğÅ¸ÀÓ ÃÊ±âÈ­
-        bullet = bulletSet; //ÃÑ¾Ë ¿ÀºêÁ§Æ® ÃÊ±âÈ­
+        //ìì‹ Awake ë¨¼ì € ì‹œì‘
+        grandParentIAttack = grandParent.GetComponent<IAttack>(); //ìºë¦­í„°ì—ë‹¤ê°€ ë„£ì–´ì¤˜ì•¼í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+        Cooltime = grandParentIAttack.atkTime;  //ì¿¨íƒ€ì„ ì´ˆê¸°í™”
+        bullet = bulletSet; //ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ì´ˆê¸°í™”
         fireTransform = bulletPos;
-        ID = IDset;
- 
+        if (grandParent.GetComponent<Cat>())
+        {
+            ID = grandParent.GetComponent<Cat>().ID;
+        }
+        else if(grandParent.GetComponent<Tower>())
+        {
+            ID = "Tower";
+
+        }
+        else
+        {
+            Debug.Log("id ì°¾ì„ ìˆ˜ ì—†ìŒ");
+        }
+
     }
 
-    private void Awake()
+    private void Start()
     {
         initData();
     }
     protected void Update()
     {
-        //ÀÌ ºÎºĞµµ ¼öÁ¤ ÇÊ¿ä
-        if (grandParentIAttack.ativeSkill == true)   //½ºÅ³ »ç¿ë »óÅÂ¸é ÀÏ½ÃÀûÀ¸·Î ¸ØÃã
+        //ì´ ë¶€ë¶„ë„ ìˆ˜ì • í•„ìš”
+        if (grandParentIAttack.ativeSkill == true)   //ìŠ¤í‚¬ ì‚¬ìš© ìƒíƒœë©´ ì¼ì‹œì ìœ¼ë¡œ ë©ˆì¶¤
         {
                 state = State.Reloading;
         }
         StateCheck();
         if (Cooltime <= 0)
         {
-            state = State.Ready;    //ÄğÅ¸ÀÓ Á¾·á
+            state = State.Ready;    //ì¿¨íƒ€ì„ ì¢…ë£Œ
             Cooltime = grandParentIAttack.atkTime;
         }
         else
