@@ -8,32 +8,32 @@ public class M_D01 : Monster
 {
     public void Start()
     {
-        
+        printData();
     }
 
     public void Update()
     {
-        printData();
+      
 
 
     }
 
     void printData()
     {
-      //  Debug.Log("Monster µ¥ÀÌÅÍ È®ÀÎ: " + monsterData);
-        /* Start³ª Awake¿¡ printData()¸¦ ³ÖÀ¸¸é ½ÃÀÛÇÏÀÚ¸¶ÀÚ ½ÇÇàµÇ¼­;
-         µ¥ÀÌÅÍ °ªÀÌ 0ÀÌ´Ù.
-         ÇÏÁö¸¸ ¹öÆ°À» ´©¸£¸é °ªÀÌ Àü´ŞµÈ´Ù.(¼ö°æÀÌ ¹ß»çÃ¼ ³Ö°í µ¥¹ÌÁö ±ğÀÌ´ÂÁö È®ÀÎÇÏ±â)*/
+      //  Debug.Log("Monster ë°ì´í„° í™•ì¸: " + monsterData);
+        /* Startë‚˜ Awakeì— printData()ë¥¼ ë„£ìœ¼ë©´ ì‹œì‘í•˜ìë§ˆì ì‹¤í–‰ë˜ì„œ;
+         ë°ì´í„° ê°’ì´ 0ì´ë‹¤.
+         í•˜ì§€ë§Œ ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ê°’ì´ ì „ë‹¬ëœë‹¤.(ìˆ˜ê²½ì´ ë°œì‚¬ì²´ ë„£ê³  ë°ë¯¸ì§€ ê¹ì´ëŠ”ì§€ í™•ì¸í•˜ê¸°)*/
         if (!string.IsNullOrEmpty(stageID))
         {
-            Debug.Log("½ºÅ×ÀÌÁö-" + stageID);
-            Debug.Log("Ã¼·Â-" + HP);
-            Debug.Log("°ø°İ·Â-" + Attack);
-            Debug.Log("°ø°İ¼Óµµ=" + AtkTime);
+            Debug.Log("ìŠ¤í…Œì´ì§€-" + stageID);
+            Debug.Log("ì²´ë ¥-" + HP);
+            Debug.Log("ê³µê²©ë ¥-" + Attack);
+            Debug.Log("ê³µê²©ì†ë„=" + AtkTime);
         }
         else
         {
-            Debug.Log("Monster¿¡¼­ µ¥ÀÌÅÍ Àü´Ş ¾ÈµÊ");
+            Debug.Log("Monsterì—ì„œ ë°ì´í„° ì „ë‹¬ ì•ˆë¨");
         }
     }
 
@@ -48,11 +48,11 @@ public class M_D01 : Monster
               AtkTime = monsdata.atktime;
               Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                   ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
-              //¿©±â¼± µ¥ÀÌÅÍ°¡ ¿Â´Ù !
+              //ì—¬ê¸°ì„  ë°ì´í„°ê°€ ì˜¨ë‹¤ !
           }
           else
           {
-              Debug.Log("µ¥ÀÌÅÍ°¡ Àü´ŞµÇÁö¾ÊÀ½");
+              Debug.Log("ë°ì´í„°ê°€ ì „ë‹¬ë˜ì§€ì•ŠìŒ");
           }
 
       }*/
@@ -84,17 +84,17 @@ public class M_D01 : Monster
 
         if (ray.collider != null && ray.collider.CompareTag("Player"))
         {
-            // ·¹ÀÌÄ³½ºÆ®°¡ ÇÃ·¹ÀÌ¾î¸¦ Ãæµ¹ °¨ÁöÇÏ¸é ¸ó½ºÅÍ°¡ °ø°İ
+            // ë ˆì´ìºìŠ¤íŠ¸ê°€ í”Œë ˆì´ì–´ë¥¼ ì¶©ëŒ ê°ì§€í•˜ë©´ ëª¬ìŠ¤í„°ê°€ ê³µê²©
             isAttack = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
            
         }
         else
         {
-            // ·¹ÀÌÄ³½ºÆ®°¡ ÇÃ·¹ÀÌ¾î¸¦ °¨ÁöÇÏÁö ¾ÊÀ¸¸é ¸ó½ºÅÍÀÇ ÀÌµ¿ »óÅÂ·Î À¯Áö
+            // ë ˆì´ìºìŠ¤íŠ¸ê°€ í”Œë ˆì´ì–´ë¥¼ ê°ì§€í•˜ì§€ ì•Šìœ¼ë©´ ëª¬ìŠ¤í„°ì˜ ì´ë™ ìƒíƒœë¡œ ìœ ì§€
             isAttack = false;
-            // ¾Ö´Ï¸ŞÀÌ¼Ç?
-           *//* Vector2 movement = new Vector2(-movespeed, 0); // À½¼ö °ªÀ¸·Î x ¼ººĞÀ» ¼³Á¤ÇÏ¿© ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.
+            // ì• ë‹ˆë©”ì´ì…˜?
+           *//* Vector2 movement = new Vector2(-movespeed, 0); // ìŒìˆ˜ ê°’ìœ¼ë¡œ x ì„±ë¶„ì„ ì„¤ì •í•˜ì—¬ ì™¼ìª½ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
             GetComponent<Rigidbody2D>().velocity = movement;*//*
         }
 
@@ -109,7 +109,7 @@ public class M_D01 : Monster
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
                 isAttack = true;
-                Debug.Log("ÇÃ·¹ÀÌ¾î¿¡°Ô °ø°İ");
+                Debug.Log("í”Œë ˆì´ì–´ì—ê²Œ ê³µê²©");
 
             }
 
@@ -134,7 +134,7 @@ public class M_D01 : Monster
             {
                 DIe_m();
 
-                //´ÙÀÌÇÔ¼ö, ¿ÀºêÁ§Æ® µğ½ºÆ®·ÎÀÌ 
+                //ë‹¤ì´í•¨ìˆ˜, ì˜¤ë¸Œì íŠ¸ ë””ìŠ¤íŠ¸ë¡œì´ 
             }
         }
 

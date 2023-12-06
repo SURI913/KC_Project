@@ -28,8 +28,9 @@ public class Cat : MonoBehaviour, IDamageable
     protected float bossAttack = 0;  //보스 데미지 피해량 
 
     protected bool passiveAct = false; //패시브 활성화 유무
-    protected bool dead = false;    //죽음확인
+    public bool dead { get; set; } = false;    //죽음확인
     protected GrowingData growingData;
+
     //장비 멀로 처리하냐
 
     //-----------------------------------------------------------------------------------------------------------애니메이션
@@ -37,16 +38,17 @@ public class Cat : MonoBehaviour, IDamageable
 
     public float respawnTime = 8f;
 
-    protected virtual void hpInit(){    //체력 초기화
-            if(!growingData)
+    protected void hpInit(){    //체력 초기화
+        if(!growingData)
         {
-                Debug.Log(ID + "hp error!");
-            }
-            else
-            {
-                hp = maxHp;
-                dead = false;
-            }
+            Debug.Log(ID + "hp error!");
+        }
+       else
+       {
+            hp = maxHp;
+            dead = false;
+            catMotion.SetBool("isDead", false);
+       }
             //체력이 0보다 작을 경우 초기화가 실행 되어야함
     }
 
@@ -58,7 +60,7 @@ public class Cat : MonoBehaviour, IDamageable
             //데미지 입음                 
             double damageAdd = Damage;//-(영웅 방어력*방어력(보유효과)*성급효과(뭔지모르겠음)*패시브스킬(유무))
             hp -= damageAdd;
-            if (hp <= 0 && !dead!) { Die(); }    //죽음처리
+            if (hp <= 0 && !dead) { Die(); }    //죽음처리
         }
         //패시브 스킬이 있는경우 오버라이딩으로 작업
     }
@@ -90,7 +92,6 @@ public class Cat : MonoBehaviour, IDamageable
         //영웅 공격력*공격력(보유효과)*성급효과*장비장착효과*패시브스킬*별자리
         //패시브 스킬은 어떻게 짤건지 고민 + 크리티컬 데미지 작업도 필요함
         //-----------------------------------------------------------------------------------------------------------애니메이션 추가
-        catMotion.SetTrigger("AttackAnim");
         return AllAttack;
     }
 
@@ -99,6 +100,7 @@ public class Cat : MonoBehaviour, IDamageable
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(respawnTime);
+        catMotion.SetTrigger("FinishStune");
         hpInit();
     }
 
@@ -106,6 +108,7 @@ public class Cat : MonoBehaviour, IDamageable
     {
         dead = true;
         //캐릭터 죽는 모션
+        catMotion.SetBool("isDead", true);
         StartCoroutine(Respawn());
     }
 
