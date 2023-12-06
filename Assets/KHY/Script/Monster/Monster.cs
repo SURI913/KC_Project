@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour, IDamageable
     public double Attack { get; set; } //공격력
     public int AtkTime { get; set; } //공격쿨타임
 
-    
+    public MonsterHealthBar healthBar;
 
     StageButton s;
 
@@ -29,6 +29,10 @@ public class Monster : MonoBehaviour, IDamageable
     public void Awake()
     {
         //몬스터 스택들 처음 초기화 해주기 
+
+        HP = 100000000000;
+        Attack = 10;
+        AtkTime = 3;
     }
 
 
@@ -50,6 +54,8 @@ public class Monster : MonoBehaviour, IDamageable
         {
             Debug.LogError("Invalid stage index: " + index);
         }
+
+       
     }
 
     public void SetMonsterData(MonsterD monsdata) {
@@ -62,11 +68,17 @@ public class Monster : MonoBehaviour, IDamageable
             Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
             //여기선 데이터가 온다 !
+
+            if (healthBar != null)
+            {
+                healthBar.Initialize((float)HP);
+            }
         }
         else
         {
             Debug.Log("데이터가 전달되지않음");
         }
+
     }
 
 
@@ -74,7 +86,7 @@ public class Monster : MonoBehaviour, IDamageable
 
 
 
-    private float rayLen=10f;// 레이캐스트의 길이 
+    private float rayLen=20f;// 레이캐스트의 길이 
     private LayerMask layerMask; //레이어 플레이어 
     public bool isAtk = false; // 공격중 확인
     public bool isDead = false;
@@ -109,7 +121,13 @@ public class Monster : MonoBehaviour, IDamageable
             isDead = true;
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
             Debug.Log("던전 몬스터 처치");
+            if (healthBar != null)
+            {
+                healthBar.UpdateHealth((float)HP);
+            }
         }
+
+        
     }
     
     public void OnAttack()
@@ -117,7 +135,7 @@ public class Monster : MonoBehaviour, IDamageable
         // 찾을 레이어 저장
         layerMask = LayerMask.GetMask("Player");
         //레이를 표시할 포지션
-        Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 2);
+        Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 5);
         //hit에 저장
         hit = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
         //레이 색 줘서 표시
