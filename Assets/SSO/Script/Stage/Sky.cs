@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sky : MonoBehaviour
 {
-    public SpriteRenderer[] floor = new SpriteRenderer[3]; // Å©±â 3ÀÇ ¹è¿­·Î º¯°æ
+    public SpriteRenderer[] floor = new SpriteRenderer[3]; // í¬ê¸° 3ì˜ ë°°ì—´ë¡œ ë³€ê²½
     public Sprite[] sky;
     SpriteRenderer temp;
     public float speed;
