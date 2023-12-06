@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     protected virtual void Fire()   //총알 생성 및 발사
     {
       
-        if (target)
+        if (!grandParent.GetComponent<Cat>().dead) //update 부하걸릴 가능성
         {
             Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
             Vector2 Pos = target.transform.position - fireTransform.position;
@@ -65,10 +65,12 @@ public class Projectile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position + new Vector3(target.point.x, target.point.y, 0), transform.lossyScale * 20);
         if (target)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position + new Vector3(target.point.x, target.point.y, 0), transform.lossyScale * 10);
+            Gizmos.DrawWireCube(transform.position + new Vector3(target.point.x, target.point.y, 0), transform.lossyScale * 20);
 
         }
     }
@@ -82,7 +84,7 @@ public class Projectile : MonoBehaviour
         }
         if (!checkTarget)
         {
-            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*10, 0f, Vector2.right,10f, LayerMask.GetMask("Target"));
+            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*20, 0f, Vector2.right,15f, LayerMask.GetMask("Target"));
 
             checkTarget = true;
         }
@@ -90,7 +92,7 @@ public class Projectile : MonoBehaviour
         //다 방향 생각해서 작업해야하나
         //일반 공격
         
-        else
+        if(target)
         {
             if (state == State.Ready) //장전완료
             {
@@ -98,7 +100,7 @@ public class Projectile : MonoBehaviour
                 Fire();
 
             }
-            if (state == State.Empty)
+            if (state == State.Empty )
             { //데미지 체크
               //Debug.Log("데미지");
 

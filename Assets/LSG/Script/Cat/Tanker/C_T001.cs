@@ -130,8 +130,6 @@ public class C_T001 : Cat, IAttack
 
     private void FixedUpdate()
     {
-        catMotion.SetBool("isLookTarget", isLookTarget);
-
         Move();
     }
 
@@ -164,7 +162,7 @@ public class C_T001 : Cat, IAttack
             }
 
         }
-        if(isLookTarget)
+        if(target)
         {
             //물리로 움직이는 방향 변경
             float delta = Mathf.SmoothDamp(gameObject.transform.position.x, target.transform.position.x, ref vel.x, playerMoveSpeed);
