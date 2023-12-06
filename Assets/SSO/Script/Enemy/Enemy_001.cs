@@ -33,10 +33,10 @@ public class Enemy_001 : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        Debug.Log("몬스터1이 " + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
             // Spine 애니메이션을 "Dead"로 설정하여 재생
-            Destroy(gameObject); // 게임 오브젝트 파괴
             spine.AnimationState.SetAnimation(0, "Dead", false);
             Destroy(gameObject); // 게임 오브젝트 파괴
             Debug.Log("몬스터1 처치");

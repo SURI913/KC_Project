@@ -29,6 +29,7 @@ public class Enemy_002 : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        Debug.Log("몬스터2가 " + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
             Destroy(gameObject);

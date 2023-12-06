@@ -511,7 +511,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 6782814904426500815, guid: e96d300e3d393204da1c457fc4a9afd9, type: 3}
   bossHp: 1000
   bossDamage: 1000
-  enemyHp: 10
+  enemyHp: 100000
   enemyDamage: 1000
   enemeyStageCount: 10
 --- !u!4 &285245053
@@ -713,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2325577822429370319, guid: 8900d19a3b71f414eb0ec0973f4d58ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.47
+      value: -1.32
       objectReference: {fileID: 0}
     - target: {fileID: 2325577822429370319, guid: 8900d19a3b71f414eb0ec0973f4d58ef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -758,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 3498739877231890348, guid: 8900d19a3b71f414eb0ec0973f4d58ef, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593351428932884050, guid: 8900d19a3b71f414eb0ec0973f4d58ef, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4955400652542046968, guid: 8900d19a3b71f414eb0ec0973f4d58ef, type: 3}
       propertyPath: m_LocalRotation.w
