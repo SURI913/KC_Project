@@ -32,6 +32,7 @@ public class Enemy_004 : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        Debug.Log("몬스터4가 " + Damage + "만큼 데미지를 입었습니다.");
          if (hp <= 0)
          {
             // Spine 애니메이션을 "Dead"로 설정하여 재생
