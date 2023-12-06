@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class StageButton : MonoBehaviour
 {
-    public int stageIndex; // °¢ ¹öÆ°¿¡ ÇØ´çÇÏ´Â ½ºÅ×ÀÌÁö ¹øÈ£¸¦ ÀÎ½ºÆåÅÍ¿¡¼­ ¼³Á¤
-    public Monster monster; // M_D01 ½ºÅ©¸³Æ®¸¦ ÀÎ½ºÆåÅÍ¿¡¼­ ÇÒ´ç
+    public int stageIndex; // ê° ë²„íŠ¼ì— í•´ë‹¹í•˜ëŠ” ìŠ¤í…Œì´ì§€ ë²ˆí˜¸ë¥¼ ì¸ìŠ¤í™í„°ì—ì„œ ì„¤ì •
+    //public Monster monster; // M_D01 ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì¸ìŠ¤í™í„°ì—ì„œ í• ë‹¹
 
     private void Start()
     {
@@ -19,19 +19,32 @@ public class StageButton : MonoBehaviour
   
     public void OnButtonClick()
     {
-        //½ºÅ×ÀÌÁö ÀÎµ¦½ººz ÀúÀåÇØ¼­ º¸³¿
-        if (monster != null)
+        Monster _monster = GameObject.FindWithTag("Enemy").GetComponent<Monster>();
+        //ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤í‹‘ ì €ì¥í•´ì„œ ë³´ëƒ„
+        if (_monster != null)
         {
             int rowIndex = stageIndex;
 
-            if (rowIndex >= 1 && rowIndex <= monster.monsterData.monsterdatas.Length)
+            MonsterData tmpData = _monster.monsterData;
+
+            if (rowIndex >= 1 && rowIndex <= tmpData.monsterdatas.Length)
+            {
+
+                _monster.SetMonsterDataByIndex(rowIndex);
+            }
+            else
+            {
+                Debug.LogError("Invalid stage index: " + stageIndex);
+            }
+
+           /* if (rowIndex >= 1 && rowIndex <= monster.monsterData.monsterdatas.Length)
             {
                 monster.SetMonsterDataByIndex(rowIndex);
             }
             else
             {
                 Debug.LogError("Invalid stage index: " + stageIndex);
-            }
+            }*/
         }
         /*
                 if (monster != null)
@@ -41,19 +54,19 @@ public class StageButton : MonoBehaviour
 
                     if (rowIndex >= 1 && rowIndex <= monster.monsterData.monsterdatas.Length)
                     {
-                        // ÇØ´ç ½ºÅ×ÀÌÁö¿¡ ´ëÇÑ µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í Ã³¸®
-                        //MonsterD ¿¡¼­ ÀúÀåÇÑ ¸®½ºÆ®¸¦ Á¢±Ù (µ¥ÀÌÅÍ°¡ ÀúÀåµÇ¾îÀÖÀ½)
-                        //½ºÇÁ·¹µå½ÃÆ®´Â ÇàÀÌ 1ºÎÅÍ ½ÃÀÛÇÔ ±×·¡»ç rowindex -1
+                        // í•´ë‹¹ ìŠ¤í…Œì´ì§€ì— ëŒ€í•œ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³  ì²˜ë¦¬
+                        //MonsterD ì—ì„œ ì €ì¥í•œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì ‘ê·¼ (ë°ì´í„°ê°€ ì €ì¥ë˜ì–´ìˆìŒ)
+                        //ìŠ¤í”„ë ˆë“œì‹œíŠ¸ëŠ” í–‰ì´ 1ë¶€í„° ì‹œì‘í•¨ ê·¸ë˜ì‚¬ rowindex -1
                          MonsterD stageData = monster.monsterData.monsterdatas[rowIndex - 1];
                        //  monster.SetMonsterData(stageData);
 
-                        // ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ »ç¿ëÇÏ¿© ¸ó½ºÅÍÀÇ ¼Ó¼ºÀ» ¼³Á¤
+                        // ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ëª¬ìŠ¤í„°ì˜ ì†ì„±ì„ ì„¤ì •
                     *//*    monster.stageID = stageData.stageID;
                         monster.HP = stageData.hp;
                         monster.Attack = stageData.attack;
                         monster.AtkTime = stageData.atktime;*//*
 
-                        //È®ÀÎÀ» À§ÇÑ Ãâ·Â 
+                        //í™•ì¸ì„ ìœ„í•œ ì¶œë ¥ 
                         Debug.Log("Clicked stage button with stageIndex: " + stageIndex);
                         Debug.Log("Stage " + stageIndex + " - ID: " + monster.stageID + "," +
                             " HP: " + monster.HP + ", Attack: " + monster.Attack + ", Attack Time: " + monster.AtkTime);
@@ -64,16 +77,16 @@ public class StageButton : MonoBehaviour
                         Debug.LogError("Invalid stage index: " + stageIndex);
                     }
                 }*/
-        //Å¬¸¯ÇÏ°í ÀÔÀåÇÏ±â ¹öÆ° ´©¸£¸é ¾À ³Ñ±â±â
-        // ENTER ½ºÅ©¸³Æ® ÇÏ³ª Â¥ÀÚ ±×³É , ·Îµå ¾À¸¸ ÇÏ±â·Î 
+        //í´ë¦­í•˜ê³  ì…ì¥í•˜ê¸° ë²„íŠ¼ ëˆ„ë¥´ë©´ ì”¬ ë„˜ê¸°ê¸°
+        // ENTER ìŠ¤í¬ë¦½íŠ¸ í•˜ë‚˜ ì§œì ê·¸ëƒ¥ , ë¡œë“œ ì”¬ë§Œ í•˜ê¸°ë¡œ 
     }
 }
-//ÁöÇÇÆ¼
-/*, À§¿¡¼­ Á¦°øÇÑ StageButton ½ºÅ©¸³Æ®¸¦ UI ¹öÆ°¿¡ Ãß°¡ÇÏ°í °¢ ¹öÆ°¿¡ ÇØ´çÇÏ´Â 
- * ½ºÅ×ÀÌÁö ¹øÈ£¸¦ ÇÒ´çÇÏ¸é µË´Ï´Ù. ÀÌ ½ºÅ©¸³Æ®´Â °¢ ½ºÅ×ÀÌÁö ¹öÆ°ÀÌ Å¬¸¯µÇ¸é 
- * ÇØ´ç ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í ¸ó½ºÅÍ¿¡ ÇÒ´çÇÏ´Â ¿ªÇÒÀ» ÇÕ´Ï´Ù. ¹°·Ğ ½ºÅ×ÀÌÁö ¹öÆ°°ú 
- * ¸ó½ºÅÍ ½ºÅ©¸³Æ® °£ÀÇ »óÈ£ ÀÛ¿ëÀ» À§ÇØ ÀÎ½ºÆåÅÍ¿¡¼­ °¢ ¹öÆ°¿¡ ´ëÇÑ M_D01 ¸ó½ºÅÍ ½ºÅ©¸³Æ®¸¦ ÇÒ´çÇØ¾ß ÇÕ´Ï´Ù.
+//ì§€í”¼í‹°
+/*, ìœ„ì—ì„œ ì œê³µí•œ StageButton ìŠ¤í¬ë¦½íŠ¸ë¥¼ UI ë²„íŠ¼ì— ì¶”ê°€í•˜ê³  ê° ë²„íŠ¼ì— í•´ë‹¹í•˜ëŠ” 
+ * ìŠ¤í…Œì´ì§€ ë²ˆí˜¸ë¥¼ í• ë‹¹í•˜ë©´ ë©ë‹ˆë‹¤. ì´ ìŠ¤í¬ë¦½íŠ¸ëŠ” ê° ìŠ¤í…Œì´ì§€ ë²„íŠ¼ì´ í´ë¦­ë˜ë©´ 
+ * í•´ë‹¹ ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³  ëª¬ìŠ¤í„°ì— í• ë‹¹í•˜ëŠ” ì—­í• ì„ í•©ë‹ˆë‹¤. ë¬¼ë¡  ìŠ¤í…Œì´ì§€ ë²„íŠ¼ê³¼ 
+ * ëª¬ìŠ¤í„° ìŠ¤í¬ë¦½íŠ¸ ê°„ì˜ ìƒí˜¸ ì‘ìš©ì„ ìœ„í•´ ì¸ìŠ¤í™í„°ì—ì„œ ê° ë²„íŠ¼ì— ëŒ€í•œ M_D01 ëª¬ìŠ¤í„° ìŠ¤í¬ë¦½íŠ¸ë¥¼ í• ë‹¹í•´ì•¼ í•©ë‹ˆë‹¤.
 
-¹öÆ°À» Å¬¸¯ÇÒ ¶§ ÇØ´ç ½ºÅ×ÀÌÁöÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í ¸ó½ºÅÍÀÇ ¼Ó¼ºÀ» ¼³Á¤ÇÏ·Á¸é
-À§¿¡¼­ Á¦°øÇÑ ½ºÅ©¸³Æ®¸¦ »ç¿ëÇÏ½Ã¸é µË´Ï´Ù. ÀÌ ½ºÅ©¸³Æ®°¡ ¿øÇÏ´Â µ¿ÀÛÀ» ¼öÇàÇÒ °ÍÀÔ´Ï´Ù.
+ë²„íŠ¼ì„ í´ë¦­í•  ë•Œ í•´ë‹¹ ìŠ¤í…Œì´ì§€ì˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³  ëª¬ìŠ¤í„°ì˜ ì†ì„±ì„ ì„¤ì •í•˜ë ¤ë©´
+ìœ„ì—ì„œ ì œê³µí•œ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤. ì´ ìŠ¤í¬ë¦½íŠ¸ê°€ ì›í•˜ëŠ” ë™ì‘ì„ ìˆ˜í–‰í•  ê²ƒì…ë‹ˆë‹¤.
 */
