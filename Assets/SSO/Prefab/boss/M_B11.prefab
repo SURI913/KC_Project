@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2973656433220969544}
   - component: {fileID: 731511352253516151}
   - component: {fileID: 8147874366552324191}
-  - component: {fileID: 1192080884109691752}
   - component: {fileID: 6996998967117289281}
-  m_Layer: 0
+  - component: {fileID: -8616015980770322220}
+  m_Layer: 6
   m_Name: M_B11
-  m_TagString: Untagged
+  m_TagString: boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,29 +123,6 @@ MonoBehaviour:
   _animationName: Walk
   loop: 1
   timeScale: 1
---- !u!136 &1192080884109691752
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6782814904426500815}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.7742865
-  m_Height: 5.4302897
-  m_Direction: 1
-  m_Center: {x: 0.09355664, y: 2.2447956, z: 0}
 --- !u!114 &6996998967117289281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +140,38 @@ MonoBehaviour:
   attackCooldown: 2
   boss_attack: {fileID: 6579477402129055740, guid: f85c2b44842a5b1468c9c6136cb5afe9, type: 3}
   rayLength: 5
+--- !u!70 &-8616015980770322220
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6782814904426500815}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.113797784, y: 2.0173285}
+  m_Size: {x: 2.217316, y: 4.1656537}
+  m_Direction: 0
