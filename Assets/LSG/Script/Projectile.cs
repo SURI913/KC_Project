@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
         }
         if (!checkTarget)
         {
-            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*20, 0f, Vector2.right,15f, LayerMask.GetMask("Target"));
+            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*20, 0f, Vector2.right,50f, LayerMask.GetMask("Target"));
 
             checkTarget = true;
         }

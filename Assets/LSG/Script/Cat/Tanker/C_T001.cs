@@ -104,8 +104,8 @@ public class C_T001 : Cat, IAttack
             //데미지 스크립트 확인시 공격 시작
             if (collision.collider.GetComponent<IDamageable>() != null && !isAttack)
             {
-                playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
                 StartCoroutine(AttackEft(collision));
+                playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
     }
