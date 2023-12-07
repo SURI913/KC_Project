@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Test : MonoBehaviour
+public class MonsterHpBar : MonoBehaviour
 {
-
+    // Start is called before the first frame update
     void Start()
     {
-        Renderer myRenderer = GetComponent<Renderer>();
-        float width = myRenderer.bounds.size.x;
-
-        Debug.Log(width + "길이");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 }

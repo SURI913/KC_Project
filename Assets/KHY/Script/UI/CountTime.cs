@@ -35,10 +35,10 @@ public class CountTime : MonoBehaviour
         {
             StopCountdwon();
             //SceneManager.LoadScene("StageSelection");
-            //40ÃÊ°¡ ³¡³ª¸é ´øÀüÀÌ ½ÇÆĞÇÏ°í ´Ù½Ã ´øÀü ¸ŞÀÎ¾ÀÀ¸·Î ³Ñ¾î°£´Ù
-            //½ÇÆĞÇß´Ù´Â ÀÌ¹ÌÁö´Â 1.5ÃÊÁ¤µµ º¸¿©ÁØÈÄ 
-            //¸ó½ºÅÍ µğ½ºÆ®·ÎÀÌ
-            //hp ½ºÅ©¸³Æ® ¸¸µçÈÄ Ã¼·ÂÀ» 0À¸·Î ¸¸µé¸ç ÇÔ¼ö °¡Àú¿Í ¾µ°Í 
+            //40ì´ˆê°€ ëë‚˜ë©´ ë˜ì „ì´ ì‹¤íŒ¨í•˜ê³  ë‹¤ì‹œ ë˜ì „ ë©”ì¸ì”¬ìœ¼ë¡œ ë„˜ì–´ê°„ë‹¤
+            //ì‹¤íŒ¨í–ˆë‹¤ëŠ” ì´ë¯¸ì§€ëŠ” 1.5ì´ˆì •ë„ ë³´ì—¬ì¤€í›„ 
+            //ëª¬ìŠ¤í„° ë””ìŠ¤íŠ¸ë¡œì´
+            //hp ìŠ¤í¬ë¦½íŠ¸ ë§Œë“ í›„ ì²´ë ¥ì„ 0ìœ¼ë¡œ ë§Œë“¤ë©° í•¨ìˆ˜ ê°€ì €ì™€ ì“¸ê²ƒ 
         }
     }
     public void StartCountdwon()
@@ -48,14 +48,15 @@ public class CountTime : MonoBehaviour
     public void StopCountdwon()
     {
         isCounting = false;
+        SceneManager.LoadScene(1 - 1);
        /* DestroyMonsters(); 
-        StartCoroutine(ShowFailureImage()); ÀÌ¹ÌÁö ·Îµå 
-       HP 0À¸·Î ¸¸µé±â ¤»*/
+        StartCoroutine(ShowFailureImage()); ì´ë¯¸ì§€ ë¡œë“œ 
+       HP 0ìœ¼ë¡œ ë§Œë“¤ê¸° ã…‹*/
     }
     private void CountdownText()
     {
-        //Ä«¿îÆ® ÅØ½ºÆ® ·ÎÁ÷
+        //ì¹´ìš´íŠ¸ í…ìŠ¤íŠ¸ ë¡œì§
         countdownText.text = currentTime.ToString("F0") + " / " + countdownTime.ToString("F0"); ;
-        //F0 ¼Ò¼öÁ¡ 0 ÀÚ¸®±îÁö (F1ÀÌ¸é ÇÑÀÚ¸® ±îÁö)
+        //F0 ì†Œìˆ˜ì  0 ìë¦¬ê¹Œì§€ (F1ì´ë©´ í•œìë¦¬ ê¹Œì§€)
     }
 }

@@ -8,16 +8,18 @@ public class Enterstage : MonoBehaviour
     public GameObject UI;
     public GameObject UI2;
     public CountTime time;
+    public GameObject image;
     public void OnClick()
     {
         // SceneManager.LoadScene("Dungeon");
-        //½ºÅ×ÀÌÁö ÀÔÀå
+        //ìŠ¤í…Œì´ì§€ ì…ì¥
 
-        //Áö±İÀº Å¬¸¯ÇßÀ»¶§ setactive·Î UI¸¦ °¡¸°´Ù.
-        //Ä«¿îÆ® ¼öÁ¤ÇÏ±â
+        //ì§€ê¸ˆì€ í´ë¦­í–ˆì„ë•Œ setactiveë¡œ UIë¥¼ ê°€ë¦°ë‹¤.
+        //ì¹´ìš´íŠ¸ ìˆ˜ì •í•˜ê¸°
         UI.SetActive(false);
         UI2.SetActive(false);
         time.StartCountdwon();
+        image.SetActive(false);
     }
 }
 
