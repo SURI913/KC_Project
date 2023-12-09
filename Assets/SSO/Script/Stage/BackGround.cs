@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class BackGround : MonoBehaviour
 {
-    [SerializeField][Range(1f, 20f)] float speed = 3f;
+    [SerializeField][Range(0.5f, 20f)] float speed = 3f;
 
     private float width;
     Vector2 startPos;
