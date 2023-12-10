@@ -7,12 +7,9 @@ public class TowerItemUISet : MonoBehaviour
 {
     public TowerData towerData;
 
-    //¾ÆÀÌÅÛ ¹èÄ¡
+    //ì•„ì´í…œ ë°°ì¹˜
     public GameObject cannonScollBar;
     public GameObject repairmanScollBar;
-
-    private CannonData[] FindcannonData;
-    private RepairManData[] FindrepairmanData;
 
     TowerItem[] Setcannon;
     TowerItem[] Setrepairman;
@@ -22,11 +19,11 @@ public class TowerItemUISet : MonoBehaviour
     {
         if (towerData != null)
         {
-            // µ¥ÀÌÅÍ ÀúÀåÇÒ °÷ °¡Á®¿À±â
+            // ë°ì´í„° ì €ì¥í•  ê³³ ê°€ì ¸ì˜¤ê¸°
             Setcannon = cannonScollBar.GetComponentsInChildren<TowerItem>();
             Setrepairman = repairmanScollBar.GetComponentsInChildren<TowerItem>();
             
-            //µ¥ÀÌÅÍ º¸³»±â
+            //ë°ì´í„° ë³´ë‚´ê¸°
             for(int i = 0; i < towerData.Cannon.Length; i++)
             {
                 SetItem(Setcannon[i], towerData.Cannon[i]);  
