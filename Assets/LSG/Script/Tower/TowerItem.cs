@@ -1,24 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TowerItem : MonoBehaviour
 {
    
-   //ÀÌ°Å´Â ´ã±â´Â ¾ÆÀÌÅÛ¿¡ ³ÖÀ» µ¥ÀÌÅÍ·Î ÃÄ¾ßÇÏ³ª
+   //ì´ê±°ëŠ” ë‹´ê¸°ëŠ” ì•„ì´í…œì— ë„£ì„ ë°ì´í„°ë¡œ ì³ì•¼í•˜ë‚˜
     public string ID { get; set; }
-    protected int Lv = 0;  //·¹º§
-    protected int MaxLv = 100;  //·¹º§
-    public double effect { get; set; }//Âø¿ëÈ¿°ú
+    protected int Lv = 0;  //ë ˆë²¨
+    protected int MaxLv = 100;  //ë ˆë²¨
+    public double effect { get; set; }//ì°©ìš©íš¨ê³¼
     public double increase  { get; set; }
-    public double RetentionEffect { get; set; } //º¸À¯È¿°ú
+    public double RetentionEffect { get; set; } //ë³´ìœ íš¨ê³¼
     public double RetentionIncrease { get; set; }
     public int ItemCount { get; set; }
     public bool Ative { get; set; }
     public bool ChoiceItem { get; set; }
 
-    Text LvText;
+    TextMeshProUGUI LvText;
     //Text Count;
     //int Maxnum = 4;
 
@@ -27,22 +28,22 @@ public class TowerItem : MonoBehaviour
     protected void initData()
     {
         Lv = 1;
-        // ¾ÆÀÌµğ, Áõ°¡°ª, È¿°ú´Â ÀÎ½ºÆåÅÍÃ¢¿¡¼­
+        // ì•„ì´ë””, ì¦ê°€ê°’, íš¨ê³¼ëŠ” ì¸ìŠ¤í™í„°ì°½ì—ì„œ
         //StartCoroutine()
 
-        LvText = GetComponentInChildren<Text>();
-        LvText.text = "ID : " + ID;
-        //this.transform.SetAsLastSibling(); //ÀÌ¹ÌÁö ¸ÕÀú
-        Info = InfoPlane.transform.GetChild(1).GetComponent<Text>(); //2¹øÂ° ÀÚ½Ä
+        LvText = GetComponentInChildren<TextMeshProUGUI>();
+        LvText.text = "Lv: " +  Lv.ToString();
+        //this.transform.SetAsLastSibling(); //ì´ë¯¸ì§€ ë¨¼ì €
+        Info = InfoPlane.transform.GetChild(1).GetComponent<Text>(); //2ë²ˆì§¸ ìì‹
 
         MyButton = this.GetComponent<Button>();
-        if (Ative && Lv != 100) //info¹öÆ° È°¼ºÈ­±â´É
+        if (Ative && Lv != 100) //infoë²„íŠ¼ í™œì„±í™”ê¸°ëŠ¥
         {
             MyButton.interactable = true;
         }
         else
         {
-            MyButton.interactable = false; //¹öÆ° ºñÈ°¼ºÈ­ »óÅÂ
+            MyButton.interactable = false; //ë²„íŠ¼ ë¹„í™œì„±í™” ìƒíƒœ
         }
         InfoPlane.SetActive(false);
         InfoButton = InfoPlane.transform.GetChild(2).GetComponentsInChildren<Button>();
@@ -57,36 +58,36 @@ public class TowerItem : MonoBehaviour
 
     private void Start()
     {
-        //Ã³À½ÀÌ¶ó¸é
+        //ì²˜ìŒì´ë¼ë©´
         initData();
-        //¾Æ´Ï¶ó¸é À¯Àú µ¥ÀÌÅÍ ºÒ·¯¿À±â
+        //ì•„ë‹ˆë¼ë©´ ìœ ì € ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
         //Print();
-        //info¹öÆ° ¿¬°áÇØÁÖ±â
+        //infoë²„íŠ¼ ì—°ê²°í•´ì£¼ê¸°
         MyButton.onClick.AddListener(ClickInfoButton);
+        InfoButton[0].onClick.AddListener(LevelUP); //ë ˆë²¨ì—… ë²„íŠ¼ ì—°ê²°
     }
 
-    //ÄÚµå ¼öÁ¤ 1¼øÀ§
+    //ì½”ë“œ ìˆ˜ì • 1ìˆœìœ„
     public void LevelUP()
     {
 
         if(Lv < MaxLv-1)
         {
-            Lv++; //º¯°æµÈ °ª ÀÌ»óÇÔ Ã¼Å© ÇÊ¿ä
-            print(ID +" ·¹¹ú¾÷ 1È¸");
+            Lv++; //ë³€ê²½ëœ ê°’ ì´ìƒí•¨ ì²´í¬ í•„ìš”
+            print(ID +" ë ˆë²Œì—… 1íšŒ");
             effect += increase;
             RetentionEffect += RetentionIncrease;
             
             LvText.text = Lv.ToString();
-            InfoButton[0].onClick.RemoveListener(LevelUP);
 
         }
         else if(Lv==MaxLv-1)
         {
             effect *= 2;
             RetentionEffect *= 2;
-            //¸ğµç È¿°ú µÎ¹è·Î ¸¸µé°í ÇöÀç ·¹º§¾÷ ¹öÆ° ºñÈ°¼º
+            //ëª¨ë“  íš¨ê³¼ ë‘ë°°ë¡œ ë§Œë“¤ê³  í˜„ì¬ ë ˆë²¨ì—… ë²„íŠ¼ ë¹„í™œì„±
             InfoButton[0].onClick.RemoveListener(LevelUP);
-            //´ÙÀ½ ·¹º§¾÷ ¹öÆ° »ı¼º
+            //ë‹¤ìŒ ë ˆë²¨ì—… ë²„íŠ¼ ìƒì„±
         }
         else
         {
@@ -107,25 +108,24 @@ public class TowerItem : MonoBehaviour
     {
         InfoPlane.SetActive(true);
         SetInfo();
-        InfoButton[0].onClick.AddListener(LevelUP); //·¹º§¾÷ ¹öÆ° ¿¬°á
-        //Âø¿ëµµ ÀÛ¾÷ÇØ¾ßÇÔ
+        //ì°©ìš©ë„ ì‘ì—…í•´ì•¼í•¨
     }
 
     void SetInfo()
     {
         if (ID[0] == 'C')
         {
-            //Ä³³í
-            Info.text = "Lv : " + Lv + '\n' + " Âø¿ë °ø°İ·Â : " + effect + '\n' + " º¸À¯ °ø°İ·Â : " + RetentionEffect;
+            //ìºë…¼
+            Info.text = "Lv : " + Lv + '\n' + " ì°©ìš© ê³µê²©ë ¥ : " + effect + '\n' + " ë³´ìœ  ê³µê²©ë ¥ : " + RetentionEffect;
         }
         else
         {
-            //¼ö¸®°ø
-            Info.text = "Lv : " + Lv + '\n' + "Ã¼·Â : " + effect + '\n' + " º¸À¯ Ã¼·Â : " + RetentionEffect;
+            //ìˆ˜ë¦¬ê³µ
+            Info.text = "Lv : " + Lv + '\n' + "ì²´ë ¥ : " + effect + '\n' + " ë³´ìœ  ì²´ë ¥ : " + RetentionEffect;
         }
     }
 
-    //ÀÏ½ÃÀûÀ¸·Î Á¦ÇÑ
+    //ì¼ì‹œì ìœ¼ë¡œ ì œí•œ
     private float cooltime = 10f;
     private void Update()
     {
