@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 3
-  StartPosition: {x: 26, y: -15}
+  StartPosition: {x: 26, y: -6}
   attackCooldown: 5.5
   enemy_attack_3: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
   rayLength: 12
