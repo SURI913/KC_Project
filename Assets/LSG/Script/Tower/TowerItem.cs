@@ -54,8 +54,8 @@ public class TowerItem : MonoBehaviour
         effectX1_update_value = effectX1_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
         effectX2_name = InfoPlane.transform.GetChild(0).GetChild(2).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
-        effectX1_current_value = effectX2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        effectX1_update_value = effectX2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        effectX2_current_value = effectX2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        effectX2_update_value = effectX2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
         MyButton = this.GetComponent<Button>();
         if (Ative && Lv != 100) //info버튼 활성화기능
