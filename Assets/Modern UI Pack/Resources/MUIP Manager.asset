@@ -74,10 +74,10 @@ MonoBehaviour:
   scrollbarColor: {r: 1, g: 1, b: 1, a: 1}
   scrollbarBackgroundColor: {r: 1, g: 1, b: 1, a: 0.09803922}
   sliderLabelFont: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
-  sliderLabelFontSize: 24
+  sliderLabelFontSize: 30
   sliderThemeType: 0
-  sliderColor: {r: 1, g: 1, b: 1, a: 1}
-  sliderBackgroundColor: {r: 1, g: 1, b: 1, a: 0.09803922}
+  sliderColor: {r: 0.4760147, g: 0.36187258, b: 0.7169812, a: 1}
+  sliderBackgroundColor: {r: 0.29178035, g: 0.2011837, b: 0.31132078, a: 0.8862745}
   sliderLabelColor: {r: 1, g: 1, b: 1, a: 1}
   sliderPopupLabelColor: {r: 0.37254903, g: 0.40784314, b: 0.4509804, a: 1}
   sliderHandleColor: {r: 1, g: 1, b: 1, a: 1}
