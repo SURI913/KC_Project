@@ -19,7 +19,7 @@ public class Enterstage : MonoBehaviour
         UI.SetActive(false);
         UI2.SetActive(false);
         time.StartCountdwon();
-       // image.SetActive(false);
+        image.SetActive(false);
     }
 }
 
