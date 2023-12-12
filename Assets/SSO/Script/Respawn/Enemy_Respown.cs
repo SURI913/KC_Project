@@ -17,6 +17,9 @@ public class Enemy_Respown : MonoBehaviour
     public float enemeyStageCount; // 이 스테이지에서 소환할 몬스터의 수
     private bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
     private float timer;
+    public Vector2 ground_enemy_position;
+    public Vector2 fly_enemy_position;
+    public float enemy_speed;
 
     private void Awake()
     {
@@ -28,6 +31,21 @@ public class Enemy_Respown : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public Vector2 GetGroundEnemyPosition()
+    {
+        return ground_enemy_position;
+    }
+
+    public Vector2 GetFlyEnemyPosition()
+    {
+        return fly_enemy_position;
+    }
+
+    public float GetEnemySpeed()
+    {
+        return enemy_speed;
     }
 
     public double GetEnemyDamage()  // 입력받은 enemey의 데미지값을 반환

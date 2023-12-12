@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class Boss : MonoBehaviour, IDamageable
 {
     // 보스 몬스터
-    public float enemySpeed;              // 이동속도
-    public Vector2 StartPosition;         // 소환 될 위치
+    private float enemySpeed;              // 이동속도
     public float attackCooldown;  // 공격 쿨타임
     private double hp;                         // 보스 체력
     private double currentHp;             // 보스의 현재체력
@@ -29,8 +29,16 @@ public class Boss : MonoBehaviour, IDamageable
 
     void Start()
     {
+        // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
+        // 이렇게 하면 에디터에서 수동으로 설정하지 않아도 자동으로 참조를 찾아줌
+        if (!respawner)
+        {
+            respawner = FindObjectOfType<Enemy_Respown>();
+        }
+
+        transform.position = respawner.GetGroundEnemyPosition();
+        enemySpeed = respawner.GetEnemySpeed();
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
-        transform.position = StartPosition;
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
 
         // spine 컴포넌트가 올바르게 연결되었는지 확인
