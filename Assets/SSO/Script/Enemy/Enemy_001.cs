@@ -22,8 +22,6 @@ public class Enemy_001 : MonoBehaviour, IDamageable
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
 
-    private Animator enemyAnimation; // Unity Animation 컴포넌트
-
 
     void Start()
     {
@@ -41,8 +39,6 @@ public class Enemy_001 : MonoBehaviour, IDamageable
 
         // spine 컴포넌트가 올바르게 연결되었는지 확인
         spine = GetComponent<SkeletonAnimation>();
-
-        enemyAnimation = GetComponent<Animator>();
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)
@@ -51,16 +47,13 @@ public class Enemy_001 : MonoBehaviour, IDamageable
         Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
-            Debug.Log(gameObject.name + "처치");
-            /*if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
+            if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
             {
                 StartCoroutine(DeadAnimation());
                 isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
-            }*/
+            }
         }
     }
-
     IEnumerator DeadAnimation()
     {
         spine.AnimationState.SetAnimation(0, "Dead", false);  // 죽는 애니메이션 재생
@@ -78,7 +71,7 @@ public class Enemy_001 : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.left* Time.deltaTime * enemySpeed);  // enemy의 이동
+        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);  // enemy의 이동
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
@@ -132,8 +125,7 @@ public class Enemy_001 : MonoBehaviour, IDamageable
     {
         while (true) // 무한 반복
         {
-            //spine.AnimationState.SetAnimation(0, "Attack", false);
-            enemyAnimation.SetTrigger("Enemy_attack");
+            spine.AnimationState.SetAnimation(0, "Attack", false);
             Vector3 spawnPosition = transform.position - (Vector3.right * 4) + (Vector3.up / 2);
             GameObject attackInstance = Instantiate(enemy_attack_1, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 1.5f));
