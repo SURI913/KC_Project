@@ -67,10 +67,14 @@ public class DBManager : MonoBehaviour
 
                 towerData.Cannon[i].ID = column[1];
                 towerData.Cannon[i].Tier = column[2];
-                towerData.Cannon[i].RetentionAttack = double.Parse(column[3]);
-                towerData.Cannon[i].RetentionIncrease = double.Parse(column[4]);
-                towerData.Cannon[i].Attack = double.Parse(column[7]);
-                towerData.Cannon[i].Increase = double.Parse(column[8]);
+                towerData.Cannon[i].retention_attack = double.Parse(column[3]);  //보유효과 공격력
+                towerData.Cannon[i].retention_increase_attack = double.Parse(column[4]); //보유효과 증가폭
+                towerData.Cannon[i].retention_protection = double.Parse(column[5]); //보유효과 증가폭
+                towerData.Cannon[i].retention_increase_protection = double.Parse(column[6]); //보유효과 증가폭
+                towerData.Cannon[i].attackX = double.Parse(column[7]);
+                towerData.Cannon[i].attackX_increase = double.Parse(column[8]);
+                towerData.Cannon[i].protectionX = double.Parse(column[9]);
+                towerData.Cannon[i].protectionX_increase = double.Parse(column[10]);
                 if (i == 8) return;
             }
         }
@@ -93,10 +97,14 @@ public class DBManager : MonoBehaviour
 
                 targetData.ID = column[1];
                 targetData.Tier = column[2];
-                targetData.RetentionHp = double.Parse(column[7]);
-                targetData.RetentionIncrease = double.Parse(column[8]);
-                targetData.Hp = double.Parse(column[3]);
-                targetData.Increase = double.Parse(column[4]);
+                targetData.retention_hp = double.Parse(column[3]);
+                targetData.retention_increase = double.Parse(column[4]);
+                targetData.retention_healing = double.Parse(column[5]);
+                targetData.retention_increase_healing = double.Parse(column[6]);
+                targetData.hpX = double.Parse(column[7]);
+                targetData.hp_increase = double.Parse(column[8]);
+                targetData.healingX = double.Parse(column[9]);
+                targetData.healing_increase = double.Parse(column[10]);
 
                 if (i == 8) return;
             }

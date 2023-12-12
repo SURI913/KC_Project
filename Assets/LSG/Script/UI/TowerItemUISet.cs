@@ -42,10 +42,14 @@ public class TowerItemUISet : MonoBehaviour
     void SetItem(TowerItem target, CannonData getData)
     {
         target.ID = getData.ID;
-        target.effect = getData.Attack;
-        target.increase = getData.Increase;
-        target.RetentionEffect = getData.RetentionAttack;
-        target.RetentionIncrease = getData.RetentionIncrease;
+        target.effect1 = getData.attackX;
+        target.effect2 = getData.protectionX;
+        target.increase1 = getData.attackX_increase;
+        target.increase2 = getData.protectionX_increase;
+        target.retention_effect1 = getData.retention_attack;
+        target.retention_increase1 = getData.retention_increase_attack;
+        target.retention_effect2 = getData.retention_protection;
+        target.retention_increase2 = getData.retention_increase_protection;
         target.Ative = false;
         target.ChoiceItem = false;
     }
@@ -53,10 +57,14 @@ public class TowerItemUISet : MonoBehaviour
     void SetItem(TowerItem target, RepairManData getData)
     {
         target.ID = getData.ID;
-        target.effect = getData.Hp;
-        target.increase = getData.Increase;
-        target.RetentionEffect = getData.RetentionHp;
-        target.RetentionIncrease = getData.RetentionIncrease;
+        target.effect1 = getData.hpX;
+        target.effect2 = getData.healingX;
+        target.increase1 = getData.hpX_increase;
+        target.increase2 = getData.healingX_increase;
+        target.retention_effect1 = getData.retention_hp;
+        target.retention_increase1 = getData.retention_increase;
+        target.retention_effect2 = getData.retention_healing;
+        target.retention_increase2 = getData.retention_increase_healing;
         target.Ative = false;
         target.ChoiceItem = false;
     }
