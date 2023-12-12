@@ -15,14 +15,14 @@ public class CannonData
 {
     public string ID;
     public string Tier;
-    public double RetentionAttack;
-    public double RetentionProtection;
-    public double RetentionIncrease_Protection;
-    public double RetentionIncrease_Attack;
-    public double Attack;
-    public double Protection;
-    public double Attack_Increase;
-    public double Protection_Increase;
+    public double retention_attack;
+    public double retention_protection;
+    public double retention_increase_protection;
+    public double retention_increase_attack;
+    public double attackX;
+    public double protectionX;
+    public double attackX_increase;
+    public double protectionX_increase;
     //public Sprite IMG = null;
     //public Image UI_IMG = null;
 
@@ -33,14 +33,14 @@ public class RepairManData
 {
     public string ID;
     public string Tier;
-    public double RetentionHp;
-    public double RetentionIncrease;
-    public double RetentionHealing;
-    public double RetentionIncrease_Healing;
-    public double Hp;
-    public double HpIncrease;
-    public double Healing;
-    public double HealingIncrease;
+    public double retention_hp;
+    public double retention_increase;
+    public double retention_healing;
+    public double retention_increase_healing;
+    public double hpX;
+    public double hpX_increase;
+    public double healingX;
+    public double healingX_increase;
     //public Sprite IMG = null;
     //public Image UI_IMG = null;
 }
