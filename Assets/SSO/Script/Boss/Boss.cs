@@ -27,6 +27,8 @@ public class Boss : MonoBehaviour, IDamageable
     private bool deadAnimation = false; // 캐릭터가 죽었는지 확인하고, update문에서 이동을 멈추는 역할
     private bool isDead = true;
 
+    private Animator enemyAnimation; // Unity Animation 컴포넌트
+
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -36,13 +38,15 @@ public class Boss : MonoBehaviour, IDamageable
             respawner = FindObjectOfType<Enemy_Respown>();
         }
 
-        transform.position = respawner.GetGroundEnemyPosition();
+        transform.position = respawner.GetBossPosition();
         enemySpeed = respawner.GetEnemySpeed();
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
 
         // spine 컴포넌트가 올바르게 연결되었는지 확인
         spine = GetComponent<SkeletonAnimation>();
+
+        enemyAnimation = GetComponent<Animator>();
     }
 
     public void SetStats(double health, float dmg)   // enemy_respown에서 설정한 체력, 데미지 불러오기
@@ -58,11 +62,14 @@ public class Boss : MonoBehaviour, IDamageable
         Debug.Log("보스 " + gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)  // 보스가 죽으면
         {
-            if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
+            Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
+            Debug.Log("보스" + gameObject.name + "처치");
+            respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
+            /*if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
             {
                 StartCoroutine(DeadAnimation());
                 isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
-            }
+            }*/
         }
     }
 
@@ -82,8 +89,8 @@ public class Boss : MonoBehaviour, IDamageable
 
         while (true) // 무한 반복
         {
-            spine.AnimationState.SetAnimation(0, "Attack", false);
-
+            //spine.AnimationState.SetAnimation(0, "Attack", false);
+            enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 0.5f));
@@ -98,7 +105,8 @@ public class Boss : MonoBehaviour, IDamageable
 
         while (true) // 무한 반복
         {   // 공격 3개생성
-            spine.AnimationState.SetAnimation(0, "Attack", false);
+            //spine.AnimationState.SetAnimation(0, "Attack", false);
+            enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // 중간공격
             Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // 위
             Vector3 spawnPosition3 = spawnPosition - Vector3.right - Vector3.down;  // 아래
@@ -115,10 +123,10 @@ public class Boss : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
-        Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 5);
+        Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 15);
         RaycastHit2D hit = Physics2D.Raycast(raycastStartPosition, Vector2.left, rayLength, LayerMask.GetMask("Castle", "Player"));
 
         // Ray를 시각적으로 표시

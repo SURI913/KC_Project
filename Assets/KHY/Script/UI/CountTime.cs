@@ -49,9 +49,9 @@ public class CountTime : MonoBehaviour
     {
         isCounting = false;
         SceneManager.LoadScene(1 - 1);
-        /* DestroyMonsters(); 
-         StartCoroutine(ShowFailureImage()); 이미지 로드 
-        HP 0으로 만들기 ㅋ*/
+       /* DestroyMonsters(); 
+        StartCoroutine(ShowFailureImage()); 이미지 로드 
+       HP 0으로 만들기 ㅋ*/
     }
     private void CountdownText()
     {
