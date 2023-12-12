@@ -4,32 +4,32 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
+public class Tower : MonoBehaviour, IDamageable, IAttack
 {
-    //±âº» µ¥ÀÌÅÍ
+    //ê¸°ë³¸ ë°ì´í„°
 
-    public double hp { get; set; }      //Ã¼·Â
-    public double maxHp { get; set; }   //ÃÖ´ëÃ¼·Â
-    protected double attack;  //°ø°İ·Â Àü´ŞÇÒ ¶§¸¸ »ç¿ë
+    public double hp { get; set; }      //ì²´ë ¥
+    public double maxHp { get; set; }   //ìµœëŒ€ì²´ë ¥
+    protected double attack;  //ê³µê²©ë ¥ ì „ë‹¬í•  ë•Œë§Œ ì‚¬ìš©
 
-    protected double healing = 0; //È¸º¹·Â
-    protected bool dead = false;    //Á×À½È®ÀÎ
+    protected double healing = 0; //íšŒë³µë ¥
+    protected bool dead = false;    //ì£½ìŒí™•ì¸
     public int Lv { get; set; }
     public float LvEffect { get; set; }
     private float LvEffectIncreace = 0.01f;
 
     //IAttack
-    public float speed { get; set; }   //°ø°İ ¼Óµµ
-    public float atkTime { get; set; } //ÀÏ¹İ°ø°İ ÄğÅ¸ÀÓ
+    public float speed { get; set; }   //ê³µê²© ì†ë„
+    public float atkTime { get; set; } //ì¼ë°˜ê³µê²© ì¿¨íƒ€ì„
     public float skillTime { get; set; } = 0;
     public bool ativeSkill { get; set; } = false;
 
-    //-----------------------------------------------------------------------¾Ö´Ï¸ŞÀÌ¼Ç
+    //-----------------------------------------------------------------------ì• ë‹ˆë©”ì´ì…˜
     private GameObject towerWheel;
     private float wheelSpeed = 15f;
     void initData()
     {
-        TowerUI.SetActive(false); //±âº» ¼³Á¤
+        TowerUI.SetActive(false); //ê¸°ë³¸ ì„¤ì •
         Lv = 1;
         LvEffect = 1 + LvEffectIncreace * Lv;
         hpApply();
@@ -50,19 +50,19 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     private TowerItem[] Allrepairman;
     private void Awake()
     {
-        if (!cannonData) { Debug.Log("´ëÆ÷ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù."); }
+        if (!cannonData) { Debug.Log("ëŒ€í¬ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤."); }
         else
         {
             AllCannon = cannonData.GetComponentsInChildren<TowerItem>();
         }
-        if (!repairmanData) { Debug.Log("t¼ö¸®°ø µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù."); }
+        if (!repairmanData) { Debug.Log("tìˆ˜ë¦¬ê³µ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤."); }
         else
         {
             Allrepairman = repairmanData.GetComponentsInChildren<TowerItem>();
         }
 
-        //µ¥ÀÌÅÍ °¡Á®¿À±â
-        //·¹º§È¿°ú = 1 + 0.01*·¹º§
+        //ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
+        //ë ˆë²¨íš¨ê³¼ = 1 + 0.01*ë ˆë²¨
         initData();
     }
 
@@ -71,13 +71,13 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         attack = 0;
         foreach (var item in AllCannon)
         {
-            if (item.Ative) //È°¼ºÈ­ µÈ °ª¸¸ °¡Á®¿È
+            if (item.Ative) //í™œì„±í™” ëœ ê°’ë§Œ ê°€ì ¸ì˜´
             {
-                attack += item.RetentionEffect;
+                attack += item.retention_effect1;
             }
-            if (item.ChoiceItem) //¼±ÅÃÇÑ ¾ÆÀÌÅÛ¸¸ °¡Á®¿È ¾ÆÀÌÅÛ °¡Á®¿À´Â ¹æ½Ä ÀÌÈÄ ¼öÁ¤
+            if (item.ChoiceItem) //ì„ íƒí•œ ì•„ì´í…œë§Œ ê°€ì ¸ì˜´ ì•„ì´í…œ ê°€ì ¸ì˜¤ëŠ” ë°©ì‹ ì´í›„ ìˆ˜ì •
             {
-                attack *= item.effect; //¹è¼öÈ¿°ú
+                attack *= item.effect1; //ë°°ìˆ˜íš¨ê³¼
             }
         }
         return attack;
@@ -88,35 +88,35 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         return 0;
     }   
 
-    public void hpApply() //ÀÌÈÄ¿¡ ½Ç½Ã°£À¸·Î °ª ÀúÀåµÇ¸é ¼öÁ¤ÇÏ´Â °É·Î
+    public void hpApply() //ì´í›„ì— ì‹¤ì‹œê°„ìœ¼ë¡œ ê°’ ì €ì¥ë˜ë©´ ìˆ˜ì •í•˜ëŠ” ê±¸ë¡œ
     {
         
-        //Áö±İÀº ´İ±â ¹öÆ° ´­·¶À»¶§ ÀúÀåµÇ°Ô²û ¼³Á¤
+        //ì§€ê¸ˆì€ ë‹«ê¸° ë²„íŠ¼ ëˆŒë €ì„ë•Œ ì €ì¥ë˜ê²Œë” ì„¤ì •
         foreach (var item in Allrepairman)
         {
-            if (item.Ative) //È°¼ºÈ­ µÈ °ª¸¸ °¡Á®¿È
+            if (item.Ative) //í™œì„±í™” ëœ ê°’ë§Œ ê°€ì ¸ì˜´
             {
-                maxHp += item.RetentionEffect;
+                maxHp += item.retention_effect1; //ì°©ìš©
             }
             if (item.ChoiceItem)
             {
-                maxHp *= item.effect;
+                maxHp *= item.effect1; //ë°°ìˆ˜
             }
         }
     }
 
     private void hpInit()
-    {    //Ã¼·Â ÃÊ±âÈ­
+    {    //ì²´ë ¥ ì´ˆê¸°í™”
         if (hp == -999 || maxHp == -999)
         {
-            Debug.Log("´ëÆ÷ hp error!");
+            Debug.Log("ëŒ€í¬ hp error!");
         }
         else
         {
             hp = maxHp;
             dead = false;
         }
-        //Ã¼·ÂÀÌ 0º¸´Ù ÀÛÀ» °æ¿ì ÃÊ±âÈ­°¡ ½ÇÇà µÇ¾î¾ßÇÔ ÄÚ·çÆ¾ ÀÛ¾÷ ÇÊ¿ä
+        //ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ì„ ê²½ìš° ì´ˆê¸°í™”ê°€ ì‹¤í–‰ ë˜ì–´ì•¼í•¨ ì½”ë£¨í‹´ ì‘ì—… í•„ìš”
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)
@@ -127,18 +127,11 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
         if(hp <= 0) { dead = true;}
     }
 
-    //UI¶ç¿ì±â
-    public void OnPointerUp(PointerEventData data) // ÈŞ´ëÆùÀÇ °æ¿ì ¼öÁ¤
-    {
-        Debug.Log("Å¸¿ö È®ÀÎ");
-        
-    }
-
     [SerializeField] GameObject TowerUI;
     public void OnMouseUp()
     {
-        Debug.Log("Å¸¿ö È®ÀÎ");
-        //È°¼ºÈ­
+        Debug.Log("íƒ€ì›Œ í™•ì¸");
+        //í™œì„±í™”
         TowerUI.SetActive(true);
     }
 
@@ -146,7 +139,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     {
         if (collision.gameObject.layer == 6) //=> Target Layer
         {
-            //Àû  ¿¡°Ô ¸·ÇûÀ½
+            //ì   ì—ê²Œ ë§‰í˜”ìŒ
             wheelSpeed = 0f;
         }
     }
@@ -155,7 +148,7 @@ public class Tower : MonoBehaviour, IPointerUpHandler, IDamageable, IAttack
     {
         if(collision.gameObject.layer == 6) //=> Target Layer
         {
-            //Àû »ç¶óÁü ¹ÙÄû ¿òÁ÷ÀÏ °Í
+            //ì  ì‚¬ë¼ì§ ë°”í€´ ì›€ì§ì¼ ê²ƒ
             wheelSpeed = 15f;
         }
     }
