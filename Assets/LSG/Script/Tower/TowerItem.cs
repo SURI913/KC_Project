@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,10 +57,6 @@ public class TowerItem : MonoBehaviour
         effectX2_current_value = effectX2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         effectX2_update_value = effectX2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        tooltip = InfoPlane.transform.GetChild(0).GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>();
-        tooltip.text = "레벨 100 달성 시 파츠의 전체 효과가 2배가 됩니다.";
-
-
         MyButton = this.GetComponent<Button>();
         if (Ative && Lv != 100) //info버튼 활성화기능
         {
@@ -73,10 +68,8 @@ public class TowerItem : MonoBehaviour
         }
         InfoPlane.SetActive(false);
         InfoButton = InfoPlane.transform.GetChild(1).GetComponentsInChildren<Button>();
-        InfoButton[0].interactable = true; //레벨업
-        InfoButton[1].interactable = true;  //착용하기
+        InfoButton[0].interactable = true;
 
-        currency_sub_amout = InfoButton[0].transform.GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -88,7 +81,6 @@ public class TowerItem : MonoBehaviour
         //info버튼 연결해주기
         MyButton.onClick.AddListener(ClickInfoButton);
         InfoButton[0].onClick.AddListener(LevelUP); //레벨업 버튼 연결
-        InfoButton[1].onClick.AddListener(SelectCannon); //레벨업 버튼 연결
     }
 
     //코드 수정 1순위
@@ -145,12 +137,12 @@ public class TowerItem : MonoBehaviour
     TextMeshProUGUI effectX2_update_value;
     TextMeshProUGUI tooltip;
     TextMeshProUGUI currency_sub_amout;
-    Image curreny_img;  //타워 데이터에 이미지 추가
     //Test Effect2;
     public void ClickInfoButton()
     {
         InfoPlane.SetActive(true);
         SetInfo();
+        //착용도 작업해야함
     }
 
     void SetInfo() 
@@ -164,18 +156,12 @@ public class TowerItem : MonoBehaviour
         retention_effect2_update_value.text = retention_effect2 + retention_increase2.ToString();
         //착용효과
         effectX1_current_value.text = effect1.ToString();
-        effectX2_current_value.text = effect2.ToString();
-        effectX1_update_value.text = effect1+ increase1.ToString();
-        effectX2_update_value.text = effect2+ increase2.ToString();
-        //업그레이드 비용
-        currency_sub_amout.text = 0.ToString(); //변경사항
+        effectX2_update_value.text = effect2.ToString();
         if (ID[0] == 'C')
         {
             //캐논
             retention_effect1_name.text = "공격력";
             retention_effect2_name.text = "방어력";
-            effectX1_name.text = "공격력 배수";
-            effectX2_name.text = "방어력력 배수";
 
         }
         else
@@ -183,14 +169,7 @@ public class TowerItem : MonoBehaviour
             //수리공
             retention_effect1_name.text = "체력";
             retention_effect2_name.text = "회복력";
-            effectX1_name.text = "체력 배수";
-            effectX2_name.text = "회복력 배수";
         }
-    }
-
-   private void SelectCannon()
-    {
-        ChoiceItem = true;
     }
 
     //일시적으로 제한
