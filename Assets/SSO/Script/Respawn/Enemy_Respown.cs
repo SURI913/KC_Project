@@ -19,6 +19,7 @@ public class Enemy_Respown : MonoBehaviour
     private float timer;
     public Vector2 ground_enemy_position;
     public Vector2 fly_enemy_position;
+    public Vector2 boss_position;
     public float enemy_speed;
 
     private void Awake()
@@ -31,6 +32,11 @@ public class Enemy_Respown : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public Vector2 GetBossPosition()
+    {
+        return boss_position;
     }
 
     public Vector2 GetGroundEnemyPosition()
