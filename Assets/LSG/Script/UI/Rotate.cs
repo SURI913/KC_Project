@@ -7,7 +7,6 @@ public class Rotate : MonoBehaviour
 {
     private RectTransform rotation_target;
     private float speed = -1;
-    private bool stop_rotate = false;
 
     void Start()
     {
