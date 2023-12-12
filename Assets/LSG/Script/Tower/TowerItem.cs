@@ -11,10 +11,14 @@ public class TowerItem : MonoBehaviour
     public string ID { get; set; }
     protected int Lv = 0;  //레벨
     protected int MaxLv = 100;  //레벨
-    public double effect { get; set; }//착용효과
-    public double increase  { get; set; }
-    public double RetentionEffect { get; set; } //보유효과
-    public double RetentionIncrease { get; set; }
+    public double effect1 { get; set; }//착용효과
+    public double effect2 { get; set; }//착용효과
+    public double increase1  { get; set; }
+    public double increase2  { get; set; }
+    public double retention_effect1 { get; set; } //보유효과
+    public double retention_effect2 { get; set; } //보유효과
+    public double retention_increase1 { get; set; }
+    public double retention_increase2 { get; set; }
     public int ItemCount { get; set; }
     public bool Ative { get; set; }
     public bool ChoiceItem { get; set; }
@@ -33,8 +37,25 @@ public class TowerItem : MonoBehaviour
 
         LvText = GetComponentInChildren<TextMeshProUGUI>();
         LvText.text = "Lv: " +  Lv.ToString();
-        //this.transform.SetAsLastSibling(); //이미지 먼저
-        Info = InfoPlane.transform.GetChild(1).GetComponent<Text>(); //2번째 자식
+
+        item_name = InfoPlane.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        item_lv = InfoPlane.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        retention_effect1_name = InfoPlane.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        retention_effect1_current_value = retention_effect1_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        retention_effect1_update_value = retention_effect1_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        retention_effect2_name = InfoPlane.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+        retention_effect2_current_value = retention_effect2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        retention_effect2_update_value = retention_effect2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        effectX1_name = InfoPlane.transform.GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        effectX1_current_value = effectX1_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        effectX1_update_value = effectX1_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        effectX2_name = InfoPlane.transform.GetChild(0).GetChild(2).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+        effectX2_current_value = effectX2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        effectX2_update_value = effectX2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
         MyButton = this.GetComponent<Button>();
         if (Ative && Lv != 100) //info버튼 활성화기능
@@ -46,14 +67,9 @@ public class TowerItem : MonoBehaviour
             MyButton.interactable = false; //버튼 비활성화 상태
         }
         InfoPlane.SetActive(false);
-        InfoButton = InfoPlane.transform.GetChild(2).GetComponentsInChildren<Button>();
+        InfoButton = InfoPlane.transform.GetChild(1).GetComponentsInChildren<Button>();
         InfoButton[0].interactable = true;
 
-    }
-
-    public void Print()
-    {
-        print(ID+" "+ Lv+" "+ effect+" "+ increase+" "+ RetentionEffect+" "+ RetentionIncrease);
     }
 
     private void Start()
@@ -75,16 +91,20 @@ public class TowerItem : MonoBehaviour
         {
             Lv++; //변경된 값 이상함 체크 필요
             print(ID +" 레벌업 1회");
-            effect += increase;
-            RetentionEffect += RetentionIncrease;
-            
+            effect1 += increase1;
+            retention_effect1 += retention_increase1;
+            effect2 += increase2;
+            retention_effect2 += retention_increase2;
+
             LvText.text = Lv.ToString();
 
         }
         else if(Lv==MaxLv-1)
         {
-            effect *= 2;
-            RetentionEffect *= 2;
+            effect1 *= 2;
+            retention_effect1 *= 2;
+            effect2 *= 2;
+            retention_effect2 *= 2;
             //모든 효과 두배로 만들고 현재 레벨업 버튼 비활성
             InfoButton[0].onClick.RemoveListener(LevelUP);
             //다음 레벨업 버튼 생성
@@ -101,8 +121,22 @@ public class TowerItem : MonoBehaviour
     }
 
     [SerializeField] GameObject InfoPlane;
-    Text Info;
-
+    TextMeshProUGUI item_name;
+    TextMeshProUGUI item_lv;
+    TextMeshProUGUI retention_effect1_name;
+    TextMeshProUGUI retention_effect1_current_value;
+    TextMeshProUGUI retention_effect1_update_value;
+    TextMeshProUGUI retention_effect2_name;
+    TextMeshProUGUI retention_effect2_current_value;
+    TextMeshProUGUI retention_effect2_update_value;
+    TextMeshProUGUI effectX1_name;
+    TextMeshProUGUI effectX1_current_value;
+    TextMeshProUGUI effectX1_update_value;
+    TextMeshProUGUI effectX2_name;
+    TextMeshProUGUI effectX2_current_value;
+    TextMeshProUGUI effectX2_update_value;
+    TextMeshProUGUI tooltip;
+    TextMeshProUGUI currency_sub_amout;
     //Test Effect2;
     public void ClickInfoButton()
     {
@@ -111,17 +145,30 @@ public class TowerItem : MonoBehaviour
         //착용도 작업해야함
     }
 
-    void SetInfo()
+    void SetInfo() 
     {
+        item_name.text = ID; //이름 x  / 정해지고 나면 변경
+        item_lv.text = Lv.ToString();
+        //보유효과
+        retention_effect1_current_value.text = retention_effect1.ToString();
+        retention_effect1_update_value.text = retention_effect1+ retention_increase1.ToString();
+        retention_effect2_current_value.text = retention_effect2.ToString();
+        retention_effect2_update_value.text = retention_effect2 + retention_increase2.ToString();
+        //착용효과
+        effectX1_current_value.text = effect1.ToString();
+        effectX2_update_value.text = effect2.ToString();
         if (ID[0] == 'C')
         {
             //캐논
-            Info.text = "Lv : " + Lv + '\n' + " 착용 공격력 : " + effect + '\n' + " 보유 공격력 : " + RetentionEffect;
+            retention_effect1_name.text = "공격력";
+            retention_effect2_name.text = "방어력";
+
         }
         else
         {
             //수리공
-            Info.text = "Lv : " + Lv + '\n' + "체력 : " + effect + '\n' + " 보유 체력 : " + RetentionEffect;
+            retention_effect1_name.text = "체력";
+            retention_effect2_name.text = "회복력";
         }
     }
 
