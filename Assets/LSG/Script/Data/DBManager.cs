@@ -102,9 +102,9 @@ public class DBManager : MonoBehaviour
                 targetData.retention_healing = double.Parse(column[5]);
                 targetData.retention_increase_healing = double.Parse(column[6]);
                 targetData.hpX = double.Parse(column[7]);
-                targetData.hp_increase = double.Parse(column[8]);
+                targetData.hpX_increase = double.Parse(column[8]);
                 targetData.healingX = double.Parse(column[9]);
-                targetData.healing_increase = double.Parse(column[10]);
+                targetData.healingX_increase = double.Parse(column[10]);
 
                 if (i == 8) return;
             }
