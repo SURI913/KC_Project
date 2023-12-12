@@ -99,7 +99,7 @@ public class Monster : MonoBehaviour, IDamageable
     public void Move()
     {
         Debug.Log(" HP:" + HP);
-        /*if (!isatk)
+        /*if (!isAtk)
         {
             //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);

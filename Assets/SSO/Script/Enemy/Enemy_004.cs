@@ -22,8 +22,6 @@ public class Enemy_004 : MonoBehaviour, IDamageable
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
 
-    private Animator enemyAnimation; // Unity Animation 컴포넌트
-
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -40,8 +38,6 @@ public class Enemy_004 : MonoBehaviour, IDamageable
 
         // spine 컴포넌트가 올바르게 연결되었는지 확인
         spine = GetComponent<SkeletonAnimation>();
-
-        enemyAnimation = GetComponent<Animator>();
     }
 
     public void OnDamage(double Damage, RaycastHit2D hit)
@@ -50,14 +46,11 @@ public class Enemy_004 : MonoBehaviour, IDamageable
         Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
          {
-            Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
-            Debug.Log(gameObject.name + "처치");
-
-            /*if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
+            if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
             {
                 StartCoroutine(DeadAnimation());
                 isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
-            }*/
+            }
         }
     }
 
@@ -78,7 +71,7 @@ public class Enemy_004 : MonoBehaviour, IDamageable
 
     void Update()
     {
-        transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
+        transform.Translate(Vector2.right * Time.deltaTime * enemySpeed);
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 1);
@@ -131,8 +124,7 @@ public class Enemy_004 : MonoBehaviour, IDamageable
     {
         while (true)
         {
-            //spine.AnimationState.SetAnimation(0, "Attack", true);
-            enemyAnimation.SetTrigger("Enemy_attack");
+            spine.AnimationState.SetAnimation(0, "Attack", true);
             yield return new WaitForSeconds(0.6f);
             Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up * 2);
             GameObject attackInstance = Instantiate(enemy_attack_4, spawnPosition, Quaternion.identity);

@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2028526203
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 3096740252356154223, guid: b59693e14fffcd346a6d908365960509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -211,10 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03f0d2fe52f8ba4bae1036f4b041d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpeed: 3
+  StartPosition: {x: 26, y: 1}
   attackCooldown: 5.5
   enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
   rayLength: 10
-  enemyRespawner: {fileID: 0}
 --- !u!1 &2495146543349989520
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +318,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2028526203
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -1690275867736489949, guid: b59693e14fffcd346a6d908365960509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
