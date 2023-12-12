@@ -34,7 +34,16 @@ public class TowerItem : MonoBehaviour
         LvText = GetComponentInChildren<TextMeshProUGUI>();
         LvText.text = "Lv: " +  Lv.ToString();
         //this.transform.SetAsLastSibling(); //이미지 먼저
-        Info = InfoPlane.transform.GetChild(1).GetComponent<Text>(); //2번째 자식
+        Info = InfoPlane.transform.GetChild(1).gameObject; //2번째 자식
+        item_name = Info.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        item_lv = Info.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        retention_effect1_name = Info.transform.GetChild(0).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
+        retention_effect1_current_value = retention_effect1_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        retention_effect1_update_value = retention_effect1_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        retention_effect2_name = Info.transform.GetChild(0).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
+        retention_effect2_current_value = retention_effect2_name.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        retention_effect2_update_value = retention_effect2_name.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
         MyButton = this.GetComponent<Button>();
         if (Ative && Lv != 100) //info버튼 활성화기능
@@ -101,8 +110,19 @@ public class TowerItem : MonoBehaviour
     }
 
     [SerializeField] GameObject InfoPlane;
-    Text Info;
-
+    GameObject Info;
+    TextMeshProUGUI item_name;
+    TextMeshProUGUI item_lv;
+    TextMeshProUGUI retention_effect1_name;
+    TextMeshProUGUI retention_effect1_current_value;
+    TextMeshProUGUI retention_effect1_update_value;
+    TextMeshProUGUI retention_effect2_name;
+    TextMeshProUGUI retention_effect2_current_value;
+    TextMeshProUGUI retention_effect2_update_value;
+    TextMeshProUGUI effectX1;
+    TextMeshProUGUI effectX2;
+    TextMeshProUGUI tooltip;
+    TextMeshProUGUI currency_sub_amout;
     //Test Effect2;
     public void ClickInfoButton()
     {
@@ -111,17 +131,24 @@ public class TowerItem : MonoBehaviour
         //착용도 작업해야함
     }
 
-    void SetInfo()
+    void SetInfo() 
     {
+        item_name.text = ID; //이름 x  / 정해지고 나면 변경
+        item_lv.text = Lv.ToString();
+        retention_effect1_current_value.text = RetentionEffect.ToString();
+        //retention_effect2_current_value.text = RetentionEffect.ToString();
         if (ID[0] == 'C')
         {
             //캐논
-            Info.text = "Lv : " + Lv + '\n' + " 착용 공격력 : " + effect + '\n' + " 보유 공격력 : " + RetentionEffect;
+            retention_effect1_name.text = "공격력";
+            retention_effect2_name.text = "방어력";
+
         }
         else
         {
             //수리공
-            Info.text = "Lv : " + Lv + '\n' + "체력 : " + effect + '\n' + " 보유 체력 : " + RetentionEffect;
+            retention_effect1_name.text = "체력";
+            retention_effect2_name.text = "회복력";
         }
     }
 
