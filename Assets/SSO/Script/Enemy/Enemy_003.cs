@@ -6,8 +6,7 @@ using UnityEngine;
 public class Enemy_003 : MonoBehaviour, IDamageable
 {
     // 원거리 몬스터
-    public float enemySpeed;    // 몬스터 이동속도
-    public Vector2 StartPosition;  // 몬스터 시작위치 
+    private float enemySpeed;    // 몬스터 이동속도
     public float attackCooldown;  // 공격 쿨타임
     private double hp;                  // 몬스터 체력
     private float damage;             // 몬스터의 데미지
@@ -20,10 +19,20 @@ public class Enemy_003 : MonoBehaviour, IDamageable
     private SkeletonAnimation spine; // Spine 애니메이션
     private bool deadAnimation = false; // 캐릭터가 죽었는지 확인하고, update문에서 이동을 멈추는 역할
     private bool isDead = true;
+    [SerializeField]
+    private Enemy_Respown enemyRespawner;  // 참조
 
     void Start()
     {
-        transform.position = StartPosition;
+        // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
+        // 이렇게 하면 에디터에서 수동으로 설정하지 않아도 자동으로 참조를 찾아줌
+        if (!enemyRespawner)
+        {
+            enemyRespawner = FindObjectOfType<Enemy_Respown>();
+        }
+
+        transform.position = enemyRespawner.GetGroundEnemyPosition();
+        enemySpeed = enemyRespawner.GetEnemySpeed();
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         originalEnemySpeed = enemySpeed;
 
