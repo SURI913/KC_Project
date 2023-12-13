@@ -17,6 +17,7 @@ public class C_T001 : Cat, IAttack
 
     [SerializeField] GameObject attackEffect;
 
+    public GameObject damage_prefab;
 
     private void InitData()
     {
@@ -39,6 +40,10 @@ public class C_T001 : Cat, IAttack
 
         growingData = growingdata;
         Debug.Log(ID+"growingData 적용완료");
+
+        damagePrefab = damage_prefab;
+
+        my_position = transform;
 
         catMotion = GetComponentInChildren<Animator>();
 
