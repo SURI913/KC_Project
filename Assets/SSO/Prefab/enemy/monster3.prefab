@@ -276,6 +276,7 @@ MonoBehaviour:
   enemy_attack_3: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
   rayLength: 10
   enemyRespawner: {fileID: 0}
+  damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
 --- !u!70 &6429076894125989964
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
