@@ -89,21 +89,21 @@ public class Growth : MonoBehaviour
     {
         sub_curreny_attack_text = transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
         curreny_attack_text = transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        update_attack_text = transform.GetChild(0).GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>();
+        update_attack_text = transform.GetChild(0).GetChild(2).GetChild(2).GetComponent<TextMeshProUGUI>();
 
 
         sub_curreny_hp_text = transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
         curreny_hp_text = transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        update_hp_text = transform.GetChild(1).GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>();
+        update_hp_text = transform.GetChild(1).GetChild(2).GetChild(2).GetComponent<TextMeshProUGUI>();
 
 
         sub_curreny_protection_text = transform.GetChild(2).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
         curreny_protection_text = transform.GetChild(2).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        update_protection_text = transform.GetChild(2).GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>();
+        update_protection_text = transform.GetChild(2).GetChild(2).GetChild(2).GetComponent<TextMeshProUGUI>();
 
         sub_curreny_healing_text = transform.GetChild(3).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
         curreny_healing_text = transform.GetChild(3).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
-        update_healing_text = transform.GetChild(3).GetChild(2).GetChild(3).GetComponent<TextMeshProUGUI>();
+        update_healing_text = transform.GetChild(3).GetChild(2).GetChild(2).GetComponent<TextMeshProUGUI>();
 
     }
 
