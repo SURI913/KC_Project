@@ -46,4 +46,9 @@ public class InventorySlot : MonoBehaviour
         _amount_text.text = item.amount.ToString();
         _item_img.sprite = item.icon_sprite;
     }
+
+    void OnclickContent()
+    {
+
+    }
 }

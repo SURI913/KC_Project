@@ -43,7 +43,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a6501a7465e26564481fb21a998cde88, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1d569df46c85e124a8de5629ebc732fc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -131,7 +131,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 10aa39a54c5c8cd4fb0cb5c692693a32, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4f99269a447acda46bdbef9bcce6e7b8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -158,7 +158,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0a6607286632a24c9edc0aab6670cbe, type: 2}
+  m_Motion: {fileID: 7400000, guid: 999d4ba4625bff148a58d5a9ca3e9b4e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -207,7 +207,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 53879194d6e728d4c91f1135991ee744, type: 2}
+  m_Motion: {fileID: 7400000, guid: 569cef4b1b1fc83458c4476340185c46, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -262,7 +262,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3fa49250c7fa8634989194000c9ec2ac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2cdfbe23850963c46bf670145b107960, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -385,7 +385,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b45588189567f3143a3663f230fb5d2f, type: 2}
+  m_Motion: {fileID: 7400000, guid: ade21d39e39b99a47b85720b40b081c4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: isDead
