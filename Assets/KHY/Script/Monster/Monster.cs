@@ -80,11 +80,13 @@ public class Monster : MonoBehaviour, IDamageable
 
 
     private float rayLen=10f;// 레이캐스트의 길이 
-    private LayerMask layerMask; //레이어 플레이어 
+    private LayerMask layerMask; //레이어 플레이어
+    private LayerMask layerMask1;
     public bool isAtk = false; // 공격중 확인
     public bool isDead = false;
    // private bool ismove = true;
     RaycastHit2D hit;
+    RaycastHit2D hit1;
     private float moveSpeed = 3f;
    
    
@@ -126,20 +128,24 @@ public class Monster : MonoBehaviour, IDamageable
     {
         // 찾을 레이어 저장
         layerMask = LayerMask.GetMask("Player");
+        layerMask1 = LayerMask.GetMask("Tower");
         //레이를 표시할 포지션
         Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 5);
+        Vector2 MonsterPosition1 = new Vector2(transform.position.x, transform.position.y + 7);
         //hit에 저장
         hit = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
+        hit1 = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
         //레이 색 줘서 표시
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
 
         Cat cat = GameObject.FindWithTag("Player").GetComponent<Cat>();
+        Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
         double catHP = cat.hp;
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
-            if(hit.collider.CompareTag("Player"))
+            if(hit.collider.CompareTag("Player")||hit1.collider.CompareTag("Castle") )
             {
 
                 //플레이어 태그를 찾고 공격
