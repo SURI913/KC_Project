@@ -14,19 +14,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GrowthAttack:
   - Lv: 0
-    MaxLV: 0
-    Attack: 0
-    Increase: 0
-  - Lv: 0
-    MaxLV: 0
-    Attack: 0
-    Increase: 0
+    MaxLV: 100
+    Attack: 20
+    Increase: 1
+    sub_curreny_min: 0
+    sub_curreny_max: 1000
+    sub_curreny_Increase: 10
+  - Lv: 101
+    MaxLV: 300
+    Attack: 122
+    Increase: 2
+    sub_curreny_min: 1015
+    sub_curreny_max: 4000
+    sub_curreny_Increase: 15
   GrowthHp:
   - Lv: 0
-    MaxLV: 0
-    Hp: 0
-    Increase: 0
+    MaxLV: 1
+    Hp: 550
+    Increase: 30
+    sub_curreny_min: 0
+    sub_curreny_max: 0
+    sub_curreny_Increase: 0
+  - Lv: 2
+    MaxLV: 100
+    Hp: 660
+    Increase: 80
+    sub_curreny_min: 10
+    sub_curreny_max: 1000
+    sub_curreny_Increase: 15
+  growth_protection:
   - Lv: 0
-    MaxLV: 0
-    Hp: 0
-    Increase: 0
+    MaxLV: 100
+    protection: 0
+    Increase: 1
+    sub_curreny_min: 0
+    sub_curreny_max: 10000
+    sub_curreny_Increase: 100
+  - Lv: 101
+    MaxLV: 300
+    protection: 122
+    Increase: 2
+    sub_curreny_min: 10
+    sub_curreny_max: 10150
+    sub_curreny_Increase: 15
+  growth_heal:
+  - Lv: 0
+    MaxLV: 100
+    healing: 0
+    Increase: 1
+    sub_curreny_min: 0
+    sub_curreny_max: 1000
+    sub_curreny_Increase: 10
+  - Lv: 101
+    MaxLV: 300
+    healing: 122
+    Increase: 2
+    sub_curreny_min: 1050
+    sub_curreny_max: 4000
+    sub_curreny_Increase: 15
