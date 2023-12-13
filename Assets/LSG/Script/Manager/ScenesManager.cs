@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class ScenesManager : MonoBehaviour
     /// </summary>
     Stack<int> scenesStage = new Stack<int>();
     Stack<int> scenesUI = new Stack<int>();
-    int currentSceneIndex = 1;
+    int currentSceneIndex = 0;
     Image FadeObj;
     Color fadeInOutColor;
     AsyncOperation asyncOper;
@@ -46,12 +45,13 @@ public class ScenesManager : MonoBehaviour
 
             yield return null;
         }
+        
         while (!asyncOper.isDone)
         {
             yield return null;
         }
         yield return new WaitForSeconds(3f);  // 3초 대기
-
+        
         while (fadeInOutColor.a > 0)   // 점점 투명하게
         {
             fadeInOutColor.a -= 0.05f;
@@ -59,7 +59,6 @@ public class ScenesManager : MonoBehaviour
 
             yield return null;
         }
-        Time.timeScale = 1f;  // 게임 재개
     }
 
     public IEnumerator TransitionToNextStage()
@@ -69,7 +68,6 @@ public class ScenesManager : MonoBehaviour
             currentSceneIndex = 0;
         }
         yield return new WaitForSeconds(3f);  // 3초 대기
-        Time.timeScale = 0f;  // 게임 일시정지
         asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
         yield return StartCoroutine(ShowMainUI());
         if(scenesStage.Count !=0)
@@ -86,9 +84,6 @@ public class ScenesManager : MonoBehaviour
 
     public IEnumerator ShowTower()
     {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        asyncOper = SceneManager.LoadSceneAsync(9, LoadSceneMode.Additive);  //비동기 씬 로드
-
         if (scenesUI.Count != 0)
         {
             foreach (var go in scenesUI)
@@ -97,7 +92,8 @@ public class ScenesManager : MonoBehaviour
 
             }
         }
-        currentSceneIndex--;
+        yield return new WaitForSeconds(3f);  // 3초 대기
+        asyncOper = SceneManager.LoadSceneAsync(9, LoadSceneMode.Additive);  //비동기 씬 로드
         yield return StartCoroutine(FadeOutIn());
 
         scenesUI.Clear();
@@ -130,8 +126,12 @@ public class ScenesManager : MonoBehaviour
 
     public IEnumerator ShowDungeonUI()
     {
+        currentSceneIndex--;
+        if(currentSceneIndex <= 0 && currentSceneIndex>=6)
+        {
+            currentSceneIndex = 0;
+        }
         yield return new WaitForSeconds(3f);  // 3초 대기
-        Time.timeScale = 0f;  // 게임 일시정지
         asyncOper = SceneManager.LoadSceneAsync(7, LoadSceneMode.Single);  //비동기 씬 로드
         if (scenesUI.Count != 0)
         {
