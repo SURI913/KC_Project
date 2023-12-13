@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour, IDamageable, IAttack
 {
@@ -13,7 +9,10 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
     protected double attack;  //공격력 전달할 때만 사용
 
     protected double healing = 0; //회복력
+    protected double protection = 0; //방어력
     protected bool dead = false;    //죽음확인
+
+    //타워 업그레이드에서 값 리셋해야함
     public int Lv { get; set; }
     public float LvEffect { get; set; }
     private float LvEffectIncreace = 0.01f;
@@ -29,7 +28,6 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
     private float wheelSpeed = 15f;
     void initData()
     {
-        TowerUI.SetActive(false); //기본 설정
         Lv = 1;
         LvEffect = 1 + LvEffectIncreace * Lv;
         hpApply();
@@ -43,66 +41,41 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         Debug.Log(towerWheel.name);
     }
 
-    [SerializeField] GameObject cannonData;
-    [SerializeField] GameObject repairmanData;
-
-    private TowerItem[] AllCannon;
-    private TowerItem[] Allrepairman;
+    [SerializeField] CurrentTowerData current_tower_data;
     private void Awake()
     {
-        if (!cannonData) { Debug.Log("대포 데이터가 없습니다."); }
-        else
-        {
-            AllCannon = cannonData.GetComponentsInChildren<TowerItem>();
-        }
-        if (!repairmanData) { Debug.Log("t수리공 데이터가 없습니다."); }
-        else
-        {
-            Allrepairman = repairmanData.GetComponentsInChildren<TowerItem>();
-        }
-
-        //데이터 가져오기
         //레벨효과 = 1 + 0.01*레벨
         initData();
     }
 
     public double OnAttack(RaycastHit2D hit)
     {
-        attack = 0;
-        foreach (var item in AllCannon)
-        {
-            if (item.Ative) //활성화 된 값만 가져옴
-            {
-                attack += item.retention_effect1;
-            }
-            if (item.ChoiceItem) //선택한 아이템만 가져옴 아이템 가져오는 방식 이후 수정
-            {
-                attack *= item.effect1; //배수효과
-            }
-        }
+        attack = current_tower_data.retention_attack * current_tower_data.attackX* LvEffect;
+        
         return attack;
     }
 
     public double OnSkill(RaycastHit2D hit)
     {
+        //타워는 스킬 x 나중에 파츠 고유 능력에서 사용하는걸로
         return 0;
     }   
 
     public void hpApply() //이후에 실시간으로 값 저장되면 수정하는 걸로
     {
-        
-        //지금은 닫기 버튼 눌렀을때 저장되게끔 설정
-        foreach (var item in Allrepairman)
-        {
-            if (item.Ative) //활성화 된 값만 가져옴
-            {
-                maxHp += item.retention_effect1; //착용
-            }
-            if (item.ChoiceItem)
-            {
-                maxHp *= item.effect1; //배수
-            }
-        }
+        maxHp = current_tower_data.retention_hp * current_tower_data.hpX* LvEffect;
+    }
+
+    private double OnProtection()
+    {
+        protection = current_tower_data.retention_protection * current_tower_data.protectionX * LvEffect;
+        return protection;
+    }
+
+    private void OnHealing() //회복 주기 타워입니동 마자요
+    {
+        healing = current_tower_data.retention_healing * current_tower_data.healingX * LvEffect;
+        hp += healing;
     }
 
     private void hpInit()
@@ -122,17 +95,12 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         if (!!dead) {
-            hp-=Damage;
+            hp-=(Damage- OnProtection());
         }
-        if(hp <= 0) { dead = true;}
-    }
-
-    [SerializeField] GameObject TowerUI;
-    public void OnMouseUp()
-    {
-        Debug.Log("타워 확인");
-        //활성화
-        TowerUI.SetActive(true);
+        if(hp <= 0) { dead = true; // 씬의 처음으로 이동 //타워 죽음 처리
+            hpInit();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -153,9 +121,20 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         }
     }
 
+    float hp_cooltime = 5f;
     private void Update()
     {
-        
+        //회복 쿨타임
+        if (hp_cooltime > 0)
+        {
+            hp_cooltime -= Time.deltaTime;
+        }
+        else
+        {
+            hp_cooltime = 5f;
+            OnHealing();
+        }
+
         towerWheel.transform.Rotate(-Vector3.forward * Time.deltaTime * wheelSpeed);
         
     }
