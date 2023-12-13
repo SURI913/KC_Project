@@ -1,3 +1,5 @@
+using DamageNumbersPro.Demo;
+using DamageNumbersPro;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +31,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     private Animator enemyAnimation; // Unity Animation 컴포넌트
 
+    public GameObject damagePrefab;
+
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -59,6 +63,7 @@ public class Boss : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
     {
         hp -= Damage;
+        DisplayDamageNumber(Damage);
         Debug.Log("보스 " + gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)  // 보스가 죽으면
         {
@@ -71,6 +76,21 @@ public class Boss : MonoBehaviour, IDamageable
                 isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
             }*/
         }
+    }
+
+    void DisplayDamageNumber(double Damage)
+    {
+        DamageNumber prefab;
+        prefab = damagePrefab.GetComponent<DamageNumber>();
+
+        DNP_PrefabSettings settings = DNP_DemoManager.instance.GetSettings();
+
+        // 생성된 데미지 숫자에 데미지 및 설정을 적용
+        DamageNumber newDamageNumber = prefab.Spawn(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), (float)Damage);
+        newDamageNumber.SetFollowedTarget(transform);
+
+        // 설정 적용
+        settings.Apply(newDamageNumber);
     }
 
     IEnumerator DeadAnimation()
@@ -127,6 +147,7 @@ public class Boss : MonoBehaviour, IDamageable
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
         Vector2 raycastStartPosition = new Vector2(transform.position.x, transform.position.y + 15);
+
         RaycastHit2D hit = Physics2D.Raycast(raycastStartPosition, Vector2.left, rayLength, LayerMask.GetMask("Castle", "Player"));
 
         // Ray를 시각적으로 표시

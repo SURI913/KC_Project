@@ -52,13 +52,13 @@ public class Projectile : MonoBehaviour
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
-            Debug.Log(ID + "공격중");
+            //Debug.Log(ID + "공격중");
             hitDamage.OnDamage(grandParentIAttack.OnAttack(target), target);
             Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }
         {
-            Debug.Log(ID + "대상이 없습니다");
+            //Debug.Log(ID + "대상이 없습니다");
         }
     }
     bool checkTarget = false;
@@ -80,11 +80,11 @@ public class Projectile : MonoBehaviour
         if (!target)
         {
             checkTarget=false;
-            Debug.Log(ID + "타겟이 없습니다");
+            //Debug.Log(ID + "타겟이 없습니다");
         }
         if (!checkTarget)
         {
-            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*20, 0f, Vector2.right,50f, LayerMask.GetMask("Target"));
+            target = Physics2D.BoxCast(fireTransform.position, transform.lossyScale*20, 0f, Vector2.right,20f, LayerMask.GetMask("Target"));
 
             checkTarget = true;
         }

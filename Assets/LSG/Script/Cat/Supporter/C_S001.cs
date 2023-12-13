@@ -16,6 +16,7 @@ public class C_S001 : Cat, IAttack
     //스킬을 위한 함수 일정범위 내의 영웅들을 골라냄
     List<Cat> catsHealing = new List<Cat>();
     [SerializeField] GrowingData growingdata;
+    public GameObject damage_prefab;
 
     //캐릭터 값 초기화
     //DB에서 끌어옴     
@@ -49,6 +50,9 @@ public class C_S001 : Cat, IAttack
 
         catMotion = GetComponentInChildren<Animator>();
 
+        damagePrefab = damage_prefab;
+
+        my_position = transform;
 
         Vector2 skillpos = this.transform.position;
         //스킬특기

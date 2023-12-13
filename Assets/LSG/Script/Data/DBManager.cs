@@ -13,6 +13,8 @@ public class DBManager : MonoBehaviour
     const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W38:AC";
     const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=AD38:AJ";
 
+    //현재 타워 데이터 저장
+    [SerializeField] CurrentTowerData current_tower_data;
     private void Awake()
     {
         StartCoroutine(DownloadCannon());
@@ -98,6 +100,12 @@ public class DBManager : MonoBehaviour
                 if (i == 8) return;
             }
         }
+        //초기 세팅
+        current_tower_data.attackX = towerData.Cannon[0].attackX;
+        current_tower_data.protectionX = towerData.Cannon[0].protectionX;
+
+        current_tower_data.retention_attack = towerData.Cannon[0].retention_attack;
+        current_tower_data.retention_protection = towerData.Cannon[0].retention_protection;
     }
     [SerializeField] GrowthData growthData;
     [SerializeField] GrowingData growingSetData;
@@ -129,6 +137,11 @@ public class DBManager : MonoBehaviour
                 if (i == 8) return;
             }
         }
+        current_tower_data.hpX = towerData.RepairMan[0].hpX;
+        current_tower_data.healingX = towerData.RepairMan[0].healingX;
+
+        current_tower_data.retention_hp = towerData.RepairMan[0].retention_hp;
+        current_tower_data.retention_healing = towerData.RepairMan[0].retention_healing;
     }
 
     void SetGrowthAtk(string tvc)

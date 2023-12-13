@@ -35,6 +35,6 @@ public class CurrencyItem : Item, IUsableItem
 
     public override Item CreateItem()
     {
-        return new CurrencyItem(CurrentItemData);
+        return new CurrencyItem(CurrentItemData, Amount);
     }
 }

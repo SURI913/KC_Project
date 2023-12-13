@@ -287,6 +287,7 @@ MonoBehaviour:
   attackCooldown: 2
   boss_attack: {fileID: 6579477402129055740, guid: f85c2b44842a5b1468c9c6136cb5afe9, type: 3}
   rayLength: 12
+  damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
 --- !u!70 &9121283481853452532
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
