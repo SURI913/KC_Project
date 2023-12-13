@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +60,20 @@ namespace DamageNumbersPro.Demo
             if(fade != null)
             {
                 fade.alpha = 1f;
+            }
+        }
+
+        public void SetCurrentPrefab(DamageNumber newPrefab)
+        {
+            // 현재 사용 중인 프리팹을 외부에서 지정된 프리팹으로 변경
+            for (int i = 0; i < prefabs.Length; i++)
+            {
+                if (prefabs[i] == newPrefab)
+                {
+                    currentIndex = i;
+                    UpdateCurrent();
+                    break;
+                }
             }
         }
 

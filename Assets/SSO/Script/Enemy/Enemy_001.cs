@@ -1,3 +1,5 @@
+using DamageNumbersPro.Demo;
+using DamageNumbersPro;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +26,9 @@ public class Enemy_001 : MonoBehaviour, IDamageable
 
     private Animator enemyAnimation; // Unity Animation 컴포넌트
 
+    public GameObject damagePrefab;
+
+
 
     void Start()
     {
@@ -48,6 +53,7 @@ public class Enemy_001 : MonoBehaviour, IDamageable
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         hp -= Damage;
+        DisplayDamageNumber(Damage);
         Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
@@ -59,6 +65,22 @@ public class Enemy_001 : MonoBehaviour, IDamageable
                 isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
             }*/
         }
+    }
+
+    void DisplayDamageNumber(double Damage)
+    {
+        DamageNumber prefab;
+        prefab = damagePrefab.GetComponent<DamageNumber>();
+
+
+        DNP_PrefabSettings settings = DNP_DemoManager.instance.GetSettings();
+
+        // 생성된 데미지 숫자에 데미지 및 설정을 적용
+        DamageNumber newDamageNumber = prefab.Spawn(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), (float)Damage);
+        newDamageNumber.SetFollowedTarget(transform);
+
+        // 설정 적용
+        settings.Apply(newDamageNumber);
     }
 
     IEnumerator DeadAnimation()
