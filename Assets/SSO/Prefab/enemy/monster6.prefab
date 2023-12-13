@@ -315,3 +315,4 @@ MonoBehaviour:
   enemy_attack_1: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
   rayLength: 1
   enemyRespawner: {fileID: 0}
+  damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}

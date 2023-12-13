@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Enemy_Respown : MonoBehaviour
 {
     public PoolManager pool;
-    public GameObject warningUI;  // 경고 UI
-    public GameObject stageClearUI;  // 클리어 텍스트
+    //public GameObject warningUI;  // 경고 UI
+    //public GameObject stageClearUI;  // 클리어 텍스트
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
     public GameObject bossPrefab; // 보스 프리팹
     public double bossHp;
@@ -128,19 +128,19 @@ public class Enemy_Respown : MonoBehaviour
     // 경고 메시지 표시 및 숨기기를 위한 함수 추가
     void ShowWarning()
     {
-        warningUI.SetActive(true);  // 경고 UI 활성화
+        //warningUI.SetActive(true);  // 경고 UI 활성화
         StartCoroutine(UIWait(3)); // 3초 후에 경고 UI 숨기기
     }
 
     IEnumerator UIWait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        warningUI.SetActive(false);
+        //warningUI.SetActive(false);
     }
 
     public void ShowStageClear()
     {
-        stageClearUI.SetActive(true);  // "Stage Clear!!" 텍스트 활성화
+        //stageClearUI.SetActive(true);  // "Stage Clear!!" 텍스트 활성화
         StartCoroutine(TransitionToNextStage());
     }
 
