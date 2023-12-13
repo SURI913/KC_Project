@@ -6,12 +6,12 @@ using UnityEngine;
 
 public abstract class ItemData : ScriptableObject //아이템 공통 데이터
 {
-    [SerializeField] private int id;
-    [SerializeField] private new string name;
+    [SerializeField] public int id;
+    [SerializeField] public new string name;
 
     [Multiline]
-    [SerializeField] private string description;
-    [SerializeField] private Sprite icon_sprite;
+    [SerializeField] public string description;
+    [SerializeField] public Sprite icon_sprite;
 
     /// <summary> 타입에 맞는 새로운 아이템 생성 </summary>
     public abstract Item CreateItem();

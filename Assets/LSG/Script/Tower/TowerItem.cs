@@ -181,15 +181,18 @@ public class TowerItem : MonoBehaviour
     //Test Effect2;
     public void ClickInfoButton()
     {
+        RemoveListenerInfoButton();
         InfoPlane.SetActive(true);
+        AddListenerInfoButton();
         SetInfo();
+
     }
 
     void SetInfo() 
     {
         print(ID);
         item_name.text = ID; //이름 x  / 정해지고 나면 변경
-        item_lv.text = Lv.ToString();
+        item_lv.text = "Lv: "+Lv.ToString();
         //보유효과
         retention_effect1_current_value.text = retention_effect1.ToString();
         retention_effect1_update_value.text = retention_effect1+ retention_increase1.ToString();
