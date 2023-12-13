@@ -46,10 +46,10 @@ public class TimeSlider : MonoBehaviour
             maxTime -= Time.deltaTime;
             yield return new WaitForSeconds(0.001f);
 
-            if(maxTime<-0)
+            if(maxTime<=0)
             {
                 stopTime = true;
-                SceneManager.LoadScene("0");
+                SceneManager.LoadScene("1-1");
             }
             if(stopTime==false)
             {
