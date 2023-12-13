@@ -140,14 +140,15 @@ public class Enemy_Respown : MonoBehaviour
 
     public void ShowStageClear()
     {
+        ScenesManager sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
         //stageClearUI.SetActive(true);  // "Stage Clear!!" 텍스트 활성화
-        StartCoroutine(TransitionToNextStage());
+        StartCoroutine(sceneManager.TransitionToNextStage());
     }
 
-    IEnumerator TransitionToNextStage()
+    /*IEnumerator TransitionToNextStage()
     {
         yield return new WaitForSeconds(3f);  // 3초 대기
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);  // 다음 씬으로 전환
-    }
+    }*/
 }

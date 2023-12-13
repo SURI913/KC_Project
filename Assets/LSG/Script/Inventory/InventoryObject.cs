@@ -6,8 +6,8 @@ using UnityEngine;
 public class InventoryObject : MonoBehaviour
 {
     // Start is called before the first frame update
-    public double Cost;
-    public int index_item;
+    [NonSerialized] public double Cost;
+    [NonSerialized] public int index_item;
 
     [NonSerialized] public InventorySlot[] child;
 
