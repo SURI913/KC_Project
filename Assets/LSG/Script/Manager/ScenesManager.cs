@@ -59,21 +59,28 @@ public class ScenesManager : MonoBehaviour
 
             yield return null;
         }
+
+        FadeObj.enabled = false;
+        yield return null;
     }
 
     public IEnumerator TransitionToNextStage()
     {
-        if(currentSceneIndex == 6)
+        yield return new WaitForSeconds(3f);  // 3초 대기
+        if (currentSceneIndex == 6)
         {
             currentSceneIndex = 0;
         }
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
-        if(scenesStage.Count !=0)
+        if(currentSceneIndex != 0)
         {
-            currentSceneIndex = scenesStage.Pop();
+            SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
         }
-        SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
+        if (scenesStage.Contains(7))
+        {
+            SceneManager.UnloadSceneAsync(7);  //비동기 씬 로드
+        }
+
+        asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
         yield return StartCoroutine(FadeOutIn());
         yield return StartCoroutine(ShowMainUI());
 
@@ -143,11 +150,12 @@ public class ScenesManager : MonoBehaviour
 
             }
         }
+        scenesUI.Clear();
+        scenesUI.Push(7); //던전 번호 체크
 
         yield return StartCoroutine(FadeOutIn());
 
-        scenesUI.Clear();
-        scenesUI.Push(7); //던전 번호 체크
+        
         yield return null;
 
     }
