@@ -61,7 +61,6 @@ public class ScenesManager : MonoBehaviour
         }
 
         FadeObj.enabled = false;
-        yield return null;
     }
 
     public IEnumerator TransitionToNextStage()
