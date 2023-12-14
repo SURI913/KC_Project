@@ -21,7 +21,8 @@ public class Monster : MonoBehaviour, IDamageable
 
     public MonsterData monsterData; // 인스펙터에서 할당 즉 스크립터블 몬스터 데이터 넣기 
 
-   
+    ScenesManager sceneManager; //씬매니저 변수
+
     /* 데이터 매니저에서 시트의 데이터를 받았고
      몬스터 데이터 안에 리스트에 받아온 데이터를 저장했다.
      이를 M_D01에서 전부 초기화 시켜주고
@@ -35,8 +36,10 @@ public class Monster : MonoBehaviour, IDamageable
 
         HP = 100000000000;
         Attack = 10;
-        AtkTime = 3; 
-        
+        AtkTime = 3;
+
+        sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
+
     }
 
     public void FixedUpdate()
@@ -119,9 +122,10 @@ public class Monster : MonoBehaviour, IDamageable
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
             Debug.Log("던전 몬스터 처치");
             //로드씬
-            SceneManager.LoadScene("0");
+            StartCoroutine(sceneManager.TransitionToNextStage());
 
-        } 
+
+        }
     }
     
     public void OnAttack()

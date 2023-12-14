@@ -17,7 +17,6 @@ public class BackGround : MonoBehaviour
         width = myRenderer.bounds.size.x;
 
         startPos = transform.position;
-        Debug.Log(width + "길이");
     }
 
     private void Update()
