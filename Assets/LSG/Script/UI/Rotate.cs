@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Rotate : MonoBehaviour
 {
     private RectTransform rotation_target;
-    private float speed = -1;
+    private float speed = -5;
 
     void Start()
     {
