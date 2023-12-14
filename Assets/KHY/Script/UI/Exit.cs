@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class Exit : MonoBehaviour
 {
+    ScenesManager sceneManager;
 
-
-    void Awake()
+    private void Awake()
     {
-      /*  ScenesManager sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
-        StartCoroutine(sceneManager.TransitionToNextStage());
-        StartCoroutine(sceneManager.ShowMainUI());*/
+        sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
     }
     public void OnClick()
     {
-        SceneManager.LoadScene("1-1");
+        StartCoroutine(sceneManager.TransitionToNextStage());
+
         //던전끄고 사냥 씬으로 넘어가기
         // 수정 해라 수정 현재 씬으로 넘어오도록 겜 맴니거 ㄱㄱ
 

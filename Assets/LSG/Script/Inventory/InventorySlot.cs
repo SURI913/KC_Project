@@ -33,9 +33,11 @@ public class InventorySlot : MonoBehaviour
         //UI세팅
         slotUI = gameObject;
         _amount_text = slotUI.GetComponentInChildren<TextMeshProUGUI>();
-        _item_img = slotUI.GetComponentInChildren<Image>();
+        _item_img = slotUI.transform.GetChild(0).GetComponent<Image>();
 
         OnUIUpdate += UpdateUI;
+
+        UpdateUI();
 
         //클릭 시 정보 보이도록
     }

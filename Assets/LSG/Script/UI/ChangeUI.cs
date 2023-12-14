@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class ChangeUI : MonoBehaviour
 {
+    GameObject inventory_obj;
+    private void Awake()
+    {
+        inventory_obj = GameObject.Find("InventoryCanvas");
+    }
     enum ChangeUIFuntion
     {
         ShowMainUI, ShowTower, ShowDungeonUI, Inventory
@@ -29,7 +34,6 @@ public class ChangeUI : MonoBehaviour
             case (int)ChangeUIFuntion.ShowMainUI: { StartCoroutine(sceneManager.ShowMainUI()); break; }
             case (int)ChangeUIFuntion.ShowTower: { StartCoroutine(sceneManager.ShowTower()); break; }
             case (int)ChangeUIFuntion.ShowDungeonUI: { StartCoroutine(sceneManager.ShowDungeonUI()); break; }
-            case (int)ChangeUIFuntion.Inventory: { GameObject.Find("Inventory").SetActive(true); break; }
             default: { break; }
         }
     }
