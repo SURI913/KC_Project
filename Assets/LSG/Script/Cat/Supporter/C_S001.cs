@@ -46,7 +46,7 @@ public class C_S001 : Cat, IAttack
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID + "growingData 저장 완료");
+        //Debug.Log(ID + "growingData 저장 완료");
 
         catMotion = GetComponentInChildren<Animator>();
 
@@ -79,12 +79,12 @@ public class C_S001 : Cat, IAttack
         catMotion.SetTrigger("isSkill");
 
         Debug.Log( "힐링스킬 발동");
-        Debug.Log(catsHealing.Count);
+        //Debug.Log(catsHealing.Count);
         //요새 범위 안에있는 사람한테만 힐이 들어감
         foreach (var Cats in catsHealing)
         {
             Cats.hp += Cats.maxHp * skillEft;
-            Debug.Log(Cats.ID+ "힐링");
+           // Debug.Log(Cats.ID+ "힐링");
             if(hp > maxHp) //maxHp를 넘지않게 처리
             {
                 hp = maxHp;

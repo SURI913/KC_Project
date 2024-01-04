@@ -45,7 +45,7 @@ public class C_D001 : Cat, IAttack
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID + "growingData 저장 완료");
+        //Debug.Log(ID + "growingData 저장 완료");
 
         damagePrefab = damage_prefab;
 
@@ -71,7 +71,7 @@ public class C_D001 : Cat, IAttack
             skillDamage += bossAttack;
         }
         //공격력의 2배인 발사포 투척
-        Debug.Log(ID+"skillDamage: "+Unit.ToUnitString(skillDamage));
+        //Debug.Log(ID+"skillDamage: "+Unit.ToUnitString(skillDamage));
         return skillDamage;
     }
 

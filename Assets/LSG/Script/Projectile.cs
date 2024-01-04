@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
       
         if (!grandParent.GetComponent<Cat>().dead) //update 부하걸릴 가능성
         {
-            Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
+            //Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
             Vector2 Pos = target.transform.position - fireTransform.position;
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
