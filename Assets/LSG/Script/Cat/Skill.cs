@@ -32,10 +32,10 @@ public class Skill : Projectile
         IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
         if (hitDamage != null)
         {
-            Debug.Log(target.collider.tag);
-            Debug.Log(grandParent.transform.GetComponent<Cat>().ID+"가 스킬 사용 중");
+            //Debug.Log(target.collider.tag);
+            //Debug.Log(grandParent.transform.GetComponent<Cat>().ID+"가 스킬 사용 중");
             hitDamage.OnDamage(grandParentIAttack.OnSkill(target), target);
-            Debug.Log(grandParent.transform.tag + "가 " + grandParentIAttack.OnAttack(target) + "만큼의 데미지를 입혔습니다");
+            //Debug.Log(grandParent.transform.tag + "가 " + grandParentIAttack.OnAttack(target) + "만큼의 데미지를 입혔습니다");
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
             Destroy(newBullet, 2f);   //2초 뒤 파괴
         }

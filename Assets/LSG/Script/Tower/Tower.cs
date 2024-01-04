@@ -40,7 +40,6 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         speed = 15f;
 
         towerWheel = transform.GetChild(1).GetChild(0).gameObject;
-        Debug.Log(towerWheel.name);
     }
 
     [SerializeField] CurrentTowerData current_tower_data;
@@ -97,7 +96,7 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
     public void OnDamage(double Damage, RaycastHit2D hit)
     {
         if (!dead) {
-            DisplayDamageNumber(Damage);
+            //DisplayDamageNumber(Damage);
 
             hp -= (Damage- OnProtection());
         }

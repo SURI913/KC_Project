@@ -68,6 +68,8 @@ public class ScenesManager : MonoBehaviour
         yield return new WaitForSeconds(3f);  // 3초 대기
         if (currentSceneIndex == 6)
         {
+            SceneManager.UnloadSceneAsync(currentSceneIndex);  //마지막 씬 삭제 후 다시 처음으로
+            //이 부분때문에 중복생성된 것임
             currentSceneIndex = 0;
         }
         if(currentSceneIndex != 0)

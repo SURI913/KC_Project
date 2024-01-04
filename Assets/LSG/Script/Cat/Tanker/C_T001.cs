@@ -39,7 +39,6 @@ public class C_T001 : Cat, IAttack
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID+"growingData 적용완료");
 
         damagePrefab = damage_prefab;
 
@@ -97,7 +96,7 @@ public class C_T001 : Cat, IAttack
         GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(skillEft); 
         GetComponent<Collider2D>().enabled = true;
-        Debug.Log(ID+"스킬 사용중");
+        //Debug.Log(ID+"스킬 사용중");
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -120,7 +119,7 @@ public class C_T001 : Cat, IAttack
     {
         if(collision.gameObject.layer == LayerMask.GetMask("Target"))
         {
-            Debug.Log("탱커 공격 대기중");
+            //Debug.Log("탱커 공격 대기중");
             isLookTarget = false;
             playerRb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; //이전위치로 돌아가게 수정해야함
         }
