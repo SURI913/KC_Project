@@ -2766,7 +2766,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   bossHp: 1000
   bossDamage: 50
-  enemyHp: 1000
+  enemyHp: 500
   enemyDamage: 10
   enemeyStageCount: 10
   ground_enemy_position: {x: 26, y: -7}
@@ -20770,8 +20770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 6683677807536424152, guid: 65aaaf34d7d299046a1cb667d0114041, type: 3}
-  - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 390033637986235311, guid: 4af273640204a4d45b03ba05e990a04f, type: 3}
+  - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 2312999928248754251, guid: 7d985c263c656bc48bf4c6f599e78213, type: 3}
   enemyCount: 0
 --- !u!4 &1636402919

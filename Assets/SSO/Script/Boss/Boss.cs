@@ -11,26 +11,24 @@ using static UnityEngine.GraphicsBuffer;
 public class Boss : MonoBehaviour, IDamageable
 {
     // 보스 몬스터
+    //private
     private float enemySpeed;              // 이동속도
-    public float attackCooldown;  // 공격 쿨타임
     private double hp;                         // 보스 체력
     private double currentHp;             // 보스의 현재체력
     private float damage;                    // 보스공격의 데미지
-    public GameObject boss_attack;  // 보스 공격 오브젝트
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
     private float originalEnemySpeed;     // 초기 enemySpeed 값을 저장하기 위한 변수
     private Coroutine attackCoroutine;  // Attack 코루틴을 저장하기 위한 변수
     private bool isAttack = true; // 코루틴을 시작할 때 공격을 허용하는 플래그
-    public float rayLength;           // 레이캐스트의 길이
-
     private Enemy_Respown respawner;  // Enemy_Respown 스크립트의 참조
-    private SkeletonAnimation spine; // Spine 애니메이션
-
     private bool deadAnimation = false; // 캐릭터가 죽었는지 확인하고, update문에서 이동을 멈추는 역할
     private bool isDead = true;
-
     private Animator enemyAnimation; // Unity Animation 컴포넌트
 
+    // public
+    public float attackCooldown;  // 공격 쿨타임
+    public float rayLength;           // 레이캐스트의 길이
+    public GameObject boss_attack;  // 보스 공격 오브젝트
     public GameObject damagePrefab;
 
     void Start()
@@ -47,9 +45,6 @@ public class Boss : MonoBehaviour, IDamageable
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
 
-        // spine 컴포넌트가 올바르게 연결되었는지 확인
-        spine = GetComponent<SkeletonAnimation>();
-
         enemyAnimation = GetComponent<Animator>();
     }
 
@@ -64,17 +59,12 @@ public class Boss : MonoBehaviour, IDamageable
     {
         hp -= Damage;
         DisplayDamageNumber(Damage);
-        Debug.Log("보스 " + gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
+        //Debug.Log("보스 " + gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)  // 보스가 죽으면
         {
             Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
             Debug.Log("보스" + gameObject.name + "처치");
             respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
-            /*if (isDead)  // 죽지않았다면, (죽는모션을 한번만 실행하게함)
-            {
-                StartCoroutine(DeadAnimation());
-                isDead = false;        // 죽고나면 false로 더이상 코루틴이 실행x
-            }*/
         }
     }
 
@@ -93,23 +83,12 @@ public class Boss : MonoBehaviour, IDamageable
         settings.Apply(newDamageNumber);
     }
 
-    IEnumerator DeadAnimation()
-    {
-        spine.AnimationState.SetAnimation(0, "Dead", false);  // 죽는 애니메이션 재생
-        deadAnimation = true;                             // enemy가 죽었다는걸 체크 (update문에서 이동을 멈출때 조건문으로 사용)
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
-        Debug.Log("보스" + gameObject.name + "처치");
-        respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
-    }
-
     IEnumerator BossFirstPage()   // 1페이즈
     {
         Debug.Log("1페이즈 시작");
 
         while (true) // 무한 반복
         {
-            //spine.AnimationState.SetAnimation(0, "Attack", false);
             enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
@@ -125,7 +104,6 @@ public class Boss : MonoBehaviour, IDamageable
 
         while (true) // 무한 반복
         {   // 공격 3개생성
-            //spine.AnimationState.SetAnimation(0, "Attack", false);
             enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // 중간공격
             Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // 위
