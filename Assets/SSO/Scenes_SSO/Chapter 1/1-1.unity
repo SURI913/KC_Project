@@ -2766,7 +2766,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   bossHp: 1000
   bossDamage: 50
-  enemyHp: 1000
+  enemyHp: 500
   enemyDamage: 10
   enemeyStageCount: 10
   ground_enemy_position: {x: 26, y: -7}
