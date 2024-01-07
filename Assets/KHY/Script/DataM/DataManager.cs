@@ -8,9 +8,9 @@ public class DataManager : MonoBehaviour
 {
 
     const string URL1 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
-    //¸ó½ºÅÍ M_D01
+    //ëª¬ìŠ¤í„° M_D01
     const string URL2 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
-    //º¸½º M_D02
+    //ë³´ìŠ¤ M_D02
 
 
     void Start()
@@ -23,17 +23,17 @@ public class DataManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(URL1);
         yield return www.SendWebRequest();
 
-        setData(www.downloadHandler.text);// µ¥ÀÌÅÍ Ãâ·Â 
+        setData(www.downloadHandler.text);// ë°ì´í„° ì¶œë ¥ 
     }
     [SerializeField]
     MonsterData monsterData;
 
     void setData(string tsv)
     {
-        Debug.Log("monsterData: " + monsterData);  // È®ÀÎ
+        Debug.Log("monsterData: " + monsterData);  // í™•ì¸
         if (monsterData != null)
         {
-            Debug.Log("monsterData.monsterdatas: " + monsterData.monsterdatas);  // È®ÀÎ
+            Debug.Log("monsterData.monsterdatas: " + monsterData.monsterdatas);  // í™•ì¸
         }
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
@@ -42,7 +42,7 @@ public class DataManager : MonoBehaviour
         {
             string[] column = row[i].Split('\t');
 
-            // ScriptableObject¿¡¼­ µ¥ÀÌÅÍ °¡Á®¿À±â
+            // ScriptableObjectì—ì„œ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
             MonsterD monsdata = monsterData.monsterdatas[i];
 
             monsdata.stageID = column[0];
@@ -53,58 +53,9 @@ public class DataManager : MonoBehaviour
             monsdata.recommdefense = double.Parse(column[5]);
         }
     }
-    /*
-        [SerializeField]
-        MonsterData monsterdata;
-        void setData(string tsv)
-        {
-
-            string[] row = tsv.Split('\n'); //¹®ÀÚ¿­ÀÌ ³¡³ª¸é ÁÙ¹Ù²Ş 
-            int rowSize = row.Length; //Å©±âÀúÀå 
-
-            int columnSize = row[0].Split('\t').Length;// Ã¹¹øÂ° Çà¿¡¼­ ÅÇ ÇÏ¿© ¿­ÀÇ Å©±â ÀúÀå 
-
-            for (int i = 0; i < rowSize; i++)
-            {
-                string[] column = row[i].Split('\t');
-                string firstColumn = column[0];
-
-                for (int j = 1; j < columnSize; j++)
-                {
-                    MonsterD monsdata = monsterdata.monsterdatas[i];
-
-
-                    monsdata.stageID = firstColumn;
-                    monsdata.hp = double.Parse(column[1]);
-                    monsdata.attack = double.Parse(column[2]);
-                    monsdata.atktime = int.Parse(column[3]);
-                    monsdata.recommattack = double.Parse(column[4]);
-                    monsdata.recommdefense = double.Parse(column[5]);
-
-
-                }
-            }
-        }*/
 }
 
     
 
 
 
-/*[System.Serializable]
-public class AllData
-{
-    public MapData[] stageA; // ½ÃÆ® ÀÌ¸§°ú µ¿ÀÏÇØ¾ßÇÔ ,¸ó½ºÅÍ
-    public MapData[] stageB; // º¸½º
-}
-[System.Serializable]
-public class MapData
-{
-    public string stageID;
-    public float HP;
-    public float Attack;
-    public float atkTime;
-    public float RecommendedAttack;
-    public float RecommendedDefense;
-
-}*/

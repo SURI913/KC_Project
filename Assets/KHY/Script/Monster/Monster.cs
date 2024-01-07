@@ -66,8 +66,8 @@ public class Monster : MonoBehaviour, IDamageable
             HP = monsdata.hp;
             Attack = monsdata.attack;
             AtkTime = monsdata.atktime;
-            Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
-                ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
+           /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
+                ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
             //여기선 데이터가 온다 !
         }
         else
@@ -93,7 +93,7 @@ public class Monster : MonoBehaviour, IDamageable
 
     public void Move()
     {
-        Debug.Log(" HP:" + HP);
+       
         if (!isAtk)
         {
             //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
@@ -117,7 +117,7 @@ public class Monster : MonoBehaviour, IDamageable
             //체력이 0 이하일때 아래 코드 실행
             isDead = true;
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
-            Debug.Log("던전 몬스터 처치");
+           /* Debug.Log("던전 몬스터 처치");*/
             //로드씬
             SceneManager.LoadScene("0");
 
@@ -150,7 +150,7 @@ public class Monster : MonoBehaviour, IDamageable
 
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
-                Debug.Log("hit 이 플레이어 태그 찾음");
+              /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
                 IDamageable target = GetComponent<IDamageable>();
                 cat.OnDamage(Attack, hit);
               

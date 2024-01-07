@@ -15,7 +15,7 @@ public class M_D01 : Monster
 
     public void Start()
     {
-        printData();// 데이터 출력
+       // printData();// 데이터 출력
         //스파인
         /*spine = GetComponent<SkeletonAnimation>();
         spine.AnimationState.SetAnimation(0, "Idle", true);//Idle 애니메이션 기본으로 설정
@@ -64,10 +64,10 @@ public class M_D01 : Monster
 
     void Animation()
     {
-        Debug.Log("애니//");
+       // Debug.Log("애니//");
         if (isAtk)
         {
-            Debug.Log("공격 애니//");
+           // Debug.Log("공격 애니//");
            /* //스파인 
             spine.AnimationState.SetAnimation(0, "Attack", false);*/
             //공격중 애니메이션(인덱스,애니메이션 이름, 루프 T/F
@@ -77,11 +77,11 @@ public class M_D01 : Monster
         }
         if (isDead)
         {
-            Debug.Log("데드");
+           // Debug.Log("데드");
             //스파인 
          /*   spine.AnimationState.SetAnimation(0, "Dead", false);
             //죽었을때 애니메이션(인덱스,애니메이션 이름, 루프 T/F*/
-            Debug.Log("데드애니메이션 후");
+           // Debug.Log("데드애니메이션 후");
 
 
             //애니메이션
