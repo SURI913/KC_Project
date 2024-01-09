@@ -16,6 +16,7 @@ public class C_S001 : Cat, IAttack
     //스킬을 위한 함수 일정범위 내의 영웅들을 골라냄
     List<Cat> catsHealing = new List<Cat>();
     [SerializeField] GrowingData growingdata;
+    public GameObject damage_prefab;
 
     //캐릭터 값 초기화
     //DB에서 끌어옴     
@@ -45,10 +46,13 @@ public class C_S001 : Cat, IAttack
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID + "growingData 저장 완료");
+        //Debug.Log(ID + "growingData 저장 완료");
 
         catMotion = GetComponentInChildren<Animator>();
 
+        damagePrefab = damage_prefab;
+
+        my_position = transform;
 
         Vector2 skillpos = this.transform.position;
         //스킬특기
@@ -75,12 +79,12 @@ public class C_S001 : Cat, IAttack
         catMotion.SetTrigger("isSkill");
 
         Debug.Log( "힐링스킬 발동");
-        Debug.Log(catsHealing.Count);
+        //Debug.Log(catsHealing.Count);
         //요새 범위 안에있는 사람한테만 힐이 들어감
         foreach (var Cats in catsHealing)
         {
             Cats.hp += Cats.maxHp * skillEft;
-            Debug.Log(Cats.ID+ "힐링");
+           // Debug.Log(Cats.ID+ "힐링");
             if(hp > maxHp) //maxHp를 넘지않게 처리
             {
                 hp = maxHp;

@@ -14,6 +14,9 @@ public class C_D001 : Cat, IAttack
 
     [SerializeField] GrowingData growingdata;
 
+    public GameObject damage_prefab;
+
+
     //캐릭터 값 초기화
     //DB에서 끌어옴
     //레벨업 할때마다 저장 호출 + 값 다시 가져오기
@@ -42,7 +45,11 @@ public class C_D001 : Cat, IAttack
         atkTime = 2f;
 
         growingData = growingdata;
-        Debug.Log(ID + "growingData 저장 완료");
+        //Debug.Log(ID + "growingData 저장 완료");
+
+        damagePrefab = damage_prefab;
+
+        my_position = transform;
 
         catMotion = GetComponentInChildren<Animator>();
     }
@@ -64,7 +71,7 @@ public class C_D001 : Cat, IAttack
             skillDamage += bossAttack;
         }
         //공격력의 2배인 발사포 투척
-        Debug.Log(ID+"skillDamage: "+Unit.ToUnitString(skillDamage));
+        //Debug.Log(ID+"skillDamage: "+Unit.ToUnitString(skillDamage));
         return skillDamage;
     }
 
@@ -77,5 +84,7 @@ public class C_D001 : Cat, IAttack
         }
         return attackApply();
     }
+
+
 
 }

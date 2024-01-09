@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Exit : MonoBehaviour
 {
+    ScenesManager sceneManager;
+
+    private void Awake()
+    {
+        sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
+    }
     public void OnClick()
     {
-        SceneManager.LoadScene("1-1");
-        //´øÀü²ô°í »ç³É ¾ÀÀ¸·Î ³Ñ¾î°¡±â
-        // ¼öÁ¤ ÇØ¶ó ¼öÁ¤ ÇöÀç ¾ÀÀ¸·Î ³Ñ¾î¿Àµµ·Ï °× ¸É´Ï°Å ¤¡¤¡
+        StartCoroutine(sceneManager.TransitionToNextStage());
+
+        //ë˜ì „ë„ê³  ì‚¬ëƒ¥ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°€ê¸°
+        // ìˆ˜ì • í•´ë¼ ìˆ˜ì • í˜„ì¬ ì”¬ìœ¼ë¡œ ë„˜ì–´ì˜¤ë„ë¡ ê²œ ë§´ë‹ˆê±° ã„±ã„±
 
     }
 }

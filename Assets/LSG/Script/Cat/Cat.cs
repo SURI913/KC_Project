@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using AllUnit;
 using UnityEngine.UI;
+using DamageNumbersPro.Demo;
+using DamageNumbersPro;
 
 public class Cat : MonoBehaviour, IDamageable
 {
@@ -31,6 +33,11 @@ public class Cat : MonoBehaviour, IDamageable
     public bool dead { get; set; } = false;    //죽음확인
     protected GrowingData growingData;
 
+    protected GameObject damagePrefab;
+
+    protected Transform my_position;
+
+
     //장비 멀로 처리하냐
 
     //-----------------------------------------------------------------------------------------------------------애니메이션
@@ -41,7 +48,8 @@ public class Cat : MonoBehaviour, IDamageable
     protected void hpInit(){    //체력 초기화
         if(!growingData)
         {
-            Debug.Log(ID + "hp error!");
+            Debug.Log(ID);
+            Debug.Log("hp error!");
         }
        else
        {
@@ -57,12 +65,30 @@ public class Cat : MonoBehaviour, IDamageable
     {
         if (!dead)
         {
-            //데미지 입음                 
+            //데미지 입음
+            DisplayDamageNumber(Damage);
             double damageAdd = Damage;//-(영웅 방어력*방어력(보유효과)*성급효과(뭔지모르겠음)*패시브스킬(유무))
             hp -= damageAdd;
             if (hp <= 0 && !dead) { Die(); }    //죽음처리
         }
         //패시브 스킬이 있는경우 오버라이딩으로 작업
+    }
+
+    //데미지 프리펩
+    void DisplayDamageNumber(double Damage)
+    {
+        DamageNumber prefab;
+        prefab = damagePrefab.GetComponent<DamageNumber>();
+
+
+        DNP_PrefabSettings settings = DNP_DemoManager.instance.GetSettings();
+
+        // 생성된 데미지 숫자에 데미지 및 설정을 적용
+        DamageNumber newDamageNumber = prefab.Spawn(new Vector3(my_position.position.x, my_position.position.y + 1f, my_position.position.z), (float)Damage);
+        newDamageNumber.SetFollowedTarget(transform);
+
+        // 설정 적용
+        settings.Apply(newDamageNumber);
     }
 
     protected virtual void healingApply(){
@@ -88,7 +114,7 @@ public class Cat : MonoBehaviour, IDamageable
 
         }
         double AllAttack = growingData.Attack*xattack;
-        Debug.Log(ID+(int)AllAttack);
+        //Debug.Log(ID+(int)AllAttack);
         //영웅 공격력*공격력(보유효과)*성급효과*장비장착효과*패시브스킬*별자리
         //패시브 스킬은 어떻게 짤건지 고민 + 크리티컬 데미지 작업도 필요함
         //-----------------------------------------------------------------------------------------------------------애니메이션 추가

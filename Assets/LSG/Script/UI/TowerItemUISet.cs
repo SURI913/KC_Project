@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,7 @@ public class TowerItemUISet : MonoBehaviour
             Setcannon = cannonScollBar.GetComponentsInChildren<TowerItem>();
             Setrepairman = repairmanScollBar.GetComponentsInChildren<TowerItem>();
             
+            if(Setcannon.Length <= 0) { Debug.Log("UIlayout 체크"); return; }
             //데이터 보내기
             for(int i = 0; i < towerData.Cannon.Length; i++)
             {
