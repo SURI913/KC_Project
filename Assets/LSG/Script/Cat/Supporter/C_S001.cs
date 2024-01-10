@@ -78,7 +78,7 @@ public class C_S001 : Cat, IAttack
     {
         catMotion.SetTrigger("isSkill");
 
-        Debug.Log( "힐링스킬 발동");
+        //Debug.Log( "힐링스킬 발동");
         //Debug.Log(catsHealing.Count);
         //요새 범위 안에있는 사람한테만 힐이 들어감
         foreach (var Cats in catsHealing)

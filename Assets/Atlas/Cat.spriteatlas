@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UI
+  m_Name: Cat
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -31,22 +31,14 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 88bd179f61edfac4c9f1bf1bdb64f277, type: 3}
-    - {fileID: 2800000, guid: a678d9d9d30195049b1707dc1cf6bd42, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
-    packedSpriteRenderDataKeys:
-    - a678d9d9d30195049b1707dc1cf6bd42: 21300000
-    - 88bd179f61edfac4c9f1bf1bdb64f277: 21300000
+    packedSpriteRenderDataKeys: []
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: a678d9d9d30195049b1707dc1cf6bd42, type: 3}
-  - {fileID: 21300000, guid: 88bd179f61edfac4c9f1bf1bdb64f277, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - chest
-  - rippes
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
-  m_Tag: UI
+  m_Tag: Cat
   m_IsVariant: 0
