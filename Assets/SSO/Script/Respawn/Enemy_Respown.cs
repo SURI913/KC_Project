@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Enemy_Respown : MonoBehaviour
 {
@@ -64,14 +65,20 @@ public class Enemy_Respown : MonoBehaviour
         return bossDamage;
     }
 
+    public double GetEnemyHp()
+    {
+        return enemyHp;
+    }
+
+    public double GetBossHp()
+    {
+        return bossHp;
+    }
+
     void SpawnBoss()
     {
         GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옴
         Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss 스크립트의 참조를 가져옴
-        if (bossScript)
-        {
-            bossScript.SetStats(bossHp, bossDamage); // Boss의 hp와 damage 값을 설정
-        }
         bossSpawned = true; // 보스가 소환되었음을 표시
     }
 
@@ -84,22 +91,6 @@ public class Enemy_Respown : MonoBehaviour
         Enemy_002 enemyScript2 = enemyObject.GetComponent<Enemy_002>();
         Enemy_003 enemyScript3 = enemyObject.GetComponent<Enemy_003>();
         Enemy_004 enemyScript4 = enemyObject.GetComponent<Enemy_004>();
-        if (enemyScript1)
-        {
-            enemyScript1.SetStats(enemyHp, enemyDamage);
-        }
-        if (enemyScript2)
-        {
-            enemyScript2.SetStats(enemyHp, enemyDamage);
-        }
-        if (enemyScript3)
-        {
-            enemyScript3.SetStats(enemyHp, enemyDamage);
-        }
-        if (enemyScript4)
-        {
-            enemyScript4.SetStats(enemyHp, enemyDamage);
-        }
     }
 
     void Update()

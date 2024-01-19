@@ -16,8 +16,6 @@ public class Enemy_003 : MonoBehaviour, IDamageable
     private float originalEnemySpeed;        // 공격이 끝난 후 다시 움직일때 할당할 이동값
     private Coroutine attackCoroutine;               // 코루틴이 여러번 겹치지 않게할 변수
     private bool isAttack = true;
-    private SkeletonAnimation spine; // Spine 애니메이션
-    private bool isDead = true;
     private Animator enemyAnimation; // Unity Animation 컴포넌트
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
@@ -41,6 +39,7 @@ public class Enemy_003 : MonoBehaviour, IDamageable
         enemySpeed = enemyRespawner.GetEnemySpeed();
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         originalEnemySpeed = enemySpeed;
+        hp = enemyRespawner.GetEnemyHp();
 
         enemyAnimation = GetComponent<Animator>();
 
@@ -71,12 +70,6 @@ public class Enemy_003 : MonoBehaviour, IDamageable
 
         // 설정 적용
         settings.Apply(newDamageNumber);
-    }
-
-    public void SetStats(double health, float dmg)
-    {
-        hp = health;
-        damage = dmg;
     }
 
     void Update()
@@ -130,6 +123,9 @@ public class Enemy_003 : MonoBehaviour, IDamageable
             enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
             GameObject attackInstance = Instantiate(enemy_attack_3, spawnPosition, Quaternion.identity);
+
+            // 공격 오브젝트를 적 오브젝트의 자식으로 설정
+            attackInstance.transform.parent = transform;
 
             yield return new WaitForSeconds(attackCooldown);
 
