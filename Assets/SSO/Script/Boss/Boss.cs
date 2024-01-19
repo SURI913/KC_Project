@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class Boss : MonoBehaviour, IDamageable
+public class Boss : MonoBehaviour, DamageableImp
 {
     // 보스 몬스터
     //private
@@ -55,7 +55,7 @@ public class Boss : MonoBehaviour, IDamageable
         damage = dmg;
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)   //데미지를 입힘
+    public void OnDamage(double Damage)   //데미지를 입힘
     {
         hp -= Damage;
         DisplayDamageNumber(Damage);

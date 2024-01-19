@@ -5,7 +5,7 @@ using Spine.Unity;
 using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 
-public class Enemy_004 : MonoBehaviour, IDamageable
+public class Enemy_004 : MonoBehaviour, DamageableImp
 {
     // 공중형 원거리 몬스터
     // private
@@ -45,7 +45,7 @@ public class Enemy_004 : MonoBehaviour, IDamageable
         enemyAnimation = GetComponent<Animator>();
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
         hp -= Damage;
         DisplayDamageNumber(Damage);

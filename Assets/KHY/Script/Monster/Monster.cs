@@ -5,7 +5,7 @@ using Spine.Unity;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Monster : MonoBehaviour, IDamageable
+public class Monster : MonoBehaviour, DamageableImp
 {
 
 
@@ -109,7 +109,7 @@ public class Monster : MonoBehaviour, IDamageable
         }
 
     }
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
  
         curHP = HP - Damage;
@@ -154,9 +154,9 @@ public class Monster : MonoBehaviour, IDamageable
 
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
-              /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
-                IDamageable target = GetComponent<IDamageable>();
-                cat.OnDamage(Attack, hit);
+                /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
+                DamageableImp target = GetComponent<DamageableImp>();
+                cat.OnDamage(Attack);
               
                // Debug.Log("플레이어 HP:" + catHP);
               //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);

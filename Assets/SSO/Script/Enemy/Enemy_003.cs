@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_003 : MonoBehaviour, IDamageable
+public class Enemy_003 : MonoBehaviour, DamageableImp
 {
     // 원거리 몬스터
     //private
@@ -46,7 +46,7 @@ public class Enemy_003 : MonoBehaviour, IDamageable
 
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
         hp -= Damage;
         DisplayDamageNumber(Damage);   // 데미지 출력
