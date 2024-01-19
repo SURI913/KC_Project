@@ -10,6 +10,7 @@ public class M_D01 : Monster
     private SkeletonAnimation spine;
     private Animator anim;
     public Slider healthSlider;
+    
 
 
 
@@ -37,6 +38,18 @@ public class M_D01 : Monster
             healthSlider.maxValue = (float)HP;
             healthSlider.value = (float)curHP;
         }
+
+         setData();
+
+
+    }
+
+    void setData()
+    {
+        GameManager.instance.DmonsterHP = HP;
+        Debug.Log("HP");
+        GameManager.instance.DmonsterATK = Attack;
+        GameManager.instance.DmonsterAtime = AtkTime;
     }
 
     public void Update()
