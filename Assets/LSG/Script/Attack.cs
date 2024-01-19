@@ -15,13 +15,14 @@ public class Attack : Projectile
     {
         grandParent = this.transform.parent.gameObject;
         //자식 Awake 먼저 시작
-        grandParentIAttack = grandParent.GetComponent<IAttack>(); //캐릭터에다가 넣어줘야하는 스크립트
-        Cooltime = grandParentIAttack.atkTime;  //쿨타임 초기화
+        grandParentIAttack = grandParent.GetComponent<AttackableImp>(); //캐릭터에다가 넣어줘야하는 스크립트
+        grandParentSkill = grandParent.GetComponent<SkillUserImp>(); //캐릭터에다가 넣어줘야하는 스크립트
+        Cooltime = grandParentIAttack.atk_time;  //쿨타임 초기화
         bullet = bulletSet; //총알 오브젝트 초기화
         fireTransform = bulletPos;
         if (grandParent.GetComponent<Cat>())
         {
-            ID = grandParent.GetComponent<Cat>().ID;
+            ID = grandParent.GetComponent<Cat>().cat_data._id;
         }
         else if(grandParent.GetComponent<Tower>())
         {
@@ -42,7 +43,7 @@ public class Attack : Projectile
     protected void Update()
     {
         //이 부분도 수정 필요
-        if (grandParentIAttack.ativeSkill == true)   //스킬 사용 상태면 일시적으로 멈춤
+        if (grandParentSkill.is_ative_skill == true)   //스킬 사용 상태면 일시적으로 멈춤
         {
                 state = State.Reloading;
         }
@@ -50,7 +51,7 @@ public class Attack : Projectile
         if (Cooltime <= 0)
         {
             state = State.Ready;    //쿨타임 종료
-            Cooltime = grandParentIAttack.atkTime;
+            Cooltime = grandParentIAttack.atk_time;
         }
         else
         {

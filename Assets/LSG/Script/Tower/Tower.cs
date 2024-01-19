@@ -2,7 +2,7 @@ using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, IDamageable, IAttack
+public class Tower : MonoBehaviour, DamageableImp, AttackableImp
 {
     //기본 데이터
 
@@ -21,9 +21,7 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
 
     //IAttack
     public float speed { get; set; }   //공격 속도
-    public float atkTime { get; set; } //일반공격 쿨타임
-    public float skillTime { get; set; } = 0;
-    public bool ativeSkill { get; set; } = false;
+    public float atk_time { get; set; } //일반공격 쿨타임
     protected GameObject damagePrefab;
     //-----------------------------------------------------------------------애니메이션
     private GameObject towerWheel;
@@ -36,7 +34,7 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         hp = maxHp;
 
         //IAttack
-        atkTime = 5f;
+        atk_time = 5f;
         speed = 15f;
 
         towerWheel = transform.GetChild(1).GetChild(0).gameObject;
@@ -55,12 +53,6 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         
         return attack;
     }
-
-    public double OnSkill(RaycastHit2D hit)
-    {
-        //타워는 스킬 x 나중에 파츠 고유 능력에서 사용하는걸로
-        return 0;
-    }   
 
     public void hpApply() //이후에 실시간으로 값 저장되면 수정하는 걸로
     {
@@ -93,7 +85,7 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         //체력이 0보다 작을 경우 초기화가 실행 되어야함 코루틴 작업 필요
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
         if (!dead) {
             //DisplayDamageNumber(Damage);

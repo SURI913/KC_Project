@@ -22,11 +22,11 @@ public class Enemy_attack_1 : MonoBehaviour
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {   // 공격이 플레이어나 캐슬에 충돌했다면
-            IDamageable target = collision.GetComponent<IDamageable>();
+            DamageableImp target = collision.GetComponent<DamageableImp>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();
-                target.OnDamage(damageValue, new RaycastHit2D());  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
+                target.OnDamage(damageValue);  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
                 //Debug.Log("enemy가 공격함");
             }
         }

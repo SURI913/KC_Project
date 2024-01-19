@@ -24,11 +24,11 @@ public class Enemy_attack_2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageable target = collision.GetComponent<IDamageable>();
+        DamageableImp target = collision.GetComponent<DamageableImp>();
         if (target != null && enemyRespawner)
         {
             double damageValue = enemyRespawner.GetEnemyDamage();
-            target.OnDamage(damageValue, new RaycastHit2D());  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
+            target.OnDamage(damageValue);  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
             //Debug.Log("enemy가 공격함");
             Destroy(gameObject);  // 발사체 삭제
         }
