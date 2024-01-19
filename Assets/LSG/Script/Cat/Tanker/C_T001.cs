@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class C_T001 : MonoBehaviour
+public class C_T001 : MonoBehaviour, MyHeroesImp
 {
     float skillEft = 5.0f;
 
@@ -23,5 +23,10 @@ public class C_T001 : MonoBehaviour
     private void FixedUpdate()
     {
         c_t001.Move();
+    }
+
+    public Cat GetTargetCat()
+    {
+        return c_t001 as Cat;
     }
 }

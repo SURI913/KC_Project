@@ -38,6 +38,8 @@ public class Attack : Projectile
 
     private void Start()
     {
+        this.gameObject.SetActive(false);
+
         initData();
     }
     protected void Update()

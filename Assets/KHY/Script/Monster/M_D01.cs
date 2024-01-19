@@ -46,7 +46,7 @@ public class M_D01 : Monster
 
     void setData()
     {
-        GameManager.instance.DmonsterHP = HP;
+        GameManager.instance.DmonsterHP = HP; //====>null값 에러
         Debug.Log("HP");
         GameManager.instance.DmonsterATK = Attack;
         GameManager.instance.DmonsterAtime = AtkTime;
