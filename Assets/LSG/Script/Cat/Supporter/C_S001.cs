@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using AllUnit;
 using System;
 
-public class C_S001 : MonoBehaviour
+public class C_S001 : MonoBehaviour, MyHeroesImp
 {
     //샌드박스 디자인 패턴
 
@@ -29,5 +29,10 @@ public class C_S001 : MonoBehaviour
         //데이터가 없으면
         c_s001 = new BaseSupporter(base_cat_data, base_growing_data, damage_prefab);
         //데이터가 있으면
+    }
+
+    public Cat GetTargetCat()
+    {
+        return c_s001 as Cat;
     }
 }

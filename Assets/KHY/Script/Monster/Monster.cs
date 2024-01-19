@@ -143,9 +143,8 @@ public class Monster : MonoBehaviour, DamageableImp
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
 
-        Cat cat = GameObject.FindWithTag("Player").GetComponent<Cat>();
+        MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
         Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
-        double catHP = cat.hp;
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
@@ -155,11 +154,11 @@ public class Monster : MonoBehaviour, DamageableImp
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
                 /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
-                DamageableImp target = GetComponent<DamageableImp>();
-                cat.OnDamage(Attack);
-              
-               // Debug.Log("플레이어 HP:" + catHP);
-              //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
+                DamageableImp target = cat.GetTargetCat().GetComponent<DamageableImp>();
+                target.OnDamage(Attack)
+
+                // Debug.Log("플레이어 HP:" + catHP);
+                //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
 
             }
         }

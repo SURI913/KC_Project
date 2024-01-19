@@ -24,6 +24,7 @@ public class Skill : Projectile
 
     private void Awake()
     {
+        this.gameObject.SetActive(false);
         initData();
         grandParentSkill.is_ative_skill = true;
     }
