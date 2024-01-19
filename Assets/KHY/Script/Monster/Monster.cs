@@ -31,7 +31,7 @@ public class Monster : MonoBehaviour, IDamageable
 
     public void Awake()
     {
-        //몬스터 스택들 처음 초기화 해주기 
+        //몬스터 스탯들 처음 초기화 해주기 
 
         HP = 100000000000;
         Attack = 10;

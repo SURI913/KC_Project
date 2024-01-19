@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 1
-  monster: {fileID: 465896946}
 --- !u!114 &35708681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 5
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &58959873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 2
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &98161173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,7 +1022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 10
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &122336176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +1157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 16
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &138145703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,6 +1855,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc557a4556a818f488bbf2068bb17d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
+  UI2: {fileID: 0}
+  time: {fileID: 0}
+  image: {fileID: 0}
+  sliderbar: {fileID: 0}
 --- !u!114 &441554467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,52 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a643ba65e9444854c9f7cfb5b9ee966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &465896945
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 465896947}
-  - component: {fileID: 465896946}
-  m_Layer: 0
-  m_Name: MM
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &465896946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465896945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c716e4ea296d0c749a0c7af7a259ff9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dead: 0
-  monsterData: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
---- !u!4 &465896947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465896945}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 425, y: 805, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &480003379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 15
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &602711280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,7 +3507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 13
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1022073540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3690,7 +3642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 6
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1086903424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4583,7 +4534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 7
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1551828970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4755,7 +4705,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 14
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1610280844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5175,7 +5124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 3
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1762326404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5390,7 +5338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 4
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1857032800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5770,7 +5717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 8
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1900544603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,7 +5852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 12
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &1924965822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6278,7 +6223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 9
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &2035525739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6493,7 +6437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 11
-  monster: {fileID: -7851217999515311489, guid: b2e498faedd072c4ead11a3319f94477, type: 3}
 --- !u!114 &2093087222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6663,4 +6606,3 @@ SceneRoots:
   - {fileID: 441554465}
   - {fileID: 684835482}
   - {fileID: 629600419}
-  - {fileID: 465896947}
