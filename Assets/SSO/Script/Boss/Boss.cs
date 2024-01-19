@@ -44,6 +44,7 @@ public class Boss : MonoBehaviour, DamageableImp
         enemySpeed = respawner.GetEnemySpeed();
         originalEnemySpeed = enemySpeed;  // 처음 enemySpeed 값을 저장
         respawner = Enemy_Respown.Instance;  // 싱글톤 인스턴스를 통해 참조 설정
+        hp = respawner.GetBossHp();
 
         enemyAnimation = GetComponent<Animator>();
     }

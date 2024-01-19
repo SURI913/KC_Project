@@ -16,7 +16,6 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
     private float originalEnemySpeed;        // 공격이 끝난 후 다시 움직일때 할당할 이동값
     private Coroutine attackCoroutine;               // 코루틴이 여러번 겹치지 않게할 변수
     private bool isAttack = true;
-    private bool isDead = true;
     private Animator enemyAnimation; // Unity Animation 컴포넌트
     [SerializeField]
     private Enemy_Respown enemyRespawner;  // 참조
@@ -40,6 +39,7 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         enemySpeed = enemyRespawner.GetEnemySpeed();
         originalEnemySpeed = enemySpeed;
+        hp = enemyRespawner.GetEnemyHp();
 
         enemyAnimation = GetComponent<Animator>();
     }
@@ -69,12 +69,6 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
 
         // 설정 적용
         settings.Apply(newDamageNumber);
-    }
-
-    public void SetStats(double health, float dmg)
-    {
-        hp = health;
-        damage = dmg;
     }
 
     void Update()
@@ -129,13 +123,15 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
             enemyAnimation.SetTrigger("Enemy_attack");
             Vector3 spawnPosition = transform.position - (Vector3.right * 4) + (Vector3.up / 2);
             GameObject attackInstance = Instantiate(enemy_attack_1, spawnPosition, Quaternion.identity);
+
+            // 공격 오브젝트를 적 오브젝트의 자식으로 설정
+            // 적 오브젝트가 죽으면, 자연스럽게 공격 오브젝트도 삭제되도록 하기 위함
+            attackInstance.transform.parent = transform;
+
             StartCoroutine(DestroyAttack(attackInstance, 1.5f));
 
             // 대기
             yield return new WaitForSeconds(attackCooldown);
-
-            // 발사체 수명이 끝나면 제거
-            Destroy(attackInstance);
         }
     }
 
