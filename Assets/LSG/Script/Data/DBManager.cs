@@ -11,10 +11,24 @@ public class DBManager : MonoBehaviour
     const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I38:O";
     const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=P38:V";
     const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W38:AC";
-    const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=AD38:AJ";
+    const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=B16:N";
 
-    //현재 타워 데이터 저장
+    const string URL1 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
+    //몬스터 M_D01
+    const string URL2 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
+    //보스 M_D02
+
+    //==>변수이름 변경 후 사용
+    //const string URL1 = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=1772433253&range=AD38:AJ";
+
+    [SerializeField] MonsterData monsterData; //==> 변수이름변경 던전몬스터or 던전이름 몬스터로, 다른 몬스터랑 구분 필요함
+
     [SerializeField] CurrentTowerData current_tower_data;
+    [SerializeField] GrowthData growthData;
+    [SerializeField] GrowingData growingSetData;
+    [SerializeField] TowerData towerData;
+
+    [SerializeField] Enemy_Data enemyData;
     private void Awake()
     {
         StartCoroutine(DownloadCannon());
@@ -24,7 +38,9 @@ public class DBManager : MonoBehaviour
         StartCoroutine(DownloadGrowthProtection());
         StartCoroutine(DownloadGrowthHealing());
 
-    }
+        StartCoroutine(Download());
+
+    } 
 
     public IEnumerator DownloadCannon()
     {
@@ -74,7 +90,15 @@ public class DBManager : MonoBehaviour
         SetGrowthHeal(www.downloadHandler.text);
     }
 
-    [SerializeField] TowerData towerData;
+    //==>구분을 위해 이름변경
+    IEnumerator Download()
+    {
+        UnityWebRequest www = UnityWebRequest.Get(URL1);
+        yield return www.SendWebRequest();
+
+        setData(www.downloadHandler.text);// 데이터 출력 
+    }
+
     void SetCannonData(string tvc)
     {
         string[] row = tvc.Split('\n');
@@ -107,8 +131,6 @@ public class DBManager : MonoBehaviour
         current_tower_data.retention_attack = towerData.Cannon[0].retention_attack;
         current_tower_data.retention_protection = towerData.Cannon[0].retention_protection;
     }
-    [SerializeField] GrowthData growthData;
-    [SerializeField] GrowingData growingSetData;
 
     void SetRepairManData(string tvc)
     {
@@ -242,4 +264,52 @@ public class DBManager : MonoBehaviour
         }
         growingSetData.protection = growthData.growth_heal[0].healing;
     }
+
+    void setData(string tsv) //==> 함수이름 수정, 
+    {
+        Debug.Log("monsterData: " + monsterData);  // 확인
+        if (monsterData != null)
+        {
+            Debug.Log("monsterData.monsterdatas: " + monsterData.monsterdatas);  // 확인
+        }
+        string[] row = tsv.Split('\n');
+        int rowSize = row.Length;
+
+        for (int i = 1; i < rowSize; i++)
+        {
+            string[] column = row[i].Split('\t');
+
+            // ScriptableObject에서 데이터 가져오기
+            MonsterD monsdata = monsterData.monsterdatas[i];
+
+            monsdata.stageID = column[0];
+            monsdata.hp = double.Parse(column[1]);
+            monsdata.attack = double.Parse(column[2]);
+            monsdata.atktime = int.Parse(column[3]);
+            monsdata.recommattack = double.Parse(column[4]);
+            monsdata.recommdefense = double.Parse(column[5]);
+        }
+    }
+
+    void SetEnemyData(string tsv)
+    {
+        string[] row = tsv.Split('\n');
+        int rowSize = row.Length;
+        int columnSize = row[0].Split('\t').Length;
+
+        for (int i = 0; i < rowSize; i++)
+        {
+            string[] column = row[i].Split("\t");
+            for (int j = 0; j < columnSize; j++)
+            {
+                Enemy targetData = enemyData.enemys[i];
+
+                /*targetData.name = 
+                targetData.hp = 
+                targetData.damage = 
+                targetData.enemySpeed = */
+            }
+        }
+    }
+
 }

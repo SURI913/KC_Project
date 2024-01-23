@@ -49,7 +49,7 @@ public class InventorySlot : MonoBehaviour
         _item_img.sprite = item.icon_sprite;
     }
 
-    void OnclickContent()
+    void OnClickContent()
     {
 
     }

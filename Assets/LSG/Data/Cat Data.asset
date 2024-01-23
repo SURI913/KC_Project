@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7db26a3546f864c98399805a013d22, type: 3}
+  m_Name: Cat Data
+  m_EditorClassIdentifier: 
+  all_cat_data:
+  - _id: C_D001
+    _name: "\uB098\uBE44"
+    _tier: "\uB808\uC5B4"
+    _hp_multipler: 0.8
+    _increase_hp: 0.08
+    _attack_multipler: 1.8
+    _increase_attack: 0.17
+    _protection_multiple: 0.8
+    _increase_protect: 0.08
+    _healing_multiple: 1.2
+    _increase_healing: 0.1
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 15
+    _atk_time: 5
+  - _id: C_T001
+    _name: "\uB0E5\uC18C\uC7A5"
+    _tier: "\uB808\uC5B4"
+    _hp_multipler: 3
+    _increase_hp: 0.3
+    _attack_multipler: 0.7
+    _increase_attack: 0.05
+    _protection_multiple: 1.8
+    _increase_protect: 0.25
+    _healing_multiple: 2.5
+    _increase_healing: 0.25
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 0
+    _atk_time: 5
+  - _id: C_S001
+    _name: "\uD14C\uB108"
+    _tier: "\uB808\uC5B4"
+    _hp_multipler: 2
+    _increase_hp: 0.1
+    _attack_multipler: 1.5
+    _increase_attack: 0.1
+    _protection_multiple: 1.5
+    _increase_protect: 0.2
+    _healing_multiple: 3
+    _increase_healing: 0.25
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 20
+    _atk_time: 5

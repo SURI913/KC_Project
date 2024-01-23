@@ -5,7 +5,7 @@ using Spine.Unity;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Monster : MonoBehaviour, IDamageable
+public class Monster : MonoBehaviour, DamageableImp
 {
 
 
@@ -32,7 +32,7 @@ public class Monster : MonoBehaviour, IDamageable
 
     public void Awake()
     {
-        //몬스터 스택들 처음 초기화 해주기 
+        //몬스터 스탯들 처음 초기화 해주기 
 
         HP = 100000000000;
         Attack = 10;
@@ -109,7 +109,7 @@ public class Monster : MonoBehaviour, IDamageable
         }
 
     }
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
  
         curHP = HP - Damage;
@@ -143,9 +143,8 @@ public class Monster : MonoBehaviour, IDamageable
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
 
-        Cat cat = GameObject.FindWithTag("Player").GetComponent<Cat>();
+        MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
         Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
-        double catHP = cat.hp;
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
@@ -154,12 +153,12 @@ public class Monster : MonoBehaviour, IDamageable
 
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
-              /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
-                IDamageable target = GetComponent<IDamageable>();
-                cat.OnDamage(Attack, hit);
-              
-               // Debug.Log("플레이어 HP:" + catHP);
-              //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
+                /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
+                DamageableImp target = cat.GetTargetCat().GetComponent<DamageableImp>();
+                target.OnDamage(Attack);
+
+                // Debug.Log("플레이어 HP:" + catHP);
+                //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
 
             }
         }

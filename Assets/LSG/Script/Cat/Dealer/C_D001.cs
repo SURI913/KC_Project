@@ -4,87 +4,30 @@ using UnityEngine;
 using AllUnit;
 using UnityEngine.UI;
 
-public class C_D001 : Cat, IAttack
+public class C_D001 : MonoBehaviour, MyHeroesImp
 {
-    float skillEft= 2.0f;
-    public float speed { get; set; } //공격 속도
-    public float atkTime { get; set; } //일반공격 쿨타임
-    public float skillTime { get; set; } //스킬 공격 쿨타임
-    public bool ativeSkill { get; set; }   //스킬 활성화 시 공격 멈춤
-
-    [SerializeField] GrowingData growingdata;
-
+    public GrowingData base_growing_data;
     public GameObject damage_prefab;
+    public BaseCatData base_cat_data;
 
+    //-----------------------------------------------------
+
+    BaseDealer c_d001; //이 값을 반환하는 인터페이스 필요
 
     //캐릭터 값 초기화
     //DB에서 끌어옴
     //레벨업 할때마다 저장 호출 + 값 다시 가져오기
-    private void InitData()
-    {
-        //첫 데이터 보내기
-        ID = "C_D001";
-        Lv = 1;
-
-        xhp = 0.7f;
-        hpIncrease = 0.08f;
-        maxHp = growingdata.Hp * xhp;
-        hp = maxHp;
-
-        xattack = 1.8f;
-        attackIncrease = 0.17f;
-
-        xhealing = 1.2f;
-        xhealingIncrease = 0.1f;
-
-        xprotect = 0.8f;
-        xprotectIncrease = 0.08f;
-
-        speed = 15f;    //임의
-        skillTime = 5f;
-        atkTime = 2f;
-
-        growingData = growingdata;
-        //Debug.Log(ID + "growingData 저장 완료");
-
-        damagePrefab = damage_prefab;
-
-        my_position = transform;
-
-        catMotion = GetComponentInChildren<Animator>();
-    }
 
     private void Awake()
     {
         //데이터가 없으면
-        InitData(); //생성자로 수정해야함
+        c_d001 = new BaseDealer(base_cat_data, base_growing_data, damage_prefab);
+
         //데이터가 있으면
     }
 
-    public double OnSkill(RaycastHit2D hit)
+    public Cat GetTargetCat()
     {
-        catMotion.SetTrigger("isSkill");
-
-        double skillDamage = attackApply() * (double)skillEft;
-        if (hit.collider.CompareTag("boss")) //보스 공격의 경우
-        {
-            skillDamage += bossAttack;
-        }
-        //공격력의 2배인 발사포 투척
-        //Debug.Log(ID+"skillDamage: "+Unit.ToUnitString(skillDamage));
-        return skillDamage;
+        return c_d001 as Cat;
     }
-
-    public double OnAttack(RaycastHit2D hit) //공격 체크
-    {
-        catMotion.SetTrigger("isAttack");
-        if (hit.collider.CompareTag("boss")) //보스 공격의 경우
-        {
-            return attackApply() + bossAttack;
-        }
-        return attackApply();
-    }
-
-
-
 }

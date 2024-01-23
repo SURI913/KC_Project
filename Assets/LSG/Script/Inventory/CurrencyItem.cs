@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencyItem : Item, IUsableItem
+public class CurrencyItem : Item, UsableItemImp
 {
     public CurrencyItemData CurrentItemData { get; private set; }
 

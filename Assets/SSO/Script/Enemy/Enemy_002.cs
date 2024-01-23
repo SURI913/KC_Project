@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_002 : MonoBehaviour, IDamageable
+public class Enemy_002 : MonoBehaviour, DamageableImp
 {
     // 근거리 몬스터 02
     public float enemySpeed;    // 몬스터 이동속도
@@ -32,7 +32,7 @@ public class Enemy_002 : MonoBehaviour, IDamageable
         spine = GetComponent<SkeletonAnimation>();
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
         hp -= Damage;
         Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");

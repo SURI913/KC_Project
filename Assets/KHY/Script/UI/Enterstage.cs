@@ -12,7 +12,7 @@ public class Enterstage : MonoBehaviour
     public GameObject sliderbar;
     public void OnClick()
     {
-        // SceneManager.LoadScene("Dungeon");
+         SceneManager.LoadScene("Dungeon");
         //스테이지 입장
 
         //지금은 클릭했을때 setactive로 UI를 가린다.
