@@ -155,7 +155,7 @@ public class Monster : MonoBehaviour, DamageableImp
                 isAtk = true;
                 /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
                 DamageableImp target = cat.GetTargetCat().GetComponent<DamageableImp>();
-                target.OnDamage(Attack)
+                target.OnDamage(Attack);
 
                 // Debug.Log("플레이어 HP:" + catHP);
                 //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
