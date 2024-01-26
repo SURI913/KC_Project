@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Enemy_attack_2 : MonoBehaviour
 {
-    // ¿ø°Å¸® ¸ó½ºÅÍÀÇ °ø°İ
-    // °ø°İ ´çÇßÀ»‹š µ¥¹ÌÁö¸¦ ÀÔÈ÷´Â ½ºÅ©¸³Æ®
-    public float speed;     // ¹ß»çÃ¼ÀÇ ¼Óµµ
+    // ì›ê±°ë¦¬ ëª¬ìŠ¤í„°ì˜ ê³µê²©
+    // ê³µê²© ë‹¹í–ˆì„ë–„ ë°ë¯¸ì§€ë¥¼ ì…íˆëŠ” ìŠ¤í¬ë¦½íŠ¸
+    public float speed;     // ë°œì‚¬ì²´ì˜ ì†ë„
     private Transform target;
     [SerializeField]
-    private Enemy_Respown enemyRespawner;  // ÂüÁ¶
+    private Enemy_Respown enemyRespawner;  // ì°¸ì¡°
 
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Castle").transform;
-        // ¸¸¾à enemyRespawner°¡ ¼³Á¤µÇÁö ¾Ê¾Ò´Ù¸é, ÇöÀç ¾À¿¡¼­ Enemy_Respown ÀÎ½ºÅÏ½º¸¦ Ã£¾Æ ¼³Á¤ÇÕ
-        // ÀÌ·¸°Ô ÇÏ¸é ¿¡µğÅÍ¿¡¼­ ¼öµ¿À¸·Î ¼³Á¤ÇÏÁö ¾Ê¾Æµµ ÀÚµ¿À¸·Î ÂüÁ¶¸¦ Ã£¾ÆÁÜ
+        // ë§Œì•½ enemyRespawnerê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ë‹¤ë©´, í˜„ì¬ ì”¬ì—ì„œ Enemy_Respown ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì°¾ì•„ ì„¤ì •í•©
+        // ì´ë ‡ê²Œ í•˜ë©´ ì—ë””í„°ì—ì„œ ìˆ˜ë™ìœ¼ë¡œ ì„¤ì •í•˜ì§€ ì•Šì•„ë„ ìë™ìœ¼ë¡œ ì°¸ì¡°ë¥¼ ì°¾ì•„ì¤Œ
         if (!enemyRespawner)
         {
             enemyRespawner = FindObjectOfType<Enemy_Respown>();
@@ -24,19 +24,19 @@ public class Enemy_attack_2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageable target = collision.GetComponent<IDamageable>();
+        DamageableImp target = collision.GetComponent<DamageableImp>();
         if (target != null && enemyRespawner)
         {
             double damageValue = enemyRespawner.GetEnemyDamage();
-            target.OnDamage(damageValue, new RaycastHit2D());  // ¿©±â¼­ RaycastHit2D Á¤º¸´Â ÇÊ¿ä¿¡ µû¶ó ÀûÀıÈ÷ ¼³Á¤
-            Debug.Log("enemy°¡ °ø°İÇÔ");
-            Destroy(gameObject);  // ¹ß»çÃ¼ »èÁ¦
+            target.OnDamage(damageValue);  // ì—¬ê¸°ì„œ RaycastHit2D ì •ë³´ëŠ” í•„ìš”ì— ë”°ë¼ ì ì ˆíˆ ì„¤ì •
+            //Debug.Log("enemyê°€ ê³µê²©í•¨");
+            Destroy(gameObject);  // ë°œì‚¬ì²´ ì‚­ì œ
         }
     }
 
     private void Update()
     {
-        // ¹ß»çÃ¼°¡ ¸ñÇ¥¸¦ ÇâÇØ ÀÌµ¿
+        // ë°œì‚¬ì²´ê°€ ëª©í‘œë¥¼ í–¥í•´ ì´ë™
         Vector2 moveDirection = (target.transform.position - transform.position).normalized;
         transform.position += (Vector3)moveDirection * speed * Time.deltaTime;
     }

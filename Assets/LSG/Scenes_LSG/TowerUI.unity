@@ -15223,8 +15223,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 89, y: -265}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchoredPosition: {x: 90.93872, y: -268.55005}
+  m_SizeDelta: {x: 77, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314821320
 MonoBehaviour:
@@ -15358,7 +15358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1315617337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15371,7 +15371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818cb7043bba4ac4b97ec948092942d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_tower_data: {fileID: 0}
+  current_tower_data: {fileID: 11400000, guid: 215cebbe7e3f83745bd1218b8f7d59b4, type: 2}
   towerData: {fileID: 11400000, guid: 0c927e4640448cc4dabebbd0169a4781, type: 2}
   growthData: {fileID: 11400000, guid: 7463c447360372843834954e06e7e713, type: 2}
   growingSetData: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
@@ -23844,7 +23844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1817173656
 AudioListener:
   m_ObjectHideFlags: 0

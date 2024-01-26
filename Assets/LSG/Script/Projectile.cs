@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -23,7 +20,8 @@ public class Projectile : MonoBehaviour
     protected Rigidbody2D rb;       //총알 리지드바디
 
     protected GameObject grandParent;   //Attack or Skill 에서 부모 오브젝트 저장
-    protected IAttack grandParentIAttack;
+    protected AttackableImp grandParentIAttack;
+    protected SkillUserImp grandParentSkill;
 
     protected GameObject newBullet;
 
@@ -38,7 +36,7 @@ public class Projectile : MonoBehaviour
       
         if (!grandParent.GetComponent<Cat>().dead) //update 부하걸릴 가능성
         {
-            Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
+            //Debug.Log(ID+"가 타겟을 찾음"+target.collider.name);
             Vector2 Pos = target.transform.position - fireTransform.position;
             newBullet = Instantiate(bullet, fireTransform.position, Quaternion.identity);
             rb = newBullet.GetComponent<Rigidbody2D>();
@@ -49,11 +47,11 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnBullet() //스킬이면 오버라이드
     {
-        IDamageable hitDamage = target.collider.GetComponent<IDamageable>();
+        DamageableImp hitDamage = target.collider.GetComponent<DamageableImp>();
         if (hitDamage != null) //Damageaable을 쓰고있다면
         {
             //Debug.Log(ID + "공격중");
-            hitDamage.OnDamage(grandParentIAttack.OnAttack(target), target);
+            hitDamage.OnDamage(grandParentIAttack.OnAttack(target));
             Destroy(newBullet, 2f);   //2초 뒤 파괴
             //hit된 오브젝트에 자식 Attack값만큼 데미지입힘
         }

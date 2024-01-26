@@ -1,6 +1,8 @@
+using DamageNumbersPro.Demo;
+using DamageNumbersPro;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, IDamageable, IAttack
+public class Tower : MonoBehaviour, DamageableImp, AttackableImp
 {
     //기본 데이터
 
@@ -19,10 +21,8 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
 
     //IAttack
     public float speed { get; set; }   //공격 속도
-    public float atkTime { get; set; } //일반공격 쿨타임
-    public float skillTime { get; set; } = 0;
-    public bool ativeSkill { get; set; } = false;
-
+    public float atk_time { get; set; } //일반공격 쿨타임
+    protected GameObject damagePrefab;
     //-----------------------------------------------------------------------애니메이션
     private GameObject towerWheel;
     private float wheelSpeed = 15f;
@@ -34,11 +34,10 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         hp = maxHp;
 
         //IAttack
-        atkTime = 5f;
+        atk_time = 5f;
         speed = 15f;
 
         towerWheel = transform.GetChild(1).GetChild(0).gameObject;
-        Debug.Log(towerWheel.name);
     }
 
     [SerializeField] CurrentTowerData current_tower_data;
@@ -54,12 +53,6 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         
         return attack;
     }
-
-    public double OnSkill(RaycastHit2D hit)
-    {
-        //타워는 스킬 x 나중에 파츠 고유 능력에서 사용하는걸로
-        return 0;
-    }   
 
     public void hpApply() //이후에 실시간으로 값 저장되면 수정하는 걸로
     {
@@ -92,15 +85,33 @@ public class Tower : MonoBehaviour, IDamageable, IAttack
         //체력이 0보다 작을 경우 초기화가 실행 되어야함 코루틴 작업 필요
     }
 
-    public void OnDamage(double Damage, RaycastHit2D hit)
+    public void OnDamage(double Damage)
     {
-        if (!!dead) {
-            hp-=(Damage- OnProtection());
+        if (!dead) {
+            //DisplayDamageNumber(Damage);
+
+            hp -= (Damage- OnProtection());
         }
         if(hp <= 0) { dead = true; // 씬의 처음으로 이동 //타워 죽음 처리
             hpInit();
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    void DisplayDamageNumber(double Damage)
+    {
+        DamageNumber prefab;
+        prefab = damagePrefab.GetComponent<DamageNumber>();
+
+
+        DNP_PrefabSettings settings = DNP_DemoManager.instance.GetSettings();
+
+        // 생성된 데미지 숫자에 데미지 및 설정을 적용
+        DamageNumber newDamageNumber = prefab.Spawn(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), (float)Damage);
+        newDamageNumber.SetFollowedTarget(transform);
+
+        // 설정 적용
+        settings.Apply(newDamageNumber);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

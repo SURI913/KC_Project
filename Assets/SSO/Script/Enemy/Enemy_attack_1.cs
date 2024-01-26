@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy_attack_1 : MonoBehaviour
 {
-    // ±Ù°Å¸® ¸ó½ºÅÍ °ø°İ
+    // ê·¼ê±°ë¦¬ ëª¬ìŠ¤í„° ê³µê²©
     [SerializeField]
-    private Enemy_Respown enemyRespawner;  // ÂüÁ¶
+    private Enemy_Respown enemyRespawner;  // ì°¸ì¡°
 
     private void Start()
     {
-        // ¸¸¾à enemyRespawner°¡ ¼³Á¤µÇÁö ¾Ê¾Ò´Ù¸é, ÇöÀç ¾À¿¡¼­ Enemy_Respown ÀÎ½ºÅÏ½º¸¦ Ã£¾Æ ¼³Á¤
-        // ÀÌ·¸°Ô ÇÏ¸é ¿¡µğÅÍ¿¡¼­ ¼öµ¿À¸·Î ¼³Á¤ÇÏÁö ¾Ê¾Æµµ ÀÚµ¿À¸·Î ÂüÁ¶¸¦ Ã£¾ÆÁÜ
+        // ë§Œì•½ enemyRespawnerê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ë‹¤ë©´, í˜„ì¬ ì”¬ì—ì„œ Enemy_Respown ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì°¾ì•„ ì„¤ì •
+        // ì´ë ‡ê²Œ í•˜ë©´ ì—ë””í„°ì—ì„œ ìˆ˜ë™ìœ¼ë¡œ ì„¤ì •í•˜ì§€ ì•Šì•„ë„ ìë™ìœ¼ë¡œ ì°¸ì¡°ë¥¼ ì°¾ì•„ì¤Œ
         if (!enemyRespawner)
         {
             enemyRespawner = FindObjectOfType<Enemy_Respown>();
@@ -21,13 +21,13 @@ public class Enemy_attack_1 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
-        {   // °ø°İÀÌ ÇÃ·¹ÀÌ¾î³ª Ä³½½¿¡ Ãæµ¹Çß´Ù¸é
-            IDamageable target = collision.GetComponent<IDamageable>();
+        {   // ê³µê²©ì´ í”Œë ˆì´ì–´ë‚˜ ìºìŠ¬ì— ì¶©ëŒí–ˆë‹¤ë©´
+            DamageableImp target = collision.GetComponent<DamageableImp>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();
-                target.OnDamage(damageValue, new RaycastHit2D());  // ¿©±â¼­ RaycastHit2D Á¤º¸´Â ÇÊ¿ä¿¡ µû¶ó ÀûÀıÈ÷ ¼³Á¤
-                Debug.Log("enemy°¡ °ø°İÇÔ");
+                target.OnDamage(damageValue);  // ì—¬ê¸°ì„œ RaycastHit2D ì •ë³´ëŠ” í•„ìš”ì— ë”°ë¼ ì ì ˆíˆ ì„¤ì •
+                //Debug.Log("enemyê°€ ê³µê²©í•¨");
             }
         }
     }

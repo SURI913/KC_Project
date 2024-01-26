@@ -10,9 +10,10 @@ public class CurrencyItemData : ItemData
     [SerializeField] private double _amount;
 
     /// <summary> 개수 지정(범위 제한) </summary>
-    public void SetAmount(double _amount)
+    public bool SetAmount(double _amount)
     {
         amount += _amount;
+        return true;
     }
 
     public bool Use(double _amount)

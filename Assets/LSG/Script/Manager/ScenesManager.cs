@@ -1,67 +1,164 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScenesManager : MonoBehaviour
 {
     //씬 관리
-    Stack<int> scenes;
+    /// <summary>
+    ///  main ~ 1-1~1-6 ~Dungeon~TowerUI~MainUI~ TowerUI~Inventory
+    /// 
+    /// </summary>
+    Stack<int> scenesStage = new Stack<int>();
+    Stack<int> scenesUI = new Stack<int>();
+    int currentSceneIndex = 0;
+    Image FadeObj;
+    Color fadeInOutColor;
+    AsyncOperation asyncOper;
+    
 
-    IEnumerator ShowLodingScene()
+    private void Awake()
     {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Single);  // 다음 씬으로 전
+        //처음에 생성할 
+
+        FadeObj = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        fadeInOutColor = FadeObj.color;
+        StartCoroutine(TransitionToNextStage());
     }
 
-    IEnumerator TransitionToNextStage()
+     IEnumerator ShowLodingScene()
     {
         yield return new WaitForSeconds(3f);  // 3초 대기
-        int currentSceneIndex = scenes.Pop();
-        SceneManager.LoadSceneAsync(currentSceneIndex += 1,LoadSceneMode.Additive);  // 다음 씬으로 전환
-        scenes.Push(currentSceneIndex);
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);  // 다음 씬으로 전
+    }
+
+    IEnumerator FadeOutIn()
+    {
+        FadeObj.enabled = true;
+        while (fadeInOutColor.a < 1)   // 점점 불투명하게
+        {
+            fadeInOutColor.a += 0.05f; // 페이드아웃 속도 결정
+            FadeObj.color = fadeInOutColor;
+
+            yield return null;
+        }
+        
+        while (!asyncOper.isDone)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(3f);  // 3초 대기
+        
+        while (fadeInOutColor.a > 0)   // 점점 투명하게
+        {
+            fadeInOutColor.a -= 0.05f;
+            FadeObj.color = fadeInOutColor;
+
+            yield return null;
+        }
+
+        FadeObj.enabled = false;
+    }
+
+    public IEnumerator TransitionToNextStage()
+    {
+        yield return new WaitForSeconds(3f);  // 3초 대기
+        if (currentSceneIndex == 6)
+        {
+            SceneManager.UnloadSceneAsync(currentSceneIndex);  //마지막 씬 삭제 후 다시 처음으로
+            //이 부분때문에 중복생성된 것임
+            currentSceneIndex = 0;
+        }
+        if(currentSceneIndex != 0)
+        {
+            SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
+        }
+        if (scenesStage.Contains(7))
+        {
+            SceneManager.UnloadSceneAsync(7);  //비동기 씬 로드
+        }
+
+        asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
+        yield return StartCoroutine(FadeOutIn());
+        yield return StartCoroutine(ShowMainUI());
+
+        scenesStage.Push(currentSceneIndex);
+        yield return null;
+
     }
 
     public IEnumerator ShowTower()
     {
+       
         yield return new WaitForSeconds(3f);  // 3초 대기
-        SceneManager.LoadSceneAsync("TowerUI", LoadSceneMode.Additive);  //비동기 씬 로드
-        SceneManager.UnloadSceneAsync("MainUI");  //비동기 씬 로드
+        asyncOper = SceneManager.LoadSceneAsync(9, LoadSceneMode.Additive);  //비동기 씬 로드
+        if (scenesUI.Count != 0)
+        {
+            foreach (int go in scenesUI)
+            {
+                SceneManager.UnloadSceneAsync(go);  //비동기 씬 로드
+
+            }
+        }
+        scenesUI.Clear();
+        scenesUI.Push(9);
+
+        yield return null;
 
     }
 
     public IEnumerator ShowMainUI()
     {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        SceneManager.LoadSceneAsync("MainUI", LoadSceneMode.Additive);  //비동기 씬 로드
-        SceneManager.UnloadSceneAsync("TowerUI");  //비동기 씬 로드
+
+        asyncOper = SceneManager.LoadSceneAsync(8, LoadSceneMode.Additive);  //비동기 씬 로드 메인 UI
+
+        if (scenesUI.Count != 0)
+        {
+            foreach (int go in scenesUI)
+            {
+                print(go);
+                SceneManager.UnloadSceneAsync(go);  //비동기 씬 로드
+
+            }
+        }
+
+        scenesUI.Clear();
+
+        scenesUI.Push(8);
+        yield return null;
+
     }
 
     public IEnumerator ShowDungeonUI()
     {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        SceneManager.LoadSceneAsync("Dungeon", LoadSceneMode.Single);  //비동기 씬 로드
-        foreach(var go in scenes)
+        SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
+        currentSceneIndex--;
+        if(currentSceneIndex <= 0 && currentSceneIndex>=6)
         {
-            SceneManager.UnloadSceneAsync(go);  //비동기 씬 로드
-
+            currentSceneIndex = 0;
         }
-        scenes.Clear();
-        scenes.Push(99); //던전 번호 체크
-    }
-
-    public IEnumerator ShowInventoryUI()
-    {
         yield return new WaitForSeconds(3f);  // 3초 대기
-        SceneManager.LoadSceneAsync("Inventory", LoadSceneMode.Single);  //비동기 씬 로드
-        foreach (var go in scenes)
-        {
-            SceneManager.UnloadSceneAsync(go);  //비동기 씬 로드
+        asyncOper = SceneManager.LoadSceneAsync(7, LoadSceneMode.Additive);  //비동기 씬 로드
 
+        if (scenesUI.Count != 0)
+        {
+            foreach (int go in scenesUI)
+            {
+                SceneManager.UnloadSceneAsync(go);  //비동기 씬 로드
+
+            }
         }
-        scenes.Clear();
-        scenes.Push(99); //번호 체크
+        scenesUI.Clear();
+        scenesUI.Push(7); //던전 번호 체크
+
+        yield return StartCoroutine(FadeOutIn());
+
+        
+        yield return null;
+
     }
 
 }

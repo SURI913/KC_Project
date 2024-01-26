@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeUI : MonoBehaviour
 {
+    GameObject inventory_obj;
+    private void Awake()
+    {
+        inventory_obj = GameObject.Find("InventoryCanvas");
+    }
     enum ChangeUIFuntion
     {
-        ShowMainUI, ShowTower, ShowDungeonUI
+        ShowMainUI, ShowTower, ShowDungeonUI, Inventory
     }
 
     [Tooltip ("전환할 씬 인덱스 번호")]
