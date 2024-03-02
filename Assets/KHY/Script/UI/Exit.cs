@@ -9,7 +9,7 @@ public class Exit : MonoBehaviour
 
     private void Awake()
     {
-        sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
+       // sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
     }
     public void OnClick()
     {

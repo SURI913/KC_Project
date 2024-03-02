@@ -2,26 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 
 public class StageButton : MonoBehaviour
-{
+{ 
     public int stageIndex; // 각 버튼에 해당하는 스테이지 번호를 인스펙터에서 설정
     //public Monster monster; // M_D01 스크립트를 인스펙터에서 할당
+
+    public Text recommendText;
 
     private void Start()
     {
         Button button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
-       
+
+
+        //텍스트 비활성화
+       // recommendText.gameObject.SetActive(false);
+
     }
+
   
     public void OnButtonClick()
     {
         Monster _monster = GameObject.FindWithTag("Enemy").GetComponent<Monster>();
-        //??????뭐지 여기서 뭔 오류지????????????????????????????????? 
-        //게임매니저 생성 , 씬 분리 후 갑자기 오류남 
+        // 씬이 넘어가면서 태그를 못찾는가봄 
         //스테이지 인덱스틑 저장해서 보냄
         if (_monster != null)
         {
