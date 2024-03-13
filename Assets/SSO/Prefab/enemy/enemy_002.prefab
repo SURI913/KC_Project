@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 9f17c7ef80b32f146b7bea05ca27b874, type: 3}
       propertyPath: m_Name
-      value: monster6
+      value: enemy_002
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 9f17c7ef80b32f146b7bea05ca27b874, type: 3}
       propertyPath: m_Layer
@@ -237,6 +237,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9f17c7ef80b32f146b7bea05ca27b874, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8900072204583639006}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 9f17c7ef80b32f146b7bea05ca27b874, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5710767715183227217}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 9f17c7ef80b32f146b7bea05ca27b874, type: 3}
 --- !u!1 &390033637986235311 stripped
 GameObject:
@@ -306,13 +309,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390033637986235311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06b5cdbe01f0eb6409375c639d4ed424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  enemy_attack_1: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
-  rayLength: 1
   enemyRespawner: {fileID: 0}
+  attackCooldown: 3
+  rayLength: 1
+  enemy_attack_1: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
+  enemyData: {fileID: 0}
+--- !u!114 &-5710767715183227217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390033637986235311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09db76e0d5eb15e439ecceac5ba138d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRespawner: {fileID: 0}
+  attackCooldown: 3
+  rayLength: 1
+  enemy_attack_1: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
+  damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
+  enemyData: {fileID: 0}

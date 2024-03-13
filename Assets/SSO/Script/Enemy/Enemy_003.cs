@@ -39,10 +39,10 @@ public class Enemy_003 : MonoBehaviour, DamageableImp
         enemySpeed = enemyRespawner.GetEnemySpeed();
         target = GameObject.FindGameObjectWithTag("Castle").transform;
         originalEnemySpeed = enemySpeed;
-        hp = enemyRespawner.GetEnemyHp();
+        hp = enemyRespawner.GetEnemy3Hp();
 
         enemyAnimation = GetComponent<Animator>();
-
+        Debug.Log("enemy3 hp = " + hp);
     }
 
     public void OnDamage(double Damage)

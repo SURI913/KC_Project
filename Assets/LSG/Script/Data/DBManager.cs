@@ -302,7 +302,7 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split("\t");
             for (int j = 0; j < columnSize; j++)
             {
-                Enemy targetData = enemyData.enemys[i];
+                Enemy targetData = enemyData.enemy1[i];
 
                 /*targetData.name = 
                 targetData.hp = 
