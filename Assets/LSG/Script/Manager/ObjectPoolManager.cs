@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -9,30 +7,30 @@ public class ObjectPoolManager : MonoBehaviour
     [System.Serializable]
     private class ObjectInfo
     {
-        // ¿ÀºêÁ§Æ® ÀÌ¸§
+        // ì˜¤ë¸Œì íŠ¸ ì´ë¦„
         public string objectName;
-        // ¿ÀºêÁ§Æ® Ç®¿¡¼­ °ü¸®ÇÒ ¿ÀºêÁ§Æ®
+        // ì˜¤ë¸Œì íŠ¸ í’€ì—ì„œ ê´€ë¦¬í•  ì˜¤ë¸Œì íŠ¸
         public GameObject perfab;
-        // ¸î°³¸¦ ¹Ì¸® »ı¼º ÇØ³õÀ»°ÇÁö
+        // ëª‡ê°œë¥¼ ë¯¸ë¦¬ ìƒì„± í•´ë†“ì„ê±´ì§€
         public int count;
     }
 
 
     public static ObjectPoolManager instance;
 
-    // ¿ÀºêÁ§Æ®Ç® ¸Å´ÏÀú ÁØºñ ¿Ï·áÇ¥½Ã
+    // ì˜¤ë¸Œì íŠ¸í’€ ë§¤ë‹ˆì € ì¤€ë¹„ ì™„ë£Œí‘œì‹œ
     public bool IsReady { get; private set; }
 
     [SerializeField]
     private ObjectInfo[] objectInfos = null;
 
-    // »ı¼ºÇÒ ¿ÀºêÁ§Æ®ÀÇ key°ªÁöÁ¤À» À§ÇÑ º¯¼ö
+    // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸ì˜ keyê°’ì§€ì •ì„ ìœ„í•œ ë³€ìˆ˜
     private string objectName;
 
-    // ¿ÀºêÁ§Æ®Ç®µéÀ» °ü¸®ÇÒ µñ¼Å³Ê¸®
+    // ì˜¤ë¸Œì íŠ¸í’€ë“¤ì„ ê´€ë¦¬í•  ë”•ì…”ë„ˆë¦¬
     private Dictionary<string, IObjectPool<GameObject>> ojbectPoolDic = new Dictionary<string, IObjectPool<GameObject>>();
 
-    // ¿ÀºêÁ§Æ®Ç®¿¡¼­ ¿ÀºêÁ§Æ®¸¦ »õ·Î »ı¼ºÇÒ¶§ »ç¿ëÇÒ µñ¼Å³Ê¸®
+    // ì˜¤ë¸Œì íŠ¸í’€ì—ì„œ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒˆë¡œ ìƒì„±í• ë•Œ ì‚¬ìš©í•  ë”•ì…”ë„ˆë¦¬
     private Dictionary<string, GameObject> goDic = new Dictionary<string, GameObject>();
 
     private void Awake()
@@ -57,14 +55,14 @@ public class ObjectPoolManager : MonoBehaviour
 
             if (goDic.ContainsKey(objectInfos[idx].objectName))
             {
-                Debug.LogFormat("{0} ÀÌ¹Ì µî·ÏµÈ ¿ÀºêÁ§Æ®ÀÔ´Ï´Ù.", objectInfos[idx].objectName);
+                Debug.LogFormat("{0} ì´ë¯¸ ë“±ë¡ëœ ì˜¤ë¸Œì íŠ¸ì…ë‹ˆë‹¤.", objectInfos[idx].objectName);
                 return;
             }
 
             goDic.Add(objectInfos[idx].objectName, objectInfos[idx].perfab);
             ojbectPoolDic.Add(objectInfos[idx].objectName, pool);
 
-            // ¹Ì¸® ¿ÀºêÁ§Æ® »ı¼º ÇØ³õ±â
+            // ë¯¸ë¦¬ ì˜¤ë¸Œì íŠ¸ ìƒì„± í•´ë†“ê¸°
             for (int i = 0; i < objectInfos[idx].count; i++)
             {
                 objectName = objectInfos[idx].objectName;
@@ -73,11 +71,11 @@ public class ObjectPoolManager : MonoBehaviour
             }
         }
 
-        Debug.Log("¿ÀºêÁ§Æ®Ç®¸µ ÁØºñ ¿Ï·á");
+        Debug.Log("ì˜¤ë¸Œì íŠ¸í’€ë§ ì¤€ë¹„ ì™„ë£Œ");
         IsReady = true;
     }
 
-    // »ı¼º
+    // ìƒì„±
     private GameObject CreatePooledItem()
     {
         GameObject poolGo = Instantiate(goDic[objectName]);
@@ -85,19 +83,19 @@ public class ObjectPoolManager : MonoBehaviour
         return poolGo;
     }
 
-    // ´ë¿©
+    // ëŒ€ì—¬
     private void OnTakeFromPool(GameObject poolGo)
     {
         poolGo.SetActive(true);
     }
 
-    // ¹İÈ¯
+    // ë°˜í™˜
     private void OnReturnedToPool(GameObject poolGo)
     {
         poolGo.SetActive(false);
     }
 
-    // »èÁ¦
+    // ì‚­ì œ
     private void OnDestroyPoolObject(GameObject poolGo)
     {
         Destroy(poolGo);
@@ -109,7 +107,7 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (goDic.ContainsKey(goName) == false)
         {
-            Debug.LogFormat("{0} ¿ÀºêÁ§Æ®Ç®¿¡ µî·ÏµÇÁö ¾ÊÀº ¿ÀºêÁ§Æ®ÀÔ´Ï´Ù.", goName);
+            Debug.LogFormat("{0} ì˜¤ë¸Œì íŠ¸í’€ì— ë“±ë¡ë˜ì§€ ì•Šì€ ì˜¤ë¸Œì íŠ¸ì…ë‹ˆë‹¤.", goName);
             return null;
         }
 

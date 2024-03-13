@@ -13,6 +13,7 @@ public class TowerData : ScriptableObject
 [System.Serializable]
 public class CannonData
 {
+    public string name;
     public string ID;
     public string Tier;
     public double retention_attack;
@@ -31,6 +32,7 @@ public class CannonData
 [System.Serializable]
 public class RepairManData
 {
+    public string name;
     public string ID;
     public string Tier;
     public double retention_hp;

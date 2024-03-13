@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
     public double hp { get; set; }      //체력
     public double maxHp { get; set; }   //최대체력
     protected double attack;  //공격력 전달할 때만 사용
+    public float atk_distance { get; set; } // 공격범위
+
 
     protected double healing = 0; //회복력
     protected double protection = 0; //방어력
@@ -149,4 +151,6 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
         towerWheel.transform.Rotate(-Vector3.forward * Time.deltaTime * wheelSpeed);
         
     }
+
+    
 }
