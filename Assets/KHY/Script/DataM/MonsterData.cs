@@ -6,12 +6,12 @@ using AllUnit;
 [System.Serializable]
 public class MonsterD
 {
-    public string stageID;
-    public double hp;
-    public double attack;
-    public int atktime;
-    public double recommattack;
-    public double recommdefense;   
+    public string D_stageID;
+    public double D_hp;
+    public double D_attack;
+    public int D_atktime;
+    public double D_recommattack;
+    public double D_recommdefense;   
 }
 
 
