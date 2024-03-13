@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class DBManager : MonoBehaviour
 {
-    const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B15:L";
-    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B5:L";
-    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I38:O";
-    const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=P38:V";
-    const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W38:AC";
-    const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=B16:N";
+    const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B23:L";
+    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B12:L";
+    const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I39:O";
+    const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=P39:V";
+    const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W39:AC";
+    const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=AD39:AJ";
 
     const string URL1 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
     //몬스터 M_D01
@@ -38,8 +38,7 @@ public class DBManager : MonoBehaviour
         StartCoroutine(DownloadGrowthProtection());
         StartCoroutine(DownloadGrowthHealing());
 
-        StartCoroutine(Download());
-
+        //StartCoroutine(Download());
     } 
 
     public IEnumerator DownloadCannon()
@@ -102,7 +101,7 @@ public class DBManager : MonoBehaviour
     void SetCannonData(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = 8;  //row.Length;
+        int rowSize = 3;  //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for(int i = 0; i< rowSize; i++)
@@ -110,7 +109,7 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split("\t");
             for(int j = 0; j< columnSize; j++)
             {
-
+                towerData.Cannon[i].name = column[0];
                 towerData.Cannon[i].ID = column[1];
                 towerData.Cannon[i].Tier = column[2];
                 towerData.Cannon[i].retention_attack = double.Parse(column[3]);  //보유효과 공격력
@@ -135,7 +134,7 @@ public class DBManager : MonoBehaviour
     void SetRepairManData(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = 8; //row.Length;
+        int rowSize = 4; //row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)
@@ -145,6 +144,7 @@ public class DBManager : MonoBehaviour
             {
                 RepairManData targetData = towerData.RepairMan[i];
 
+                targetData.name = column[0];
                 targetData.ID = column[1];
                 targetData.Tier = column[2];
                 targetData.retention_hp = double.Parse(column[3]);
@@ -243,7 +243,7 @@ public class DBManager : MonoBehaviour
     void SetGrowthHeal(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = 2;  //row.Length;
+        int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)

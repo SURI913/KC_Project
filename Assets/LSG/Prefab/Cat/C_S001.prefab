@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6568909225343862012}
   - component: {fileID: 6568909225343862013}
   m_Layer: 8
-  m_Name: S
+  m_Name: C_S001
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6ed1fc8b79abf41b005b023db3a84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 8
-  growingdata: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
   damage_prefab: {fileID: 0}
+  respawnTime: 8
+  size: 0
+  layer_mask:
+    serializedVersion: 2
+    m_Bits: 64
+  base_growing_data: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
+  base_cat_data: {fileID: 11400000, guid: 91e2fc97c2ad7884089dae5e6b52821a, type: 2}
 --- !u!50 &6568909225343862012
 Rigidbody2D:
   serializedVersion: 4
@@ -159,10 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262a70cb53d6af346bef6b3f43d6566e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleRange: 30
-  radius: 3
-  bulletSet: {fileID: 8781042466432834086, guid: 51b10e71a97f86847bd94221ac98a346, type: 3}
-  bulletPos: {fileID: 6568909225815458655}
+  my_attack_obj: {fileID: 8781042466432834086, guid: 51b10e71a97f86847bd94221ac98a346, type: 3}
+  SL_interpolation_length: 10
 --- !u!1 &6568909225815458640
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,8 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleRange: 30
   radius: 3
-  bulletSet: {fileID: 7975682887442928559, guid: f8dc4a03743c6524ba4e9829bb24e0f1, type: 3}
-  bulletPos: {fileID: 6568909225982165358}
 --- !u!1001 &2587251159849784617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,7 +285,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7257287146538200533, guid: 034e1be9983928d4a8a98705dd78e846, type: 3}
       propertyPath: m_Name
-      value: C_S001
+      value: C_S001_Skin
       objectReference: {fileID: 0}
     - target: {fileID: 8394439093871818166, guid: 034e1be9983928d4a8a98705dd78e846, type: 3}
       propertyPath: m_LocalPosition.x

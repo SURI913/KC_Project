@@ -198,10 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262a70cb53d6af346bef6b3f43d6566e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleRange: 30
-  radius: 3
-  bulletSet: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
-  bulletPos: {fileID: 1809733182114488900}
+  my_attack_obj: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
+  SL_interpolation_length: 10
 --- !u!1001 &1794479866119206092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,7 +210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: b7828b9800bc6324b98f2bc54d03deaf, type: 3}
       propertyPath: m_Name
-      value: CatTower
+      value: CatTower_Skin
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: b7828b9800bc6324b98f2bc54d03deaf, type: 3}
       propertyPath: m_Layer
@@ -375,7 +373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: d30e1bbde9cd3f842b221b93d64f1b46, type: 3}
       propertyPath: m_Name
-      value: mouse
+      value: Mouse_Skin
       objectReference: {fileID: 0}
     - target: {fileID: -8250169266279454816, guid: d30e1bbde9cd3f842b221b93d64f1b46, type: 3}
       propertyPath: m_SortingLayer

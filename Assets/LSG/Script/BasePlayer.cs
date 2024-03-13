@@ -1,60 +1,59 @@
-using System.Collections;
-using UnityEngine;
-using AllUnit;
 using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 using System;
+using System.Collections;
+using AllUnit;
+using UnityEngine;
 
-public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
+public class BasePlayer : MonoBehaviour
 {
+    /*
+     <<기본데이터>>
+     이름 / 등급 / 레벨 /
+    삭제
+     */
     protected int lv = 0;
     public double hp { get; set; }
     protected float boss_attack = 0;  //보스 데미지 피해량 
     bool is_passive_skill = false;
+    private bool is_ative_skill = false;
     protected float skill_effect;
     public bool dead { get; set; } = false;    //죽음확인
 
-    public GameObject damage_prefab;
+    protected GameObject damage_prefab;
     //------------------------------------------------------초기값 저장
     public BaseCatData cat_data { get; set; }
     public GrowingData growing_data { get; set; }
     //장비 멀로 처리하냐
 
     //-----------------------------------------------------------------------------------------------------------애니메이션
-    protected Animator cat_motion;    
+    protected Animator cat_motion;
 
     public float respawnTime = 8f;
-    //---------------------------------------------------------------SkillUserImp
-    public float speed { get; set; }   //공격 속도
-    public float skill_time { get; set; }   //스킬 공격 쿨타임
-    public bool is_ative_skill { get; set; } = false;   //스킬 활성화 시 공격 멈춤
-    //--------------------------------------------------------------AttackableImp
-    public float atk_time { get; set; } //일반공격 쿨타임
-    public float atk_distance { get; set; } // 공격범위
-
-    private void Awake()
+    public BasePlayer(BaseCatData _cat_data, GrowingData _growing_data, GameObject _damage_prefab)
     {
+        cat_data = _cat_data;
+        growing_data = _growing_data;
+        damage_prefab = _damage_prefab;
+        is_ative_skill = true;
+        cat_motion = GetComponentInChildren<Animator>();
         player_rb = GetComponent<Rigidbody2D>();
-
-        speed = cat_data._attack_speed;
-        atk_time = cat_data._atk_time;
-        skill_time = cat_data._skl_time;
-        skill_effect = cat_data._skl_effect;
     }
 
-    protected void hpInit(){    //체력 초기화
-        if(!growing_data)
+    protected void hpInit()
+    {    //체력 초기화
+        if (!growing_data)
         {
             Debug.Log(cat_data._id);
             Debug.Log("hp error!");
         }
-       else
-       {
+        else
+        {
             hp = growing_data.Hp * cat_data._hp_multipler;
             dead = false;
             cat_motion.SetBool("isDead", false);
-       }
-            //체력이 0보다 작을 경우 초기화가 실행 되어야함
+        }
+        //체력이 0보다 작을 경우 초기화가 실행 되어야함
     }
 
     //캐릭터 데미지를 입히고 싶을 때 레이캐스트 판정(tag) Cat걸리면 실행시키면 됨 당사자의 데미지를 까고 0이면 hit 캐릭터 삭제?
@@ -88,19 +87,11 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         settings.Apply(newDamageNumber);
     }
 
-    public virtual double OnSkill(RaycastHit2D hit)
+    protected virtual void OnHealing()
     {
-        return -999;
-    }
-
-    public virtual double OnAttack(RaycastHit2D hit) //공격값 계산
-    {
-        return -999;
-    }
-
-    protected virtual void OnHealing(){
         //체력 회복
-        if(cat_data._healing_multiple == 0){
+        if (cat_data._healing_multiple == 0)
+        {
             Debug.Log("ID");
             Debug.Log("healing error!");
             return;
@@ -108,21 +99,23 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         //영웅 회복력*회복력(보유효과)*장비장착효과(유무)*성급효과*별자리(유무)
     }
 
-    public double GetAttackPower(){
+    public double GetAttackPower()
+    {
         //일반 공격값 반환
-        if (cat_data._attack_multipler == 0){
+        if (cat_data._attack_multipler == 0)
+        {
             Debug.Log(cat_data._id);
             Debug.Log("attack error!");
             return 0;
         }
-        if(growing_data == null)
+        if (growing_data == null)
         {
             Debug.Log("공격 중 growingDataError!");
 
         }
         cat_motion.SetTrigger("isAttack");
 
-        double AllAttack = growing_data.Attack*cat_data._attack_multipler;
+        double AllAttack = growing_data.Attack * cat_data._attack_multipler;
         //Debug.Log(ID+(int)AllAttack);
         //영웅 공격력*공격력(보유효과)*성급효과*장비장착효과*패시브스킬*별자리
         //패시브 스킬은 어떻게 짤건지 고민 + 크리티컬 데미지 작업도 필요함
@@ -149,7 +142,7 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
 
     public void LevelUP()
     {
-        if(ativelevelup)
+        if (ativelevelup)
         {
             Debug.Log(cat_data._id + "레벨업!");
             if (growing_data == null)
@@ -166,17 +159,17 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
 
     protected void printData()
     {
-        Debug.Log(cat_data._id + " hp: "+Unit.ToUnitString(hp));
-        Debug.Log(cat_data._id + "maxHp: " +Unit.ToUnitString(growing_data.Hp * cat_data._hp_multipler));
-        Debug.Log(cat_data._id + "attack: " +Unit.ToUnitString(growing_data.Attack * cat_data._attack_multipler));
-        Debug.Log(cat_data._id + "Lv: " +lv);
+        Debug.Log(cat_data._id + " hp: " + Unit.ToUnitString(hp));
+        Debug.Log(cat_data._id + "maxHp: " + Unit.ToUnitString(growing_data.Hp * cat_data._hp_multipler));
+        Debug.Log(cat_data._id + "attack: " + Unit.ToUnitString(growing_data.Attack * cat_data._attack_multipler));
+        Debug.Log(cat_data._id + "Lv: " + lv);
     }
 
     //일시적으로 제한
     private float cooltime = 10f;
     private bool ativelevelup = true;
 
-    /*private void Update()
+    private void Update()
     {
         //레벨업 제한하는 부분 수정해야함
         if (cooltime >= 0 && !ativelevelup)
@@ -190,7 +183,7 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
             cooltime = 10f;
         }
 
-    }*/
+    }
 
     //캐릭터 움직임을 위한 변수
     protected Rigidbody2D player_rb;

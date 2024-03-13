@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7335580952809366055}
   - component: {fileID: 7335580952809366072}
   m_Layer: 8
-  m_Name: T
+  m_Name: C_T001
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91810189138cd6146b9aa5f57ce522e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 8
-  growingdata: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
-  attackEffect: {fileID: 4172817152456091937, guid: fd6c5cdedaf41c74892dc142b3baa2b3, type: 3}
   damage_prefab: {fileID: 0}
+  respawnTime: 8
+  size: 0
+  layer_mask:
+    serializedVersion: 2
+    m_Bits: 64
+  attack_effect: {fileID: 4172817152456091937, guid: fd6c5cdedaf41c74892dc142b3baa2b3, type: 3}
+  base_growing_data: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
+  base_cat_data: {fileID: 11400000, guid: 91e2fc97c2ad7884089dae5e6b52821a, type: 2}
 --- !u!70 &7335580952809366055
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +128,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5470595864480451917, guid: 266f394420dbd714db9b0398b4e15558, type: 3}
       propertyPath: m_Name
-      value: C_T001
+      value: C_T001_Skin
       objectReference: {fileID: 0}
     - target: {fileID: 6567211568891647278, guid: 266f394420dbd714db9b0398b4e15558, type: 3}
       propertyPath: m_LocalPosition.x
