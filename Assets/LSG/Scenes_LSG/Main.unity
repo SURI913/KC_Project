@@ -557,6 +557,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7029642521752446671, guid: 8444575dac7cba846b4d27702a3d7de4, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
+    - target: {fileID: 7029642521752446671, guid: 8444575dac7cba846b4d27702a3d7de4, type: 3}
+      propertyPath: monsterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
