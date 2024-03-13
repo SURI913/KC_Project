@@ -38,7 +38,7 @@ public class Monster : MonoBehaviour, DamageableImp
         Attack = 10;
         AtkTime = 3;
 
-        sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
+        //sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
 
     }
 
@@ -65,10 +65,10 @@ public class Monster : MonoBehaviour, DamageableImp
     public void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
-            stageID = monsdata.stageID;
-            HP = monsdata.hp;
-            Attack = monsdata.attack;
-            AtkTime = monsdata.atktime;
+            stageID = monsdata.D_stageID;
+            HP = monsdata.D_hp;
+            Attack = monsdata.D_attack;
+            AtkTime = monsdata.D_atktime;
            /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
             //여기선 데이터가 온다 !

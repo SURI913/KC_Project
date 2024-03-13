@@ -2743,6 +2743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285245053}
   - component: {fileID: 285245052}
+  - component: {fileID: 285245054}
   m_Layer: 0
   m_Name: Enemy_Respown
   m_TagString: Untagged
@@ -2763,16 +2764,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1636402918}
-  bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   bossHp: 1000
   bossDamage: 50
-  enemyHp: 500
-  enemyDamage: 10
+  bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   enemeyStageCount: 10
-  ground_enemy_position: {x: 26, y: -7}
+  ground_enemy_position: {x: 26, y: -8}
   fly_enemy_position: {x: 26, y: -1}
   boss_position: {x: 40, y: -15}
   enemy_speed: 3
+  enemyData: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,6 +2789,19 @@ Transform:
   - {fileID: 1636402919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285245054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285245051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca96922d6810ce4cb3b7220f9156da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
 --- !u!1 &290050790
 GameObject:
   m_ObjectHideFlags: 0
@@ -20770,8 +20783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 6683677807536424152, guid: 65aaaf34d7d299046a1cb667d0114041, type: 3}
-  - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 390033637986235311, guid: 4af273640204a4d45b03ba05e990a04f, type: 3}
+  - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 2312999928248754251, guid: 7d985c263c656bc48bf4c6f599e78213, type: 3}
   enemyCount: 0
 --- !u!4 &1636402919

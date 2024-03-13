@@ -95,7 +95,7 @@ public class DBManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(URL1);
         yield return www.SendWebRequest();
 
-        setData(www.downloadHandler.text);// 데이터 출력 
+        D_setData(www.downloadHandler.text);// 데이터 출력 
     }
 
     void SetCannonData(string tvc)
@@ -265,7 +265,7 @@ public class DBManager : MonoBehaviour
         growingSetData.protection = growthData.growth_heal[0].healing;
     }
 
-    void setData(string tsv) //==> 함수이름 수정, 
+    void D_setData(string tsv) //==> 함수이름 수정, 
     {
         Debug.Log("monsterData: " + monsterData);  // 확인
         if (monsterData != null)
@@ -282,12 +282,12 @@ public class DBManager : MonoBehaviour
             // ScriptableObject에서 데이터 가져오기
             MonsterD monsdata = monsterData.monsterdatas[i];
 
-            monsdata.stageID = column[0];
-            monsdata.hp = double.Parse(column[1]);
-            monsdata.attack = double.Parse(column[2]);
-            monsdata.atktime = int.Parse(column[3]);
-            monsdata.recommattack = double.Parse(column[4]);
-            monsdata.recommdefense = double.Parse(column[5]);
+            monsdata.D_stageID = column[0];
+            monsdata.D_hp = double.Parse(column[1]);
+            monsdata.D_attack = double.Parse(column[2]);
+            monsdata.D_atktime = int.Parse(column[3]);
+            monsdata.D_recommattack = double.Parse(column[4]);
+            monsdata.D_recommdefense = double.Parse(column[5]);
         }
     }
 
@@ -302,7 +302,7 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split("\t");
             for (int j = 0; j < columnSize; j++)
             {
-                Enemy targetData = enemyData.enemys[i];
+                Enemy targetData = enemyData.enemy1[i];
 
                 /*targetData.name = 
                 targetData.hp = 
