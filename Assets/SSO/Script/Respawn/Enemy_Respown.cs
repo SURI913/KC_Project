@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -10,11 +11,19 @@ public class Enemy_Respown : MonoBehaviour
     //public GameObject warningUI;  // 경고 UI
     //public GameObject stageClearUI;  // 클리어 텍스트
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
-    public GameObject bossPrefab; // 보스 프리팹
+
     public double bossHp;
     public float bossDamage;
-    public double enemyHp;
-    public float enemyDamage;
+    private double enemyHp;
+    private float enemyDamage;
+    private double enemy2Hp;
+    private float enemy2Damage;
+    private double enemy3Hp;
+    private float enemy3Damage;
+    private double enemy4Hp;
+    private float enemy4Damage;
+
+    public GameObject bossPrefab; // 보스 프리팹
     public float enemeyStageCount; // 이 스테이지에서 소환할 몬스터의 수
     private bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
     private float timer;
@@ -22,9 +31,23 @@ public class Enemy_Respown : MonoBehaviour
     public Vector2 fly_enemy_position;
     public Vector2 boss_position;
     public float enemy_speed;
+    public Enemy_Data enemyData;
+
+    private void Start()
+    {
+        // Data_Manager 오브젝트의 Data_Manager 스크립트를 찾아서 dataManager에 할당합니다.
+        enemyData = Resources.Load<Enemy_Data>("Enemy Data");
+
+    }
 
     private void Awake()
     {
+        //enemyData = Resources.Load<Enemy_Data>("Enemy Data");
+        SetEnemyData(enemyData);
+
+        PrintEnemyData();
+
+
         if (Instance == null)
         {
             Instance = this;
@@ -33,6 +56,40 @@ public class Enemy_Respown : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetEnemyData(Enemy_Data enemyData)
+    {
+        if(enemyData != null)
+        {
+            enemyHp = enemyData.enemy1[0].hp;
+            enemyDamage = enemyData.enemy1[0].damage;
+
+            enemy2Hp = enemyData.enemy2[0].hp;
+            enemy2Damage = enemyData.enemy2[0].damage;
+
+            enemy3Hp = enemyData.enemy3[0].hp;
+            enemy3Damage = enemyData.enemy3[0].damage;
+
+            enemy4Hp = enemyData.enemy4[0].hp;
+            enemy4Damage = enemyData.enemy4[0].damage;
+        }
+        else
+        {
+            Debug.Log("에너미 데이터 전달안됨");
+        }
+    }
+
+    public void PrintEnemyData()
+    {
+        Debug.Log("enemy1 체력 = " + enemyData.enemy1[0].hp);
+        Debug.Log("enemy1 데미지 = " + enemyData.enemy1[0].damage);
+        Debug.Log("enemy2 체력 = " + enemyData.enemy2[0].hp);
+        Debug.Log("enemy2 데미지 = " + enemyData.enemy2[0].damage);
+        Debug.Log("enemy3 체력 = " + enemyData.enemy3[0].hp);
+        Debug.Log("enemy3 데미지 = " + enemyData.enemy3[0].damage);
+        Debug.Log("enemy4 체력 = " + enemyData.enemy4[0].hp);
+        Debug.Log("enemy4 데미지 = " + enemyData.enemy4[0].damage);
     }
 
     public Vector2 GetBossPosition()
@@ -55,9 +112,24 @@ public class Enemy_Respown : MonoBehaviour
         return enemy_speed;
     }
 
-    public double GetEnemyDamage()  // 입력받은 enemey의 데미지값을 반환
+    public double GetEnemyDamage()  // 입력받은 enemey1의 데미지값을 반환
     {
         return enemyDamage;
+    }
+
+    public double GetEnemy2Damage()
+    {
+        return enemy2Damage;
+    }
+
+    public double GetEnemy3Damage()
+    {
+        return enemy3Damage;
+    }
+
+    public double GetEnemy4Damage()
+    {
+        return enemy4Damage;
     }
 
     public double GetBossDamage()
@@ -68,6 +140,21 @@ public class Enemy_Respown : MonoBehaviour
     public double GetEnemyHp()
     {
         return enemyHp;
+    }
+
+    public double GetEnemy2Hp()
+    {
+        return enemy2Hp;
+    }
+
+    public double GetEnemy3Hp()
+    {
+        return enemy3Hp;
+    }
+
+    public double GetEnemy4Hp()
+    {
+        return enemy4Hp;
     }
 
     public double GetBossHp()
