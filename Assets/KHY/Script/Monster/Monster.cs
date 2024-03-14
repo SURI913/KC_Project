@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class Monster : MonoBehaviour, DamageableImp
 {
 
-
     public string stageID { get; set; } //명
     public double HP { get; set; } //체력
     public double maxHP { get; set; } //최대체력
@@ -51,9 +50,9 @@ public class Monster : MonoBehaviour, DamageableImp
 
     public void SetMonsterDataByIndex(int index)
     {
-        if (index >= 1 && index <= monsterData.monsterdatas.Length)
+        if (index >= 1 && index <= monsterData.dungeon_monsterdatas.Length)
         {
-            MonsterD stageData = monsterData.monsterdatas[index - 1];
+            MonsterD stageData = monsterData.dungeon_monsterdatas[index - 1];
             SetMonsterData(stageData);
         }
         else
@@ -65,10 +64,10 @@ public class Monster : MonoBehaviour, DamageableImp
     public void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
-            stageID = monsdata.D_stageID;
-            HP = monsdata.D_hp;
-            Attack = monsdata.D_attack;
-            AtkTime = monsdata.D_atktime;
+            stageID = monsdata.dungeon_monster_stageID;
+            HP = monsdata.dungeon_monster_hp;
+            Attack = monsdata.dungeon_monster_attack;
+            AtkTime = monsdata.dungeon_monster_atktime;
            /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
             //여기선 데이터가 온다 !
