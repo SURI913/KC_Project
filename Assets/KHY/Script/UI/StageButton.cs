@@ -36,7 +36,7 @@ public class StageButton : MonoBehaviour
 
             MonsterData tmpData = _monster.monsterData;
 
-            if (rowIndex >= 1 && rowIndex <= tmpData.monsterdatas.Length)
+            if (rowIndex >= 1 && rowIndex <= tmpData.dungeon_monsterdatas.Length)
             {
 
                 _monster.SetMonsterDataByIndex(rowIndex);

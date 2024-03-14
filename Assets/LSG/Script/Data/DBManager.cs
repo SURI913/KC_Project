@@ -13,15 +13,15 @@ public class DBManager : MonoBehaviour
     const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W39:AC";
     const string GrowthHealingURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=AD39:AJ";
 
-    const string URL1 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
+    const string M_D01 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
     //몬스터 M_D01
-    const string URL2 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
+    const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
     //보스 M_D02
 
     //==>변수이름 변경 후 사용
     //const string URL1 = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=1772433253&range=AD38:AJ";
 
-    [SerializeField] MonsterData monsterData; //==> 변수이름변경 던전몬스터or 던전이름 몬스터로, 다른 몬스터랑 구분 필요함
+    [SerializeField] MonsterData dungeon_monsterData; //==> 변수이름변경 던전몬스터or 던전이름 몬스터로, 다른 몬스터랑 구분 필요함
 
     [SerializeField] CurrentTowerData current_tower_data;
     [SerializeField] GrowthData growthData;
@@ -92,10 +92,10 @@ public class DBManager : MonoBehaviour
     //==>구분을 위해 이름변경
     IEnumerator Download()
     {
-        UnityWebRequest www = UnityWebRequest.Get(URL1);
+        UnityWebRequest www = UnityWebRequest.Get(M_D01);
         yield return www.SendWebRequest();
 
-        D_setData(www.downloadHandler.text);// 데이터 출력 
+        dungeon_monster_setData(www.downloadHandler.text);// 데이터 출력 
     }
 
     void SetCannonData(string tvc)
@@ -265,12 +265,12 @@ public class DBManager : MonoBehaviour
         growingSetData.protection = growthData.growth_heal[0].healing;
     }
 
-    void D_setData(string tsv) //==> 함수이름 수정, 
+    void dungeon_monster_setData(string tsv) //==> 함수이름 수정, 
     {
-        Debug.Log("monsterData: " + monsterData);  // 확인
-        if (monsterData != null)
+        Debug.Log("monsterData: " + dungeon_monsterData);  // 확인
+        if (dungeon_monsterData != null)
         {
-            Debug.Log("monsterData.monsterdatas: " + monsterData.monsterdatas);  // 확인
+            Debug.Log("monsterData.monsterdatas: " + dungeon_monsterData.dungeon_monsterdatas);  // 확인
         }
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
@@ -280,14 +280,14 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split('\t');
 
             // ScriptableObject에서 데이터 가져오기
-            MonsterD monsdata = monsterData.monsterdatas[i];
+            MonsterD monsdata = dungeon_monsterData.dungeon_monsterdatas[i];
 
-            monsdata.D_stageID = column[0];
-            monsdata.D_hp = double.Parse(column[1]);
-            monsdata.D_attack = double.Parse(column[2]);
-            monsdata.D_atktime = int.Parse(column[3]);
-            monsdata.D_recommattack = double.Parse(column[4]);
-            monsdata.D_recommdefense = double.Parse(column[5]);
+            monsdata.dungeon_monster_stageID = column[0];
+            monsdata.dungeon_monster_hp = double.Parse(column[1]);
+            monsdata.dungeon_monster_attack = double.Parse(column[2]);
+            monsdata.dungeon_monster_atktime = int.Parse(column[3]);
+            monsdata.dungeon_monster_recommattack = double.Parse(column[4]);
+            monsdata.dungeon_monster_recommdefense = double.Parse(column[5]);
         }
     }
 
