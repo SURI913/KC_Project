@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DBManager : MonoBehaviour
 {
+
     const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B23:L";
     const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B12:L";
     const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I39:O";
@@ -18,10 +19,7 @@ public class DBManager : MonoBehaviour
     const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
     //보스 M_D02
 
-    //==>변수이름 변경 후 사용
-    //const string URL1 = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=1772433253&range=AD38:AJ";
-
-    [SerializeField] MonsterData dungeon_monsterData; //==> 변수이름변경 던전몬스터or 던전이름 몬스터로, 다른 몬스터랑 구분 필요함
+    [SerializeField] MonsterData dungeon_monsterData;
 
     [SerializeField] CurrentTowerData current_tower_data;
     [SerializeField] GrowthData growthData;
@@ -43,7 +41,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadCannon()
     {
-        //캐논 데이터 가져오기
+        //대포 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(CannonURL);
         yield return www.SendWebRequest();
         SetCannonData(www.downloadHandler.text);
@@ -51,7 +49,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadRepairMan()
     {
-        //캐논 데이터 가져오기
+        //수리쥐 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(RepairmanURL);
         yield return www.SendWebRequest();
         SetRepairManData(www.downloadHandler.text);
@@ -59,7 +57,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthAtk()
     {
-        //캐논 데이터 가져오기
+        //성장 공격 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(GrowthAtkURL);
         yield return www.SendWebRequest();
         SetGrowthAtk(www.downloadHandler.text);
@@ -67,7 +65,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthHp()
     {
-        //캐논 데이터 가져오기
+        //성장 체력 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(GrowthHpURL);
         yield return www.SendWebRequest();
         SetGrowthHp(www.downloadHandler.text);
@@ -75,7 +73,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthProtection()
     {
-        //캐논 데이터 가져오기
+        //성장 방어 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(GrowthProtectionURL);
         yield return www.SendWebRequest();
         SetGrowthProtection(www.downloadHandler.text);
@@ -83,7 +81,7 @@ public class DBManager : MonoBehaviour
 
     public IEnumerator DownloadGrowthHealing()
     {
-        //캐논 데이터 가져오기
+        //성장 회복 데이터 가져오기
         UnityWebRequest www = UnityWebRequest.Get(GrowthHealingURL);
         yield return www.SendWebRequest();
         SetGrowthHeal(www.downloadHandler.text);
@@ -288,27 +286,6 @@ public class DBManager : MonoBehaviour
             monsdata.dungeon_monster_atktime = int.Parse(column[3]);
             monsdata.dungeon_monster_recommattack = double.Parse(column[4]);
             monsdata.dungeon_monster_recommdefense = double.Parse(column[5]);
-        }
-    }
-
-    void SetEnemyData(string tsv)
-    {
-        string[] row = tsv.Split('\n');
-        int rowSize = row.Length;
-        int columnSize = row[0].Split('\t').Length;
-
-        for (int i = 0; i < rowSize; i++)
-        {
-            string[] column = row[i].Split("\t");
-            for (int j = 0; j < columnSize; j++)
-            {
-                Enemy targetData = enemyData.enemy1[i];
-
-                /*targetData.name = 
-                targetData.hp = 
-                targetData.damage = 
-                targetData.enemySpeed = */
-            }
         }
     }
 
