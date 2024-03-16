@@ -6,17 +6,17 @@ using AllUnit;
 [System.Serializable]
 public class MonsterD
 {
-    public string stageID;
-    public double hp;
-    public double attack;
-    public int atktime;
-    public double recommattack;
-    public double recommdefense;   
+    public string dungeon_monster_stageID;
+    public double dungeon_monster_hp;
+    public double dungeon_monster_attack;
+    public int dungeon_monster_atktime;
+    public double dungeon_monster_recommattack;
+    public double dungeon_monster_recommdefense;   
 }
 
 
 [CreateAssetMenu(fileName ="Monster Data",menuName ="Scriptable Object/Monster")]
 public class MonsterData : ScriptableObject
 {
-    public MonsterD[] monsterdatas;
+    public MonsterD[] dungeon_monsterdatas;
 }

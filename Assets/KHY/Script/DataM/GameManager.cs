@@ -16,24 +16,6 @@ public class GameManager : MonoBehaviour
     public double DmonsterATK;
     public double DmonsterAtime;
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-
-                if (instance == null)
-                {
-                    GameObject singleton = new GameObject("GameManager");
-                    instance = singleton.AddComponent<GameManager>();
-                }
-            }
-
-            return instance;
-        }
-    }
     private void Awake()
     {
         if (instance == null)

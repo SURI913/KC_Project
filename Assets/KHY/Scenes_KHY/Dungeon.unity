@@ -864,6 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 7
+  recommendText: {fileID: 0}
 --- !u!114 &79663147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 3
+  recommendText: {fileID: 0}
 --- !u!114 &89641264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1476,6 +1478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 14
+  recommendText: {fileID: 0}
 --- !u!114 &115188565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +1734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 6
+  recommendText: {fileID: 0}
 --- !u!114 &124960359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,9 +2250,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24990a079ff1d0747a317b581d570783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 8
-  growingdata: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
+  base_growing_data: {fileID: 0}
   damage_prefab: {fileID: 0}
+  base_cat_data:
+    _id: 
+    _name: 
+    _tier: 
+    _hp_multipler: 0
+    _increase_hp: 0
+    _attack_multipler: 0
+    _increase_attack: 0
+    _protection_multiple: 0
+    _increase_protect: 0
+    _healing_multiple: 0
+    _increase_healing: 0
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 0
+    _atk_time: 0
+    _skl_time: 0
+    _skl_effect: 0
 --- !u!1 &151606154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 7
+  recommendText: {fileID: 0}
 --- !u!114 &151606157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3204,7 +3226,7 @@ SortingGroup:
   m_GameObject: {fileID: 234885508}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &234885512
@@ -4107,7 +4129,7 @@ SortingGroup:
   m_GameObject: {fileID: 281566691}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &281566695
@@ -4756,6 +4778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 6
+  recommendText: {fileID: 0}
 --- !u!114 &294680298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 11
+  recommendText: {fileID: 0}
 --- !u!114 &314665567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5272,6 +5296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 15
+  recommendText: {fileID: 0}
 --- !u!114 &318916209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7278,7 +7303,7 @@ SortingGroup:
   m_GameObject: {fileID: 458399270}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &458399274
@@ -8098,7 +8123,7 @@ SortingGroup:
   m_GameObject: {fileID: 475229323}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &475229327
@@ -9213,6 +9238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 12
+  recommendText: {fileID: 0}
 --- !u!114 &498642913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9348,6 +9374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 10
+  recommendText: {fileID: 0}
 --- !u!114 &506751875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9572,7 +9599,7 @@ SortingGroup:
   m_GameObject: {fileID: 530913191}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &530913195
@@ -10635,6 +10662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 3
+  recommendText: {fileID: 0}
 --- !u!114 &577079302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10853,6 +10881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 4
+  recommendText: {fileID: 0}
 --- !u!114 &589042080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11480,6 +11509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 4
+  recommendText: {fileID: 0}
 --- !u!114 &639102747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11845,6 +11875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 5
+  recommendText: {fileID: 0}
 --- !u!114 &646604215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11980,6 +12011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 14
+  recommendText: {fileID: 0}
 --- !u!114 &653346950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12115,6 +12147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 13
+  recommendText: {fileID: 0}
 --- !u!114 &655596305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12600,6 +12633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 2
+  recommendText: {fileID: 0}
 --- !u!114 &674700119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12981,6 +13015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 1
+  recommendText: {fileID: 0}
 --- !u!114 &702092651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13116,6 +13151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 12
+  recommendText: {fileID: 0}
 --- !u!114 &708078390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13251,6 +13287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 11
+  recommendText: {fileID: 0}
 --- !u!114 &723067658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13849,6 +13886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 7
+  recommendText: {fileID: 0}
 --- !u!114 &781114278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15519,6 +15557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 10
+  recommendText: {fileID: 0}
 --- !u!114 &940150237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16578,7 +16617,7 @@ SortingGroup:
   m_GameObject: {fileID: 1011052547}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1011052551
@@ -17186,9 +17225,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6ed1fc8b79abf41b005b023db3a84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 8
-  growingdata: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
+  base_growing_data: {fileID: 0}
   damage_prefab: {fileID: 0}
+  base_cat_data:
+    _id: 
+    _name: 
+    _tier: 
+    _hp_multipler: 0
+    _increase_hp: 0
+    _attack_multipler: 0
+    _increase_attack: 0
+    _protection_multiple: 0
+    _increase_protect: 0
+    _healing_multiple: 0
+    _increase_healing: 0
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 0
+    _atk_time: 0
+    _skl_time: 0
+    _skl_effect: 0
 --- !u!1 &1034837791
 GameObject:
   m_ObjectHideFlags: 0
@@ -17242,6 +17298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 16
+  recommendText: {fileID: 0}
 --- !u!114 &1034837794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17926,7 +17983,7 @@ SortingGroup:
   m_GameObject: {fileID: 1097630645}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1097630649
@@ -18426,7 +18483,7 @@ SortingGroup:
   m_GameObject: {fileID: 1115318144}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1115318148
@@ -19028,6 +19085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 15
+  recommendText: {fileID: 0}
 --- !u!114 &1123099212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19306,6 +19364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 10
+  recommendText: {fileID: 0}
 --- !u!114 &1131709255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19451,7 +19510,7 @@ SortingGroup:
   m_GameObject: {fileID: 1153588605}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1153588609
@@ -20791,6 +20850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 8
+  recommendText: {fileID: 0}
 --- !u!114 &1196850498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21107,7 +21167,7 @@ SortingGroup:
   m_GameObject: {fileID: 1202455718}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1202455722
@@ -21593,6 +21653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 15
+  recommendText: {fileID: 0}
 --- !u!114 &1222459732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21892,7 +21953,7 @@ SortingGroup:
   m_GameObject: {fileID: 1247819773}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1247819777
@@ -22854,7 +22915,7 @@ SortingGroup:
   m_GameObject: {fileID: 1288775885}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1288775889
@@ -23508,6 +23569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 8
+  recommendText: {fileID: 0}
 --- !u!114 &1296721398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23903,6 +23965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 1
+  recommendText: {fileID: 0}
 --- !u!114 &1313325195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24265,7 +24328,7 @@ SortingGroup:
   m_GameObject: {fileID: 1352679831}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1352679835
@@ -24917,6 +24980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 12
+  recommendText: {fileID: 0}
 --- !u!114 &1364760440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25052,6 +25116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 13
+  recommendText: {fileID: 0}
 --- !u!114 &1369783099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25546,7 +25611,7 @@ SortingGroup:
   m_GameObject: {fileID: 1406384088}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1406384092
@@ -26005,6 +26070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 16
+  recommendText: {fileID: 0}
 --- !u!114 &1410908456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26245,6 +26311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 8
+  recommendText: {fileID: 0}
 --- !u!114 &1415334806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26380,6 +26447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 2
+  recommendText: {fileID: 0}
 --- !u!114 &1426848366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26836,7 +26904,7 @@ SortingGroup:
   m_GameObject: {fileID: 1475239972}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1475239976
@@ -28115,6 +28183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 1
+  recommendText: {fileID: 0}
 --- !u!114 &1524630081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28250,6 +28319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 2
+  recommendText: {fileID: 0}
 --- !u!114 &1527694314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28385,6 +28455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 11
+  recommendText: {fileID: 0}
 --- !u!114 &1537243995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28785,6 +28856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 13
+  recommendText: {fileID: 0}
 --- !u!114 &1553631639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29139,6 +29211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 5
+  recommendText: {fileID: 0}
 --- !u!114 &1610446325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29519,6 +29592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 5
+  recommendText: {fileID: 0}
 --- !u!114 &1634381562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29654,6 +29728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 9
+  recommendText: {fileID: 0}
 --- !u!114 &1634910894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29969,7 +30044,7 @@ SortingGroup:
   m_GameObject: {fileID: 1678412277}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1678412281
@@ -30455,6 +30530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 6
+  recommendText: {fileID: 0}
 --- !u!114 &1678827662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30889,6 +30965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 9
+  recommendText: {fileID: 0}
 --- !u!114 &1691103181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33210,6 +33287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 3
+  recommendText: {fileID: 0}
 --- !u!114 &1820013487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33355,7 +33433,7 @@ SortingGroup:
   m_GameObject: {fileID: 1871702749}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1871702753
@@ -34422,7 +34500,7 @@ SortingGroup:
   m_GameObject: {fileID: 1918867455}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &1918867459
@@ -34908,6 +34986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 4
+  recommendText: {fileID: 0}
 --- !u!114 &1927172796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35996,6 +36075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 16
+  recommendText: {fileID: 0}
 --- !u!114 &2026284380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36210,6 +36290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 9
+  recommendText: {fileID: 0}
 --- !u!114 &2041122140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36552,10 +36633,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91810189138cd6146b9aa5f57ce522e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 8
-  growingdata: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
-  attackEffect: {fileID: 4172817152456091937, guid: fd6c5cdedaf41c74892dc142b3baa2b3, type: 3}
+  base_growing_data: {fileID: 0}
   damage_prefab: {fileID: 0}
+  base_cat_data:
+    _id: 
+    _name: 
+    _tier: 
+    _hp_multipler: 0
+    _increase_hp: 0
+    _attack_multipler: 0
+    _increase_attack: 0
+    _protection_multiple: 0
+    _increase_protect: 0
+    _healing_multiple: 0
+    _increase_healing: 0
+    _critical_hit_average: 0
+    _critical_hit_attack: 0
+    _attack_speed: 0
+    _atk_time: 0
+    _skl_time: 0
+    _skl_effect: 0
 --- !u!1 &2083450788
 GameObject:
   m_ObjectHideFlags: 0
@@ -36887,7 +36984,7 @@ SortingGroup:
   m_GameObject: {fileID: 2083667292}
   m_Enabled: 1
   m_SortingLayerID: -2120553971
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1000
   m_SortAtRoot: 0
 --- !u!114 &2083667296
@@ -37456,6 +37553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageIndex: 14
+  recommendText: {fileID: 0}
 --- !u!114 &2101956277
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Skill : Projectile
 {
-    public GameObject bulletSet;    // 총알 오브젝트 입력
+    /*public GameObject bulletSet;    // 총알 오브젝트 입력
     public Transform bulletPos;
     private string IDset = "Skill";
 
@@ -57,5 +57,5 @@ public class Skill : Projectile
             grandParentSkill.is_ative_skill = false;
             Cooltime -= Time.deltaTime;
         }
-    }
+    }*/
 }

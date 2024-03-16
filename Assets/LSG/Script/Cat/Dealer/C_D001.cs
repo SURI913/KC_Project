@@ -4,16 +4,12 @@ using UnityEngine;
 using AllUnit;
 using UnityEngine.UI;
 
-public class C_D001 : MonoBehaviour, MyHeroesImp
+public class C_D001 : BaseDealer, MyHeroesImp
 {
     public GrowingData base_growing_data;
-    public GameObject damage_prefab;
-    public BaseCatData base_cat_data;
+    public CatData base_cat_data;
 
     //-----------------------------------------------------
-
-    BaseDealer c_d001; //이 값을 반환하는 인터페이스 필요
-
     //캐릭터 값 초기화
     //DB에서 끌어옴
     //레벨업 할때마다 저장 호출 + 값 다시 가져오기
@@ -21,13 +17,14 @@ public class C_D001 : MonoBehaviour, MyHeroesImp
     private void Awake()
     {
         //데이터가 없으면
-        c_d001 = new BaseDealer(base_cat_data, base_growing_data, damage_prefab);
-
+        cat_data = base_cat_data.all_cat_data[0];
+        growing_data = base_growing_data;
         //데이터가 있으면
+        cat_motion = GetComponentInChildren<Animator>();
     }
 
-    public Cat GetTargetCat()
+    public Cat GetMyData()
     {
-        return c_d001 as Cat;
+        return this;
     }
 }
