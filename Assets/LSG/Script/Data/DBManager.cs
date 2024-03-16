@@ -19,6 +19,8 @@ public class DBManager : MonoBehaviour
     const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
     //보스 M_D02
 
+    string Enemy_BASE_URL = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=1772433253&range=";
+
     [SerializeField] MonsterData dungeon_monsterData;
 
     [SerializeField] CurrentTowerData current_tower_data;
@@ -35,7 +37,7 @@ public class DBManager : MonoBehaviour
         StartCoroutine(DownloadGrowthHp());
         StartCoroutine(DownloadGrowthProtection());
         StartCoroutine(DownloadGrowthHealing());
-
+        StartCoroutine(DownloadEnemyAll());
         //StartCoroutine(Download());
     } 
 
@@ -85,6 +87,23 @@ public class DBManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(GrowthHealingURL);
         yield return www.SendWebRequest();
         SetGrowthHeal(www.downloadHandler.text);
+    }
+
+    IEnumerator DownloadEnemyAll()
+    {
+        yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "D18:E", SetM_N11Data);
+        yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "F17:G", SetM_N12Data);
+        yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "H17:I", SetM_N13Data);
+        yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "J17:K", SetM_N14Data);
+    }
+
+    IEnumerator DownloadAndSetEnemyData(string url, System.Action<string, List<Enemy>> setDataFunction)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(url);
+        yield return www.SendWebRequest();
+
+        List<Enemy> enemyList = new List<Enemy>();
+        setDataFunction(www.downloadHandler.text, enemyList);
     }
 
     //==>구분을 위해 이름변경
@@ -289,4 +308,79 @@ public class DBManager : MonoBehaviour
         }
     }
 
+    void SetM_N11Data(string tsv, List<Enemy> enemyList)
+    {
+        string[] rows = tsv.Split('\n');
+
+        for (int i = 0; i < rows.Length; i++)
+        {
+            string[] columns = rows[i].Split('\t');
+
+            Enemy enemy = new Enemy();
+            enemy.name = "m_n11";
+            enemy.hp = double.Parse(columns[0]);
+            enemy.damage = float.Parse(columns[1]);
+
+            enemyList.Add(enemy);
+        }
+
+        enemyData.enemy1 = enemyList.ToArray();
+    }
+
+    void SetM_N12Data(string tsv, List<Enemy> enemyList)
+    {
+        string[] rows = tsv.Split('\n');
+
+        for (int i = 1; i < rows.Length; i++)
+        {
+            string[] columns = rows[i].Split('\t');
+
+            Enemy enemy = new Enemy();
+            enemy.name = "m_n12";
+            enemy.hp = double.Parse(columns[0]);
+            enemy.damage = float.Parse(columns[1]);
+
+            enemyList.Add(enemy);
+        }
+
+        enemyData.enemy2 = enemyList.ToArray();
+    }
+
+    void SetM_N13Data(string tsv, List<Enemy> enemyList)
+    {
+        string[] rows = tsv.Split('\n');
+
+        for (int i = 1; i < rows.Length; i++)
+        {
+            string[] columns = rows[i].Split('\t');
+
+            Enemy enemy = new Enemy();
+            enemy.name = "m_n13";
+            enemy.hp = double.Parse(columns[0]);
+            enemy.damage = float.Parse(columns[1]);
+
+            enemyList.Add(enemy);
+        }
+
+        enemyData.enemy3 = enemyList.ToArray();
+    }
+
+    void SetM_N14Data(string tsv, List<Enemy> enemyList)
+    {
+        string[] rows = tsv.Split('\n');
+
+        for (int i = 1; i < rows.Length; i++)
+        {
+            string[] columns = rows[i].Split('\t');
+
+            Enemy enemy = new Enemy();
+            enemy.name = "m_n14";
+            enemy.hp = double.Parse(columns[0]);
+            enemy.damage = float.Parse(columns[1]);
+
+            enemyList.Add(enemy);
+        }
+
+        enemyData.enemy4 = enemyList.ToArray();
+    }
 }
