@@ -26,6 +26,8 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
     public GameObject enemy_attack_1;   // 공격시 소환할 공격개체
     public GameObject damagePrefab;  // 데미지 프리팹
 
+    public Enemy_Data enemyData;
+
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -42,7 +44,10 @@ public class Enemy_001 : MonoBehaviour, DamageableImp
         hp = enemyRespawner.GetEnemyHp();
 
         enemyAnimation = GetComponent<Animator>();
+
+        Debug.Log("enemy1 hp = " + hp);
     }
+
 
     public void OnDamage(double Damage )
     {

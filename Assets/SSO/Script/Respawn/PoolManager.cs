@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // ÇÁ·¡ÆÔµéÀ» º¸°üÇÒ º¯¼öµé 2
+    // í”„ë˜íŒ¸ë“¤ì„ ë³´ê´€í•  ë³€ìˆ˜ë“¤ 2
     public GameObject[] prefabs;
 
-    public int enemyCount = 0; // ÀûÀÌ »ı¼ºµÈ È½¼ö¸¦ ÃßÀû
+    public int enemyCount = 0; // ì ì´ ìƒì„±ëœ íšŸìˆ˜ë¥¼ ì¶”ì 
 
-    // ¸®½ºÆù ´ã´çÀ» ÇÏ´Â ¸®½ºÆ®µé 2
+    // ë¦¬ìŠ¤í° ë‹´ë‹¹ì„ í•˜ëŠ” ë¦¬ìŠ¤íŠ¸ë“¤ 2
     public List<GameObject>[] pools;
 
     void Awake()
@@ -26,16 +26,16 @@ public class PoolManager : MonoBehaviour
     {
         GameObject select = null;
 
-        // ºñÈ°¼ºÈ­µÈ ¿ÀºêÁ§Æ®°¡ ¾ø´Ù¸é »õ·Ó°Ô »ı¼ºÇÏ¿© select¿¡ ÇÒ´ç
+        // ë¹„í™œì„±í™”ëœ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ë‹¤ë©´ ìƒˆë¡­ê²Œ ìƒì„±í•˜ì—¬ selectì— í• ë‹¹
         if (!select)
         {
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);
 
-            if (index == 0 || index ==1 || index == 2 || index == 3) // 0 ¹ø ÀÎµ¦½º¸¦ Àû(Enemy)·Î °¡Á¤
+            if (index == 0 || index ==1 || index == 2 || index == 3) // 0 ë²ˆ ì¸ë±ìŠ¤ë¥¼ ì (Enemy)ë¡œ ê°€ì •
             {
                 enemyCount++;
-                //Debug.Log("enemy¼ÒÈ¯");
+                //Debug.Log("enemyì†Œí™˜");
             }
         }
         return select;

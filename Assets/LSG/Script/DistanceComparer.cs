@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DistanceComparer : IComparer
 {
+    //값을 받아와서
     private Transform target_transform;
 
     public DistanceComparer(Transform target_transform)

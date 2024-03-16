@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface MyHeroesImp
 {
-    Cat GetTargetCat();
+    Cat GetMyData();
 }
+
 public interface DamageableImp
 {
     void OnDamage(double Damage);   //데미지를 입힘
@@ -23,6 +24,7 @@ public interface AttackableImp
 {
     float speed { get; set; }   //공격 속도
     float atk_time { get; set; } //일반공격 쿨타임
+    float atk_distance { get; set; }
     double OnAttack(RaycastHit2D hit);
 }
 

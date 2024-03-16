@@ -1,32 +1,27 @@
 using UnityEngine;
 
-public class C_T001 : MonoBehaviour, MyHeroesImp
+public class C_T001 : BaseTanker, MyHeroesImp
 {
-    float skillEft = 5.0f;
-
-
     //스폰 값 필요
 
     public GrowingData base_growing_data;
-    public GameObject damage_prefab;
-    public BaseCatData base_cat_data;
-
-    BaseTanker c_t001;
+    public CatData base_cat_data;
 
 
     private void Awake()
     {
-        c_t001 = new BaseTanker(base_cat_data, base_growing_data, damage_prefab);
-
+        cat_data = base_cat_data.all_cat_data[1];
+        growing_data = base_growing_data;
+        cat_motion = GetComponentInChildren<Animator>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        c_t001.Move();
+        Move();
     }
 
-    public Cat GetTargetCat()
+    public Cat GetMyData()
     {
-        return c_t001 as Cat;
+        return this;
     }
 }
