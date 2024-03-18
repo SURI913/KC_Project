@@ -10962,6 +10962,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &974547906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974547908}
+  - component: {fileID: 974547907}
+  m_Layer: 0
+  m_Name: ObjectChack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &974547907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974547906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b597633bcf454e45a7a17e1329ff841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  check_size: {x: 10, y: 10}
+  checkLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  cooltime: 5
+--- !u!4 &974547908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974547906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.412354, y: 0.260077, z: 0.10720794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &979350571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12495,6 +12544,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1027952978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1027952980}
+  - component: {fileID: 1027952979}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1027952979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027952978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c0cae0931e3af4686e4fd6284755a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfos:
+  - objectName: C_S001_Atk
+    perfab: {fileID: 8781042466432834086, guid: 51b10e71a97f86847bd94221ac98a346, type: 3}
+    count: 2
+  - objectName: Tower_Atk
+    perfab: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
+    count: 2
+  - objectName: C_D001_Atk
+    perfab: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
+    count: 2
+--- !u!4 &1027952980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027952978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9310918, y: -4.779067, z: 0.094357155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037561759
 GameObject:
   m_ObjectHideFlags: 0
@@ -22999,6 +23102,10 @@ PrefabInstance:
       propertyPath: enemyData
       value: 
       objectReference: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
+    - target: {fileID: 7029642521752446671, guid: 8444575dac7cba846b4d27702a3d7de4, type: 3}
+      propertyPath: dungeon_monsterData
+      value: 
+      objectReference: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27829,6 +27936,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1027952980}
+  - {fileID: 974547908}
   - {fileID: 426514995}
   - {fileID: 1736581808}
   - {fileID: 1465102925}
