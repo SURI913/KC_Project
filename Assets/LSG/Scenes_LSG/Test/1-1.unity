@@ -3459,16 +3459,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1636402918}
-  bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   bossHp: 1000
   bossDamage: 50
-  enemyHp: 200
-  enemyDamage: 10
+  bossPrefab: {fileID: 8734324122294620161, guid: 06bbbe55138a3e44680e127a0c16a69b, type: 3}
   enemeyStageCount: 10
   ground_enemy_position: {x: 40, y: -9}
   fly_enemy_position: {x: 40, y: -3}
   boss_position: {x: 60, y: -17.5}
   enemy_speed: 3
+  enemyData: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
 --- !u!4 &285245053
 Transform:
   m_ObjectHideFlags: 0
