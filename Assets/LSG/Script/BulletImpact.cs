@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class BulletImpact : PoolAble
 {
+    private Transform init_transform;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject.layer == 6) //"Target"·¹ÀÌ¾î¿¡ ÇØ´çÇÏ´Â ¿ÀºêÁ§Æ®¶ó¸é
+        if (collision.transform.gameObject.layer == 6) //"Target"ë ˆì´ì–´ì— í•´ë‹¹í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ë¼ë©´
         {
             /*IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
                 
             }*/
-            //ÀÌÆåÆ® ½ÇÇà ÈÄ
-            Destroy(gameObject);
+            //ì´í™íŠ¸ ì‹¤í–‰ í›„
+            ReleaseObject();
+            transform.position = init_transform.position;
         }
     }
 
-    /*private void Update()
+    private void Start()
     {
-        // ÃÑ¾ËÀÌ ¸¹ÀÌ ³¯¶ó°¡¸é »èÁ¦ ÇØÁÖ±â
-        if (this.transform.position.y > 5)
+        init_transform = transform;
+    }
+
+    private void Update()
+    {
+        // ì´ì•Œì´ ë§ì´ ë‚ ë¼ê°€ë©´ ì‚­ì œ í•´ì£¼ê¸°
+        if (this.transform.position.y > -10000)
         {
-            // ¿ÀºêÁ§Æ® Ç®¿¡ ¹İÈ¯
+            // ì˜¤ë¸Œì íŠ¸ í’€ì— ë°˜í™˜
             ReleaseObject();
+            transform.position = init_transform.position;
+
         }
-    }*/
+    }
 }
