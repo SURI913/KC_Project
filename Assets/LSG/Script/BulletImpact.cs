@@ -28,12 +28,11 @@ public class BulletImpact : PoolAble
     private void Update()
     {
         // 총알이 많이 날라가면 삭제 해주기
-        if (this.transform.position.y > -10000)
+        if (this.transform.position.y < -20)
         {
             // 오브젝트 풀에 반환
             ReleaseObject();
             transform.position = init_transform.position;
-
         }
     }
 }

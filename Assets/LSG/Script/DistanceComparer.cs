@@ -18,6 +18,7 @@ public class DistanceComparer : IComparer
         Collider x_collider =  x as Collider;
         Collider y_collider =  y as Collider;
 
+        if (target_transform == null) return -1; //==>나중에 처리
         Vector3 offset =  x_collider.transform.position - target_transform.position;
         float x_distance = offset.sqrMagnitude;
 

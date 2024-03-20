@@ -29,7 +29,7 @@ public class PoolManager : MonoBehaviour
         // 비활성화된 오브젝트가 없다면 새롭게 생성하여 select에 할당
         if (!select)
         {
-            select = Instantiate(prefabs[index], transform);
+            select = Instantiate(prefabs[index], transform); //=> 풀매니저 불러와서 생성 
             pools[index].Add(select);
 
             if (index == 0 || index ==1 || index == 2 || index == 3) // 0 번 인덱스를 적(Enemy)로 가정

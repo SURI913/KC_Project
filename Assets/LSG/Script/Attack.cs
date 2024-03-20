@@ -100,7 +100,7 @@ public class Attack : MonoBehaviour
     }
 
     [Header("* Slerp 이동 변수")]
-    [Range(-10,10)]
+    [Range(0,1)]
     public float SL_interpolation_length = 999; //보간 값이 작을수록 부드러운 움직임
     void SlerpMoving(GameObject my_bullet)
     {
