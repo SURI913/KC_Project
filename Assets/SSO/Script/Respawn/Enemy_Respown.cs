@@ -32,6 +32,7 @@ public class Enemy_Respown : MonoBehaviour
     public Vector2 boss_position;
     public float enemy_speed;
     public Enemy_Data enemyData;
+    private int enemySetValaue;
 
     private void Start()
     {
@@ -42,7 +43,7 @@ public class Enemy_Respown : MonoBehaviour
 
     private void Awake()
     {
-        //enemyData = Resources.Load<Enemy_Data>("Enemy Data");
+        enemySetValaue = 0;
         SetEnemyData(enemyData);
 
         PrintEnemyData();
@@ -62,17 +63,17 @@ public class Enemy_Respown : MonoBehaviour
     {
         if(enemyData != null)
         {
-            enemyHp = enemyData.enemy1[0].hp;
-            enemyDamage = enemyData.enemy1[0].damage;
+            enemyHp = enemyData.enemy1[enemySetValaue].hp;
+            enemyDamage = enemyData.enemy1[enemySetValaue].damage;
 
-            enemy2Hp = enemyData.enemy2[0].hp;
-            enemy2Damage = enemyData.enemy2[0].damage;
+            enemy2Hp = enemyData.enemy2[enemySetValaue].hp;
+            enemy2Damage = enemyData.enemy2[enemySetValaue].damage;
 
-            enemy3Hp = enemyData.enemy3[0].hp;
-            enemy3Damage = enemyData.enemy3[0].damage;
+            enemy3Hp = enemyData.enemy3[enemySetValaue].hp;
+            enemy3Damage = enemyData.enemy3[enemySetValaue].damage;
 
-            enemy4Hp = enemyData.enemy4[0].hp;
-            enemy4Damage = enemyData.enemy4[0].damage;
+            enemy4Hp = enemyData.enemy4[enemySetValaue].hp;
+            enemy4Damage = enemyData.enemy4[enemySetValaue].damage;
         }
         else
         {
@@ -82,14 +83,14 @@ public class Enemy_Respown : MonoBehaviour
 
     public void PrintEnemyData()
     {
-        Debug.Log("enemy1 체력 = " + enemyData.enemy1[0].hp);
-        Debug.Log("enemy1 데미지 = " + enemyData.enemy1[0].damage);
-        Debug.Log("enemy2 체력 = " + enemyData.enemy2[0].hp);
-        Debug.Log("enemy2 데미지 = " + enemyData.enemy2[0].damage);
-        Debug.Log("enemy3 체력 = " + enemyData.enemy3[0].hp);
-        Debug.Log("enemy3 데미지 = " + enemyData.enemy3[0].damage);
-        Debug.Log("enemy4 체력 = " + enemyData.enemy4[0].hp);
-        Debug.Log("enemy4 데미지 = " + enemyData.enemy4[0].damage);
+        Debug.Log("enemy1 체력 = " + enemyHp);
+        Debug.Log("enemy1 데미지 = " + enemyDamage);
+        Debug.Log("enemy2 체력 = " + enemy2Hp);
+        Debug.Log("enemy2 데미지 = " + enemy2Damage);
+        Debug.Log("enemy3 체력 = " + enemy3Hp);
+        Debug.Log("enemy3 데미지 = " + enemy3Damage);
+        Debug.Log("enemy4 체력 = " + enemy4Hp);
+        Debug.Log("enemy4 데미지 = " + enemy4Damage);
     }
 
     public Vector2 GetBossPosition()
@@ -164,6 +165,7 @@ public class Enemy_Respown : MonoBehaviour
 
     void SpawnBoss()
     {
+        enemySetValaue += 1;
         GameObject bossInstance = Instantiate(bossPrefab, transform); // 생성된 Boss의 참조를 가져옴
         Boss bossScript = bossInstance.GetComponent<Boss>(); // Boss 스크립트의 참조를 가져옴
         bossSpawned = true; // 보스가 소환되었음을 표시
