@@ -5,7 +5,7 @@ using Spine.Unity;
 using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 
-public class Enemy_004 : MonoBehaviour, DamageableImp
+public class Enemy_004 : PoolAble, DamageableImp
 {
     // 공중형 원거리 몬스터
     // private
@@ -53,7 +53,8 @@ public class Enemy_004 : MonoBehaviour, DamageableImp
         //Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
          {
-            Destroy(gameObject); 
+            //Destroy(gameObject);
+            ReleaseObject();
             Debug.Log(gameObject.name + "처치");
         }
     }
