@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour, DamageableImp
     public double maxHP { get; set; } //최대체력
     public double Attack { get; set; } //공격력
     public int AtkTime { get; set; } //공격쿨타임
-    public  double curHP;
+    public double curHP;
 
     
     StageButton s;
@@ -141,9 +141,9 @@ public class Monster : MonoBehaviour, DamageableImp
         //레이 색 줘서 표시
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
-
-        MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
-        Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
+        //여기 한줄 풀기 
+       // MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
+       //여기도Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
@@ -153,8 +153,9 @@ public class Monster : MonoBehaviour, DamageableImp
                 //플레이어 태그를 찾고 공격
                 isAtk = true;
                 /*  Debug.Log("hit 이 플레이어 태그 찾음");*/
-                DamageableImp target = cat.GetMyData().GetComponent<DamageableImp>();
-                target.OnDamage(Attack);
+                //아래 두줄 풀기 
+              /*  DamageableImp target = cat.GetMyData().GetComponent<DamageableImp>();
+                target.OnDamage(Attack);*/
 
                 // Debug.Log("플레이어 HP:" + catHP);
                 //  Debug.Log("몬스터가 플레이어에게 공격 " + Attack);
