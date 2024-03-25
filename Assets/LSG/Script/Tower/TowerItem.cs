@@ -9,7 +9,7 @@ public class TowerItem : MonoBehaviour
 {
    
    //이거는 담기는 아이템에 넣을 데이터로 쳐야하나
-    public string ID { get; set; }
+    public string id { get; set; }
     protected int Lv = 0;  //레벨
     protected int MaxLv = 100;  //레벨
     public double effect1 { get; set; }//착용효과
@@ -125,12 +125,12 @@ public class TowerItem : MonoBehaviour
     //코드 수정 1순위
     public void LevelUP()
     {
-        if(ID == null) { print("아이디오류");  return; }
+        if(id == null) { print("아이디오류");  return; }
 
         if(Lv < MaxLv-1)
         {
             Lv++; //변경된 값 이상함 체크 필요
-            print(ID +" 레벌업 1회");
+            print(id +" 레벌업 1회");
             effect1 += increase1;
             retention_effect1 += retention_increase1;
             effect2 += increase2;
@@ -190,8 +190,8 @@ public class TowerItem : MonoBehaviour
 
     void SetInfo() 
     {
-        print(ID);
-        item_name.text = ID; //이름 x  / 정해지고 나면 변경
+        print(id);
+        item_name.text = id; //이름 x  / 정해지고 나면 변경
         item_lv.text = "Lv: "+Lv.ToString();
         //보유효과
         retention_effect1_current_value.text = retention_effect1.ToString();
@@ -205,7 +205,7 @@ public class TowerItem : MonoBehaviour
         effectX2_update_value.text = effect2+ increase2.ToString();
         //업그레이드 비용
         currency_sub_amout.text = 0.ToString(); //변경사항
-        if (ID[0] == 'C')
+        if (id[0] == 'C')
         {
             //캐논
             retention_effect1_name.text = "공격력";
