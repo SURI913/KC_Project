@@ -10800,8 +10800,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1556751943561009899, guid: 410a3c8bf3753254bb34616c39281cd3, type: 3}
+      propertyPath: offset
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556751943561009899, guid: 410a3c8bf3753254bb34616c39281cd3, type: 3}
+      propertyPath: SL_count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556751943561009899, guid: 410a3c8bf3753254bb34616c39281cd3, type: 3}
       propertyPath: SL_interpolation_length
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1556751944038960586, guid: 410a3c8bf3753254bb34616c39281cd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19771,13 +19779,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectInfos:
-  - objectName: C_S001_Atk
+  - objectName: C_S001_Atk_Obj
     perfab: {fileID: 8781042466432834086, guid: 51b10e71a97f86847bd94221ac98a346, type: 3}
     count: 2
-  - objectName: Tower_Atk
+  - objectName: Tower_Atk_Obj
     perfab: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
     count: 2
-  - objectName: C_D001_Atk
+  - objectName: C_D001_Atk_Obj
     perfab: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
     count: 2
 --- !u!4 &1574813345
@@ -20691,6 +20699,7 @@ MonoBehaviour:
   - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 390033637986235311, guid: 4af273640204a4d45b03ba05e990a04f, type: 3}
   enemyCount: 0
+  objectPoolManager: {fileID: 0}
 --- !u!4 &1636402919
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using Spine;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
@@ -9,26 +10,14 @@ public class Attack : MonoBehaviour
 {
     //아니면 에셋번들 사용하는 방향 고려
     public GameObject my_attack_obj;
+    public string my_parent_name;
     //public GameObject my_effect_obj;
     float my_cool_time;
     float my_speed; //==>애니메이션
     float my_attack_distance;//==>근거리냐 원거리냐?
     float time = 0;
 
-    LookTarget found_target_obj;
-
     public IObjectPool<GameObject> bullet_pool { get; set; }
-
-    Transform target {
-        get {
-            if (found_target_obj.colliders.Length > 0)
-            {
-                return found_target_obj.colliders[0].transform;
-            }
-            else return null;
-        }
-            
-    }  //타겟 위치, 자식 위치로 가져와야함
 
     public enum AttackType{ Noaml, Skill }
 
@@ -82,8 +71,7 @@ public class Attack : MonoBehaviour
 
     private void Start()
     {
-        found_target_obj = FindObjectOfType<LookTarget>(); //타겟 거리별로 감지하는 오브젝트 찾음 =>본인위치랑 비교하ㅡㄴㄱ
-        if (found_target_obj == null) UnityEngine.Debug.Log("found_target_obj 찾을 수 없음");
+        
         var Catdata = gameObject.GetComponentInParent<MyHeroesImp>();
         var Towerdata = gameObject.GetComponentInParent<Tower>();
         if (Catdata != null)
@@ -95,34 +83,15 @@ public class Attack : MonoBehaviour
             InitData(Towerdata);
 
         }
-        SL_interpolation_length = 0.001f;
-        //ObjectPoolManager.instance.GetGo(transform.parent.name + "_Atk");
+        my_parent_name = transform.parent.name;
     }
-
-    [Header("* Slerp 이동 변수")]
-    [Range(0,1)]
-    public float SL_interpolation_length = 999; //보간 값이 작을수록 부드러운 움직임
-    void SlerpMoving(GameObject my_bullet)
-    {
-        if (SL_interpolation_length == 999) { UnityEngine.Debug.LogError("Slerp에 SL_interpolation_length 값 없음"); return; }
-        my_bullet.transform.position = Vector3.Slerp(transform.position, target.position, SL_interpolation_length);
-
-        //가장 먼저 정렬된 타겟에게 
-    }
-
 
     private void Update()
     {
-        //거리정렬해서 가장 가까운애한테 공격 하게끔
         if (time < 0)
         {
-
-            if (target != null)
-            {
-                var bullet = ObjectPoolManager.instance.GetGo(transform.parent.name + "_Atk");
-                SlerpMoving(bullet);
-            }
             time = my_cool_time;
+            ObjectPoolManager.instance.GetGo(name); //총알 생성
         }
         time -= Time.deltaTime;
     }

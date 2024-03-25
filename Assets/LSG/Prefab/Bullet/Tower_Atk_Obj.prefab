@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5915165192266642483}
   - component: {fileID: 190086756278802835}
   m_Layer: 0
-  m_Name: CannonPart
+  m_Name: Tower_Atk_Obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

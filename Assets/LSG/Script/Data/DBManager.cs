@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class DBManager : MonoBehaviour
 {
 
-    const string CannonURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=1782858807&range=B23:L";
-    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=575324561&range=B12:L";
+    const string CannonURL = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=870727202&range=A3:Q";
+    const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=173998094&range=A3:Q";
     const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I39:O";
     const string GrowthHpURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=P39:V";
     const string GrowthProtectionURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=W39:AC";
@@ -126,17 +126,25 @@ public class DBManager : MonoBehaviour
             string[] column = row[i].Split("\t");
             for(int j = 0; j< columnSize; j++)
             {
-                towerData.Cannon[i].name = column[0];
-                towerData.Cannon[i].ID = column[1];
-                towerData.Cannon[i].Tier = column[2];
-                towerData.Cannon[i].retention_attack = double.Parse(column[3]);  //보유효과 공격력
-                towerData.Cannon[i].retention_increase_attack = double.Parse(column[4]); //보유효과 증가폭
-                towerData.Cannon[i].retention_protection = double.Parse(column[5]); //보유효과 증가폭
-                towerData.Cannon[i].retention_increase_protection = double.Parse(column[6]); //보유효과 증가폭
-                towerData.Cannon[i].attackX = double.Parse(column[7]);
-                towerData.Cannon[i].attackX_increase = double.Parse(column[8]);
-                towerData.Cannon[i].protectionX = double.Parse(column[9]);
-                towerData.Cannon[i].protectionX_increase = double.Parse(column[10]);
+                CannonData targetData = towerData.Cannon[i];
+
+                targetData.name = column[0];
+                targetData.id = column[1];
+                targetData.tier = column[2];
+                targetData.retention_attack = double.Parse(column[3]);  //보유효과 공격력
+                targetData.retention_attack_increase = double.Parse(column[4]); //보유효과 증가폭
+                targetData.retention_protection = double.Parse(column[5]); //보유효과 증가폭
+                targetData.retention_protection_increase = double.Parse(column[6]); //보유효과 증가폭
+                targetData.attackX = double.Parse(column[7]);
+                targetData.attackX_increase = double.Parse(column[8]);
+                targetData.protectionX = double.Parse(column[9]);
+                targetData.protectionX_increase = double.Parse(column[10]);
+                targetData.attack_cooltime = float.Parse(column[11]);
+                targetData.attack_cooltime_decrease = float.Parse(column[12]);
+                targetData.attack_speed = float.Parse(column[13]);
+                targetData.attack_speed_increase = float.Parse(column[14]);
+                targetData.skill_effect = float.Parse(column[15]);
+                targetData.skill_effect_increase = float.Parse(column[16]);
                 if (i == 8) return;
             }
         }
@@ -151,7 +159,7 @@ public class DBManager : MonoBehaviour
     void SetRepairManData(string tvc)
     {
         string[] row = tvc.Split('\n');
-        int rowSize = 4; //row.Length;
+        int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
 
         for (int i = 0; i < rowSize; i++)
@@ -162,18 +170,23 @@ public class DBManager : MonoBehaviour
                 RepairManData targetData = towerData.RepairMan[i];
 
                 targetData.name = column[0];
-                targetData.ID = column[1];
-                targetData.Tier = column[2];
+                print(column[0]);
+                targetData.id = column[1];
+                targetData.tier = column[2];
                 targetData.retention_hp = double.Parse(column[3]);
-                targetData.retention_increase = double.Parse(column[4]);
+                targetData.retention_hp_increase = double.Parse(column[4]);
                 targetData.retention_healing = double.Parse(column[5]);
-                targetData.retention_increase_healing = double.Parse(column[6]);
+                targetData.retention_healing_increase = double.Parse(column[6]);
                 targetData.hpX = double.Parse(column[7]);
                 targetData.hpX_increase = double.Parse(column[8]);
                 targetData.healingX = double.Parse(column[9]);
                 targetData.healingX_increase = double.Parse(column[10]);
-
-                if (i == 8) return;
+                targetData.attack_cooltime = float.Parse(column[11]);
+                targetData.attack_cooltime_decrease = float.Parse(column[12]);
+                targetData.attack_speed = float.Parse(column[13]);
+                targetData.attack_speed_increase = float.Parse(column[14]);
+                targetData.skill_effect = float.Parse(column[15]);
+                targetData.skill_effect_increase = float.Parse(column[16]);
             }
         }
         current_tower_data.hpX = towerData.RepairMan[0].hpX;
