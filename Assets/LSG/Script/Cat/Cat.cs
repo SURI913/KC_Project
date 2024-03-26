@@ -38,8 +38,6 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
 
      void Awake()
     {
-      
-
         speed = cat_data._attack_speed;
         atk_time = cat_data._atk_time;
         skill_time = cat_data._skl_time;
