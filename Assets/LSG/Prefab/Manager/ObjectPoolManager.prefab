@@ -54,15 +54,15 @@ MonoBehaviour:
   - objectName: C_D001_Atk_Obj
     perfab: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
     count: 2
-  - objectName: enemy_001
-    perfab: {fileID: 6683677807536424152, guid: 65aaaf34d7d299046a1cb667d0114041, type: 3}
+  - objectName: m_n11
+    perfab: {fileID: 6810159069384715944, guid: 872fd08ee8219194682c161427e40dfd, type: 3}
     count: 3
-  - objectName: enemy_002
-    perfab: {fileID: 390033637986235311, guid: 4af273640204a4d45b03ba05e990a04f, type: 3}
+  - objectName: m_n12
+    perfab: {fileID: 1876961636432138535, guid: 568e4ee6053fc9f458c51e692c40f18e, type: 3}
     count: 3
-  - objectName: enemy_003
-    perfab: {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
+  - objectName: m_n13
+    perfab: {fileID: 2997051043807324734, guid: e3aa4b591e253084fb3c9ecf610833dc, type: 3}
     count: 3
-  - objectName: enemy_004
-    perfab: {fileID: 2312999928248754251, guid: 7d985c263c656bc48bf4c6f599e78213, type: 3}
+  - objectName: m_n14
+    perfab: {fileID: 3758651486220745527, guid: 049d4d86be2378447b038d5dcf8906e5, type: 3}
     count: 3
