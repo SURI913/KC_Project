@@ -79,6 +79,7 @@ public class ObjectPoolManager : MonoBehaviour
     private GameObject CreatePooledItem()
     {
         GameObject poolGo = Instantiate(goDic[objectName]);
+
         poolGo.GetComponent<PoolAble>().Pool = ojbectPoolDic[objectName];
         return poolGo;
     }

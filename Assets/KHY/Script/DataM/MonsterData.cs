@@ -15,7 +15,7 @@ public class MonsterD
 }
 
 
-[CreateAssetMenu(fileName ="Monster Data",menuName ="Scriptable Object/Monster")]
+[CreateAssetMenu(fileName ="Monster Data",menuName = "Scriptable Object/Monster")]
 public class MonsterData : ScriptableObject
 {
     public MonsterD[] dungeon_monsterdatas;

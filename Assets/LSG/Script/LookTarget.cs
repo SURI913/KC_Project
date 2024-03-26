@@ -13,27 +13,17 @@ public class LookTarget : MonoBehaviour
     const float time_set = 5f;
     public float cooltime = time_set;
 
-    public Collider2D[] colliders { get; set; } = { }; // 가변배열
-    void Update()
+    public Collider2D[] colliders { get; set; } // 가변배열
+
+    private void Update()
     {
 
-        if (cooltime >= time_set)
-        {
-            colliders = Physics2D.OverlapBoxAll(transform.position, check_size, 0f, checkLayers);
-            Array.Sort(colliders, new DistanceComparer(transform));
-
-            foreach (Collider2D item in colliders)
-            {
-                Debug.Log(item.name);
-            }
-            
-        }
-        else
-        {
-            cooltime = 0f;
-        }
-        cooltime += Time.deltaTime;
+        colliders = Physics2D.OverlapBoxAll(transform.position, check_size, 0f, checkLayers);
+        Array.Sort(colliders, new DistanceComparer(transform));
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, check_size);
+    }
 }

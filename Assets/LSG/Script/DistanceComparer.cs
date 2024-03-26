@@ -15,8 +15,8 @@ public class DistanceComparer : IComparer
 
     public int Compare(object x, object y)
     {
-        Collider x_collider =  x as Collider;
-        Collider y_collider =  y as Collider;
+        Collider2D x_collider =  x as Collider2D;
+        Collider2D y_collider =  y as Collider2D;
 
         Vector3 offset =  x_collider.transform.position - target_transform.position;
         float x_distance = offset.sqrMagnitude;

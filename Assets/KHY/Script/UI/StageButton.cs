@@ -23,13 +23,12 @@ public class StageButton : MonoBehaviour
        // recommendText.gameObject.SetActive(false);
 
     }
-
-  
     public void OnButtonClick()
     {
         Monster _monster = GameObject.FindWithTag("Enemy").GetComponent<Monster>();
         // 씬이 넘어가면서 태그를 못찾는가봄 
         //스테이지 인덱스틑 저장해서 보냄
+
         if (_monster != null)
         {
             int rowIndex = stageIndex;
@@ -38,17 +37,18 @@ public class StageButton : MonoBehaviour
 
             if (rowIndex >= 1 && rowIndex <= tmpData.dungeon_monsterdatas.Length)
             {
-
+               // GameManager.instance.Monster_Data_index(1);//테스트 전달되는지 확인
                 _monster.SetMonsterDataByIndex(rowIndex);
+                //d인덱스 값만 보내는데?
             }
             else
             {
                 Debug.LogError("Invalid stage index: " + stageIndex);
             }
 
-           
+
         }
-     
+
         //클릭하고 입장하기 버튼 누르면 씬 넘기기
         // ENTER 스크립트 하나 짜자 그냥 , 로드 씬만 하기로 
     }

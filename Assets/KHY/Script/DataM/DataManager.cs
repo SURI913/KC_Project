@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
 
     const string M_D01 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
     //몬스터 M_D01
-    const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
+    //const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
     //보스 M_D02
 
 
@@ -23,18 +23,28 @@ public class DataManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(M_D01);
         yield return www.SendWebRequest();
 
-        D_setData(www.downloadHandler.text);// 데이터 출력 
+        // D_setData(www.downloadHandler.text);// 데이터 출력 
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            D_setData(www.downloadHandler.text);// 데이터 출력 
+        }
+        else
+        {
+            Debug.LogError("Download failed: " + www.error);
+        }
     }
+
     [SerializeField]
     MonsterData dungeon_monsterData;
 
     void D_setData(string tsv)
     {
-        Debug.Log("monsterData: " + dungeon_monsterData);  // 확인
+      //  Debug.Log("monsterData: " + dungeon_monsterData);  // 확인
         if (dungeon_monsterData != null)
         {
             Debug.Log("monsterData.monsterdatas: " + dungeon_monsterData.dungeon_monsterdatas);  // 확인
         }
+
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
 

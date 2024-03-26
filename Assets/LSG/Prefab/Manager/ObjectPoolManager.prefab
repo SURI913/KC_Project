@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7525515904546794555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9049279146288093343}
+  - component: {fileID: 6000151001486855788}
+  m_Layer: 0
+  m_Name: ObjectPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9049279146288093343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525515904546794555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9310918, y: -4.779067, z: 0.094357155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6000151001486855788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525515904546794555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c0cae0931e3af4686e4fd6284755a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfos:
+  - objectName: C_S001_Atk_Obj
+    perfab: {fileID: 8781042466432834086, guid: 51b10e71a97f86847bd94221ac98a346, type: 3}
+    count: 2
+  - objectName: Tower_Atk_Obj
+    perfab: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
+    count: 2
+  - objectName: C_D001_Atk_Obj
+    perfab: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
+    count: 2
+  - objectName: enemy_001
+    perfab: {fileID: 6683677807536424152, guid: 65aaaf34d7d299046a1cb667d0114041, type: 3}
+    count: 3
+  - objectName: enemy_002
+    perfab: {fileID: 390033637986235311, guid: 4af273640204a4d45b03ba05e990a04f, type: 3}
+    count: 3
+  - objectName: enemy_003
+    perfab: {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
+    count: 3
+  - objectName: enemy_004
+    perfab: {fileID: 2312999928248754251, guid: 7d985c263c656bc48bf4c6f599e78213, type: 3}
+    count: 3
