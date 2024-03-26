@@ -90,22 +90,26 @@ public class Monster : MonoBehaviour, DamageableImp
     RaycastHit2D hit;
     RaycastHit2D hit1;
     private float moveSpeed = 3f;
+
+    GameManager UI;
    
    
 
     public void Move()
     {
-       
-        if (!isAtk)
-        {
-            //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-            isDead = false;
-        }
-        else
-        {
-            transform.Translate(Vector2.left * Vector2.zero * Time.deltaTime);
-        }
+       /* if (UI.Enterstage == false)
+        {*/
+        /*    if (!isAtk)
+            {
+                //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
+                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+                isDead = false;
+            }
+            else
+            {
+                transform.Translate(Vector2.left * Vector2.zero * Time.deltaTime);
+            }*/
+       // }
 
     }
     public void OnDamage(double Damage)
@@ -142,8 +146,8 @@ public class Monster : MonoBehaviour, DamageableImp
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
         //여기 한줄 풀기 
-       // MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
-       //여기도Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
+        MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
+        Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {
