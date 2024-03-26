@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   my_attack_obj: {fileID: 4362388866401601724, guid: e7d8c95f70d73c84bbb20d16040fac70, type: 3}
-  SL_interpolation_length: 10
+  my_parent_name: 
 --- !u!1001 &1794479866119206092
 PrefabInstance:
   m_ObjectHideFlags: 0

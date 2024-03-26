@@ -49,7 +49,7 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
         initData();
     }
 
-    public double OnAttack(RaycastHit2D hit)
+    public double OnAttack(Collider2D collision)
     {
         attack = current_tower_data.retention_attack * current_tower_data.attackX* LvEffect;
         

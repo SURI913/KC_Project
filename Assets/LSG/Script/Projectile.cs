@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    //원거리 공격용
+    /*//원거리 공격용
     protected enum State
     {
         Ready,   //발사준비
@@ -108,6 +108,6 @@ public class Projectile : MonoBehaviour
             //처치 완료 했을 경우 로딩상태로
         }
 
-    }
+    }*/
 
 }

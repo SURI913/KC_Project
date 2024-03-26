@@ -29,7 +29,11 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     public float skill_time { get; set; }   //스킬 공격 쿨타임
     public bool is_ative_skill { get; set; } = false;   //스킬 활성화 시 공격 멈춤
     //--------------------------------------------------------------AttackableImp
-    public float atk_time { get; set; } //일반공격 쿨타임
+    public float atk_time
+    {
+        get { return cat_data._atk_time; }
+        set { atk_distance = value; }
+    } //일반공격 쿨타임 값 초기화 가 안된다면 이렇게 구현
     public float atk_distance { get; set; } // 공격범위
 
     private void Awake()
@@ -88,12 +92,12 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         settings.Apply(newDamageNumber);
     }
 
-    public virtual double OnSkill(RaycastHit2D hit)
+    public virtual double OnSkill(Collider2D collision)
     {
         return -999;
     }
 
-    public virtual double OnAttack(RaycastHit2D hit) //공격값 계산
+    public virtual double OnAttack(Collider2D collision) //공격값 계산
     {
         return -999;
     }
@@ -203,14 +207,7 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
 
     protected RaycastHit2D target;
     protected bool isLookTarget = false;
-    private void OnDrawGizmos()
-    {
-        if (target)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, size);
-        }
-    }
+
     public void Move()
     {
         //레이캐스트로 타겟 체크 후 움직임
