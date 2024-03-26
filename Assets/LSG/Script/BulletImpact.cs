@@ -116,9 +116,7 @@ public class BulletImpact : PoolAble
 
     private void Update()
     {
-
         if (choice_move == 999) { Debug.LogError("choice_move 값 없음"); return; }
-        if (target == null) { Debug.LogError("target 값 없음"); return; }
 
         switch (choice_move)
         {

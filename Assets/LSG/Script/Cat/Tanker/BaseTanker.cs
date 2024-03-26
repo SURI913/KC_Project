@@ -11,7 +11,6 @@ public class BaseTanker : Cat
     {
         if (collision.gameObject.layer == 6) //타겟레이어의 경우
         {
-            Debug.Log(collision.collider.name);
             //데미지 스크립트 확인시 공격 시작
             if (collision.collider.GetComponent<DamageableImp>() != null && !is_attack)
             {
