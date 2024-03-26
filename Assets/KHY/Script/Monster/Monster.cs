@@ -12,7 +12,10 @@ public class Monster : MonoBehaviour, DamageableImp
     public double HP { get; set; } //체력
     public double maxHP { get; set; } //최대체력
     public double Attack { get; set; } //공격력
-    public int AtkTime { get; set; } //공격쿨타임
+    public int AtkTime { get; set; } //공격쿨타임\
+    public double recomend_attack { get; set; } //추천 공격력
+    public double recomend_defense { get; set; }// 추천 방어력
+
     public double curHP;
 
     
@@ -68,9 +71,13 @@ public class Monster : MonoBehaviour, DamageableImp
             HP = monsdata.dungeon_monster_hp;
             Attack = monsdata.dungeon_monster_attack;
             AtkTime = monsdata.dungeon_monster_atktime;
-           /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
-                ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
+            recomend_attack = monsdata.dungeon_monster_recommattack;
+            recomend_defense = monsdata.dungeon_monster_recommdefense;
+            /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
+                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
+            // Debug.Log("추천 전투력 :" + recomend_attack+ "추천방어력: " + recomend_defense);
             //여기선 데이터가 온다 !
+           
         }
         else
         {
@@ -90,22 +97,26 @@ public class Monster : MonoBehaviour, DamageableImp
     RaycastHit2D hit;
     RaycastHit2D hit1;
     private float moveSpeed = 3f;
+
+    GameManager UI;
    
    
 
     public void Move()
     {
-       
-        if (!isAtk)
-        {
-            //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-            isDead = false;
-        }
-        else
-        {
-            transform.Translate(Vector2.left * Vector2.zero * Time.deltaTime);
-        }
+       /* if (UI.Enterstage == false)
+        {*/
+        /*    if (!isAtk)
+            {
+                //hit에 저장되어있는 Player 레이마스크 즉 null이 아니면 이동
+                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+                isDead = false;
+            }
+            else
+            {
+                transform.Translate(Vector2.left * Vector2.zero * Time.deltaTime);
+            }*/
+       // }
 
     }
     public void OnDamage(double Damage)
@@ -121,7 +132,7 @@ public class Monster : MonoBehaviour, DamageableImp
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
            /* Debug.Log("던전 몬스터 처치");*/
             //로드씬
-            StartCoroutine(sceneManager.TransitionToNextStage());
+            //StartCoroutine(sceneManager.TransitionToNextStage());
 
 
         }
@@ -132,18 +143,21 @@ public class Monster : MonoBehaviour, DamageableImp
         // 찾을 레이어 저장
         layerMask = LayerMask.GetMask("Player");
         layerMask1 = LayerMask.GetMask("Tower");
+
         //레이를 표시할 포지션
         Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 5);
         Vector2 MonsterPosition1 = new Vector2(transform.position.x, transform.position.y + 7);
+       
         //hit에 저장
         hit = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
         hit1 = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
+
         //레이 색 줘서 표시
         Debug.DrawRay(MonsterPosition, Vector2.left * rayLen, Color.red);//
 
         //여기 한줄 풀기 
-       // MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
-       //여기도Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();
+      /*  MyHeroesImp cat = GameObject.FindWithTag("Player").GetComponent<MyHeroesImp>();
+        Tower tower = GameObject.FindWithTag("Castle").GetComponent<Tower>();*/
         //Debug.Log("플레이어 HP:" + catHP);
         if (hit.collider != null)
         {

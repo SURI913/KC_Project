@@ -54,9 +54,17 @@ public class Enemy_004 : PoolAble, DamageableImp
         if (hp <= 0)
          {
             //Destroy(gameObject);
+            DeadAnimation();
             ReleaseObject();
             Debug.Log(gameObject.name + "처치");
         }
+    }
+
+    IEnumerator DeadAnimation()
+    {
+        enemyAnimation.ResetTrigger("attack");
+        enemyAnimation.SetTrigger("dead");
+        yield return new WaitForSeconds(1.5f);
     }
 
     void DisplayDamageNumber(double Damage)
@@ -76,6 +84,7 @@ public class Enemy_004 : PoolAble, DamageableImp
 
     void Update()
     {
+        enemyAnimation.SetTrigger("walk");
         transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
@@ -89,6 +98,7 @@ public class Enemy_004 : PoolAble, DamageableImp
         {
             if (hit.collider.CompareTag("Castle") || hit.collider.CompareTag("Player"))
             {
+                enemyAnimation.ResetTrigger("walk");
                 enemySpeed = 0;
 
                 // 공격 플래그가 true인 경우에만 공격 코루틴을 시작
@@ -108,6 +118,7 @@ public class Enemy_004 : PoolAble, DamageableImp
         }
         else
         {
+            enemyAnimation.ResetTrigger("walk");
             enemySpeed = originalEnemySpeed;  // 다시 이동
             isAttack = true;
         }
@@ -122,7 +133,8 @@ public class Enemy_004 : PoolAble, DamageableImp
     {
         while (true)
         {
-            enemyAnimation.SetTrigger("Enemy_attack");
+            //enemyAnimation.SetTrigger("Enemy_attack");
+            enemyAnimation.SetTrigger("attack");
             yield return new WaitForSeconds(0.6f);
             Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up * 2);
             GameObject attackInstance = Instantiate(enemy_attack_4, spawnPosition, Quaternion.identity);

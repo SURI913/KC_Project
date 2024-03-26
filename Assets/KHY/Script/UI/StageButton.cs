@@ -23,6 +23,8 @@ public class StageButton : MonoBehaviour
        // recommendText.gameObject.SetActive(false);
 
     }
+
+    public Text reco;
     public void OnButtonClick()
     {
         Monster _monster = GameObject.FindWithTag("Enemy").GetComponent<Monster>();
@@ -40,6 +42,9 @@ public class StageButton : MonoBehaviour
                // GameManager.instance.Monster_Data_index(1);//테스트 전달되는지 확인
                 _monster.SetMonsterDataByIndex(rowIndex);
                 //d인덱스 값만 보내는데?
+                
+              
+
             }
             else
             {
