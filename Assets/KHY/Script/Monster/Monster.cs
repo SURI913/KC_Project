@@ -145,8 +145,8 @@ public class Monster : MonoBehaviour, DamageableImp
         layerMask1 = LayerMask.GetMask("Tower");
 
         //레이를 표시할 포지션
-        Vector2 MonsterPosition = new Vector2(transform.position.x, transform.position.y + 5);
-        Vector2 MonsterPosition1 = new Vector2(transform.position.x, transform.position.y + 7);
+        Vector2 MonsterPosition = new Vector2(transform.position.x-20, transform.position.y + 5);
+        Vector2 MonsterPosition1 = new Vector2(transform.position.x-20, transform.position.y + 7);
        
         //hit에 저장
         hit = Physics2D.Raycast(MonsterPosition, Vector2.left, rayLen, layerMask);
