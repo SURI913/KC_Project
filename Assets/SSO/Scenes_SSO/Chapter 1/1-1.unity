@@ -20890,6 +20890,7 @@ MonoBehaviour:
   - {fileID: 4036329637082033768, guid: d69a53d022f6dd5429d922228a9b55af, type: 3}
   - {fileID: 2312999928248754251, guid: 7d985c263c656bc48bf4c6f599e78213, type: 3}
   enemyCount: 0
+  objectPoolManager: {fileID: 0}
 --- !u!4 &1636402919
 Transform:
   m_ObjectHideFlags: 0
