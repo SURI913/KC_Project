@@ -10,6 +10,7 @@ public class C_T001 : BaseTanker, MyHeroesImp
 
     private void Awake()
     {
+        player_rb = GetComponent<Rigidbody2D>();
         cat_data = base_cat_data.all_cat_data[1];
         growing_data = base_growing_data;
         cat_motion = GetComponentInChildren<Animator>();

@@ -36,10 +36,8 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     } //일반공격 쿨타임 값 초기화 가 안된다면 이렇게 구현
     public float atk_distance { get; set; } // 공격범위
 
-    private void Awake()
+     void Awake()
     {
-        player_rb = GetComponent<Rigidbody2D>();
-
         speed = cat_data._attack_speed;
         atk_time = cat_data._atk_time;
         skill_time = cat_data._skl_time;
