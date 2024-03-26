@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class Boss : MonoBehaviour, DamageableImp
+public class Boss : PoolAble, DamageableImp
 {
     // 보스 몬스터
     //private
@@ -63,10 +63,18 @@ public class Boss : MonoBehaviour, DamageableImp
         //Debug.Log("보스 " + gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)  // 보스가 죽으면
         {
-            Destroy(gameObject); // 애니메이션 재생이 끝나면 게임 오브젝트 파괴
+            DeadAnimation();
+            ReleaseObject();
             Debug.Log("보스" + gameObject.name + "처치");
             respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
         }
+    }
+
+    IEnumerator DeadAnimation()
+    {
+        enemyAnimation.ResetTrigger("attack");
+        enemyAnimation.SetTrigger("dead");
+        yield return new WaitForSeconds(1.5f);
     }
 
     void DisplayDamageNumber(double Damage)
@@ -90,7 +98,8 @@ public class Boss : MonoBehaviour, DamageableImp
 
         while (true) // 무한 반복
         {
-            enemyAnimation.SetTrigger("Enemy_attack");
+            //enemyAnimation.SetTrigger("Enemy_attack");
+            enemyAnimation.SetTrigger("attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
             StartCoroutine(DestroyAttack(attackInstance, 0.5f));
@@ -105,7 +114,8 @@ public class Boss : MonoBehaviour, DamageableImp
 
         while (true) // 무한 반복
         {   // 공격 3개생성
-            enemyAnimation.SetTrigger("Enemy_attack");
+            //enemyAnimation.SetTrigger("Enemy_attack");
+            enemyAnimation.SetTrigger("attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // 중간공격
             Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // 위
             Vector3 spawnPosition3 = spawnPosition - Vector3.right - Vector3.down;  // 아래
@@ -122,6 +132,7 @@ public class Boss : MonoBehaviour, DamageableImp
 
     void Update()
     {
+        enemyAnimation.SetTrigger("walk");
         transform.Translate(Vector2.left * Time.deltaTime * enemySpeed);
 
         // Raycast를 사용하여 "Castle" 또는 "Player"를 감지
@@ -136,6 +147,7 @@ public class Boss : MonoBehaviour, DamageableImp
         {
             if (hit.collider.CompareTag("Castle") || hit.collider.CompareTag("Player"))
             {
+                enemyAnimation.ResetTrigger("walk");
                 enemySpeed = 0;
 
                 // 공격 플래그가 true인 경우에만 공격 코루틴을 시작
@@ -168,6 +180,7 @@ public class Boss : MonoBehaviour, DamageableImp
             }
             else      //죽지않고, 충돌이 없어지면,
             {
+                enemyAnimation.SetTrigger("walk");
                 enemySpeed = originalEnemySpeed;  // 다시 이동
                 isAttack = true;
             }

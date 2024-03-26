@@ -18,6 +18,12 @@ public class PoolManager : MonoBehaviour
     {
         objectPoolManager = ObjectPoolManager.instance;
 
+        if (objectPoolManager == null)
+        {
+            Debug.LogError("ObjectPoolManager is not assigned or not instantiated properly.");
+            return;
+        }
+
         pools = new List<GameObject>[prefabs.Length];
 
         for (int index = 0; index < prefabs.Length; index++)
@@ -38,11 +44,14 @@ public class PoolManager : MonoBehaviour
             select = Instantiate(prefabs[index], transform); //=> 풀매니저 불러와서 생성 
             pools[index].Add(select);
 
-            if (index == 0 || index ==1 || index == 2 || index == 3) // 0 번 인덱스를 적(Enemy)로 가정
-            {
-                enemyCount++;
-                //Debug.Log("enemy소환");
-            }
+           enemyCount++;
+
+        }
+        else
+        {
+            select = Instantiate(prefabs[index], transform);
+            pools[index].Add(select);
+            enemyCount++;
         }
         return select;
     }
