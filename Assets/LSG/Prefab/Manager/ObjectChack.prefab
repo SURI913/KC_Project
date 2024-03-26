@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b597633bcf454e45a7a17e1329ff841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  check_size: {x: 10, y: 10}
+  check_size: {x: 55.1, y: 29.49}
   checkLayers:
     serializedVersion: 2
     m_Bits: 64

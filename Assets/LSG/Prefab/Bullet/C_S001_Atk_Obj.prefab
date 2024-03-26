@@ -158,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9235e5e8ea40e67429893f6d3a01bff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: -81.4
+  SL_count: 1000
 --- !u!61 &9077270738380906677
 BoxCollider2D:
   m_ObjectHideFlags: 0

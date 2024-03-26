@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1556751943561009901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.53, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   my_attack_obj: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
-  SL_interpolation_length: -10
+  my_parent_name: 
 --- !u!1 &1556751944038960588
 GameObject:
   m_ObjectHideFlags: 0

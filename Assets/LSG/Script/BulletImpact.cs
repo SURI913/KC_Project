@@ -7,7 +7,6 @@ public class BulletImpact : PoolAble
 {
     private Transform init_transform;
     LookTarget found_target_obj;
-
     Transform target
     {
         get
@@ -44,6 +43,8 @@ public class BulletImpact : PoolAble
     }
 
     [Space]
+    [Header("* X *")]
+
     [Header("* 호 크기")]
     [Range(-100, 5)]
     public float offset;
@@ -68,23 +69,19 @@ public class BulletImpact : PoolAble
 
     }
 
-    private void OnDrawGizmos()
-    {
-        foreach (var point in SlerpMoving(transform.position, target.position, offset))
-        {
-            Gizmos.DrawSphere(point, 0.1f);
-        }
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position - target.position * 0.5f, 0.2f);
-    }
-
     private void Update()
     {
         // 총알이 많이 날라가면 삭제 해주기
         if (target != null)
         {
             foreach (var point in SlerpMoving(transform.position, target.position, offset))
+            {
+                transform.position = point;
+            }
+        }
+        else
+        {
+            foreach (var point in SlerpMoving(transform.position, new Vector3(0, -10, 0), offset)) //고정된 위치에다가 공격
             {
                 transform.position = point;
             }

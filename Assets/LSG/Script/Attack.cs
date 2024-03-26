@@ -10,9 +10,9 @@ public class Attack : MonoBehaviour
 {
     //아니면 에셋번들 사용하는 방향 고려
     public GameObject my_attack_obj;
-    public string my_parent_name;
+    string my_parent_name;
     //public GameObject my_effect_obj;
-    float my_cool_time;
+    private float my_cool_time;
     float my_speed; //==>애니메이션
     float my_attack_distance;//==>근거리냐 원거리냐?
     float time = 0;
@@ -39,12 +39,13 @@ public class Attack : MonoBehaviour
     
     void InitData(Cat _my_data) //생성자에서 값 전달 용?
     {
-        print(my_parent_name + "초기화");
         //Cat에 Attack있어야할듯
         AttackableImp parent_attack_data = _my_data.GetComponent<AttackableImp>(); //접근방식 이거 아님?
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
+            UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
+
             my_speed = parent_attack_data.speed;
             my_attack_distance = parent_attack_data.atk_distance;
         }
@@ -61,6 +62,7 @@ public class Attack : MonoBehaviour
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
+            UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
             my_speed = parent_attack_data.speed;
             my_attack_distance = parent_attack_data.atk_distance;
         }
@@ -91,8 +93,9 @@ public class Attack : MonoBehaviour
     {
         if (time < 0)
         {
-            ObjectPoolManager.instance.GetGo(my_parent_name+ "_Atk_Obj");
-            print(my_parent_name+"의 총알이 생성되었습니다.");
+            ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj").transform.position
+                = transform.position;
+
             time = my_cool_time;
         }
         time -= Time.deltaTime;

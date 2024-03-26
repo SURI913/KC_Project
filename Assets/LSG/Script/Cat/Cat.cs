@@ -29,7 +29,11 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     public float skill_time { get; set; }   //스킬 공격 쿨타임
     public bool is_ative_skill { get; set; } = false;   //스킬 활성화 시 공격 멈춤
     //--------------------------------------------------------------AttackableImp
-    public float atk_time { get; set; } //일반공격 쿨타임
+    public float atk_time
+    {
+        get { return cat_data._atk_time; }
+        set { atk_distance = value; }
+    } //일반공격 쿨타임 값 초기화 가 안된다면 이렇게 구현
     public float atk_distance { get; set; } // 공격범위
 
     private void Awake()
