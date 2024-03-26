@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7775224537862546058}
   - component: {fileID: 9077270738380906677}
   m_Layer: 0
-  m_Name: C_S001Atk Obj
+  m_Name: C_S001_Atk_Obj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
