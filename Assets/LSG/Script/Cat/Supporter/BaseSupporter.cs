@@ -24,7 +24,7 @@ public class BaseSupporter : Cat, AttackableImp, SkillUserImp
 
     }
 
-    public override double OnSkill(RaycastHit2D hit)
+    public override double OnSkill(Collider2D collision)
     {
         cat_motion.SetTrigger("isSkill");
 
@@ -43,10 +43,10 @@ public class BaseSupporter : Cat, AttackableImp, SkillUserImp
         return 0;
     }
 
-    public override double OnAttack(RaycastHit2D hit) //공격 체크
+    public override double OnAttack(Collider2D collision) //공격 체크
     {
 
-        if (hit.collider.CompareTag("boss")) //보스 공격의 경우
+        if (collision.CompareTag("boss")) //보스 공격의 경우
         {
             return GetAttackPower() + boss_attack;
         }
