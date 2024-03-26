@@ -75,8 +75,9 @@ public class Monster : MonoBehaviour, DamageableImp
             recomend_defense = monsdata.dungeon_monster_recommdefense;
             /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
                  ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
-           // Debug.Log("추천 전투력 :" + recomend_attack+ "추천방어력: " + recomend_defense);
+            // Debug.Log("추천 전투력 :" + recomend_attack+ "추천방어력: " + recomend_defense);
             //여기선 데이터가 온다 !
+           
         }
         else
         {
@@ -131,7 +132,7 @@ public class Monster : MonoBehaviour, DamageableImp
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
            /* Debug.Log("던전 몬스터 처치");*/
             //로드씬
-            StartCoroutine(sceneManager.TransitionToNextStage());
+            //StartCoroutine(sceneManager.TransitionToNextStage());
 
 
         }

@@ -26,11 +26,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public Canvas Enterstage;
     public Canvas StageSelect;
-
+    public Canvas Storybox;
+  
     public void Dungeon_Start_UI(bool active)
     {
         Enterstage.gameObject.SetActive(!active);
         StageSelect.gameObject.SetActive(!active);
+        Storybox.gameObject.SetActive(!active);
+       
+
         Debug.Log("버튼 눌러짐");
     }
    private int Monster_data_index;
