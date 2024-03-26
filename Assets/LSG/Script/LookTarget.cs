@@ -17,15 +17,9 @@ public class LookTarget : MonoBehaviour
 
     private void Update()
     {
-        if(cooltime < 0)
-        {
-            colliders = Physics2D.OverlapBoxAll(transform.position, check_size, 0f, checkLayers);
-            Array.Sort(colliders, new DistanceComparer(transform));
-            cooltime = time_set;
-        }
-        cooltime -= Time.deltaTime;
 
-
+        colliders = Physics2D.OverlapBoxAll(transform.position, check_size, 0f, checkLayers);
+        Array.Sort(colliders, new DistanceComparer(transform));
     }
 
     private void OnDrawGizmos()

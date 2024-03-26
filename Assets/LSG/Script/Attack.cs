@@ -1,4 +1,5 @@
 using Spine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Tracing;
@@ -9,18 +10,19 @@ using UnityEngine.Pool;
 public class Attack : MonoBehaviour
 {
     //아니면 에셋번들 사용하는 방향 고려
-    public GameObject my_attack_obj;
     string my_parent_name;
     //public GameObject my_effect_obj;
     private float my_cool_time;
-    float my_speed; //==>애니메이션
+    float my_speed; //==>애니메이션??
     float my_attack_distance;//==>근거리냐 원거리냐?
-    float time = 0;
 
     public IObjectPool<GameObject> bullet_pool { get; set; }
 
     public enum AttackType{ Noaml, Skill };
 
+    AttackableImp parent_attack_data;
+
+    //UI 에서는 얘를 인식해서 버튼 누를 때 마다 스킬 쓸 수 있게 코드 짤 것
     public AttackType my_attack_type
     {
        get { return my_attack_type; }
@@ -28,8 +30,9 @@ public class Attack : MonoBehaviour
         {
             switch (value)
             {
-                case AttackType.Noaml: break; //==> 코루틴으로 작업 구분 . 노말에선 루프 돌리고 스킬 쓸 때 nomal에서 돌리던 코루틴 정지
-                case AttackType.Skill: break;
+                //자동으로 할 때 코루틴으로 변경해둘 것 
+                case AttackType.Noaml: StartCoroutine(AttackFire()); break; //==> 코루틴으로 작업 구분 . 노말에선 루프 돌리고 스킬 쓸 때 nomal에서 돌리던 코루틴 정지
+                case AttackType.Skill: StopCoroutine(AttackFire()); StartCoroutine(SkillFire()); break;
             }
         }
     }
@@ -40,7 +43,7 @@ public class Attack : MonoBehaviour
     void InitData(Cat _my_data) //생성자에서 값 전달 용?
     {
         //Cat에 Attack있어야할듯
-        AttackableImp parent_attack_data = _my_data.GetComponent<AttackableImp>(); //접근방식 이거 아님?
+        parent_attack_data = _my_data.GetComponent<AttackableImp>(); //접근방식 이거 아님?
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
@@ -58,7 +61,7 @@ public class Attack : MonoBehaviour
     void InitData(Tower _my_data)
     {
 
-        AttackableImp parent_attack_data = _my_data.GetComponent<AttackableImp>();
+        parent_attack_data = _my_data.GetComponent<AttackableImp>();
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
@@ -89,15 +92,23 @@ public class Attack : MonoBehaviour
         my_attack_type = AttackType.Noaml;
     }
 
-    private void Update()
+    IEnumerator AttackFire()
     {
-        if (time < 0)
+        yield return new WaitForSeconds(my_cool_time);
+        while (true)
         {
-            ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj").transform.position
-                = transform.position;
-
-            time = my_cool_time;
+            var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj");
+            my_bullet_obj.GetComponent<BulletImpact>().my_hit_data = parent_attack_data;
+            my_bullet_obj.transform.position = transform.position;
+            yield return new WaitForSeconds(my_cool_time);
         }
-        time -= Time.deltaTime;
+    }
+
+    IEnumerator SkillFire()
+    {
+        ObjectPoolManager.instance.GetGo(my_parent_name + "_Skill_Obj").transform.position
+                = transform.position;
+        my_attack_type = AttackType.Noaml;
+        yield return null;
     }
 }

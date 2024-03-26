@@ -35,23 +35,22 @@ public class BaseTanker : Cat
 
     //공격 효과 및 적용
 
-    //private GameObject targetEvent;
     IEnumerator AttackEft(Collision2D collision)
     {
         is_attack = true;
         cat_motion.SetTrigger("isAttack");
         Destroy(Instantiate(attack_effect, transform.position + new Vector3(2f, 0, 0), Quaternion.identity), atk_time);
-        collision.collider.GetComponent<DamageableImp>().OnDamage(OnAttack(target)); //데미지 주는 스크립트
+        collision.collider.GetComponent<DamageableImp>().OnDamage(OnAttack(collision.collider)); //데미지 주는 스크립트
         yield return new WaitForSeconds(atk_time);
         is_attack = false;
 
     }
 
-    public override double OnAttack(RaycastHit2D hit) //공격값 계산
+    public override double OnAttack(Collider2D collision) //공격값 계산
     {
         cat_motion.SetTrigger("isAttack");
 
-        if (hit.collider.CompareTag("boss")) //보스라면
+        if (collision.CompareTag("boss")) //보스라면
         {
             return GetAttackPower() + boss_attack;
         }
@@ -68,7 +67,7 @@ public class BaseTanker : Cat
         //Debug.Log(ID+"스킬 사용중");
     }
 
-    public override double OnSkill(RaycastHit2D hit)
+    public override double OnSkill(Collider2D collision)
     {
         StartCoroutine(Skill());
         return 0;
