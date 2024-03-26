@@ -68,6 +68,17 @@ public class BulletImpact : PoolAble
 
     }
 
+    private void OnDrawGizmos()
+    {
+        foreach (var point in SlerpMoving(transform.position, target.position, offset))
+        {
+            Gizmos.DrawSphere(point, 0.1f);
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position - target.position * 0.5f, 0.2f);
+    }
+
     private void Update()
     {
         // 총알이 많이 날라가면 삭제 해주기

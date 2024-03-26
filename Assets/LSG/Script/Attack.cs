@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
 
     public IObjectPool<GameObject> bullet_pool { get; set; }
 
-    public enum AttackType{ Noaml, Skill }
+    public enum AttackType{ Noaml, Skill };
 
     public AttackType my_attack_type
     {
@@ -39,6 +39,7 @@ public class Attack : MonoBehaviour
     
     void InitData(Cat _my_data) //생성자에서 값 전달 용?
     {
+        print(my_parent_name + "초기화");
         //Cat에 Attack있어야할듯
         AttackableImp parent_attack_data = _my_data.GetComponent<AttackableImp>(); //접근방식 이거 아님?
         if (parent_attack_data != null)
@@ -65,13 +66,13 @@ public class Attack : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.LogError("공격을 위한 고양이 데이터 가져오기 실패");
+            UnityEngine.Debug.LogError("공격을 위한 타워 데이터 가져오기 실패");
         }
     }
 
     private void Start()
     {
-        
+        my_parent_name = transform.parent.name;
         var Catdata = gameObject.GetComponentInParent<MyHeroesImp>();
         var Towerdata = gameObject.GetComponentInParent<Tower>();
         if (Catdata != null)
@@ -83,15 +84,16 @@ public class Attack : MonoBehaviour
             InitData(Towerdata);
 
         }
-        my_parent_name = transform.parent.name;
+        my_attack_type = AttackType.Noaml;
     }
 
     private void Update()
     {
         if (time < 0)
         {
+            ObjectPoolManager.instance.GetGo(my_parent_name+ "_Atk_Obj");
+            print(my_parent_name+"의 총알이 생성되었습니다.");
             time = my_cool_time;
-            ObjectPoolManager.instance.GetGo(name); //총알 생성
         }
         time -= Time.deltaTime;
     }

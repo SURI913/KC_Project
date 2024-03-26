@@ -17,7 +17,7 @@ public class LookTarget : MonoBehaviour
     void Update()
     {
 
-        if (cooltime >= time_set)
+        if (cooltime < 0)
         {
             colliders = Physics2D.OverlapBoxAll(transform.position, check_size, 0f, checkLayers);
             Array.Sort(colliders, new DistanceComparer(transform));
@@ -26,13 +26,9 @@ public class LookTarget : MonoBehaviour
             {
                 Debug.Log(item.name);
             }
-            
+            cooltime = time_set;
         }
-        else
-        {
-            cooltime = 0f;
-        }
-        cooltime += Time.deltaTime;
+        cooltime -= Time.deltaTime;
     }
 
     
