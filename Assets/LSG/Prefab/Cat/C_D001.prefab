@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24990a079ff1d0747a317b581d570783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage_prefab: {fileID: 0}
+  damage_prefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   respawnTime: 8
   size: 0
   layer_mask:

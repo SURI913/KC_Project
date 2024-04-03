@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour
     private float my_cool_time;
     float my_speed; //==>애니메이션??
     float my_attack_distance;//==>근거리냐 원거리냐?
+    public float deg; //포물선 각도
 
     public IObjectPool<GameObject> bullet_pool { get; set; }
 
@@ -47,7 +48,7 @@ public class Attack : MonoBehaviour
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
-            UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
+            //UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
 
             my_speed = parent_attack_data.speed;
             my_attack_distance = parent_attack_data.atk_distance;
@@ -65,7 +66,7 @@ public class Attack : MonoBehaviour
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
-            UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
+            //UnityEngine.Debug.Log(my_parent_name + "쿨타임: " + my_cool_time);
             my_speed = parent_attack_data.speed;
             my_attack_distance = parent_attack_data.atk_distance;
         }
@@ -99,6 +100,7 @@ public class Attack : MonoBehaviour
         {
             var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj");
             my_bullet_obj.GetComponent<BulletImpact>().my_hit_data = parent_attack_data;
+            my_bullet_obj.GetComponent<BulletImpact>().init_transform = transform;
             my_bullet_obj.transform.position = transform.position;
             yield return new WaitForSeconds(my_cool_time);
         }

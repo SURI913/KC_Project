@@ -46,7 +46,7 @@ public class Enemy_Respown : MonoBehaviour
         enemySetValaue = 0;
         SetEnemyData(enemyData);
 
-        PrintEnemyData();
+        //PrintEnemyData();
 
 
         if (Instance == null)
