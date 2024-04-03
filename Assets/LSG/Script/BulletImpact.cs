@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,10 @@ public class BulletImpact : PoolAble
     [Header("* Slerp 이동 변수")]
     public float SL_count = 1000;
 
-    private Transform init_transform;
+    public Transform init_transform { get; set; }
     LookTarget found_target_obj;
 
+    private Transform target_none;
     Transform target
     {
         get
@@ -31,6 +33,7 @@ public class BulletImpact : PoolAble
 
     public AttackableImp my_hit_data { get; set; }
 
+    bool is_ready;
     enum MoveType
     {
         MoveTowad, SmoothDamp, Slerp
@@ -44,15 +47,14 @@ public class BulletImpact : PoolAble
             if (target != null)
             {
                 target.OnDamage(my_hit_data.OnAttack(collision));
+                Debug.Log("두번 반납하면 두번 뜨겠지");
             }
             //이펙트 실행 후
-            ReleaseObject();
-            transform.position = init_transform.position;
         }
-        if (collision.tag == "Plane")
+        else if (collision.tag == "Plane")
         {
             ReleaseObject();
-            transform.position = init_transform.position;
+
         }
     }
 
@@ -86,8 +88,18 @@ public class BulletImpact : PoolAble
     void MoveTowradMoving()
     {
         if (speed == 999) { Debug.LogError("MoveTowrad에 speed 값 없음"); return; }
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+
+        if(target != null)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
+        else
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target_none.position, step);
+        }
+        
     }
 
     //SmoothDamp 방식
@@ -100,39 +112,72 @@ public class BulletImpact : PoolAble
     void SmoothDampMoving()
     {
         if (smooth_time == 999) { Debug.LogError("SmoothDamp에 smooth_time 값 없음"); return; }
+        if(target != null)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, smooth_time);
 
-        transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, smooth_time);
+        }
+        else
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, target_none.position, ref velocity, smooth_time);
+
+        }
         //ref velocity 호출할때 마다 함수에 의해 수정 됨
     }
 
+    private Vector3 startPos, endPos;
+    //땅에 닫기까지 걸리는 시간
+    protected float timer;
+    protected float timeToFloor;
 
 
-    private void Start()
+    protected static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
     {
-        init_transform = transform;
-        found_target_obj = FindObjectOfType<LookTarget>(); //타겟 거리별로 감지하는 오브젝트 찾음 =>본인위치랑 비교함
-        if (found_target_obj == null) UnityEngine.Debug.Log("found_target_obj 찾을 수 없음");
+        Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
+
+        var mid = Vector3.Lerp(start, end, t);
+
+        return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
     }
 
-    private void Update()
+    protected IEnumerator BulletMove()
     {
-        if (choice_move == 999) { Debug.LogError("choice_move 값 없음"); return; }
-
-        switch (choice_move)
+        timer = 0;
+        while (transform.position.y >= startPos.y)
         {
-            case (int)MoveType.MoveTowad:
-                MoveTowradMoving();
-                break;
-            case (int)MoveType.SmoothDamp:
-                SmoothDampMoving();
-                break;
-            case (int)MoveType.Slerp:
-                foreach (var point in SlerpMoving(transform.position, target.position, offset))
-                {
+            timer += Time.deltaTime;
+            Vector3 tempPos = Parabola(startPos, endPos, 5, timer);
+            transform.position = tempPos;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
-                    transform.position = point;
-                }
-                break;
+    private void Awake ()
+    {
+        
+        found_target_obj = FindObjectOfType<LookTarget>(); //타겟 거리별로 감지하는 오브젝트 찾음 =>본인위치랑 비교함
+        target_none = GameObject.FindWithTag("Plane").transform;
+        if (found_target_obj == null) Debug.Log("found_target_obj 찾을 수 없음");
+        
+    }
+
+    private void OnEnable()
+    {
+        if (ObjectPoolManager.instance.IsReady)
+        {
+            startPos = transform.position;
+            if (target != null) { endPos = target.position; }
+            else { endPos = target_none.position + new Vector3(10, 0, 0); }
+            StartCoroutine("BulletMove");
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (ObjectPoolManager.instance.IsReady)
+        {
+            transform.position = init_transform.position;
+            StopCoroutine("BulletMove");
         }
     }
 
