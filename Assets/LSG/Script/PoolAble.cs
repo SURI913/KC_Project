@@ -9,6 +9,6 @@ public class PoolAble : MonoBehaviour
 
     public void ReleaseObject()
     {
-        Pool.Release(gameObject);
+        Pool.Release(this.gameObject);
     }
 }

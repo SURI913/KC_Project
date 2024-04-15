@@ -42,7 +42,7 @@ public class Enemy_003 : PoolAble, DamageableImp
         hp = enemyRespawner.GetEnemy3Hp();
 
         enemyAnimation = GetComponent<Animator>();
-        Debug.Log("enemy3 hp = " + hp);
+        //Debug.Log("enemy3 hp = " + hp);
     }
 
     public void OnDamage(double Damage)
@@ -54,7 +54,7 @@ public class Enemy_003 : PoolAble, DamageableImp
         {
             //Destroy(gameObject);
             DeadAnimation();
-            ReleaseObject();
+            
             Debug.Log(gameObject.name + "처치");
         }
     }
@@ -64,6 +64,7 @@ public class Enemy_003 : PoolAble, DamageableImp
         enemyAnimation.ResetTrigger("attack");
         enemyAnimation.SetTrigger("dead");
         yield return new WaitForSeconds(1.5f);
+        ReleaseObject();
     }
 
     void DisplayDamageNumber(double Damage)

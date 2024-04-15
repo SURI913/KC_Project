@@ -12,7 +12,7 @@ public class PoolManager : MonoBehaviour
     // 리스폰 담당을 하는 리스트들 2
     public List<GameObject>[] pools;
 
-    public ObjectPoolManager objectPoolManager;
+    ObjectPoolManager objectPoolManager;
 
     void Awake()
     {
