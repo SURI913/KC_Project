@@ -24,7 +24,9 @@ public class Enemy_003 : PoolAble, DamageableImp
     public GameObject damagePrefab;
     public GameObject enemy_attack_3;   // 공격시 소환할 공격개체
     public float attackCooldown;  // 공격 쿨타임
-    public float rayLength;           // 레이캐스트의 길이
+    private float rayLength;           // 레이캐스트의 길이
+    public float minRayLength = 1f; // 최소 랜덤 값
+    public float maxRayLength = 3f; // 최대 랜덤 값
 
     void Start()
     {
@@ -42,7 +44,11 @@ public class Enemy_003 : PoolAble, DamageableImp
         hp = enemyRespawner.GetEnemy3Hp();
 
         enemyAnimation = GetComponent<Animator>();
-        //Debug.Log("enemy3 hp = " + hp);
+
+        // enemy가 소환될 때 랜덤한 rayLength 값 설정
+        rayLength = Random.Range(minRayLength, maxRayLength);
+
+        Debug.Log("enemy3 ray = " + rayLength);
     }
 
     public void OnDamage(double Damage)

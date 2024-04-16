@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRespawner: {fileID: 0}
   attackCooldown: 3
-  rayLength: 10
+  minRayLength: 9
+  maxRayLength: 11
   enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
