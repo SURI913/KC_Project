@@ -1,9 +1,4 @@
-using Spine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -21,7 +16,7 @@ public class Attack : MonoBehaviour
 
     public enum AttackType{ Noaml, Skill };
 
-    AttackableImp parent_attack_data;
+     AttackableImp parent_attack_data;
 
     //UI 에서는 얘를 인식해서 버튼 누를 때 마다 스킬 쓸 수 있게 코드 짤 것
     public AttackType my_attack_type
@@ -106,6 +101,7 @@ public class Attack : MonoBehaviour
         }
     }
 
+    //버튼 누를 때 실행 이거 넘겨주는게 문제인데 어떻게 처리할까
     IEnumerator SkillFire()
     {
         ObjectPoolManager.instance.GetGo(my_parent_name + "_Skill_Obj").transform.position
