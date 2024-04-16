@@ -2822,6 +2822,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[8].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[9].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[8].perfab
+      value: 
+      objectReference: {fileID: 3227752036147000334, guid: 00e6d54faba7843429a2c68d8f578785, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[9].perfab
+      value: 
+      objectReference: {fileID: 3227752036147000334, guid: 00e6d54faba7843429a2c68d8f578785, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[8].objectName
+      value: C_T001_Atk_Obj
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[9].objectName
+      value: C_T001_Skill_Obj
+      objectReference: {fileID: 0}
     - target: {fileID: 7525515904546794555, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager

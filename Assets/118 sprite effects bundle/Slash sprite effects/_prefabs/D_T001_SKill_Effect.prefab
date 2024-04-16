@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 359884226953006177}
   - component: {fileID: 359884226953006182}
   m_Layer: 0
-  m_Name: ef_03_Normal
+  m_Name: D_T001_SKill_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
