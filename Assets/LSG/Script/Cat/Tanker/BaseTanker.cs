@@ -38,7 +38,10 @@ public class BaseTanker : Cat
     {
         is_attack = true;
         cat_motion.SetTrigger("isAttack");
-        Destroy(Instantiate(attack_effect, transform.position + new Vector3(2f, 0, 0), Quaternion.identity), atk_time);
+
+        var my_Effect_obj = ObjectPoolManager.instance.GetGo(name + "_Atk_Obj").transform.position = this.transform.position;
+
+        //Destroy(Instantiate(attack_effect, transform.position + new Vector3(2f, 0, 0), Quaternion.identity), atk_time);
         collision.collider.GetComponent<DamageableImp>().OnDamage(OnAttack(collision.collider)); //데미지 주는 스크립트
         yield return new WaitForSeconds(atk_time);
         is_attack = false;

@@ -58,7 +58,6 @@ public class Enemy_001 : PoolAble, DamageableImp
         {
             //Destroy(gameObject);
             DeadAnimation();
-            
             Debug.Log(gameObject.name + "처치");
         }
     }
