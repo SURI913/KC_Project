@@ -37,7 +37,7 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     public float atk_time
     {
         get { return cat_data._atk_time; }
-        set { atk_distance = value; }
+        set {  }
     } //일반공격 쿨타임 값 초기화 가 안된다면 이렇게 구현
     public float atk_distance { get; set; } // 공격범위
     public bool is_parabola_skill { get; set; }
@@ -116,7 +116,7 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         }
         hp += value;
         var effect_obj = ObjectPoolManager.instance.GetGo("Healing_Effect");
-        effect_obj.transform.position = this.transform.position;
+        effect_obj.transform.position = this.transform.position + new Vector3(0, 4, 0);
         effect_obj.GetComponent<MeleeImpact>().init_transform = transform;
 
         //영웅 회복력*회복력(보유효과)*장비장착효과(유무)*성급효과*별자리(유무)

@@ -90,9 +90,9 @@ public class BulletImpact : PoolAble
         return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
     }
 
-    private Vector2 Straight(Vector2 start, Vector2 end, float speed)
+    private Vector2 Straight(Vector2 end, float speed)
     {
-        return Vector2.Lerp(start, end, Time.deltaTime);
+        return Vector2.Lerp(transform.position, end, Time.deltaTime * speed);
 
     }
 
@@ -106,7 +106,7 @@ public class BulletImpact : PoolAble
             timer += Time.deltaTime;
             
             if (is_parabola) { tempPos = Parabola(startPos, endPos, 5, timer); }
-            else { tempPos = Straight(startPos, endPos, my_speed); }
+            else { tempPos = Straight(endPos, my_speed); Debug.Log("작동유뮤체크"); }
             
             transform.position = tempPos;
             yield return new WaitForEndOfFrame();
