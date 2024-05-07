@@ -33,8 +33,7 @@ public class BaseSupporter : Cat, AttackableImp, SkillUserImp
         //요새 범위 안에있는 사람한테만 힐이 들어감
         foreach (var Cats in support_target)
         {
-            Cats.hp += Cats.growing_data.Hp * cat_data._hp_multipler * skill_effect;
-            // Debug.Log(Cats.ID+ "힐링");
+            Cats.OnHealing(Cats.growing_data.Hp * cat_data._hp_multipler * skill_effect);
             if (hp > growing_data.Hp * cat_data._hp_multipler) //maxHp를 넘지않게 처리
             {
                 hp = growing_data.Hp * cat_data._hp_multipler;

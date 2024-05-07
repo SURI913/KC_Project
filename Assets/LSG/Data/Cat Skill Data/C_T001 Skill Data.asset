@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca9bc2a038efe94bb63d3ff422b38e7, type: 3}
+  m_Name: C_T001 Skill Data
+  m_EditorClassIdentifier: 
+  parent_name: C_T001
+  perfab: {fileID: 359884226953006183, guid: b34a82181e0eabc499c7981f7616cbe2, type: 3}
+  cool_time: 5
+  img: {fileID: 21300000, guid: 275a5bfa4f581a5459d5535d663454ef, type: 3}
