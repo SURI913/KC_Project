@@ -170,7 +170,6 @@ public class DBManager : MonoBehaviour
                 RepairManData targetData = towerData.RepairMan[i];
 
                 targetData.name = column[0];
-                print(column[0]);
                 targetData.id = column[1];
                 targetData.tier = column[2];
                 targetData.retention_hp = double.Parse(column[3]);

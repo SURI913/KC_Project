@@ -12,7 +12,7 @@ public class PoolManager : MonoBehaviour
     // 리스폰 담당을 하는 리스트들 2
     public List<GameObject>[] pools;
 
-    public ObjectPoolManager objectPoolManager;
+    ObjectPoolManager objectPoolManager;
 
     void Awake()
     {
@@ -37,9 +37,10 @@ public class PoolManager : MonoBehaviour
         //GameObject select = null;
         string goName = prefabs[index].name;
         GameObject select = objectPoolManager.GetGo(goName); // ObjectPoolManager의 GetGo() 메서드를 호출하여 오브젝트를 가져옵니다.
+        enemyCount++;
 
         // 비활성화된 오브젝트가 없다면 새롭게 생성하여 select에 할당
-        if (!select)
+        /*if (!select)
         {
             select = Instantiate(prefabs[index], transform); //=> 풀매니저 불러와서 생성 
             pools[index].Add(select);
@@ -52,7 +53,7 @@ public class PoolManager : MonoBehaviour
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);
             enemyCount++;
-        }
+        }*/
         return select;
     }
 }

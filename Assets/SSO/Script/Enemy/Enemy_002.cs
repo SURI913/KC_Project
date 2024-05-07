@@ -22,7 +22,9 @@ public class Enemy_002 : PoolAble, DamageableImp
 
     //public
     public float attackCooldown;  // 공격 쿨타임
-    public float rayLength;           // 레이캐스트의 길이
+    private float rayLength;           // 레이캐스트의 길이
+    public float minRayLength = 9f; // 최소 랜덤 값
+    public float maxRayLength = 10f; // 최대 랜덤 값
     public GameObject enemy_attack_1;   // 공격시 소환할 공격개체
     public GameObject damagePrefab;  // 데미지 프리팹
 
@@ -45,7 +47,10 @@ public class Enemy_002 : PoolAble, DamageableImp
 
         enemyAnimation = GetComponent<Animator>();
 
-        Debug.Log("enemy2 hp = " + hp);
+        // enemy가 소환될 때 랜덤한 rayLength 값 설정
+        rayLength = Random.Range(minRayLength, maxRayLength);
+
+        //Debug.Log("enemy2 ray = " + rayLength);
     }
 
 
@@ -58,7 +63,6 @@ public class Enemy_002 : PoolAble, DamageableImp
         {
             //Destroy(gameObject);
             DeadAnimation();
-            ReleaseObject();
             Debug.Log(gameObject.name + "처치");
         }
     }
@@ -68,6 +72,7 @@ public class Enemy_002 : PoolAble, DamageableImp
         enemyAnimation.ResetTrigger("attack");
         enemyAnimation.SetTrigger("dead");
         yield return new WaitForSeconds(1.5f);
+        ReleaseObject();
     }
 
     void DisplayDamageNumber(double Damage)

@@ -38,6 +38,9 @@ public class Enemy_Respown : MonoBehaviour
     {
         // Data_Manager 오브젝트의 Data_Manager 스크립트를 찾아서 dataManager에 할당합니다.
         enemyData = Resources.Load<Enemy_Data>("Enemy Data");
+        //enemySetValaue = 0;
+        //SetEnemyData(enemyData);
+        //PrintEnemyData();
 
     }
 
@@ -45,7 +48,6 @@ public class Enemy_Respown : MonoBehaviour
     {
         enemySetValaue = 0;
         SetEnemyData(enemyData);
-
         PrintEnemyData();
 
 

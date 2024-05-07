@@ -24,7 +24,14 @@ public class C_S001 : BaseSupporter, MyHeroesImp
     {
         //데이터가 없으면
         cat_data = base_cat_data.all_cat_data[2];
+        initAttackData();//임시 위치
+        atk_distance = 10; //원거리
+        skill_distance = 0; //근거리
+        is_parabola_attack = false;
+        //스킬은 해당사항 x
+
         growing_data = base_growing_data;
+
         //데이터가 있으면
         FindSupportTarget();
         cat_motion = GetComponentInChildren<Animator>();

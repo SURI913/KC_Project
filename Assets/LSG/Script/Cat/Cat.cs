@@ -24,7 +24,12 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     protected Animator cat_motion;    
 
     public float respawnTime = 8f;
+
+    [SerializeField]
+    private SkillData my_skill_data;
     //---------------------------------------------------------------SkillUserImp
+    public float skill_distance { get; set; }
+
     public float speed { get; set; }   //공격 속도
     public float skill_time { get; set; }   //스킬 공격 쿨타임
     public bool is_ative_skill { get; set; } = false;   //스킬 활성화 시 공격 멈춤
@@ -35,11 +40,11 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         set { atk_distance = value; }
     } //일반공격 쿨타임 값 초기화 가 안된다면 이렇게 구현
     public float atk_distance { get; set; } // 공격범위
+    public bool is_parabola_skill { get; set; }
+    public bool is_parabola_attack { get; set; }
 
-     void Awake()
+    protected void initAttackData()
     {
-      
-
         speed = cat_data._attack_speed;
         atk_time = cat_data._atk_time;
         skill_time = cat_data._skl_time;
@@ -102,13 +107,18 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
         return -999;
     }
 
-    protected virtual void OnHealing(){
+    public virtual void OnHealing(double value){
         //체력 회복
         if(cat_data._healing_multiple == 0){
             Debug.Log("ID");
             Debug.Log("healing error!");
             return;
         }
+        hp += value;
+        var effect_obj = ObjectPoolManager.instance.GetGo("Healing_Effect");
+        effect_obj.transform.position = this.transform.position;
+        effect_obj.GetComponent<MeleeImpact>().init_transform = transform;
+
         //영웅 회복력*회복력(보유효과)*장비장착효과(유무)*성급효과*별자리(유무)
     }
 

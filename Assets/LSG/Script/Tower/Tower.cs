@@ -28,6 +28,8 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
     //-----------------------------------------------------------------------애니메이션
     private GameObject towerWheel;
     private float wheelSpeed = 15f;
+    public bool is_parabola_attack { get; set; }
+
     void initData()
     {
         Lv = 1;
@@ -38,7 +40,8 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
         //IAttack
         atk_time = 5f;
         speed = 15f;
-
+        is_parabola_attack = true;
+        atk_distance = 10; //원거리
         towerWheel = transform.GetChild(1).GetChild(0).gameObject;
     }
 
