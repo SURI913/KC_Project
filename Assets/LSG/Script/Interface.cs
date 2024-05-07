@@ -17,6 +17,9 @@ public interface SkillUserImp
     float speed { get; set; }   //공격 속도
     float skill_time { get; set; }   //스킬 공격 쿨타임
     bool is_ative_skill { get; set; }   //스킬 활성화 시 공격 멈춤
+    bool is_parabola_skill { get; set; }
+    float skill_distance { get; set; }
+
     double OnSkill(Collider2D collision);
 }
 
@@ -25,6 +28,8 @@ public interface AttackableImp
     float speed { get; set; }   //공격 속도
     float atk_time { get; set; } //일반공격 쿨타임
     float atk_distance { get; set; }
+    bool is_parabola_attack { get; set; }
+
     double OnAttack(Collider2D collision);
 }
 

@@ -16,8 +16,14 @@ public class C_D001 : BaseDealer, MyHeroesImp
 
     private void Awake()
     {
+        atk_distance = 10; //원거리
+        skill_distance = 10;
+        is_parabola_attack = true;
+        is_parabola_skill = false;
         //데이터가 없으면
         cat_data = base_cat_data.all_cat_data[0];
+        initAttackData();//임시 위치
+
         growing_data = base_growing_data;
         //데이터가 있으면
         cat_motion = GetComponentInChildren<Animator>();
@@ -25,6 +31,7 @@ public class C_D001 : BaseDealer, MyHeroesImp
 
     public Cat GetMyData()
     {
+        
         return this;
     }
 }
