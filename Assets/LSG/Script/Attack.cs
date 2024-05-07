@@ -117,7 +117,7 @@ public class Attack : MonoBehaviour
                 my_bullet_obj.transform.position = transform.position;
             }
             else { Debug.Log("데이터 전달 실패"); //데이터 전달 실패할때 어쩌면 좋을까?
-                continue;
+                
             }
 
             yield return new WaitForSeconds(my_cool_time);
