@@ -94,7 +94,13 @@ public class BulletImpact : PoolAble
     {
         return Vector2.Lerp(transform.position, end, Time.deltaTime * speed);
 
+
     }
+    //private Vector3 Straight_Q(Vector3 end)
+    //{
+
+       // return Quaternion.Lerp(transform.rotation,T, 1);
+    //}
 
     //포물선이냐 아니냐도 체크해야함
     private IEnumerator BulletMove()
