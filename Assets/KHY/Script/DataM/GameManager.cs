@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
-
 
     private void Awake()
     {
@@ -21,7 +19,8 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
+
+    //---------------------------------------------------------------------------------------------------------------------------던전 
 
     [SerializeField]
     public Canvas Enterstage;
@@ -47,6 +46,6 @@ public class GameManager : MonoBehaviour
 
 
     }
-    //던전 
-    //씬관리 ,
+
+    //
 }

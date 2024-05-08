@@ -66,9 +66,15 @@ MonoBehaviour:
   - objectName: m_n14
     perfab: {fileID: 3758651486220745527, guid: 049d4d86be2378447b038d5dcf8906e5, type: 3}
     count: 3
+  - objectName: C_T001_Atk_Obj
+    perfab: {fileID: 359884226953006183, guid: b34a82181e0eabc499c7981f7616cbe2, type: 3}
+    count: 2
   - objectName: C_D001_Skill_Obj
     perfab: {fileID: 3227752036147000334, guid: 00e6d54faba7843429a2c68d8f578785, type: 3}
     count: 2
+  - objectName: Healing_Effect
+    perfab: {fileID: 7623069860143548831, guid: 67203d99b9c257b45bc9d49d9f706169, type: 3}
+    count: 2
   - objectName: C_T001_Skill_Obj
-    perfab: {fileID: 359884226953006183, guid: b34a82181e0eabc499c7981f7616cbe2, type: 3}
+    perfab: {fileID: 2733247010544334549, guid: 367a2daf4ddf9644d9f21b1dd6943a99, type: 3}
     count: 2

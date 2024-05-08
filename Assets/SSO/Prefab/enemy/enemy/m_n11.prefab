@@ -198,6 +198,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 1d1bcc12e0cffc441a4664d37c44edcb, type: 3}
       insertIndex: -1
       addedObject: {fileID: -254363225390787847}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 1d1bcc12e0cffc441a4664d37c44edcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1123675615363946921}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 1d1bcc12e0cffc441a4664d37c44edcb, type: 3}
 --- !u!1 &6810159069384715944 stripped
 GameObject:
@@ -257,8 +260,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04820347, y: 1.3311561}
-  m_Size: {x: 1.9312706, y: 2.6135347}
+  m_Offset: {x: 0.034879923, y: 1.3311561}
+  m_Size: {x: 0.90980387, y: 2.6135347}
   m_Direction: 0
 --- !u!114 &-254363225390787847
 MonoBehaviour:
@@ -272,9 +275,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5cdbe01f0eb6409375c639d4ed424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_trigger: 0
   enemyRespawner: {fileID: 0}
   attackCooldown: 3
-  rayLength: 1
+  minRayLength: 1
+  maxRayLength: 3
   enemy_attack_1: {fileID: 753739220374717880, guid: 3bbe3cadfe2b3bd4b8b431b7bd0560be, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   enemyData: {fileID: 0}
+--- !u!50 &1123675615363946921
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810159069384715944}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

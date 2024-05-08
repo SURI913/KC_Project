@@ -12,7 +12,13 @@ public class C_T001 : BaseTanker, MyHeroesImp
     {
         player_rb = GetComponent<Rigidbody2D>();
         cat_data = base_cat_data.all_cat_data[1];
+        initAttackData(); //임시 위치
+
+        atk_distance = 1; //근거리
+        skill_distance = 0;
+
         growing_data = base_growing_data;
+
         cat_motion = GetComponentInChildren<Animator>();
     }
 

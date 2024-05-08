@@ -50,7 +50,6 @@ MonoBehaviour:
   - {fileID: 2997051043807324734, guid: e3aa4b591e253084fb3c9ecf610833dc, type: 3}
   - {fileID: 3758651486220745527, guid: 049d4d86be2378447b038d5dcf8906e5, type: 3}
   enemyCount: 0
-  objectPoolManager: {fileID: 0}
 --- !u!1 &7977354963371494729
 GameObject:
   m_ObjectHideFlags: 0

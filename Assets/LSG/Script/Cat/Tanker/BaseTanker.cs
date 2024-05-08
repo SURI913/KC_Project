@@ -14,7 +14,7 @@ public class BaseTanker : Cat
             //데미지 스크립트 확인시 공격 시작
             if (collision.collider.GetComponent<DamageableImp>() != null && !is_attack)
             {
-                StartCoroutine(AttackEft(collision));
+                //StartCoroutine(AttackEft(collision));
                 player_rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
@@ -34,19 +34,19 @@ public class BaseTanker : Cat
 
     //공격 효과 및 적용
 
-    IEnumerator AttackEft(Collision2D collision)
+/*    IEnumerator AttackEft(Collision2D collision)
     {
         is_attack = true;
         cat_motion.SetTrigger("isAttack");
 
-        var my_Effect_obj = ObjectPoolManager.instance.GetGo(name + "_Atk_Obj").transform.position = this.transform.position;
+        var my_Effect_obj = ObjectPoolManager.instance.GetGo(cat_data._id + "_Atk_Obj").transform.position = this.transform.position;
 
         //Destroy(Instantiate(attack_effect, transform.position + new Vector3(2f, 0, 0), Quaternion.identity), atk_time);
         collision.collider.GetComponent<DamageableImp>().OnDamage(OnAttack(collision.collider)); //데미지 주는 스크립트
         yield return new WaitForSeconds(atk_time);
         is_attack = false;
 
-    }
+    }*/
 
     public override double OnAttack(Collider2D collision) //공격값 계산
     {
@@ -62,6 +62,9 @@ public class BaseTanker : Cat
     public IEnumerator Skill()
     {
         cat_motion.SetTrigger("isSkill");
+        var my_Effect_obj = ObjectPoolManager.instance.GetGo(cat_data._id + "_Skill_Obj");
+        my_Effect_obj.transform.position = transform.position + new Vector3(0, 4, 0);
+        my_Effect_obj.GetComponent<MeleeImpact>().init_transform = transform;
 
         GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(skill_time);

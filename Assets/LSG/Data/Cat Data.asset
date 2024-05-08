@@ -28,6 +28,8 @@ MonoBehaviour:
     _critical_hit_attack: 0
     _attack_speed: 15
     _atk_time: 5
+    _skl_time: 5
+    _skl_effect: 2
   - _id: C_T001
     _name: "\uB0E5\uC18C\uC7A5"
     _tier: "\uB808\uC5B4"
@@ -43,6 +45,8 @@ MonoBehaviour:
     _critical_hit_attack: 0
     _attack_speed: 0
     _atk_time: 5
+    _skl_time: 5
+    _skl_effect: 0
   - _id: C_S001
     _name: "\uD14C\uB108"
     _tier: "\uB808\uC5B4"
@@ -58,3 +62,5 @@ MonoBehaviour:
     _critical_hit_attack: 0
     _attack_speed: 20
     _atk_time: 5
+    _skl_time: 10
+    _skl_effect: 5

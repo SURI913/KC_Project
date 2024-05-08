@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletImpact : PoolAble
@@ -9,6 +9,9 @@ public class BulletImpact : PoolAble
     //땅에 닫기까지 걸리는 시간
     protected float timer;
     protected float timeToFloor;
+
+    public float my_speed;
+
 
     public Transform init_transform { get; set; }
     LookTarget found_target_obj;
@@ -27,34 +30,58 @@ public class BulletImpact : PoolAble
 
     }  //타겟 위치, 자식 위치로 가져와야함
 
-    public AttackableImp my_hit_data { get; set; }
+    public AttackableImp my_attack_data { get; set; }
+    public SkillUserImp my_skill_data { get; set; }
 
-    bool is_ready;
-    
-
+    bool is_loop = false; //true = attack, false = skill
+    bool is_parabola = false;
+    public void MyHitData(AttackableImp my_data)
+    {
+        if (my_data != null)
+        {
+            is_loop = true;
+            is_parabola = my_data.is_parabola_attack;
+            my_attack_data = my_data;
+        }
+    }
+    public void MyHitData(SkillUserImp my_data)
+    {
+        if (my_data != null)
+        {
+            is_loop = false;
+            is_parabola = my_data.is_parabola_skill;
+            my_skill_data = my_data;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.gameObject.layer == 6) //"Target"레이어에 해당하는 오브젝트라면
+        if (is_trigger) return; // 이미 처리 중인 충돌이 있으면 반환
+        //불값 걸어서 중복 방지
+        if (collision.transform.gameObject.layer == 6 && !is_trigger) //"Target"레이어에 해당하는 오브젝트라면
         {
+            is_trigger = true; //여기서 막아
             DamageableImp target = collision.GetComponent<DamageableImp>();
             if (target != null)
             {
-                target.OnDamage(my_hit_data.OnAttack(collision));
-                Debug.Log(name + "공격 나갔습니다."+ collision.name +"이 맞았습니다.");
+                if (is_loop && my_attack_data != null) {
+                    Debug.Log(my_attack_data);
+                    target.OnDamage(my_attack_data.OnAttack(collision)); }
+                else { target.OnDamage(my_skill_data.OnSkill(collision)); }
+                //Debug.Log(name + "공격 나갔습니다."+ collision.name +"이 맞았습니다.");
                 ReleaseObject();
                 return;
             }
             //이펙트 실행 후
         }
-        else if (collision.tag == "Plane")
+        else if (collision.tag == "Plane" && !is_trigger)
         {
-            Debug.Log(name + "공격 나갔습니다. 바닥이 맞았습니다.");
-
+            is_trigger = true;
+            //Debug.Log(name + "공격 나갔습니다. 바닥이 맞았습니다.");
             ReleaseObject();           
         }
     }
 
-    protected static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
+    private Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
     {
         Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
 
@@ -63,13 +90,24 @@ public class BulletImpact : PoolAble
         return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
     }
 
-    protected IEnumerator BulletMove()
+    private Vector2 Straight(Vector2 end, float speed)
+    {
+        return Vector2.Lerp(transform.position, end, Time.deltaTime * speed);
+
+    }
+
+    //포물선이냐 아니냐도 체크해야함
+    private IEnumerator BulletMove()
     {
         timer = 0;
+        Vector3 tempPos;
         while (transform.position.y >= startPos.y)
         {
             timer += Time.deltaTime;
-            Vector3 tempPos = Parabola(startPos, endPos, 5, timer);
+            
+            if (is_parabola) { tempPos = Parabola(startPos, endPos, 5, timer); }
+            else { tempPos = Straight(endPos, my_speed); Debug.Log("작동유뮤체크"); }
+            
             transform.position = tempPos;
             yield return new WaitForEndOfFrame();
         }
@@ -92,15 +130,17 @@ public class BulletImpact : PoolAble
             if (target != null) { endPos = target.position; }
             else { endPos = target_none.position + new Vector3(10, 0, 0); }
             StartCoroutine("BulletMove");
+            is_trigger = false;
         }
     }
 
     private void OnDisable()
     {
-        if (ObjectPoolManager.instance.IsReady)
+        if (ObjectPoolManager.instance.IsReady && !init_transform)
         {
             transform.position = init_transform.position;
             StopCoroutine("BulletMove");
+
         }
     }
 
