@@ -24,7 +24,7 @@ public class Enemy_001 : PoolAble, DamageableImp
     public float attackCooldown;  // 공격 쿨타임
     private float rayLength;           // 레이캐스트의 길이
     public float minRayLength = 1f; // 최소 랜덤 값
-    public float maxRayLength = 3f; // 최대 랜덤 값
+    public float maxRayLength = 1.5f; // 최대 랜덤 값
     public GameObject enemy_attack_1;   // 공격시 소환할 공격개체
     public GameObject damagePrefab;  // 데미지 프리팹
 
@@ -50,7 +50,7 @@ public class Enemy_001 : PoolAble, DamageableImp
         // enemy가 소환될 때 랜덤한 rayLength 값 설정
         rayLength = Random.Range(minRayLength, maxRayLength);
 
-        Debug.Log("enemy1 ray = " + rayLength);
+        //Debug.Log("enemy1 ray = " + rayLength);
     }
 
 

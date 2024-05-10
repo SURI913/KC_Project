@@ -37,6 +37,7 @@ public class PoolManager : MonoBehaviour
         //GameObject select = null;
         string goName = prefabs[index].name;
         GameObject select = objectPoolManager.GetGo(goName); // ObjectPoolManager의 GetGo() 메서드를 호출하여 오브젝트를 가져옵니다.
+        enemyCount++;
 
         // 비활성화된 오브젝트가 없다면 새롭게 생성하여 select에 할당
         /*if (!select)
