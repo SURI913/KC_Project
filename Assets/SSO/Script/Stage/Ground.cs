@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ground : MonoBehaviour
@@ -8,6 +6,8 @@ public class Ground : MonoBehaviour
     public Sprite[] ground;
     SpriteRenderer temp;
     public float speed;
+    private float totalLength = 60f;
+
     void Start()
     {
         temp = floor[0];
@@ -17,14 +17,14 @@ public class Ground : MonoBehaviour
     {
         for (int i = 0; i < floor.Length; i++)
         {
-            if (-46 >= floor[i].transform.position.x)
+            if (-totalLength >= floor[i].transform.position.x)
             {
                 for (int q = 0; q < floor.Length; q++)
                 {
                     if (temp.transform.position.x < floor[q].transform.position.x)
                         temp = floor[q];
                 }
-                floor[i].transform.position = new Vector2((float)(temp.transform.position.x + 44.3), -0.1f);
+                floor[i].transform.position = new Vector2((float)(temp.transform.position.x + 65), -0.1f);
                 floor[i].sprite = ground[Random.Range(0, ground.Length)];
             }
         }
