@@ -33,6 +33,7 @@ public class Enemy_Respown : MonoBehaviour
     public float enemy_speed;
     public Enemy_Data enemyData;
     private int enemySetValaue;
+    public int gold;
 
     private void Start()
     {
@@ -93,6 +94,19 @@ public class Enemy_Respown : MonoBehaviour
         Debug.Log("enemy3 데미지 = " + enemy3Damage);
         Debug.Log("enemy4 체력 = " + enemy4Hp);
         Debug.Log("enemy4 데미지 = " + enemy4Damage);
+    }
+
+    public void GetGold()
+    {
+        gold += 1;
+    }
+
+    public void ShowGold()
+    {
+        if (Input.GetKeyDown("g"))
+        {
+            Debug.Log("gold is " + gold);
+        }
     }
 
     public Vector2 GetBossPosition()
@@ -205,6 +219,8 @@ public class Enemy_Respown : MonoBehaviour
             pool.Get(2);
             pool.Get(3);
         }
+
+        ShowGold();
     }
 
     // 경고 메시지 표시 및 숨기기를 위한 함수 추가

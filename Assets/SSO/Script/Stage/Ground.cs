@@ -17,14 +17,14 @@ public class Ground : MonoBehaviour
     {
         for (int i = 0; i < floor.Length; i++)
         {
-            if (-15 >= floor[i].transform.position.x)
+            if (-46 >= floor[i].transform.position.x)
             {
                 for (int q = 0; q < floor.Length; q++)
                 {
                     if (temp.transform.position.x < floor[q].transform.position.x)
                         temp = floor[q];
                 }
-                floor[i].transform.position = new Vector2((float)(temp.transform.position.x + 2.3), -3.5f);
+                floor[i].transform.position = new Vector2((float)(temp.transform.position.x + 44.3), -0.1f);
                 floor[i].sprite = ground[Random.Range(0, ground.Length)];
             }
         }
