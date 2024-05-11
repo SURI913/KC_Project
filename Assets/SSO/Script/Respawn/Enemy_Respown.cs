@@ -37,21 +37,13 @@ public class Enemy_Respown : MonoBehaviour
 
     private void Start()
     {
-        // Data_Manager 오브젝트의 Data_Manager 스크립트를 찾아서 dataManager에 할당합니다.
-        enemyData = Resources.Load<Enemy_Data>("Enemy Data");
-        //enemySetValaue = 0;
-        //SetEnemyData(enemyData);
-        //PrintEnemyData();
-
+        enemySetValaue = 0;
+        SetEnemyData(enemyData);
+        PrintEnemyData();
     }
 
     private void Awake()
     {
-        enemySetValaue = 0;
-        SetEnemyData(enemyData);
-        PrintEnemyData();
-
-
         if (Instance == null)
         {
             Instance = this;
