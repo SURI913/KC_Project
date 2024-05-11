@@ -61,17 +61,24 @@ public class Enemy_002 : PoolAble, DamageableImp
         //Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            //Destroy(gameObject);
-            DeadAnimation();
+            is_trigger = true;
+            StartCoroutine(DeadAnimation());
+            enemyRespawner.GetGold();  // 처치시 골드획득
+
             Debug.Log(gameObject.name + "처치");
         }
+    }
+
+    private void OnDisable()
+    {
+        is_trigger = false;
     }
 
     IEnumerator DeadAnimation()
     {
         enemyAnimation.ResetTrigger("attack");
         enemyAnimation.SetTrigger("dead");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         ReleaseObject();
     }
 
