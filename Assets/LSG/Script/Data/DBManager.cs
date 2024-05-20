@@ -31,13 +31,14 @@ public class DBManager : MonoBehaviour
     [SerializeField] Enemy_Data enemyData;
     private void Awake()
     {
+        StartCoroutine(DownloadEnemyAll());
         StartCoroutine(DownloadCannon());
         StartCoroutine(DownloadRepairMan());
         StartCoroutine(DownloadGrowthAtk());
         StartCoroutine(DownloadGrowthHp());
         StartCoroutine(DownloadGrowthProtection());
         StartCoroutine(DownloadGrowthHealing());
-        StartCoroutine(DownloadEnemyAll());
+        
         //StartCoroutine(Download());
     } 
 

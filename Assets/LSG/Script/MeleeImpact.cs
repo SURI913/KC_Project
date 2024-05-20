@@ -64,14 +64,5 @@ public class MeleeImpact : PoolAble
             particle_object.Play();
         is_trigger = false;
     }
-    private void OnDisable()
-    {
-        if (ObjectPoolManager.instance.IsReady && !init_transform)
-        {
-            //와이?와이와이 이거 와이?
-            transform.position = init_transform.position;
-            
-            //이 데이터를 고정값으로 둬야할 듯
-        }
-    }
+
 }

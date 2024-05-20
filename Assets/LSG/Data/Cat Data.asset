@@ -26,7 +26,7 @@ MonoBehaviour:
     _increase_healing: 0.1
     _critical_hit_average: 0
     _critical_hit_attack: 0
-    _attack_speed: 15
+    _attack_speed: 10
     _atk_time: 5
     _skl_time: 5
     _skl_effect: 2
