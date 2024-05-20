@@ -51,11 +51,11 @@ TagManager:
   - name: Foreground
     uniqueID: 657432391
     locked: 0
-  - name: Player
-    uniqueID: 2028526203
-    locked: 0
   - name: Monster
     uniqueID: 749801235
+    locked: 0
+  - name: Player
+    uniqueID: 2028526203
     locked: 0
   - name: UI
     uniqueID: 2174413325
