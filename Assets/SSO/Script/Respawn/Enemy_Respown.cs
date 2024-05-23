@@ -8,8 +8,6 @@ using UnityEngine.UIElements;
 public class Enemy_Respown : MonoBehaviour
 {
     public PoolManager pool;
-    //public GameObject warningUI;  // 경고 UI
-    //public GameObject stageClearUI;  // 클리어 텍스트
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
 
     public double bossHp;
@@ -195,51 +193,16 @@ public class Enemy_Respown : MonoBehaviour
     {
         timer += Time.deltaTime;  // enemy 소환의 쿨타임 역할
 
-        if (timer > 3f && pool.enemyCount < enemeyStageCount) // 3초에 한번씩, n마리 이하일 때만 적을 생성
+        if (timer > 3f && GameManager.instance.monster_clear_count < enemeyStageCount) // 3초에 한번씩, n마리 이하일 때만 적을 생성
         {
             timer = 0;
             Spawn();     // enemy 소환하면 타이머 0으로 초기화
         }
-        else if (pool.enemyCount >= enemeyStageCount && !bossSpawned) // n마리가 되면 보스 소환
+        else if(GameManager.instance.monster_clear_count >= enemeyStageCount && !bossSpawned)
         {
             SpawnBoss();   // 보스 소환
-            ShowWarning();  // warning ui 생성
-        }
-        if (Input.GetKeyDown("space"))  // 실험용
-        {
-            pool.Get(0);
-            pool.Get(1);
-            pool.Get(2);
-            pool.Get(3);
         }
 
         ShowGold();
     }
-
-    // 경고 메시지 표시 및 숨기기를 위한 함수 추가
-    void ShowWarning()
-    {
-        //warningUI.SetActive(true);  // 경고 UI 활성화
-        StartCoroutine(UIWait(3)); // 3초 후에 경고 UI 숨기기
-    }
-
-    IEnumerator UIWait(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        //warningUI.SetActive(false);
-    }
-
-    public void ShowStageClear()
-    {
-        ScenesManager sceneManager = GameObject.Find("SceneManager").GetComponent<ScenesManager>();
-        //stageClearUI.SetActive(true);  // "Stage Clear!!" 텍스트 활성화
-        StartCoroutine(sceneManager.TransitionToNextStage());
-    }
-
-    /*IEnumerator TransitionToNextStage()
-    {
-        yield return new WaitForSeconds(3f);  // 3초 대기
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);  // 다음 씬으로 전환
-    }*/
 }
