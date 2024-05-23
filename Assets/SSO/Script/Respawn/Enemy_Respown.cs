@@ -40,6 +40,7 @@ public class Enemy_Respown : MonoBehaviour
         enemySetValaue = 0;
         SetEnemyData(enemyData);
         PrintEnemyData();
+        GameManager.instance.boss_gauge = enemeyStageCount;
     }
 
     private void Awake()

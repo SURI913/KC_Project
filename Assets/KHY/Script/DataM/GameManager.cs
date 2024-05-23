@@ -47,5 +47,17 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //
+    //----------------------------------스테이지 관리
+    public float boss_gauge; //스테이지 넘어갈때 주의
+    //=> 몬스터 생성 값 받아오자
+    public bool is_clear_boss;
+    public float monster_clear_count;
+
+    public void ReSetClearCountData()
+    {
+        monster_clear_count = 0;
+        is_clear_boss = false;
+    }
+    //보스 나오기 전까지는 처지한 몬스터 만큼 게이지를 조절해야함
+    //보스 클리어 하고는 보스 체력바처럼 사용한다.
 }
