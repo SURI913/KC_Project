@@ -134,7 +134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 749801235
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 8549777820713620019, guid: 92f569c5203d0cb40953d77639755571, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 749801235
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 7791739479885837654, guid: 92f569c5203d0cb40953d77639755571, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -344,7 +344,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 749801235
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 4829869654564122718, guid: 92f569c5203d0cb40953d77639755571, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -485,11 +485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5cdbe01f0eb6409375c639d4ed424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  enemy_attack_1: {fileID: 753739220374717880, guid: 3bbe3cadfe2b3bd4b8b431b7bd0560be, type: 3}
-  rayLength: 1
+  is_trigger: 0
   enemyRespawner: {fileID: 0}
+  attackCooldown: 3
+  minRayLength: 1
+  maxRayLength: 1.5
+  enemy_attack_1: {fileID: 753739220374717880, guid: 3bbe3cadfe2b3bd4b8b431b7bd0560be, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
+  enemyData: {fileID: 0}
+  coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!1 &6807426322402386947
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,10 +87,10 @@ public class Enemy_Respown : MonoBehaviour
         Debug.Log("enemy4 데미지 = " + enemy4Damage);
     }
 
-    public void GetGold()
+    /*public void GetGold()
     {
         gold += 1;
-    }
+    }*/
 
     public void ShowGold()
     {

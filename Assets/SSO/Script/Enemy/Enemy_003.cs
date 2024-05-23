@@ -27,6 +27,7 @@ public class Enemy_003 : PoolAble, DamageableImp
     private float rayLength;           // 레이캐스트의 길이
     public float minRayLength = 1f; // 최소 랜덤 값
     public float maxRayLength = 1.5f; // 최대 랜덤 값
+    public CurrencyItemData coin;
 
     void Start()
     {
@@ -60,7 +61,8 @@ public class Enemy_003 : PoolAble, DamageableImp
         {
             is_trigger = true;
             StartCoroutine(DeadAnimation());
-            enemyRespawner.GetGold();  // 처치시 골드획득
+            coin.SetAmount(1);
+
             GameManager.instance.monster_clear_count++;
 
 

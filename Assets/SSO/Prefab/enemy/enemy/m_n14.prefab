@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8401907579708499850, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8401907579708499850, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayerID
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7165880034659061930, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7165880034659061930, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayerID
@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2608102985780763276, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2608102985780763276, guid: 7f9ab96b9cbe9c04dbc7838c46c5219b, type: 3}
       propertyPath: m_SortingLayerID
@@ -281,6 +281,7 @@ MonoBehaviour:
   maxRayLength: 11
   enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
+  coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!50 &4559497981050585819
 Rigidbody2D:
   serializedVersion: 4

@@ -27,6 +27,7 @@ public class Enemy_004 : PoolAble, DamageableImp
     public float maxRayLength = 10f; // 최대 랜덤 값
     public GameObject enemy_attack_4;   // 공격시 소환할 공격개체
     public GameObject damagePrefab;
+    public CurrencyItemData coin;
 
     void Start()
     {
@@ -60,7 +61,8 @@ public class Enemy_004 : PoolAble, DamageableImp
          {
             is_trigger = true;
             StartCoroutine(DeadAnimation());
-            enemyRespawner.GetGold();  // 처치시 골드획득
+            bool is_update_coin = coin.SetAmount(1);
+            if(is_update_coin) { Debug.Log("업데이트완료"); }
             GameManager.instance.monster_clear_count++;
 
             Debug.Log(gameObject.name + "처치");
