@@ -26,8 +26,7 @@ public class Attack : MonoBehaviour
         set
         {
             switch (value)
-            {
-                //자동으로 할 때 코루틴으로 변경해둘 것 
+            { 
                 case AttackType.Noaml: StartCoroutine(AttackFire()); break; //==> 코루틴으로 작업 구분 . 노말에선 루프 돌리고 스킬 쓸 때 nomal에서 돌리던 코루틴 정지
                 case AttackType.Skill: StopCoroutine(AttackFire()); StartCoroutine(SkillFire()); break;
             }
