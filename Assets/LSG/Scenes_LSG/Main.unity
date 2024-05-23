@@ -590,7 +590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2065476902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +606,9 @@ MonoBehaviour:
   Enterstage: {fileID: 0}
   StageSelect: {fileID: 0}
   Storybox: {fileID: 0}
+  boss_gauge: 0
+  is_clear_boss: 0
+  monster_clear_count: 0
 --- !u!4 &2065476903
 Transform:
   m_ObjectHideFlags: 0

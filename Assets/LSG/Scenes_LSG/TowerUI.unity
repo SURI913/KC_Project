@@ -15358,7 +15358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1315617337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15371,10 +15371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818cb7043bba4ac4b97ec948092942d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeon_monsterData: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
   current_tower_data: {fileID: 11400000, guid: 215cebbe7e3f83745bd1218b8f7d59b4, type: 2}
-  towerData: {fileID: 11400000, guid: 0c927e4640448cc4dabebbd0169a4781, type: 2}
   growthData: {fileID: 11400000, guid: 7463c447360372843834954e06e7e713, type: 2}
   growingSetData: {fileID: 11400000, guid: 23dd22bf50e384143ad509b5eab07091, type: 2}
+  towerData: {fileID: 11400000, guid: 0c927e4640448cc4dabebbd0169a4781, type: 2}
+  enemyData: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
 --- !u!4 &1315617338
 Transform:
   m_ObjectHideFlags: 0

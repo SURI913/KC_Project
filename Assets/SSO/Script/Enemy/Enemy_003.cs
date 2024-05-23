@@ -61,6 +61,7 @@ public class Enemy_003 : PoolAble, DamageableImp
             is_trigger = true;
             StartCoroutine(DeadAnimation());
             enemyRespawner.GetGold();  // 처치시 골드획득
+            GameManager.instance.monster_clear_count++;
 
 
             Debug.Log(gameObject.name + "처치");
