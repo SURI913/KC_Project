@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
+using System.Diagnostics;
 
 public class Enemy_001 : PoolAble, DamageableImp
 {
