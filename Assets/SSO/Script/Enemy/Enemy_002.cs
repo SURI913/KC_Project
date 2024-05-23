@@ -67,6 +67,7 @@ public class Enemy_002 : PoolAble, DamageableImp
             GameManager.instance.monster_clear_count++;
 
             Debug.Log(gameObject.name + "처치");
+            Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
         }
     }
 
