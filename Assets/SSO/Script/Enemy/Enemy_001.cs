@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
-using System.Diagnostics;
 
 public class Enemy_001 : PoolAble, DamageableImp
 {
@@ -68,6 +67,7 @@ public class Enemy_001 : PoolAble, DamageableImp
             enemyRespawner.GetGold();  // 처치시 골드획득
             GameManager.instance.monster_clear_count++;
             Debug.Log(gameObject.name + "처치");
+            Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
 
         }
     }
