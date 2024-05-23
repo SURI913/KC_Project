@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8828076424774178473, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8828076424774178473, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayerID
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_Name
-      value: monster3
+      value: enemy_003
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_Layer
@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6876026341718281804, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -6876026341718281804, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayerID
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2827161709283829054, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -2827161709283829054, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayerID
@@ -166,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609719090194301641, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1609719090194301641, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayerID
@@ -186,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6961858723754087548, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6961858723754087548, guid: 082c48996ec591846a9e4f24ceed836f, type: 3}
       propertyPath: m_SortingLayerID
@@ -272,11 +272,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c31c278ea884bc458513f699e061930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 5.5
-  enemy_attack_3: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
-  rayLength: 10
+  is_trigger: 0
   enemyRespawner: {fileID: 0}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
+  enemy_attack_3: {fileID: 745288096775056173, guid: 6766f7bfebfa7a84f9d437bf951c42d8, type: 3}
+  attackCooldown: 5.5
+  minRayLength: 1
+  maxRayLength: 1.5
+  coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!70 &6429076894125989964
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

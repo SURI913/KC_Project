@@ -29,6 +29,7 @@ public class Enemy_002 : PoolAble, DamageableImp
     public GameObject damagePrefab;  // 데미지 프리팹
 
     public Enemy_Data enemyData;
+    public CurrencyItemData coin;
 
     void Start()
     {
@@ -63,7 +64,8 @@ public class Enemy_002 : PoolAble, DamageableImp
         {
             is_trigger = true;
             StartCoroutine(DeadAnimation());
-            enemyRespawner.GetGold();  // 처치시 골드획득
+            coin.SetAmount(1);
+
             GameManager.instance.monster_clear_count++;
 
             Debug.Log(gameObject.name + "처치");

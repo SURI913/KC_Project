@@ -31,6 +31,8 @@ public class Enemy_001 : PoolAble, DamageableImp
 
     public Enemy_Data enemyData;
 
+    public CurrencyItemData coin;
+
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -64,7 +66,10 @@ public class Enemy_001 : PoolAble, DamageableImp
         {
             is_trigger = true;
             StartCoroutine(DeadAnimation());
-            enemyRespawner.GetGold();  // 처치시 골드획득
+
+            //골드
+            coin.SetAmount(1);
+
             GameManager.instance.monster_clear_count++;
             Debug.Log(gameObject.name + "처치");
             Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
