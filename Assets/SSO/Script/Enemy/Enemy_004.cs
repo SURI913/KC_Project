@@ -29,6 +29,8 @@ public class Enemy_004 : PoolAble, DamageableImp
     public GameObject damagePrefab;
     public CurrencyItemData coin;
 
+    private bool bossDeadAnimationTriggered = false;
+
     void Start()
     {
         // 만약 enemyRespawner가 설정되지 않았다면, 현재 씬에서 Enemy_Respown 인스턴스를 찾아 설정
@@ -143,6 +145,19 @@ public class Enemy_004 : PoolAble, DamageableImp
         {
             gameObject.SetActive(false);
         }
+
+        if (enemyRespawner.bossSpawned && !bossDeadAnimationTriggered)
+        {
+            StartCoroutine(BossDeadAnimation());
+        }
+    }
+
+    IEnumerator BossDeadAnimation()
+    {
+        enemyAnimation.ResetTrigger("attack");
+        enemyAnimation.SetTrigger("dead");
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
     }
 
     IEnumerator Attack()
