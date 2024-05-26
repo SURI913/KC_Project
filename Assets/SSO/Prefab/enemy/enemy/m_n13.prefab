@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4621877640024488131, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4621877640024488131, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayerID
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2032324346623614399, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -2032324346623614399, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayerID
@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153083917793864611, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4153083917793864611, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayerID
@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222661070148608283, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7222661070148608283, guid: 10da648ebae97ee4e9fe9c04b59639cb, type: 3}
       propertyPath: m_SortingLayerID
@@ -257,11 +257,12 @@ MonoBehaviour:
   is_trigger: 0
   enemyRespawner: {fileID: 0}
   attackCooldown: 3
-  minRayLength: 9
-  maxRayLength: 11
+  minRayLength: 1
+  maxRayLength: 3
   enemy_attack_1: {fileID: 753739220374717880, guid: 94f14f2f438e7d640bd69b0b3ce391a8, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   enemyData: {fileID: 0}
+  coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!50 &2239944705163668924
 Rigidbody2D:
   serializedVersion: 4

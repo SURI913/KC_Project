@@ -66,7 +66,6 @@ public class Boss : PoolAble, DamageableImp
             DeadAnimation();
             ReleaseObject();
             Debug.Log("보스" + gameObject.name + "처치");
-            respawner.ShowStageClear();  // 보스가 죽었을 때 "Stage Clear!!" 표시
         }
     }
 
@@ -98,7 +97,6 @@ public class Boss : PoolAble, DamageableImp
 
         while (true) // 무한 반복
         {
-            //enemyAnimation.SetTrigger("Enemy_attack");
             enemyAnimation.SetTrigger("attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;
             GameObject attackInstance = Instantiate(boss_attack, spawnPosition, Quaternion.identity);
@@ -113,8 +111,7 @@ public class Boss : PoolAble, DamageableImp
         Debug.Log("2페이즈 시작");
 
         while (true) // 무한 반복
-        {   // 공격 3개생성
-            //enemyAnimation.SetTrigger("Enemy_attack");
+        {  
             enemyAnimation.SetTrigger("attack");
             Vector3 spawnPosition = transform.position - Vector3.right * 5 + Vector3.up * 5;    // 중간공격
             Vector3 spawnPosition2 = spawnPosition - Vector3.right - Vector3.up;       // 위

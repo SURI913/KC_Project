@@ -29,6 +29,9 @@ public class Enemy_002 : PoolAble, DamageableImp
     public GameObject damagePrefab;  // 데미지 프리팹
 
     public Enemy_Data enemyData;
+    public CurrencyItemData coin;
+
+    private bool bossDeadAnimationTriggered = false;
 
     void Start()
     {
@@ -61,17 +64,27 @@ public class Enemy_002 : PoolAble, DamageableImp
         //Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            //Destroy(gameObject);
-            DeadAnimation();
+            is_trigger = true;
+            StartCoroutine(DeadAnimation());
+            coin.SetAmount(1);
+
+            GameManager.instance.monster_clear_count++;
+
             Debug.Log(gameObject.name + "처치");
+            Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
         }
+    }
+
+    private void OnDisable()
+    {
+        is_trigger = false;
     }
 
     IEnumerator DeadAnimation()
     {
         enemyAnimation.ResetTrigger("attack");
         enemyAnimation.SetTrigger("dead");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         ReleaseObject();
     }
 
@@ -135,6 +148,19 @@ public class Enemy_002 : PoolAble, DamageableImp
         {
             gameObject.SetActive(false);
         }
+
+        if (enemyRespawner.bossSpawned && !bossDeadAnimationTriggered)
+        {
+            StartCoroutine(BossDeadAnimation());
+        }
+    }
+
+    IEnumerator BossDeadAnimation()
+    {
+        enemyAnimation.ResetTrigger("attack");
+        enemyAnimation.SetTrigger("dead");
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
     }
 
     IEnumerator Attack()

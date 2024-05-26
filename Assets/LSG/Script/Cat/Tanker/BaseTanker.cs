@@ -63,7 +63,7 @@ public class BaseTanker : Cat
     {
         cat_motion.SetTrigger("isSkill");
         var my_Effect_obj = ObjectPoolManager.instance.GetGo(cat_data._id + "_Skill_Obj");
-        my_Effect_obj.transform.position = transform.position;
+        my_Effect_obj.transform.position = transform.position + new Vector3(0, 4, 0);
         my_Effect_obj.GetComponent<MeleeImpact>().init_transform = transform;
 
         GetComponent<Collider2D>().enabled = false;

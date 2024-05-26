@@ -7,8 +7,8 @@ public class SetCurrency : MonoBehaviour
 {
     public CurrencyItemData item;
 
-    private void Start()
+    private void Update()
     {
-        transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = item.amount.ToString();
+        transform.GetComponentInChildren<TextMeshProUGUI>().text = item.amount.ToString();
     }
 }

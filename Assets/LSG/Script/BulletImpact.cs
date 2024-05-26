@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class BulletImpact : PoolAble
 {
     private Vector3 startPos, endPos;
@@ -11,7 +12,7 @@ public class BulletImpact : PoolAble
     protected float timeToFloor;
 
     public float my_speed;
-
+    private ParticleSystem my_particle;
 
     public Transform init_transform { get; set; }
     LookTarget found_target_obj;
@@ -35,6 +36,8 @@ public class BulletImpact : PoolAble
 
     bool is_loop = false; //true = attack, false = skill
     bool is_parabola = false;
+
+
     public void MyHitData(AttackableImp my_data)
     {
         if (my_data != null)
@@ -90,14 +93,17 @@ public class BulletImpact : PoolAble
         return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
     }
 
-    private Vector2 Straight(Vector2 start, Vector2 end, float speed)
+    private Vector2 Straight(Vector2 end, float speed)
     {
-        return Vector2.Lerp(start, end, Time.deltaTime);
-
+        return Vector2.Lerp(transform.position, end, Time.deltaTime * speed);
+    }
+    private Quaternion Straight_Rotation(Vector3 end, float speed)
+    {
+        return Quaternion.Lerp(transform.rotation,Quaternion.LookRotation(end-transform.position), Time.deltaTime * speed);
     }
 
-    //포물선이냐 아니냐도 체크해야함
-    private IEnumerator BulletMove()
+//포물선이냐 아니냐도 체크해야함
+private IEnumerator BulletMove()
     {
         timer = 0;
         Vector3 tempPos;
@@ -106,7 +112,21 @@ public class BulletImpact : PoolAble
             timer += Time.deltaTime;
             
             if (is_parabola) { tempPos = Parabola(startPos, endPos, 5, timer); }
-            else { tempPos = Straight(startPos, endPos, my_speed); }
+            else { 
+                tempPos = Straight(endPos, my_speed); Debug.Log("작동유뮤체크");
+                    Debug.Log(my_particle);
+
+                if (my_particle)
+                {
+                    Debug.Log("파티클 있음");
+                    //각도가 좀 이상함
+                    var direction = endPos - startPos;
+                    float angle = Vector2.Angle(Vector2.right, direction);
+                    ParticleSystem.MainModule main = my_particle.main;
+                    main.startRotation = angle;
+                }
+                transform.rotation = Straight_Rotation(endPos, my_speed);
+            }
             
             transform.position = tempPos;
             yield return new WaitForEndOfFrame();
@@ -119,7 +139,7 @@ public class BulletImpact : PoolAble
         found_target_obj = FindObjectOfType<LookTarget>(); //타겟 거리별로 감지하는 오브젝트 찾음 =>본인위치랑 비교함
         target_none = GameObject.FindWithTag("Plane").transform;
         if (found_target_obj == null) Debug.Log("found_target_obj 찾을 수 없음");
-        
+        my_particle = GetComponentInChildren<ParticleSystem>();
     }
 
     private void OnEnable()
@@ -136,11 +156,9 @@ public class BulletImpact : PoolAble
 
     private void OnDisable()
     {
-        if (ObjectPoolManager.instance.IsReady && !init_transform)
+        if (ObjectPoolManager.instance.IsReady)
         {
-            transform.position = init_transform.position;
             StopCoroutine("BulletMove");
-
         }
     }
 

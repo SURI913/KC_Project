@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9156867838365188483, guid: d55d619bffa87b342b41acdf38dc06e5, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -9156867838365188483, guid: d55d619bffa87b342b41acdf38dc06e5, type: 3}
       propertyPath: m_SortingLayerID
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7143818262520823776, guid: d55d619bffa87b342b41acdf38dc06e5, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7143818262520823776, guid: d55d619bffa87b342b41acdf38dc06e5, type: 3}
       propertyPath: m_SortingLayerID
@@ -237,6 +237,7 @@ MonoBehaviour:
   attackCooldown: 5.5
   minRayLength: 9
   maxRayLength: 11
+  coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!50 &7616438836694309771
 Rigidbody2D:
   serializedVersion: 4
