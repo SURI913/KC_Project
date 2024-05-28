@@ -2746,6 +2746,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[11].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[11].perfab
+      value: 
+      objectReference: {fileID: 5380502631704730053, guid: 0a30333e7a2a17c40b138c28c895db00, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[11].objectName
+      value: Normal_Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 7525515904546794555, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager
@@ -23298,7 +23314,6 @@ MonoBehaviour:
   - {fileID: 1876961636432138535, guid: 568e4ee6053fc9f458c51e692c40f18e, type: 3}
   - {fileID: 2997051043807324734, guid: e3aa4b591e253084fb3c9ecf610833dc, type: 3}
   - {fileID: 3758651486220745527, guid: 049d4d86be2378447b038d5dcf8906e5, type: 3}
-  enemyCount: 0
 --- !u!4 &2049470461
 Transform:
   m_ObjectHideFlags: 0

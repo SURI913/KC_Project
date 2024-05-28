@@ -23,7 +23,7 @@ public class Enemy_Respown : MonoBehaviour
 
     public GameObject bossPrefab; // 보스 프리팹
     public float enemeyStageCount; // 이 스테이지에서 소환할 몬스터의 수
-    private bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
+    public bool bossSpawned = false; // 보스가 이미 소환됐는지 확인
     private float timer;
     public Vector2 ground_enemy_position;
     public Vector2 fly_enemy_position;
@@ -86,11 +86,6 @@ public class Enemy_Respown : MonoBehaviour
         Debug.Log("enemy4 체력 = " + enemy4Hp);
         Debug.Log("enemy4 데미지 = " + enemy4Damage);
     }
-
-    /*public void GetGold()
-    {
-        gold += 1;
-    }*/
 
     public void ShowGold()
     {
