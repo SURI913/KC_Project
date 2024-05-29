@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("버튼 눌러짐");
     }
+
+    public void Dungeon_Play_UI(bool active)
+    {
+        //타이머 활성화호ㅏ
+
+    }    
    private int Monster_data_index;
    
     public void Monster_Data_index(int index)
