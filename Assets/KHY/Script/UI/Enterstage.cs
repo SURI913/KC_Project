@@ -10,7 +10,7 @@ public class Enterstage : MonoBehaviour
     public void OnClick()
     {
        GameManager.instance.Dungeon_Start_UI(true);
-       Debug.Log("버튼 눌러짐");
+       Debug.Log("버튼 눌러짐,엔터 ");
     }
 }
 

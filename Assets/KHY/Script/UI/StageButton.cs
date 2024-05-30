@@ -27,23 +27,27 @@ public class StageButton : MonoBehaviour
     public Text reco;
     public void OnButtonClick()
     {
+       
         Monster _monster = GameObject.FindWithTag("Enemy").GetComponent<Monster>();
         // 씬이 넘어가면서 태그를 못찾는가봄 
         //스테이지 인덱스틑 저장해서 보냄
+       
 
         if (_monster != null)
         {
             int rowIndex = stageIndex;
-
+            
             MonsterData tmpData = _monster.monsterData;
-
+          
             if (rowIndex >= 1 && rowIndex <= tmpData.dungeon_monsterdatas.Length)
             {
                // GameManager.instance.Monster_Data_index(1);//테스트 전달되는지 확인
-                _monster.SetMonsterDataByIndex(rowIndex);
+                GameManager.instance.SetMonsterDataByIndex(rowIndex);
+                Debug.Log("데이터 오나?");
+
                 //d인덱스 값만 보내는데?
-                
-              
+
+
 
             }
             else
