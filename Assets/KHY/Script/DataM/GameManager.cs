@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+       
     }
 
     //---------------------------------------------------------------------------------------------------------------------------던전 
@@ -32,18 +32,38 @@ public class GameManager : MonoBehaviour
         Enterstage.gameObject.SetActive(!active);
         StageSelect.gameObject.SetActive(!active);
         Storybox.gameObject.SetActive(!active);
-       
 
-        Debug.Log("버튼 눌러짐");
+        Debug.Log("버튼 눌러짐,게임매니저");
+      
     }
-
+    public Monster monster;
+    public MonsterData monsterData;
+    public int check;
+    public void SetMonsterDataByIndex(int index)
+    {
+        Debug.Log(" 1111");
+        Debug.Log(index);
+        if (index >= 1 && index <= monsterData.dungeon_monsterdatas.Length)
+        {
+            MonsterD stageData = monsterData.dungeon_monsterdatas[index - 1];
+            Debug.Log(stageData);
+           
+            //monster.SetMonsterData(stageData);//스테이지 인덱스
+           
+        }
+        else
+        {
+            Debug.LogError("Invalid stage index: " + index);
+            Debug.Log(" 1111");
+        }
+    }
     public void Dungeon_Play_UI(bool active)
     {
         //타이머 활성화호ㅏ
 
     }    
    private int Monster_data_index;
-   
+    
     public void Monster_Data_index(int index)
     {
         Monster_data_index = index;
