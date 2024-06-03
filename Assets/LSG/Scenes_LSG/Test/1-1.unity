@@ -7058,13 +7058,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 2049470460}
-  bossHp: 100
-  bossDamage: 50
   bossPrefab: {fileID: 5380502631704730053, guid: 0a30333e7a2a17c40b138c28c895db00, type: 3}
   enemeyStageCount: 10
+  bossSpawned: 0
   ground_enemy_position: {x: 40, y: -9}
   fly_enemy_position: {x: 40, y: -3}
-  boss_position: {x: 60, y: -20}
+  boss_position: {x: 30, y: -20}
   enemy_speed: 3
   enemyData: {fileID: 11400000, guid: 655e6ec49f73a2841b13f01d5cbd9247, type: 2}
   gold: 0

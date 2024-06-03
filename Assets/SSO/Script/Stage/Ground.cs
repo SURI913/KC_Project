@@ -6,7 +6,7 @@ public class Ground : MonoBehaviour
     public Sprite[] ground;
     SpriteRenderer temp;
     public float speed;
-    private float totalLength = 60f;
+    private float totalLength = 70f;
 
     void Start()
     {
