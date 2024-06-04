@@ -20,6 +20,7 @@ public class Data_Manager : MonoBehaviour
         yield return DownloadAndSetData(Enemy_BASE_URL + "F17:G", SetM_N12Data);
         yield return DownloadAndSetData(Enemy_BASE_URL + "H17:I", SetM_N13Data);
         yield return DownloadAndSetData(Enemy_BASE_URL + "J17:K", SetM_N14Data);
+        yield return DownloadAndSetData(Enemy_BASE_URL + "L17:N", SetBossData);
     }
 
     IEnumerator DownloadAndSetData(string url, System.Action<string, List<Enemy>> setDataFunction)
@@ -106,4 +107,25 @@ public class Data_Manager : MonoBehaviour
 
         enemyData.enemy4 = enemyList.ToArray();
     }
+
+    void SetBossData(string tsv, List<Enemy> enemyList)
+    {
+        string[] rows = tsv.Split('\n');
+
+        for (int i = 1; i < rows.Length; i++)
+        {
+            string[] columns = rows[i].Split('\t');
+
+            Enemy enemy = new Enemy();
+            enemy.name = "boss";
+            enemy.hp = double.Parse(columns[0]);
+            enemy.damage = float.Parse(columns[1]);
+            enemy.skill = float.Parse(columns[2]);
+
+            enemyList.Add(enemy);
+        }
+
+        enemyData.boss = enemyList.ToArray();
+    }
+
 }

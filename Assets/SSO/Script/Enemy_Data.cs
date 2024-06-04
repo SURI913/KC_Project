@@ -9,6 +9,7 @@ public class Enemy
     public string name;
     public double hp;
     public float damage;
+    public float skill;
 }
 
 [CreateAssetMenu(fileName = "Enemy Data", menuName = "Scriptable Object/Enemy Data")]

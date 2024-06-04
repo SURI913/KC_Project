@@ -10,8 +10,9 @@ public class Enemy_Respown : MonoBehaviour
     public PoolManager pool;
     public static Enemy_Respown Instance;  // 싱글톤 인스턴스
 
-    public double bossHp;
-    public float bossDamage;
+    private double bossHp;
+    private float bossDamage;
+    private float bossSkill;
     private double enemyHp;
     private float enemyDamage;
     private double enemy2Hp;
@@ -68,6 +69,11 @@ public class Enemy_Respown : MonoBehaviour
 
             enemy4Hp = enemyData.enemy4[enemySetValaue].hp;
             enemy4Damage = enemyData.enemy4[enemySetValaue].damage;
+
+            bossHp = enemyData.boss[enemySetValaue].hp;
+            bossDamage = enemyData.boss[enemySetValaue].damage;
+            bossSkill = enemyData.boss[enemySetValaue].skill;
+
         }
         else
         {
@@ -85,6 +91,9 @@ public class Enemy_Respown : MonoBehaviour
         Debug.Log("enemy3 데미지 = " + enemy3Damage);
         Debug.Log("enemy4 체력 = " + enemy4Hp);
         Debug.Log("enemy4 데미지 = " + enemy4Damage);
+        Debug.Log("boss 체력 = " + bossHp);
+        Debug.Log("boss 데미지 = " + bossDamage);
+        Debug.Log("boss 스킬 = " + bossSkill);
     }
 
     public void ShowGold()
