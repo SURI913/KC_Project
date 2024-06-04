@@ -13,7 +13,6 @@ public class Boss : PoolAble, DamageableImp
     // 보스 몬스터
     //private
     private float enemySpeed;              // 이동속도
-    private double hp;                         // 보스 체력
     private double currentHp;             // 보스의 현재체력
     private float damage;                    // 보스공격의 데미지
     private bool isCollidedCastle = false; // 'Castle'과 충돌했는지 확인하는 변수
@@ -26,6 +25,7 @@ public class Boss : PoolAble, DamageableImp
     private Animator enemyAnimation; // Unity Animation 컴포넌트
 
     // public
+    public double hp;                         // 보스 체력
     public float attackCooldown;  // 공격 쿨타임
     public float rayLength;           // 레이캐스트의 길이
     public GameObject boss_attack;  // 보스 공격 오브젝트
