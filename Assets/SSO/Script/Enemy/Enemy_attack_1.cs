@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_attack_1 : MonoBehaviour
+public class Enemy_attack_1 : PoolAble
 {
     // 근거리 몬스터 공격
     [SerializeField]
@@ -28,7 +28,14 @@ public class Enemy_attack_1 : MonoBehaviour
                 double damageValue = enemyRespawner.GetEnemyDamage();
                 target.OnDamage(damageValue);  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
                 //Debug.Log("enemy가 공격함");
+                StartCoroutine(DestroyAttack());
             }
         }
+    }
+
+    IEnumerator DestroyAttack()   // 공격 없애기
+    {
+        yield return new WaitForSeconds(1.5f); // 지정된 시간 동안 대기
+        ReleaseObject();
     }
 }

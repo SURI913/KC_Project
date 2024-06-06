@@ -104,7 +104,7 @@ public class ObjectPoolManager : MonoBehaviour
     public GameObject GetGo(string goName)
     {
         objectName = goName;
-
+        
         if (goDic.ContainsKey(goName) == false)
         {
             Debug.LogFormat("{0} 오브젝트풀에 등록되지 않은 오브젝트입니다.", goName);

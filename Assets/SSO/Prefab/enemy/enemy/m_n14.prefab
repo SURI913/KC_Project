@@ -279,7 +279,7 @@ MonoBehaviour:
   attackCooldown: 3
   minRayLength: 9
   maxRayLength: 11
-  enemy_attack_4: {fileID: 745288096775056173, guid: 5ce636b8e8c757a4daa6da9233136cdb, type: 3}
+  enemy_attack_4: {fileID: 745288096775056173, guid: de465d4ff4b96244fa194d7c2a788fab, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}
 --- !u!50 &4559497981050585819

@@ -280,7 +280,7 @@ MonoBehaviour:
   attackCooldown: 3
   minRayLength: 1
   maxRayLength: 3
-  enemy_attack_1: {fileID: 753739220374717880, guid: 3bbe3cadfe2b3bd4b8b431b7bd0560be, type: 3}
+  enemy_attack_1: {fileID: 753739220374717880, guid: 852acc60e37ccdd45b5e7f5045d65287, type: 3}
   damagePrefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   enemyData: {fileID: 0}
   coin: {fileID: 11400000, guid: 899ae95d79db5ca48a95a0e175684d46, type: 2}

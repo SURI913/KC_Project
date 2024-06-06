@@ -78,3 +78,18 @@ MonoBehaviour:
   - objectName: C_T001_Skill_Obj
     perfab: {fileID: 2733247010544334549, guid: 367a2daf4ddf9644d9f21b1dd6943a99, type: 3}
     count: 2
+  - objectName: Normal_Tree
+    perfab: {fileID: 5380502631704730053, guid: 0a30333e7a2a17c40b138c28c895db00, type: 3}
+    count: 1
+  - objectName: enemy_attack_01
+    perfab: {fileID: 753739220374717880, guid: 852acc60e37ccdd45b5e7f5045d65287, type: 3}
+    count: 3
+  - objectName: enemy_attack_02
+    perfab: {fileID: 753739220374717880, guid: 443c94b5b5e17c04fbc10ffdebe6cd16, type: 3}
+    count: 3
+  - objectName: enemy_attack_03
+    perfab: {fileID: 745288096775056173, guid: 1830934fcaf9d2f4995bffce818348f5, type: 3}
+    count: 3
+  - objectName: enemy_attack_04
+    perfab: {fileID: 745288096775056173, guid: de465d4ff4b96244fa194d7c2a788fab, type: 3}
+    count: 3

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_attack_2 : MonoBehaviour
+public class Enemy_attack_2 : PoolAble
 {
     // 원거리 몬스터의 공격
     // 공격 당했을떄 데미지를 입히는 스크립트
@@ -24,13 +24,17 @@ public class Enemy_attack_2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        DamageableImp target = collision.GetComponent<DamageableImp>();
-        if (target != null && enemyRespawner)
+        if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            double damageValue = enemyRespawner.GetEnemyDamage();
-            target.OnDamage(damageValue);  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
-            //Debug.Log("enemy가 공격함");
-            Destroy(gameObject);  // 발사체 삭제
+            DamageableImp target = collision.GetComponent<DamageableImp>();
+            if (target != null && enemyRespawner)
+            {
+                double damageValue = enemyRespawner.GetEnemyDamage();
+                target.OnDamage(damageValue);  // 여기서 RaycastHit2D 정보는 필요에 따라 적절히 설정
+                                               //Debug.Log("enemy가 공격함");
+                Destroy(gameObject);  // 발사체 삭제
+                //ReleaseObject();
+            }
         }
     }
 
