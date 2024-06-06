@@ -58,7 +58,6 @@ public class Enemy_001 : PoolAble, DamageableImp
         //Debug.Log("enemy1 ray = " + rayLength);
     }
 
-
     public void OnDamage(double Damage )
     {
         hp -= Damage;
@@ -71,6 +70,8 @@ public class Enemy_001 : PoolAble, DamageableImp
 
             //골드
             coin.SetAmount(1);
+            //Ex
+            GameManager.instance.ex += 10;
 
             GameManager.instance.monster_clear_count++;
             Debug.Log(gameObject.name + "처치");

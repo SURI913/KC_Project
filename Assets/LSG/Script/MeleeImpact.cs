@@ -18,6 +18,7 @@ public class MeleeImpact : PoolAble
         if(my_data != null)
         {
             is_loop = true;
+            transform.position = my_data.my_attack_transform.position;
         }
     }
     public void MyHitData(SkillUserImp my_data)
@@ -25,6 +26,8 @@ public class MeleeImpact : PoolAble
         if (my_data != null)
         {
             is_loop = false;
+            transform.position = my_data.my_attack_transform.position;
+
         }
     }
 
@@ -64,5 +67,4 @@ public class MeleeImpact : PoolAble
             particle_object.Play();
         is_trigger = false;
     }
-
 }

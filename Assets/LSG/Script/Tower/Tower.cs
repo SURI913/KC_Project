@@ -30,6 +30,9 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
     private float wheelSpeed = 15f;
     public bool is_parabola_attack { get; set; }
 
+    public Transform my_tool_pos;
+    public Transform my_attack_transform { get { return my_tool_pos; } }
+
     void initData()
     {
         Lv = 1;
