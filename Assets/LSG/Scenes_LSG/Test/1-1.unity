@@ -2766,10 +2766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectPoolManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7525515904546794555, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9049279146288093343, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.9310918
@@ -20255,10 +20251,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8580881484175935420, guid: c9e8b2c123e459842912bfe3467cbba9, type: 3}
-      propertyPath: check_size.x
-      value: 19
-      objectReference: {fileID: 0}
     - target: {fileID: 8837236381854039548, guid: c9e8b2c123e459842912bfe3467cbba9, type: 3}
       propertyPath: m_Name
       value: ObjectChack
@@ -24641,9 +24633,9 @@ MeshRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 253970484}
-  - {fileID: 1799379638}
   - {fileID: 41190812}
+  - {fileID: 1799379638}
+  - {fileID: 253970484}
   - {fileID: 14641609}
   - {fileID: 1396597288}
   - {fileID: 1179250749}

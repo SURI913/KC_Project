@@ -96,7 +96,6 @@ MonoBehaviour:
   damage_prefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   respawnTime: 8
   my_skill_data: {fileID: 11400000, guid: 47aaab1b6e09db346a6f1b4a161c89d0, type: 2}
-  my_tool_pos: {fileID: 2178422269933046711}
   size: 0
   layer_mask:
     serializedVersion: 2
@@ -223,11 +222,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dedbab1fa9b494243a29ba2dd0acd8e0, type: 3}
---- !u!4 &2178422269933046711 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2798072817957317665, guid: dedbab1fa9b494243a29ba2dd0acd8e0, type: 3}
-  m_PrefabInstance: {fileID: 4102655996855150486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5121364958462156031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9222582243277962089, guid: dedbab1fa9b494243a29ba2dd0acd8e0, type: 3}

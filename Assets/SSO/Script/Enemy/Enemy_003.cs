@@ -66,7 +66,6 @@ public class Enemy_003 : PoolAble, DamageableImp
             coin.SetAmount(1);
 
             GameManager.instance.monster_clear_count++;
-            GameManager.instance.ex += 10;
 
 
             Debug.Log(gameObject.name + "처치");

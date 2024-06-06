@@ -20,7 +20,6 @@ public class C_D001 : BaseDealer, MyHeroesImp
         skill_distance = 10;
         is_parabola_attack = true;
         is_parabola_skill = false;
-
         //데이터가 없으면
         cat_data = base_cat_data.all_cat_data[0];
         initAttackData();//임시 위치

@@ -43,9 +43,6 @@ public class Cat : MonoBehaviour, DamageableImp, SkillUserImp, AttackableImp
     public bool is_parabola_skill { get; set; }
     public bool is_parabola_attack { get; set; }
 
-    public Transform my_tool_pos;
-    public Transform my_attack_transform { get { return my_tool_pos; } }
-
     protected void initAttackData()
     {
         speed = cat_data._attack_speed;

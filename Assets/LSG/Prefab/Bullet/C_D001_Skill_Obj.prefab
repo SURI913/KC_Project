@@ -112,7 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_trigger: 0
   my_speed: 0
-  my_particle: {fileID: 0}
 --- !u!212 &2529665705470647429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,7 +119,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3227752036147000334}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

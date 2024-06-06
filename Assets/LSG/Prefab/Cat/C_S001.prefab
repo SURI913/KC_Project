@@ -51,7 +51,6 @@ MonoBehaviour:
   damage_prefab: {fileID: 3561049301928373305, guid: 0c06ca8fc6db13048bd72205443d96c2, type: 3}
   respawnTime: 8
   my_skill_data: {fileID: 11400000, guid: e4afb4b985c6148429f12196aa91db07, type: 2}
-  my_tool_pos: {fileID: 5071639339507858}
   size: 0
   layer_mask:
     serializedVersion: 2
@@ -166,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deg: 0
+  tool_transform: {fileID: 5071639339507858}
 --- !u!1 &6568909225815458640
 GameObject:
   m_ObjectHideFlags: 0

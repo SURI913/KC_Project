@@ -17,7 +17,7 @@ public class GaugeController : MonoBehaviour
     {
         //위치 옮겨야함 스테이지 바뀔때 마다 변경해주기
         my_slider.maxValue = GameManager.instance.boss_gauge;
-        //Debug.Log(my_slider.maxValue);
+        Debug.Log(my_slider.maxValue);
         my_slider.value = GameManager.instance.monster_clear_count;
         //몬스터 처치 수 카운트
     }

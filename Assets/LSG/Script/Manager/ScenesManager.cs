@@ -14,7 +14,7 @@ public class ScenesManager : MonoBehaviour
     /// </summary>
     Stack<int> scenesStage = new Stack<int>();
     Stack<int> scenesUI = new Stack<int>();
-    int currentSceneIndex = 1;
+    int currentSceneIndex = 0;
     Image FadeObj;
     Color fadeInOutColor;
     AsyncOperation asyncOper;
@@ -66,19 +66,19 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator TransitionToNextStage()
     {
         yield return new WaitForSeconds(3f);  // 3초 대기
-        if (currentSceneIndex == 7)
+        if (currentSceneIndex == 6)
         {
             SceneManager.UnloadSceneAsync(currentSceneIndex);  //마지막 씬 삭제 후 다시 처음으로
             //이 부분때문에 중복생성된 것임
-            currentSceneIndex = 1;
+            currentSceneIndex = 0;
         }
-        if(currentSceneIndex != 1)
+        if(currentSceneIndex != 0)
         {
             SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
         }
-        if (scenesStage.Contains(8))
+        if (scenesStage.Contains(7))
         {
-            SceneManager.UnloadSceneAsync(8);  //비동기 씬 로드
+            SceneManager.UnloadSceneAsync(7);  //비동기 씬 로드
         }
 
         asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
@@ -95,7 +95,7 @@ public class ScenesManager : MonoBehaviour
     {
        
         yield return new WaitForSeconds(3f);  // 3초 대기
-        asyncOper = SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive);  //비동기 씬 로드
+        asyncOper = SceneManager.LoadSceneAsync(9, LoadSceneMode.Additive);  //비동기 씬 로드
         if (scenesUI.Count != 0)
         {
             foreach (int go in scenesUI)
@@ -105,7 +105,7 @@ public class ScenesManager : MonoBehaviour
             }
         }
         scenesUI.Clear();
-        scenesUI.Push(10);
+        scenesUI.Push(9);
 
         yield return null;
 
@@ -114,7 +114,7 @@ public class ScenesManager : MonoBehaviour
     public IEnumerator ShowMainUI()
     {
 
-        asyncOper = SceneManager.LoadSceneAsync(9, LoadSceneMode.Additive);  //비동기 씬 로드 메인 UI
+        asyncOper = SceneManager.LoadSceneAsync(8, LoadSceneMode.Additive);  //비동기 씬 로드 메인 UI
 
         if (scenesUI.Count != 0)
         {
@@ -128,7 +128,7 @@ public class ScenesManager : MonoBehaviour
 
         scenesUI.Clear();
 
-        scenesUI.Push(9);
+        scenesUI.Push(8);
         yield return null;
 
     }
@@ -137,12 +137,12 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(currentSceneIndex);  //비동기 씬 로드
         currentSceneIndex--;
-        if(currentSceneIndex <= 1 && currentSceneIndex>=7)
+        if(currentSceneIndex <= 0 && currentSceneIndex>=6)
         {
-            currentSceneIndex = 1;
+            currentSceneIndex = 0;
         }
         yield return new WaitForSeconds(3f);  // 3초 대기
-        asyncOper = SceneManager.LoadSceneAsync(8, LoadSceneMode.Additive);  //비동기 씬 로드
+        asyncOper = SceneManager.LoadSceneAsync(7, LoadSceneMode.Additive);  //비동기 씬 로드
 
         if (scenesUI.Count != 0)
         {
@@ -153,7 +153,7 @@ public class ScenesManager : MonoBehaviour
             }
         }
         scenesUI.Clear();
-        scenesUI.Push(8); //던전 번호 체크
+        scenesUI.Push(7); //던전 번호 체크
 
         yield return StartCoroutine(FadeOutIn());
 
