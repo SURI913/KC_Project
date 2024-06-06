@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Monster Data
   m_EditorClassIdentifier: 
   dungeon_monsterdatas:
-  - dungeon_monster_stageID: 
-    dungeon_monster_hp: 0
-    dungeon_monster_attack: 0
-    dungeon_monster_atktime: 0
-    dungeon_monster_recommattack: 0
-    dungeon_monster_recommdefense: 0
+  - dungeon_monster_stageID: A-1
+    dungeon_monster_hp: 30
+    dungeon_monster_attack: 10
+    dungeon_monster_atktime: 3
+    dungeon_monster_recommattack: 300
+    dungeon_monster_recommdefense: 1000
   - dungeon_monster_stageID: A-2
     dungeon_monster_hp: 100
     dungeon_monster_attack: 70

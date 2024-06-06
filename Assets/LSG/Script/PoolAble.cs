@@ -10,10 +10,7 @@ public class PoolAble : MonoBehaviour
 
     public void ReleaseObject()
     {
-        if (is_trigger)
-        {
-            Pool.Release(this.gameObject);
-        }
+        Pool.Release(this.gameObject);
     }
 
 }
