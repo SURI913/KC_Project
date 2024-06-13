@@ -44,6 +44,7 @@ public class Enemy_Respown : MonoBehaviour
 
     private void Awake()
     {
+        SetEnemyData(enemyData);
         if (Instance == null)
         {
             Instance = this;
