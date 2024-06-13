@@ -20,6 +20,7 @@ public class ShowCharacterState : MonoBehaviour
     {
         GameObject[] my_cat;
         my_cat = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(my_cat.Length);
         for (int i = 0; i < my_cat.Length; i++)
         {
             my_state_show_data[i] = my_cat[i].GetComponent<Cat>().cat_data;
