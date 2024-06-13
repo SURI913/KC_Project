@@ -18,6 +18,7 @@ public class MeleeImpact : PoolAble
         if(my_data != null)
         {
             is_loop = true;
+            transform.position = my_data.my_attack_transform.position;
         }
     }
     public void MyHitData(SkillUserImp my_data)
@@ -25,6 +26,8 @@ public class MeleeImpact : PoolAble
         if (my_data != null)
         {
             is_loop = false;
+            transform.position = my_data.my_attack_transform.position;
+
         }
     }
 
@@ -49,6 +52,7 @@ public class MeleeImpact : PoolAble
         DamageableImp target = collision.GetComponent<DamageableImp>();
         if (target != null)
         {
+            Debug.Log(my_attack_data.OnAttack(collision));
             //공격이냐 스킬이냐 판별
             if (is_loop) { target.OnDamage(my_attack_data.OnAttack(collision)); }
             else { target.OnDamage(my_skill_data.OnSkill(collision)); }
@@ -64,5 +68,4 @@ public class MeleeImpact : PoolAble
             particle_object.Play();
         is_trigger = false;
     }
-
 }
