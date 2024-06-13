@@ -52,6 +52,7 @@ public class MeleeImpact : PoolAble
         DamageableImp target = collision.GetComponent<DamageableImp>();
         if (target != null)
         {
+            Debug.Log(my_attack_data.OnAttack(collision));
             //공격이냐 스킬이냐 판별
             if (is_loop) { target.OnDamage(my_attack_data.OnAttack(collision)); }
             else { target.OnDamage(my_skill_data.OnSkill(collision)); }

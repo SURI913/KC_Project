@@ -152,7 +152,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 lv = int.Parse(result.Data["Lv"].Value);
-                ex = float.Parse(result.Data["Ex"].Value);
                 current_stage = result.Data["CurrentStage"].Value;
             }
         }, (error) => {
