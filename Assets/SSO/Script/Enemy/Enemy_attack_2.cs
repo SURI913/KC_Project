@@ -34,6 +34,7 @@ public class Enemy_attack_2 : PoolAble
                                                //Debug.Log("enemy가 공격함");
                 Destroy(gameObject);  // 발사체 삭제
                 //ReleaseObject();
+                //ReleaseObject();
             }
         }
     }
