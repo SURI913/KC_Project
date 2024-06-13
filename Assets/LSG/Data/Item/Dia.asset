@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   name: "\uB2E4\uC774\uC544"
   description: "\uD638\uB864\uB864\uB85C"
-  icon_sprite: {fileID: 21300000, guid: 63e9e5b8dbda34c43b7116228db469fc, type: 3}
+  icon_sprite: {fileID: 21300000, guid: e39f40df97c7f064094bbcc3e9f5c0ef, type: 3}
   _amount: 0
