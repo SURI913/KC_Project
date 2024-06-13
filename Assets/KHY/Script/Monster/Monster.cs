@@ -51,19 +51,20 @@ public class Monster : MonoBehaviour, DamageableImp
         OnAttack();
     }
 
-    public void SetMonsterDataByIndex(int index)
+    /*public void SetMonsterDataByIndex(int index)
     {
         if (index >= 1 && index <= monsterData.dungeon_monsterdatas.Length)
         {
             MonsterD stageData = monsterData.dungeon_monsterdatas[index - 1];
-            SetMonsterData(stageData);
+            //SetMonsterData(stageData);//스테이지 인덱스
+            GameManager.instance.save(stageData);
         }
         else
         {
             Debug.LogError("Invalid stage index: " + index);
         }   
-    }
-
+    }*/
+    
     public void SetMonsterData(MonsterD monsdata) {
         if (monsdata != null)
         {
@@ -73,11 +74,11 @@ public class Monster : MonoBehaviour, DamageableImp
             AtkTime = monsdata.dungeon_monster_atktime;
             recomend_attack = monsdata.dungeon_monster_recommattack;
             recomend_defense = monsdata.dungeon_monster_recommdefense;
-            /* Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
-                 ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);*/
+            Debug.Log("SetMonsterData: " + "StageID: " + stageID + "" +
+                ", HP: " + HP + ", Attack: " + Attack + ", AtkTime: " + AtkTime);
             // Debug.Log("추천 전투력 :" + recomend_attack+ "추천방어력: " + recomend_defense);
             //여기선 데이터가 온다 !
-           
+
         }
         else
         {
@@ -130,10 +131,10 @@ public class Monster : MonoBehaviour, DamageableImp
             //체력이 0 이하일때 아래 코드 실행
             isDead = true;
             Destroy(gameObject, 2f);//오브젝트 2초후 삭제 
-           /* Debug.Log("던전 몬스터 처치");*/
+            /* Debug.Log("던전 몬스터 처치");*/
             //로드씬
             //StartCoroutine(sceneManager.TransitionToNextStage());
-
+            Debug.Log("HP");
 
         }
     }
