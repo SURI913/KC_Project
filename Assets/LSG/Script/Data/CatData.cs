@@ -31,9 +31,4 @@ public class BaseCatData
     public float _atk_time;
     public float _skl_time;
     public float _skl_effect;
-
-    //=====UI 에쓰일 부분
-    public Color _main_color;
-    public Sprite _sprite;
-
 }
