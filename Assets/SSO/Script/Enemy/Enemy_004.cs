@@ -66,6 +66,7 @@ public class Enemy_004 : PoolAble, DamageableImp
             bool is_update_coin = coin.SetAmount(1);
             if(is_update_coin) { Debug.Log("업데이트완료"); }
             GameManager.instance.monster_clear_count++;
+            GameManager.instance.ex += 10;
 
             Debug.Log(gameObject.name + "처치");
             Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);

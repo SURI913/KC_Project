@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class Attack : MonoBehaviour
 {
@@ -11,8 +10,6 @@ public class Attack : MonoBehaviour
     private float my_attack_distance;//==>근거리냐 원거리냐? 피격범위?
     float my_skill_distance;//==>근거리냐 원거리냐? 피격범위?
     public float deg; //포물선 각도
-
-    public Transform tool_transform;
 
     public enum AttackType{ Noaml, Skill };
 
@@ -102,8 +99,7 @@ public class Attack : MonoBehaviour
                 //원거리
                 var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj");
                 my_bullet_obj.GetComponent<BulletImpact>().MyHitData(parent_attack_data);
-                my_bullet_obj.GetComponent<BulletImpact>().init_transform = tool_transform;
-                my_bullet_obj.transform.position = tool_transform.position;
+
                 my_bullet_obj.GetComponent<BulletImpact>().my_speed = parent_attack_data.speed;
             }
             else if(my_attack_distance < 5 && ObjectPoolManager.instance.IsReady)
@@ -111,13 +107,10 @@ public class Attack : MonoBehaviour
                 //근거리
                 var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Atk_Obj");
                 my_bullet_obj.GetComponent<MeleeImpact>().MyHitData(parent_attack_data);
-                my_bullet_obj.GetComponent<MeleeImpact>().init_transform = this.transform;
-                my_bullet_obj.transform.position = transform.position;
             }
             else {
                 Debug.Log("데이터 전달 실패"+ ObjectPoolManager.instance.IsReady+"<=" +
                     "풀매니저 상태"+ my_attack_distance+"<= 원거리인지 근거리인지체크 하는 값"); //데이터 전달 실패할때 어쩌면 좋을까?
-                
             }
 
             yield return new WaitForSeconds(my_cool_time);
@@ -133,12 +126,8 @@ public class Attack : MonoBehaviour
         {
             var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Skill_Obj");
             //원거리
-            Debug.Log(parent_skill_data);
             my_bullet_obj.GetComponent<BulletImpact>().MyHitData(parent_skill_data); //데이터가 안가져와지나?
-            my_bullet_obj.GetComponent<BulletImpact>().init_transform = tool_transform; ;
             my_bullet_obj.GetComponent<BulletImpact>().my_speed = parent_attack_data.speed;
-
-            my_bullet_obj.transform.position = tool_transform.position;
         }
         else if (my_skill_distance < 1)
         {
@@ -152,8 +141,6 @@ public class Attack : MonoBehaviour
             var my_bullet_obj = ObjectPoolManager.instance.GetGo(my_parent_name + "_Skill_Obj");
 
             my_bullet_obj.GetComponent<MeleeImpact>().MyHitData(parent_skill_data);
-            my_bullet_obj.GetComponent<MeleeImpact>().init_transform = this.transform;
-            my_bullet_obj.transform.position = transform.position;
         }
         else
         {
