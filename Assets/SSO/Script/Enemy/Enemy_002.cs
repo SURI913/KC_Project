@@ -167,7 +167,7 @@ public class Enemy_002 : PoolAble, DamageableImp
 
     IEnumerator Attack()
     {
-        while (true) // 무한 반복
+        /*while (true) // 무한 반복
         {
             //enemyAnimation.SetTrigger("Enemy_attack");
             enemyAnimation.SetTrigger("attack");
@@ -182,6 +182,23 @@ public class Enemy_002 : PoolAble, DamageableImp
 
             // 대기
             yield return new WaitForSeconds(attackCooldown);
+        }*/
+        while (true)
+        {
+            enemyAnimation.SetTrigger("attack");
+            yield return new WaitForSeconds(0.6f);
+            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up * 2);
+            string goName = enemy_attack_1.name;
+            GameObject attackInstance = ObjectPoolManager.instance.GetGo(goName);
+
+            if (attackInstance != null)
+            {
+                attackInstance.transform.position = spawnPosition;
+                attackInstance.transform.rotation = Quaternion.identity;
+                attackInstance.transform.parent = transform;
+
+                yield return new WaitForSeconds(attackCooldown);
+            }
         }
     }
 

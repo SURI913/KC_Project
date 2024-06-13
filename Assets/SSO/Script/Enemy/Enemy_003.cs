@@ -169,7 +169,7 @@ public class Enemy_003 : PoolAble, DamageableImp
             //enemyAnimation.SetTrigger("Enemy_attack");
             enemyAnimation.SetTrigger("attack");
             Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up / 2);
-            GameObject attackInstance = Instantiate(enemy_attack_3, spawnPosition, Quaternion.identity);
+            GameObject attackInstance = Instantiate(enemy_attack_3, spawnPosition, Quaternion.identity * Quaternion.Euler(0, 0, 90));
 
             // 공격 오브젝트를 적 오브젝트의 자식으로 설정
             attackInstance.transform.parent = transform;
@@ -178,5 +178,22 @@ public class Enemy_003 : PoolAble, DamageableImp
 
             Destroy(attackInstance);
         }
+        /*while (true)
+        {
+            enemyAnimation.SetTrigger("attack");
+            yield return new WaitForSeconds(0.6f);
+            Vector3 spawnPosition = transform.position - Vector3.right + (Vector3.up * 2);
+            string goName = enemy_attack_3.name;
+            GameObject attackInstance = ObjectPoolManager.instance.GetGo(goName);
+
+            if (attackInstance != null)
+            {
+                attackInstance.transform.position = spawnPosition;
+                attackInstance.transform.rotation = Quaternion.identity * Quaternion.Euler(0, 0, 90);
+                attackInstance.transform.parent = transform;
+
+                yield return new WaitForSeconds(attackCooldown);
+            }
+        }*/
     }
 }

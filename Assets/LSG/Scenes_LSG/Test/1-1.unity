@@ -2748,19 +2748,67 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: objectInfos.Array.size
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: objectInfos.Array.data[11].count
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[12].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[13].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[14].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[15].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: objectInfos.Array.data[11].perfab
       value: 
       objectReference: {fileID: 5380502631704730053, guid: 0a30333e7a2a17c40b138c28c895db00, type: 3}
     - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[12].perfab
+      value: 
+      objectReference: {fileID: 753739220374717880, guid: 852acc60e37ccdd45b5e7f5045d65287, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[13].perfab
+      value: 
+      objectReference: {fileID: 753739220374717880, guid: 443c94b5b5e17c04fbc10ffdebe6cd16, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[14].perfab
+      value: 
+      objectReference: {fileID: 745288096775056173, guid: 1830934fcaf9d2f4995bffce818348f5, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[15].perfab
+      value: 
+      objectReference: {fileID: 745288096775056173, guid: de465d4ff4b96244fa194d7c2a788fab, type: 3}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: objectInfos.Array.data[11].objectName
       value: Normal_Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[12].objectName
+      value: enemy_attack_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[13].objectName
+      value: enemy_attack_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[14].objectName
+      value: enemy_attack_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000151001486855788, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
+      propertyPath: objectInfos.Array.data[15].objectName
+      value: enemey_attack_04
       objectReference: {fileID: 0}
     - target: {fileID: 7525515904546794555, guid: 260a6cb21fa21594d99762c53d765b2f, type: 3}
       propertyPath: m_Name
