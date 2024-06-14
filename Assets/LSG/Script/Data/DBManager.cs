@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DBManager : MonoBehaviour
 {
 
+
     const string CannonURL = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=870727202&range=A3:Q";
     const string RepairmanURL = "https://docs.google.com/spreadsheets/d/1pGQEPMQpuhJJxnWQrZPIvcv1lFWDBfbZ7-6H0LSaWvY/export?format=tsv&gid=173998094&range=A3:Q";
     const string GrowthAtkURL = "https://docs.google.com/spreadsheets/d/1aq6Qblifekpz8iy0EvC6DMJ7O1toyHlbXHVuQRclxTk/export?format=tsv&gid=2084063042&range=I39:O";
@@ -29,6 +30,14 @@ public class DBManager : MonoBehaviour
     [SerializeField] TowerData towerData;
 
     [SerializeField] Enemy_Data enemyData;
+
+    // 다운로드 완료 이벤트 정의
+    public event System.Action<Enemy_Data> OnEnemyDataDownloaded;
+
+    // 싱글톤 인스턴스
+    private static DBManager instance;
+    public static DBManager Instance { get { return instance; } }
+
     private void Awake()
     {
         StartCoroutine(DownloadEnemyAll());
@@ -38,7 +47,17 @@ public class DBManager : MonoBehaviour
         StartCoroutine(DownloadGrowthHp());
         StartCoroutine(DownloadGrowthProtection());
         StartCoroutine(DownloadGrowthHealing());
-        
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         //StartCoroutine(Download());
     } 
 
@@ -97,6 +116,9 @@ public class DBManager : MonoBehaviour
         yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "H17:I", SetM_N13Data);
         yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "J17:K", SetM_N14Data);
         yield return DownloadAndSetEnemyData(Enemy_BASE_URL + "L17:N", SetBossData);
+
+        // 모든 데이터 다운로드 완료 후 이벤트 발생
+        OnEnemyDataDownloaded?.Invoke(enemyData);
     }
 
     IEnumerator DownloadAndSetEnemyData(string url, System.Action<string, List<Enemy>> setDataFunction)
