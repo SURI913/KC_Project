@@ -37,14 +37,34 @@ public class Enemy_Respown : MonoBehaviour
     private void Start()
     {
         enemySetValaue = 0;
-        SetEnemyData(enemyData);
+
+        // 데이터 다운로드 완료 이벤트에 대한 핸들러 등록
+        DBManager.Instance.OnEnemyDataDownloaded += HandleEnemyDataDownloaded;
+    }
+
+    private void OnDestroy()
+    {
+        // 반드시 이벤트 핸들러 등록 해제
+        if (DBManager.Instance != null)
+        {
+            DBManager.Instance.OnEnemyDataDownloaded -= HandleEnemyDataDownloaded;
+        }
+    }
+
+    // 데이터 다운로드 완료 시 호출될 핸들러
+    private void HandleEnemyDataDownloaded(Enemy_Data downloadedData)
+    {
+        // 다운로드 받은 데이터로 적 정보 설정
+        SetEnemyData(downloadedData);
         PrintEnemyData();
         GameManager.instance.boss_gauge = enemeyStageCount;
+
+        // 필요한 초기화나 시작 동작 수행
+        // 예: 적 생성 등
     }
 
     private void Awake()
     {
-        SetEnemyData(enemyData);
         if (Instance == null)
         {
             Instance = this;
