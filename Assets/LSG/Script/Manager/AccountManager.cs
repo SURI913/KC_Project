@@ -89,7 +89,8 @@ public class AccountManager : MonoBehaviour
 
         GameManager.instance.GetUserData(result.PlayFabId);
         GameManager.instance.ClientGetTitleData();
-        SceneManager.LoadScene("Main");
+        GameManager.instance.GetProfile(result.PlayFabId);
+;        SceneManager.LoadScene("Main");
     }
 
     void OnLoginFailure(PlayFabError error) => print("로그인 실패");

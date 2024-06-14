@@ -30,6 +30,8 @@ MonoBehaviour:
     _atk_time: 5
     _skl_time: 5
     _skl_effect: 2
+    _main_color: {r: 0.95686275, g: 0.8901961, b: 0.6431373, a: 0}
+    _sprite: {fileID: 0}
   - _id: C_T001
     _name: "\uB0E5\uC18C\uC7A5"
     _tier: "\uB808\uC5B4"
@@ -47,6 +49,8 @@ MonoBehaviour:
     _atk_time: 5
     _skl_time: 5
     _skl_effect: 0
+    _main_color: {r: 0, g: 0, b: 0, a: 0}
+    _sprite: {fileID: 0}
   - _id: C_S001
     _name: "\uD14C\uB108"
     _tier: "\uB808\uC5B4"
@@ -64,3 +68,5 @@ MonoBehaviour:
     _atk_time: 5
     _skl_time: 10
     _skl_effect: 5
+    _main_color: {r: 0, g: 0, b: 0, a: 0}
+    _sprite: {fileID: 0}
