@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
 
     //----------------------------------------------------------------------로그인 & 유저 데이터 관리
     public string playfabID;
+    public string player_display_name;
     public float ex;
     public float consume_ex;
     public int lv;
@@ -173,5 +174,28 @@ public class GameManager : MonoBehaviour
             }
         );
     }
-    
+
+    public void GetProfile(string playFabId)
+    {
+        //int score = 0;
+
+        PlayFabClientAPI.GetPlayerProfile(new GetPlayerProfileRequest()
+        {
+            PlayFabId = playFabId,
+            ProfileConstraints = new PlayerProfileViewConstraints()
+            {
+                ShowDisplayName = true,
+            }
+        }, result =>
+        {
+            player_display_name = result.PlayerProfile.DisplayName;
+            //score = result.PlayerProfile.Statistics.Find(match => match.Name == "Score").Value;
+
+        },
+        error => {
+            Debug.LogError("error : " + error.GenerateErrorReport());
+        }
+        );
+    }
+
 }

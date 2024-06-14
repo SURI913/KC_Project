@@ -80,12 +80,12 @@ public class ScenesManager : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync(8);  //비동기 씬 로드
         }
-
+        GameManager.instance.UploadUserDataCurrentStage();
+        GameManager.instance.UploadUserDataTowerLv();
         asyncOper = SceneManager.LoadSceneAsync(currentSceneIndex += 1, LoadSceneMode.Additive);  // 다음 씬으로 전환
         yield return StartCoroutine(FadeOutIn());
         yield return StartCoroutine(ShowMainUI());
         GameManager.instance.ReSetClearCountData();
-
         scenesStage.Push(currentSceneIndex);
         yield return null;
 
