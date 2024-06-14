@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 
 public class ObjectPoolManager : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class ObjectPoolManager : MonoBehaviour
             Destroy(this.gameObject);
 
         Init();
+        Scene scene = SceneManager.GetActiveScene();
+        GameManager.instance.current_stage = scene.name;
     }
 
 
