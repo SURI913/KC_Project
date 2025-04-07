@@ -122,6 +122,7 @@ public class M_D02 : Monster
             //애니메이션
             anim.SetBool("isdead", true);
             Debug.Log("죽음 ");
+            Destroy(this);
 
         }
 

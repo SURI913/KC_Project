@@ -38,22 +38,23 @@ public class GameManager : MonoBehaviour
     }
     public Monster monster;
     public MonsterData monsterData;
-    public int check;
     public void SetMonsterDataByIndex(int index)
     {
         Debug.Log(" 1111");
         Debug.Log(index);
+
         if (index >= 1 && index <= monsterData.dungeon_monsterdatas.Length)
         {
             MonsterD stageData = monsterData.dungeon_monsterdatas[index - 1];
-            Debug.Log(stageData);
-           
-            //monster.SetMonsterData(stageData);//스테이지 인덱스
+            Debug.Log(index);
+
+            
+            monster.SetMonsterData(stageData);//스테이지 인덱스
            
         }
         else
         {
-            Debug.LogError("Invalid stage index: " + index);
+           // Debug.LogError("Invalid stage index: " + index);
             Debug.Log(" 1111");
         }
     }

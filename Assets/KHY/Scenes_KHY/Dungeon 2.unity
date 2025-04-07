@@ -15208,7 +15208,6 @@ MonoBehaviour:
   Storybox: {fileID: 151696980}
   monster: {fileID: 0}
   monsterData: {fileID: 0}
-  check: 0
   boss_gauge: 0
   is_clear_boss: 0
   monster_clear_count: 0
@@ -18038,7 +18037,7 @@ RectTransform:
   m_Father: {fileID: 677315128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -9, y: -63.9}
   m_SizeDelta: {x: 11.100003, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18831,6 +18830,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1195699305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2217451932551012041, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
+  m_PrefabInstance: {fileID: 1293330705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1195699308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195699305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4668f766d166743bf1eb287c08023d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curHP: 0
+  monsterData: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
+  isAtk: 0
+  isDead: 0
+  healthSlider: {fileID: 0}
 --- !u!1 &1196850495
 GameObject:
   m_ObjectHideFlags: 0
@@ -19952,8 +19973,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 641379144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.000000048828127, y: 0}
+  m_AnchorMax: {x: 0.60000014, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21280,11 +21301,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1012713003461609130, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.5
+      value: 13.98
       objectReference: {fileID: 0}
     - target: {fileID: 1012713003461609130, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.903435
+      value: -2.26
       objectReference: {fileID: 0}
     - target: {fileID: 1012713003461609130, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21324,12 +21345,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217451932551012041, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2217451932551012041, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1195699308}
   m_SourcePrefab: {fileID: 100100000, guid: 5fc9c08050f2b9949bc999af23e0c17a, type: 3}
 --- !u!1 &1295801866
 GameObject:
@@ -23853,7 +23877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1413069506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29189,7 +29213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1763636567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31002,7 +31026,7 @@ RectTransform:
   m_Father: {fileID: 1763636567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -34376,7 +34400,7 @@ RectTransform:
   m_Father: {fileID: 1855158672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -9, y: -63.9}
   m_SizeDelta: {x: 11.100003, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}

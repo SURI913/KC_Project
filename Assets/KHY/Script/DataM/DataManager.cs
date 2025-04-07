@@ -48,7 +48,7 @@ public class DataManager : MonoBehaviour
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
 
-        for (int i = 1; i < rowSize; i++)
+        for (int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
 

@@ -3,7 +3,12 @@ guid: 7fc0de3848eddd640b0bbfe2d36113a5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Enterstage: {instanceID: 0}
+  - StageSelect: {instanceID: 0}
+  - Storybox: {instanceID: 0}
+  - monster: {instanceID: 0}
+  - monsterData: {fileID: 11400000, guid: 35fd817582c18294bba50d509d770206, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
