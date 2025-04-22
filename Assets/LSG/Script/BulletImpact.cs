@@ -31,8 +31,8 @@ public class BulletImpact : PoolAble
 
     }  //타겟 위치, 자식 위치로 가져와야함
 
-    public AttackableImp my_attack_data { get; set; }
-    public SkillUserImp my_skill_data { get; set; }
+    public IAttack my_attack_data { get; set; }
+    public ISkill my_skill_data { get; set; }
 
     bool is_loop = false; //true = attack, false = skill
     bool is_parabola = true;
@@ -40,7 +40,7 @@ public class BulletImpact : PoolAble
     //캐싱 (가비지 생성 방지)
     public static readonly WaitForEndOfFrame wait_for_frame = new WaitForEndOfFrame(); // 캐싱
 
-    public void MyHitData(AttackableImp my_data)
+    public void MyHitData(IAttack my_data)
     {
         if (my_data != null)
         {
@@ -51,7 +51,7 @@ public class BulletImpact : PoolAble
             transform.position = init_transform.position;
         }
     }
-    public void MyHitData(SkillUserImp my_data)
+    public void MyHitData(ISkill my_data)
     {
         if (my_data != null)
         {
@@ -70,7 +70,7 @@ public class BulletImpact : PoolAble
         {
             is_trigger = true; //여기서 막아
             bool is_dead_collision = collision.GetComponent<PoolAble>();
-            DamageableImp target = collision.GetComponent<DamageableImp>();
+            IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && !is_dead_collision)
             {
                 if (is_loop && my_attack_data != null) {

@@ -5,7 +5,7 @@ using Spine.Unity;
 using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 
-public class Enemy_004 : PoolAble, DamageableImp
+public class Enemy_004 : PoolAble, IDamageable
 {
     // 공중형 원거리 몬스터
     // private

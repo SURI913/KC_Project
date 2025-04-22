@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 
-public class Enemy_001 : PoolAble, DamageableImp
+public class Enemy_001 : PoolAble, IDamageable
 {
     // 근거리 몬스터 01
     // private

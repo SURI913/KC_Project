@@ -26,7 +26,7 @@ public class Enemy_attack_2 : PoolAble
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            DamageableImp target = collision.GetComponent<DamageableImp>();
+            IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();

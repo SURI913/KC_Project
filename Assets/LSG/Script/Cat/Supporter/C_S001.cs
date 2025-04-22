@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using AllUnit;
 using System;
 
-public class C_S001 : BaseSupporter, MyHeroesImp
+public class C_S001 : Behaviour
 {
     //샌드박스 디자인 패턴이 맞을까?
     //유니티 상속 다시 작업 해야할 듯
@@ -23,22 +23,18 @@ public class C_S001 : BaseSupporter, MyHeroesImp
     private void Awake()
     {
         //데이터가 없으면
-        cat_data = base_cat_data.all_cat_data[2];
+       /* cat_data = base_cat_data.all_cat_data[2];
         initAttackData();//임시 위치
         atk_distance = 10; //원거리
         skill_distance = 0; //근거리
-        is_parabola_attack = false;
+        is_parabola_attack = false;*/
         //스킬은 해당사항 x
 
-        growing_data = base_growing_data;
+       /* growing_data = base_growing_data;
 
         //데이터가 있으면
         FindSupportTarget();
-        cat_motion = GetComponentInChildren<Animator>();
+        myMotion = GetComponentInChildren<Animator>();*/
     }
 
-    public Cat GetMyData()
-    {
-        return this;
-    }
 }

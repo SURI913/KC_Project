@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class Boss : PoolAble, DamageableImp
+public class Boss : PoolAble, IDamageable
 {
     // 보스 몬스터
     //private

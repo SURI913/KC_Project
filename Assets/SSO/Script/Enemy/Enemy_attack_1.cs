@@ -22,7 +22,7 @@ public class Enemy_attack_1 : PoolAble
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {   // 공격이 플레이어나 캐슬에 충돌했다면
-            DamageableImp target = collision.GetComponent<DamageableImp>();
+            IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetEnemyDamage();

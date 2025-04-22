@@ -19,12 +19,12 @@ public class C_T001 : BaseTanker, MyHeroesImp
 
         growing_data = base_growing_data;
 
-        cat_motion = GetComponentInChildren<Animator>();
+        myMotion = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
-        Move();
+        //Move();
     }
 
     public Cat GetMyData()

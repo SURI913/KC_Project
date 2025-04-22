@@ -20,6 +20,8 @@ public class AccountManager : MonoBehaviour
     private string entityId;
     private string entityType;
 
+    public GameObject warning_passward;
+
     public void OnClickGuestLogin() //게스트 로그인 버튼
     {
         if (string.IsNullOrEmpty(customId))
@@ -103,6 +105,21 @@ public class AccountManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    void OnRegisterFailure(PlayFabError error) => print("회원가입 실패");
+    void OnRegisterFailure(PlayFabError error)
+    {
+        if(password_input.text.Length <= 6)
+        {
+            StartCoroutine(ShowText(warning_passward));
+        }
+        print("회원가입 실패");
+    }
+
+    IEnumerator ShowText(GameObject my_obj)
+    {
+        my_obj.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        my_obj.SetActive(false);
+
+    }
 
 }

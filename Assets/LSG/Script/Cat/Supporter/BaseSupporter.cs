@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseSupporter : Cat, AttackableImp, SkillUserImp
+public class BaseSupporter: Behaviour
 {
     //---------------------------------------------------------------------------FindTarget
     List<Cat> support_target = new List<Cat>();
@@ -24,32 +24,32 @@ public class BaseSupporter : Cat, AttackableImp, SkillUserImp
 
     }
 
-    public override double OnSkill(Collider2D collision)
+    public double Skill(Collider2D collision)
     {
-        cat_motion.SetTrigger("isSkill");
+        //myMotion.SetTrigger("isSkill");
 
         //Debug.Log( "힐링스킬 발동");
         //Debug.Log(catsHealing.Count);
         //요새 범위 안에있는 사람한테만 힐이 들어감
-        foreach (var Cats in support_target)
+        /*foreach (var Cats in support_target)
         {
             Cats.OnHealing(Cats.growing_data.Hp * cat_data._hp_multipler * skill_effect);
             if (hp > growing_data.Hp * cat_data._hp_multipler) //maxHp를 넘지않게 처리
             {
                 hp = growing_data.Hp * cat_data._hp_multipler;
             }
-        }
+        }*/
         return 0;
     }
 
-    public override double OnAttack(Collider2D collision) //공격 체크
+    /*public double Attack(Collider2D collision) //공격 체크
     {
 
         if (collision.CompareTag("boss")) //보스 공격의 경우
         {
-            return GetAttackPower() + boss_attack;
+            //return GetAttackPower();
         }
-        return GetAttackPower();
-    }
+        //return GetAttackPower();
+    }*/
 
 }

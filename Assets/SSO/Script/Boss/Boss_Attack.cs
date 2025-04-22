@@ -22,7 +22,7 @@ public class Boss_Attack : MonoBehaviour
     {
         if (collision.CompareTag("Castle") || collision.CompareTag("Player"))
         {
-            DamageableImp target = collision.GetComponent<DamageableImp>();
+            IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && enemyRespawner)
             {
                 double damageValue = enemyRespawner.GetBossDamage();

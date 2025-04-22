@@ -7,13 +7,13 @@ public class MeleeImpact : PoolAble
 
     public ParticleSystem particle_object; //파티클시스템
 
-    public AttackableImp my_attack_data { get; set; }
-    public SkillUserImp my_skill_data { get; set; }
+    public IAttack my_attack_data { get; set; }
+    public ISkill my_skill_data { get; set; }
     public Transform init_transform { get; set; }
 
     
     bool is_loop = false; //true = attack, false = skill
-    public void  MyHitData(AttackableImp my_data)
+    public void  MyHitData(IAttack my_data)
     {
         if(my_data != null)
         {
@@ -21,7 +21,7 @@ public class MeleeImpact : PoolAble
             transform.position = my_data.my_attack_transform.position;
         }
     }
-    public void MyHitData(SkillUserImp my_data)
+    public void MyHitData(ISkill my_data)
     {
         if (my_data != null)
         {
@@ -49,7 +49,7 @@ public class MeleeImpact : PoolAble
 
     void AttackEft(Collider2D collision)
     {
-        DamageableImp target = collision.GetComponent<DamageableImp>();
+        IDamageable target = collision.GetComponent<IDamageable>();
         if (target != null)
         {
             Debug.Log(my_attack_data.OnAttack(collision));

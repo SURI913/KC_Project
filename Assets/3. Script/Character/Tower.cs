@@ -2,19 +2,16 @@ using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, DamageableImp, AttackableImp
+public class Tower : BattleUnit
 {
     //기본 데이터
 
-    public double hp { get; set; }      //체력
-    public double maxHp { get; set; }   //최대체력
     protected double attack;  //공격력 전달할 때만 사용
     public float atk_distance { get; set; } // 공격범위
 
 
     protected double healing = 0; //회복력
     protected double protection = 0; //방어력
-    protected bool dead = false;    //죽음확인
 
     //타워 업그레이드에서 값 리셋해야함
     public int Lv { get; set; }
@@ -24,7 +21,6 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
     //IAttack
     public float speed { get; set; }   //공격 속도
     public float atk_time { get; set; } //일반공격 쿨타임
-    protected GameObject damagePrefab;
     //-----------------------------------------------------------------------애니메이션
     private GameObject towerWheel;
     private float wheelSpeed = 15f;
@@ -37,8 +33,6 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
     {
         Lv = 1;
         LvEffect = 1 + LvEffectIncreace * Lv;
-        hpApply();
-        hp = maxHp;
 
         //IAttack
         atk_time = 5f;
@@ -60,66 +54,6 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
         attack = current_tower_data.retention_attack * current_tower_data.attackX* LvEffect;
         
         return attack;
-    }
-
-    public void hpApply() //이후에 실시간으로 값 저장되면 수정하는 걸로
-    {
-        maxHp = current_tower_data.retention_hp * current_tower_data.hpX* LvEffect;
-    }
-
-    private double OnProtection()
-    {
-        protection = current_tower_data.retention_protection * current_tower_data.protectionX * LvEffect;
-        return protection;
-    }
-
-    private void OnHealing() //회복 주기 타워입니동 마자요
-    {
-        healing = current_tower_data.retention_healing * current_tower_data.healingX * LvEffect;
-        hp += healing;
-    }
-
-    private void hpInit()
-    {    //체력 초기화
-        if (hp == -999 || maxHp == -999)
-        {
-            Debug.Log("대포 hp error!");
-        }
-        else
-        {
-            hp = maxHp;
-            dead = false;
-        }
-        //체력이 0보다 작을 경우 초기화가 실행 되어야함 코루틴 작업 필요
-    }
-
-    public void OnDamage(double Damage)
-    {
-        if (!dead) {
-            //DisplayDamageNumber(Damage);
-
-            hp -= (Damage- OnProtection());
-        }
-        if(hp <= 0) { dead = true; // 씬의 처음으로 이동 //타워 죽음 처리
-            hpInit();
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
-    void DisplayDamageNumber(double Damage)
-    {
-        DamageNumber prefab;
-        prefab = damagePrefab.GetComponent<DamageNumber>();
-
-
-        DNP_PrefabSettings settings = DNP_DemoManager.instance.GetSettings();
-
-        // 생성된 데미지 숫자에 데미지 및 설정을 적용
-        DamageNumber newDamageNumber = prefab.Spawn(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), (float)Damage);
-        newDamageNumber.SetFollowedTarget(transform);
-
-        // 설정 적용
-        settings.Apply(newDamageNumber);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -151,7 +85,6 @@ public class Tower : MonoBehaviour, DamageableImp, AttackableImp
         else
         {
             hp_cooltime = 5f;
-            OnHealing();
         }
 
         towerWheel.transform.Rotate(-Vector3.forward * Time.deltaTime * wheelSpeed);

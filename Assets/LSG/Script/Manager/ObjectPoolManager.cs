@@ -42,8 +42,13 @@ public class ObjectPoolManager : MonoBehaviour
             Destroy(this.gameObject);
 
         Init();
-        Scene scene = SceneManager.GetActiveScene();
-        GameManager.instance.current_stage = scene.name;
+
+        
+        if (SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "MainUI")
+        {
+            GameManager.instance.current_stage = SceneManager.GetActiveScene().name;
+        }
+
     }
 
 

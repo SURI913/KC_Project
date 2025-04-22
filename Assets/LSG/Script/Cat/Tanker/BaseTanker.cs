@@ -12,7 +12,7 @@ public class BaseTanker : Cat
         if (collision.gameObject.layer == 6) //타겟레이어의 경우
         {
             //데미지 스크립트 확인시 공격 시작
-            if (collision.collider.GetComponent<DamageableImp>() != null && !is_attack)
+            if (collision.collider.GetComponent<IDamageable>() != null && !is_attack)
             {
                 //StartCoroutine(AttackEft(collision));
                 player_rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -48,20 +48,20 @@ public class BaseTanker : Cat
 
     }*/
 
-    public override double OnAttack(Collider2D collision) //공격값 계산
+    public double OnAttack(Collider2D collision) //공격값 계산
     {
-        cat_motion.SetTrigger("isAttack");
+        myMotion.SetTrigger("isAttack");
 
         if (collision.CompareTag("boss")) //보스라면
         {
-            return GetAttackPower() + boss_attack;
+            return GetAttackPower();
         }
         return GetAttackPower();
     }
 
     public IEnumerator Skill()
     {
-        cat_motion.SetTrigger("isSkill");
+        myMotion.SetTrigger("isSkill");
         var my_Effect_obj = ObjectPoolManager.instance.GetGo(cat_data._id + "_Skill_Obj");
         my_Effect_obj.transform.position = transform.position + new Vector3(0, 4, 0);
         my_Effect_obj.GetComponent<MeleeImpact>().init_transform = transform;
@@ -72,7 +72,7 @@ public class BaseTanker : Cat
         //Debug.Log(ID+"스킬 사용중");
     }
 
-    public override double OnSkill(Collider2D collision)
+    public double OnSkill(Collider2D collision)
     {
         StartCoroutine(Skill());
         return 0;

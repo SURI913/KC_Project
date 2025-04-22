@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_002 : PoolAble, DamageableImp
+public class Enemy_002 : PoolAble, IDamageable
 {
     // 근거리 몬스터 02
     // private

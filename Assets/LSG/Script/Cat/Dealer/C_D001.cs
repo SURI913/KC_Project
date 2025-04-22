@@ -27,7 +27,7 @@ public class C_D001 : BaseDealer, MyHeroesImp
 
         growing_data = base_growing_data;
         //데이터가 있으면
-        cat_motion = GetComponentInChildren<Animator>();
+        myMotion = GetComponentInChildren<Animator>();
     }
 
     public Cat GetMyData()

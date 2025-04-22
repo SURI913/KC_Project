@@ -13,8 +13,8 @@ public class Attack : MonoBehaviour
 
     public enum AttackType{ Noaml, Skill };
 
-     AttackableImp parent_attack_data;
-    SkillUserImp parent_skill_data;
+     IAttack parent_attack_data;
+    ISkill parent_skill_data;
 
     //UI 에서는 얘를 인식해서 버튼 누를 때 마다 스킬 쓸 수 있게 코드 짤 것
     public AttackType my_attack_type
@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour
     void InitData(Cat _my_data) 
     {
         //Cat에 Attack있어야할듯
-        parent_attack_data = _my_data.GetComponent<AttackableImp>(); 
+        parent_attack_data = _my_data.GetComponent<IAttack>(); 
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;
@@ -44,7 +44,7 @@ public class Attack : MonoBehaviour
             UnityEngine.Debug.LogError("공격을 위한 고양이 데이터 가져오기 실패");
         }
 
-        parent_skill_data = _my_data.GetComponent<SkillUserImp>();
+        parent_skill_data = _my_data.GetComponent<ISkill>();
         if(parent_skill_data != null)
         {
             my_skill_distance = parent_skill_data.skill_distance;
@@ -55,7 +55,7 @@ public class Attack : MonoBehaviour
     void InitData(Tower _my_data)
     {
 
-        parent_attack_data = _my_data.GetComponent<AttackableImp>();
+        parent_attack_data = _my_data.GetComponent<IAttack>();
         if (parent_attack_data != null)
         {
             my_cool_time = parent_attack_data.atk_time;

@@ -7,12 +7,12 @@ public interface MyHeroesImp
     Cat GetMyData();
 }
 
-public interface DamageableImp
+public interface IDamageable
 {
     void OnDamage(double Damage);   //데미지를 입힘
 }
 
-public interface SkillUserImp
+public interface ISkill
 {
     float speed { get; set; }   //공격 속도
     float skill_time { get; set; }   //스킬 공격 쿨타임
@@ -25,7 +25,7 @@ public interface SkillUserImp
     double OnSkill(Collider2D collision);
 }
 
-public interface AttackableImp
+public interface IAttack
 {
     float speed { get; set; }   //공격 속도
     float atk_time { get; set; } //일반공격 쿨타임

@@ -5,7 +5,7 @@ using Spine.Unity;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Monster : MonoBehaviour, DamageableImp
+public class Monster : MonoBehaviour, IDamageable
 {
 
     public string stageID { get; set; } //명
