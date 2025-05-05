@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class C_T001 : BaseTanker, MyHeroesImp
+public class C_T001 : BaseTanker
 {
     //스폰 값 필요
 
@@ -8,7 +8,7 @@ public class C_T001 : BaseTanker, MyHeroesImp
     public CatData base_cat_data;
 
 
-    private void Awake()
+    /*private void Awake()
     {
         player_rb = GetComponent<Rigidbody2D>();
         cat_data = base_cat_data.all_cat_data[1];
@@ -30,5 +30,5 @@ public class C_T001 : BaseTanker, MyHeroesImp
     public Cat GetMyData()
     {
         return this;
-    }
+    }*/
 }

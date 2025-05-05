@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseDealer : Cat, ISkill, IAttack
+public class BaseDealer : MonoBehaviour
 {
     //--------------------------------------------------------------------------------------------------------------공격 : 특수공격이 있으면 override
     //====[TODO]====이후 스킬 방향성 보고 수정 스킬만 따로 캐릭터 별로 분류한다거나
-    public double OnSkill(Collider2D collision)
+    /*public double OnSkill(Collider2D collision)
     {
         is_ative_skill = true;
         myMotion.SetTrigger("isSkill");
@@ -36,5 +36,5 @@ public class BaseDealer : Cat, ISkill, IAttack
         {
             return 0;
         }
-    }
+    }*/
 }

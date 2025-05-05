@@ -64,7 +64,6 @@ public class Enemy_002 : PoolAble, IDamageable
         //Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            is_trigger = true;
             StartCoroutine(DeadAnimation());
             coin.SetAmount(1);
 
@@ -75,11 +74,6 @@ public class Enemy_002 : PoolAble, IDamageable
             Debug.Log(gameObject.name + "처치");
             Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
         }
-    }
-
-    private void OnDisable()
-    {
-        is_trigger = false;
     }
 
     IEnumerator DeadAnimation()

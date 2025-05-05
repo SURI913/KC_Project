@@ -65,7 +65,6 @@ public class Enemy_001 : PoolAble, IDamageable
         //Debug.Log(gameObject.name + "이" + Damage + "만큼 데미지를 입었습니다.");
         if (hp <= 0)
         {
-            is_trigger = true;
             StartCoroutine(DeadAnimation());
 
             //골드
@@ -78,11 +77,6 @@ public class Enemy_001 : PoolAble, IDamageable
             Debug.Log("몬스터 처치 수: " + GameManager.instance.monster_clear_count);
 
         }
-    }
-
-    private void OnDisable()
-    {
-        is_trigger = false;
     }
 
     IEnumerator DeadAnimation()

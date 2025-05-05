@@ -39,10 +39,9 @@ public class MeleeImpact : PoolAble
     //근거리 공격 바로 생성
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.gameObject.layer == 6 && !is_trigger)
+        if(collision.transform.gameObject.layer == 6)
         {
             AttackEft(collision);
-            is_trigger = true;
         }
         
     }
@@ -66,6 +65,5 @@ public class MeleeImpact : PoolAble
     {
         if (particle_object != null)
             particle_object.Play();
-        is_trigger = false;
     }
 }

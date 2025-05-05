@@ -66,9 +66,8 @@ public class BulletImpact : PoolAble
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //불값 걸어서 중복 방지
-        if (collision.transform.gameObject.layer == 6 && !is_trigger) //"Target"레이어에 해당하는 오브젝트라면
+        if (collision.transform.gameObject.layer == 6) //"Target"레이어에 해당하는 오브젝트라면
         {
-            is_trigger = true; //여기서 막아
             bool is_dead_collision = collision.GetComponent<PoolAble>();
             IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null && !is_dead_collision)
@@ -167,8 +166,6 @@ public class BulletImpact : PoolAble
 
     private void OnEnable()
     {
-        
-        is_trigger = false;
         if (my_particle != null)
             my_particle.Play();
         ResetData();

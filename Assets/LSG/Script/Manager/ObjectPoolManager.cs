@@ -43,12 +43,6 @@ public class ObjectPoolManager : MonoBehaviour
 
         Init();
 
-        
-        if (SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "MainUI")
-        {
-            GameManager.instance.current_stage = SceneManager.GetActiveScene().name;
-        }
-
     }
 
 

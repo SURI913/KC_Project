@@ -23,7 +23,7 @@ public class ShowCharacterState : MonoBehaviour
         Debug.Log(my_cat.Length);
         for (int i = 0; i < my_cat.Length; i++)
         {
-            my_state_show_data[i] = my_cat[i].GetComponent<Cat>().cat_data;
+            //my_state_show_data[i] = my_cat[i].GetComponent<Cat>().cat_data;
             my_text[i].text = my_state_show_data[i]._name;
             my_image[i].sprite = my_state_show_data[i]._sprite;
             my_gauge_color[i].color = my_state_show_data[i]._main_color;

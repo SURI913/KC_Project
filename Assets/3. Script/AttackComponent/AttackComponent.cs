@@ -5,14 +5,12 @@ using UnityEngine;
 public abstract class AttackComponent : MonoBehaviour
 {
    public string characterId;
-    public float attackPower;
-    public float attackPowerMultiplier;
-   public abstract void Attack(GameObject target);
+   public abstract void Attack(Vector2 targetPostion);
 }
 
 public class RangedAttackComponent : AttackComponent
 {
-    public override void Attack(GameObject target)
+    public override void Attack(Vector2 targetPostion)
     {
 
         //들어가야할 부분
@@ -24,7 +22,7 @@ public class RangedAttackComponent : AttackComponent
 }
 public class MagicAttackComponent : AttackComponent
 {
-    public override void Attack(GameObject target)
+    public override void Attack(Vector2 targetPostion)
     {
         Debug.Log("마법 공격");
     }
