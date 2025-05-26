@@ -109,7 +109,7 @@ public class ObjectPoolManager : MonoBehaviour
         
         if (goDic.ContainsKey(goName) == false)
         {
-            Debug.LogFormat("{0} 오브젝트풀에 등록되지 않은 오브젝트입니다.", goName);
+            Debug.LogErrorFormat("{0} 오브젝트풀에 등록되지 않은 오브젝트입니다.", goName);
             return null;
         }
 

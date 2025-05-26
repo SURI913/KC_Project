@@ -38,7 +38,7 @@ public class Cat : BattleUnit
         attackComponent = GetComponentInChildren<AttackComponent>();
         //skillComponent = GetComponent<SkillComponent>();
         //recoveryComponent = GetComponent<RecoveryComponent>();
-
+        if(targetObject == null ) targetObject = gameObject;
     }
 
 
@@ -90,7 +90,12 @@ public class Cat : BattleUnit
             *//*myAnim.SetFloat("MoveX", playerRb.velocity.x); //나중에 맞춰서 수정
             myAnim.SetFloat("MoveY", playerRb.velocity.y);*//*
         }*/
-    
+
+    /*
+ * 캐릭터 사정거리에 따라 PerformAttack 사용하도록 추가
+ * 사정거리 내에 있는 적이라면 attackTime에 따라 주기적으로 공격하도록
+ */
+
     private void Update()
     {
         attackTime += Time.deltaTime;
