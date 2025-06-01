@@ -21,6 +21,7 @@ public class Tower : BattleUnit
     private void Start()
     {
         attackComponent = GetComponentInChildren<AttackComponent>();
+        if(myMotion == null ) myMotion = GetComponent<Animator>();
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class Tower : BattleUnit
 
         if (attackTime >= attackCooltime)
         {
-            PerformAttack();
+            myMotion.SetTrigger("isAttack");
             attackTime = 0f;
         }
     }

@@ -8,7 +8,7 @@ using System;
 public class Cat : BattleUnit
 {
     protected int level = 0;
-    //일시적으로 제한
+   
     public float attackCooltime= 2f;
     private float attackTime = 0f;
 
@@ -39,8 +39,8 @@ public class Cat : BattleUnit
         //skillComponent = GetComponent<SkillComponent>();
         //recoveryComponent = GetComponent<RecoveryComponent>();
         if(targetObject == null ) targetObject = gameObject;
+        if (myMotion == null) myMotion = GetComponentInChildren<Animator>();
     }
-
 
     /* public void LevelUP()
      {
@@ -96,27 +96,30 @@ public class Cat : BattleUnit
  * 사정거리 내에 있는 적이라면 attackTime에 따라 주기적으로 공격하도록
  */
 
+    float animationAttackTime = 0;
     private void Update()
     {
         attackTime += Time.deltaTime;
 
         if(attackTime >= attackCooltime)
         {
-            PerformAttack();
+            myMotion.SetTrigger("isAttack"); //자동 공격
             attackTime = 0f;
         }
     }
 
-
+    //애니메이션 이벤트에서 호출
     public void PerformAttack()
     {
         if (attackComponent != null)
             attackComponent.Attack(targetObject.transform.position);
     }
 
+    //애니메이션 이벤트에서 호출
     public void PerformSkill()
     {
         if (skillComponent != null)
+            myMotion.SetTrigger("isSkill");
             skillComponent.UseSkill();
     }
 

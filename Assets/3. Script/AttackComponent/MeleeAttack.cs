@@ -10,4 +10,5 @@ public class MeleeAttack : AttackComponent
         my_bullet_obj.transform.position = targetPostion;
         //애니메이션 끝나면 사라지도록 작업하자 > 유니티 애니메이션으로 작업할 것
     }
+
 }
