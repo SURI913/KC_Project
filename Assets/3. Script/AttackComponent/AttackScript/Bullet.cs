@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Bullet : PoolAble
 {
- 
+    public string characterId;
     private Rigidbody2D myRigdbody2D;
     private ParticleSystem myParticle;
     private ParticleSystem.MainModule myParticleMain;
+    private Vector3 hitPostion;
     public float damage;
     
     private void Awake()
     {
         myRigdbody2D = GetComponent<Rigidbody2D>();
         myParticle = GetComponent<ParticleSystem>();
+
         if (myParticle != null) myParticleMain = myParticle.main;
+        
     }
 
     void Update()
@@ -28,13 +32,24 @@ public class Bullet : PoolAble
     {
         if (this.Pool != null && (collision.CompareTag("Plane") || collision.CompareTag("Target")))
         {
+            hitPostion = transform.position;
             if (collision.GetComponent<BattleUnit>())
             {
                 collision.GetComponent<BattleUnit>().TakeDamage(damage);
             }
-
-            ReleaseObject();
+            Hit();
         }
+    }
+
+    private void Hit()
+    {
+        //공백ornull체크
+        if (!string.IsNullOrWhiteSpace(characterId))
+        {
+            var hitObject = ObjectPoolManager.instance.GetGo(characterId + "_Attack_HitObject");
+            hitObject.transform.position = hitPostion;
+        }
+        ReleaseObject();
     }
 
     public void SetVelocity(Vector2 value)
@@ -46,7 +61,6 @@ public class Bullet : PoolAble
     public void SetParticleRotate(float angle)
     {
         if (myParticle != null) {
-            print(angle); //래디언으로 들어가야하나?
             myParticleMain.startRotation = new ParticleSystem.MinMaxCurve(angle, angle);
         }
     }

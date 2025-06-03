@@ -25,12 +25,17 @@ public class AreaOfEffectAttack : AttackComponent
     public override void Attack(Vector2 not)
     {
         if(myEffect != null) myEffect.Play();
+        HitTartget();
     }
 
-    private void LookTartget()
+    private void HitTartget()
     {
         //인식된 20개체만 데미지효과를 보냄
         int hitCount = Physics2D.OverlapBoxNonAlloc(transform.position + line, area, 0, hitTargets, targetMask);
-        //잡힌 애들을 hitTargets 안에 가둬두자 일단 이거는 다른곳에 옮겨도 무방.
+        for(int i =0; i< hitCount; i++)
+        {
+            var hitObject = ObjectPoolManager.instance.GetGo(characterId + "_Attack_HitObject");
+            hitObject.transform.position = hitTargets[i].transform.position;
+        }
     } 
 }

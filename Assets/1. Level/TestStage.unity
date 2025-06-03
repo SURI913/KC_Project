@@ -460,11 +460,20 @@ MonoBehaviour:
   - objectName: D001_AttackObject
     perfab: {fileID: 6540317756981434635, guid: fb42b6466ca685e4580b6a1e5981e806, type: 3}
     count: 3
+  - objectName: D001_Attack_HitObject
+    perfab: {fileID: 1973670758879344314, guid: 67690e600ccc8c449a9222d83344a362, type: 3}
+    count: 3
   - objectName: D001_SkillObject
     perfab: {fileID: 3227752036147000334, guid: 00e6d54faba7843429a2c68d8f578785, type: 3}
     count: 3
+  - objectName: D001_Skill_HitObject
+    perfab: {fileID: 8042010290544875445, guid: 8de8580df319a5a43b103ee8b0283bc7, type: 3}
+    count: 3
   - objectName: T001_AttackObject
     perfab: {fileID: 4172817152456091937, guid: fd6c5cdedaf41c74892dc142b3baa2b3, type: 3}
+    count: 3
+  - objectName: S001_Attack_HitObject
+    perfab: {fileID: 278955762427743172, guid: 21f714f16c3988242a0829a0f5b5e0b1, type: 3}
     count: 3
 --- !u!4 &2034938874
 Transform:
@@ -493,6 +502,10 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 1309572242}
+    - target: {fileID: 711502072691512456, guid: f2f8e5e22de715344a6799fc08c19af5, type: 3}
+      propertyPath: attackCooltime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5668137447956684266, guid: f2f8e5e22de715344a6799fc08c19af5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.3
@@ -594,7 +607,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: C_S001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3503532470846151283, guid: 10c960f46e04aa24db5c401424dbc56d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
