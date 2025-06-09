@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2733247010544334548}
   - component: {fileID: -5597301159050546266}
   m_Layer: 0
-  m_Name: C_T001_Skill_Effect
+  m_Name: T001_SkillObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4867,7 +4867,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2028526203
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 20
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4913,5 +4913,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699c2a24db8a3a74c94cf500c54e7168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_trigger: 0
   particle_object: {fileID: 0}

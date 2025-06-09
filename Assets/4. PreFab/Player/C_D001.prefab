@@ -376,8 +376,10 @@ MonoBehaviour:
   damagePrefab: {fileID: 0}
   myMotion: {fileID: 0}
   respawnTime: 8
-  attackCooltime: 5
+  attackCooltime: 2
   targetObject: {fileID: 0}
+  attackComponent: {fileID: 4800084250209210586}
+  skillComponent: {fileID: 7611878495522235636}
   size: 3.18
   layer_mask:
     serializedVersion: 2
@@ -461,6 +463,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5461442380421073991, guid: fab0a5b7d839c50448232b158261a7c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4800084250209210586}
+    - targetCorrespondingSourceObject: {fileID: 5461442380421073991, guid: fab0a5b7d839c50448232b158261a7c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7611878495522235636}
   m_SourcePrefab: {fileID: 100100000, guid: fab0a5b7d839c50448232b158261a7c1, type: 3}
 --- !u!1 &3181738062299109489 stripped
 GameObject:
@@ -477,6 +482,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e91fecbd231f9f458c2694cb940f48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterId: D001
+  speed: 30
+--- !u!114 &7611878495522235636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181738062299109489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0ca7a9117c7934485ed835754b2d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterId: D001

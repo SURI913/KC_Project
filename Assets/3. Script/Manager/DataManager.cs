@@ -1,17 +1,20 @@
-using System.Collections;
+using Default;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-using AllUnit;
+
 
 public class DataManager : MonoBehaviour
 {
+    [SerializeField] private SkillDataBase characterSkillDB;
+    void Awake()
+    {
+        characterSkillDB.Initialize();
+    }
 
-    const string M_D01 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
+    /*const string M_D01 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=0&range=A2:F";
     //몬스터 M_D01
     //const string M_D02 = "https://docs.google.com/spreadsheets/d/1MxQdJ3VPN5cg4iqmUdBumdOnqWLzNWSa2QRjQHy_-00/export?format=tsv&gid=1741337337";
     //보스 M_D02
-
 
     void Start()
     {
@@ -62,7 +65,7 @@ public class DataManager : MonoBehaviour
             monsdata.dungeon_monster_recommattack = double.Parse(column[4]);
             monsdata.dungeon_monster_recommdefense = double.Parse(column[5]);
         }
-    }
+    }*/
 }
 
     

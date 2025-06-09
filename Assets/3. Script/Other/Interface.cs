@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface MyHeroesImp
+public interface IData<out TKey>
 {
-    Cat GetMyData();
+    TKey GetKey();
 }
 
 public interface IDamageable

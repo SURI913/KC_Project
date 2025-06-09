@@ -15,6 +15,7 @@ public class ParticleController : PoolAble
     {
         if (myParticle != null) myParticle.Play();
     }
+
     public void OnParticleSystemStopped()
     {
         ReleaseObject();

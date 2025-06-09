@@ -3,6 +3,7 @@ using PlayFab.ClientModels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Default;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,37 @@ public class GameManager : MonoBehaviour
         }
        
     }
+
+    //===================================스테이지내 플레이 데이터 관리
+    private List<Cat> activeCharacter = new List<Cat>();
+    private List<Vector3> activeCharacterPostion = new List<Vector3>();
+    [Header("UI 매니저 *필수")]
+    public UIManager uiManager;
+    public void RegisterCharacter(Cat myCharacter)
+    {
+        if (activeCharacter.Count < Constants.ACTIVECHARACTER_COUNT)
+        {
+            activeCharacter.Add(myCharacter);
+            uiManager.UpadatSkillButtonSetting(myCharacter, activeCharacter.Count-1); //등록과 동시에 스킬 등록으로 일단설정
+            activeCharacterPostion.Add(myCharacter.transform.position);
+        }
+        else
+        {
+            print("개수 초과, 캐릭터 변경이 불가능합니다");
+        }
+    }
+
+    public void  RemoveCharacter(Cat myCharacter)
+    {
+        if (activeCharacter.Contains(myCharacter))
+        {
+            activeCharacter.Remove(myCharacter);
+            uiManager.RemoveSkillButtonSetting(4); //등록과 동시에 스킬 등록으로 일단설정
+        }
+
+    }
+
+    //public List<Vector3> GetCharactersPostion() { return }
 
     //---------------------------------------------------------------------------------------------------------------------------던전 
 

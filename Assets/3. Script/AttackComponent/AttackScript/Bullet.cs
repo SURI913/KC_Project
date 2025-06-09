@@ -6,7 +6,10 @@ using UnityEngine.TextCore.Text;
 
 public class Bullet : PoolAble
 {
+    public  enum attackType { _Attack, _Skill}
+
     public string characterId;
+    public attackType myType;
     private Rigidbody2D myRigdbody2D;
     private ParticleSystem myParticle;
     private ParticleSystem.MainModule myParticleMain;
@@ -46,7 +49,7 @@ public class Bullet : PoolAble
         //공백ornull체크
         if (!string.IsNullOrWhiteSpace(characterId))
         {
-            var hitObject = ObjectPoolManager.instance.GetGo(characterId + "_Attack_HitObject");
+            var hitObject = ObjectPoolManager.instance.GetGo(characterId + myType+"_HitObject");
             hitObject.transform.position = hitPostion;
         }
         ReleaseObject();

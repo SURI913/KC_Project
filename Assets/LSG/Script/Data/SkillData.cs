@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Skill Data", menuName = "Scriptable Objest/Skill Data")]
+[CreateAssetMenu(fileName = "Skill Data", menuName = "Scriptable Objest/Skill")]
 public class SkillData : ScriptableObject
 {
     // 오브젝트 이름

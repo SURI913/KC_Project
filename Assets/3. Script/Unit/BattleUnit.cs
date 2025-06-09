@@ -18,6 +18,15 @@ public class BattleUnit : MonoBehaviour
     //-----------------------------------------------------------애니메이션 
     public Animator myMotion;
     public float respawnTime = 8f;
+    protected bool isInvincible;
+
+    public IEnumerator Invincibility(float time)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(time);
+        isInvincible = false;
+        yield break;
+    }
 
     protected void hpInit()
     {    
@@ -40,9 +49,9 @@ public class BattleUnit : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (!dead)
+        if (!dead && !isInvincible)
         {
-            float finalDamage = Mathf.Max(0, damage - defensePower);
+            float finalDamage = damage - defensePower;
             health -= finalDamage;
             Debug.Log($"{gameObject.name}이(가) {finalDamage}의 피해를 받음! 남은 체력: {health}");
             DrawDamageNumber(finalDamage);

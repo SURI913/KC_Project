@@ -4,21 +4,23 @@ using AllUnit;
 using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 using System;
+using Unity.VisualScripting;
 
 public class Cat : BattleUnit
 {
     protected int level = 0;
-   
-    public float attackCooltime= 2f;
+
+    public float attackCooltime = 2f;
     private float attackTime = 0f;
-
+    
     public GameObject targetObject;
+    private bool isActiveSkill;
 
-    private AttackComponent attackComponent;
-    private SkillComponent skillComponent;
+
+    [SerializeField] private AttackComponent attackComponent;
+    [SerializeField] private SkillComponent skillComponent;
     private RecoveryComponent recoveryComponent;
- 
- //--------------------------------------------------------------AttackableImp
+
 
     //캐릭터 움직임을 위한 변수
     protected Rigidbody2D player_rb;
@@ -31,15 +33,19 @@ public class Cat : BattleUnit
 
     protected RaycastHit2D target;
     protected bool isLookTarget = false;
-  
+
 
     private void Awake()
     {
-        attackComponent = GetComponentInChildren<AttackComponent>();
-        //skillComponent = GetComponent<SkillComponent>();
         //recoveryComponent = GetComponent<RecoveryComponent>();
-        if(targetObject == null ) targetObject = gameObject;
+        if (targetObject == null) targetObject = gameObject;
         if (myMotion == null) myMotion = GetComponentInChildren<Animator>();
+        isActiveSkill = false;
+    }
+
+    private void Start()
+    {
+        GameManager.instance.RegisterCharacter(this);
     }
 
     /* public void LevelUP()
@@ -96,16 +102,29 @@ public class Cat : BattleUnit
  * 사정거리 내에 있는 적이라면 attackTime에 따라 주기적으로 공격하도록
  */
 
-    float animationAttackTime = 0;
     private void Update()
     {
         attackTime += Time.deltaTime;
 
-        if(attackTime >= attackCooltime)
+        if (attackTime >= attackCooltime)
         {
             myMotion.SetTrigger("isAttack"); //자동 공격
             attackTime = 0f;
         }
+    }
+
+    //SkillUI 연결 & 자동화[미구현]용 
+    public void ActiveSkillAnimation()
+    {
+        isActiveSkill = true;
+        if (isInvincible) isActiveSkill = false; //[임시] 탱커 무적 상태일때 공격이 들어가야해서 일단 이렇게 처리
+        myMotion.SetTrigger("isSkill");
+
+    }
+
+    public void DisableSkillAnimation()
+    {
+        isActiveSkill = false;
     }
 
     //애니메이션 이벤트에서 호출
@@ -119,13 +138,17 @@ public class Cat : BattleUnit
     public void PerformSkill()
     {
         if (skillComponent != null)
-            myMotion.SetTrigger("isSkill");
-            skillComponent.UseSkill();
+            skillComponent.UseSkill(targetObject.transform.position);
     }
 
     public void Recovery()
     {
         if (recoveryComponent != null)
             recoveryComponent.Recover();
+    }
+
+    void OnDestroy()
+    {
+        GameManager.instance.RemoveCharacter(this);
     }
 }
