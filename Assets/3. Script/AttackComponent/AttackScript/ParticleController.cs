@@ -11,12 +11,13 @@ public class ParticleController : PoolAble
     {
         myParticle = GetComponent<ParticleSystem>();
     }
-    public void OnEnable()
+
+    private void OnEnable()
     {
         if (myParticle != null) myParticle.Play();
     }
 
-    public void OnParticleSystemStopped()
+    private void OnParticleSystemStopped()
     {
         ReleaseObject();
     }

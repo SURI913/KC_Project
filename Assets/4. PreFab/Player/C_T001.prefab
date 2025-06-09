@@ -294,9 +294,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 95039a65b58b83c49b207ceb8065ee2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8970809858202026510}
-    - targetCorrespondingSourceObject: {fileID: -7986189361177264997, guid: 95039a65b58b83c49b207ceb8065ee2f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1975924943572805383}
     - targetCorrespondingSourceObject: {fileID: -4681767930403248902, guid: 95039a65b58b83c49b207ceb8065ee2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2145369593710656567}
@@ -346,34 +343,18 @@ MonoBehaviour:
   damagePrefab: {fileID: 0}
   myMotion: {fileID: 0}
   respawnTime: 8
+  groundSocket: {fileID: 0}
+  attackSocket: {fileID: 0}
+  castSocket: {fileID: 0}
+  hitSocket: {fileID: 0}
   attackCooltime: 4
   targetObject: {fileID: 0}
   attackComponent: {fileID: 2145369593710656567}
-  skillComponent: {fileID: 1975924943572805383}
+  skillBehaviour: {fileID: 0}
   size: 0
   layer_mask:
     serializedVersion: 2
     m_Bits: 0
---- !u!1 &1414217772037894104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7986189361177264997, guid: 95039a65b58b83c49b207ceb8065ee2f, type: 3}
-  m_PrefabInstance: {fileID: 183262769479062339}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1975924943572805383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414217772037894104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90e7298b5fae55c438dd2573c5cc1a00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterId: 
-  time: 0
-  myParticle: {fileID: 0}
 --- !u!4 &1559585292783938205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 95039a65b58b83c49b207ceb8065ee2f, type: 3}

@@ -9,6 +9,10 @@ TagManager:
   - boss
   - Plane
   - Target
+  - ToolSocket
+  - GroundSocket
+  - HitSocket
+  - HandSocket
   layers:
   - Default
   - TransparentFX

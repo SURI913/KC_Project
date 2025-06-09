@@ -5,20 +5,20 @@ using DamageNumbersPro.Demo;
 using DamageNumbersPro;
 using System;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 
 public class Cat : BattleUnit
 {
-    protected int level = 0;
-
     public float attackCooltime = 2f;
     private float attackTime = 0f;
     
     public GameObject targetObject;
     private bool isActiveSkill;
 
+    private CharacterDataBase characterData; //현재 캐릭터 위치에 들어가는 캐릭터 정보
 
     [SerializeField] private AttackComponent attackComponent;
-    [SerializeField] private SkillComponent skillComponent;
+    [SerializeField] private SkillBehaviourSO skillBehaviour;
     private RecoveryComponent recoveryComponent;
 
 
@@ -34,18 +34,23 @@ public class Cat : BattleUnit
     protected RaycastHit2D target;
     protected bool isLookTarget = false;
 
-
-    private void Awake()
+    new private void Awake()
     {
         //recoveryComponent = GetComponent<RecoveryComponent>();
         if (targetObject == null) targetObject = gameObject;
-        if (myMotion == null) myMotion = GetComponentInChildren<Animator>();
         isActiveSkill = false;
     }
 
     private void Start()
     {
         GameManager.instance.RegisterCharacter(this);
+    }
+
+    //게임 시작할 때, 캐릭터 변경 시 적용
+    public void ApplyCharacter(CharacterDataBase dataBase)
+    {
+        characterData = dataBase;
+        myMotion = GetComponentInChildren<Animator>();
     }
 
     /* public void LevelUP()
@@ -137,8 +142,8 @@ public class Cat : BattleUnit
     //애니메이션 이벤트에서 호출
     public void PerformSkill()
     {
-        if (skillComponent != null)
-            skillComponent.UseSkill(targetObject.transform.position);
+        if (skillBehaviour != null)
+            skillBehaviour.UseSkill(this,targetObject.transform.position);
     }
 
     public void Recovery()

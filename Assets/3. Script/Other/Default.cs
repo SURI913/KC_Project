@@ -7,6 +7,14 @@ namespace Default
     {
         //상수 관리 
         public static readonly int ACTIVECHARACTER_COUNT = 5;
+
+        public enum EffectSocketType
+        {
+            Ground, //무적스킬, 힐 스킬
+            Hand, //무기앞에
+            Tool, //원거리 시작점
+            Hit,
+        }
     }
 
     public abstract class GenericDatabase<TKey, TValue> : ScriptableObject where TValue : IData<TKey>

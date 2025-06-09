@@ -1,28 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Default.Constants;
 
 public interface IData<out TKey>
 {
     TKey GetKey();
 }
 
+public interface IEffectSocketProvider
+{
+    Transform GetEffectSocket(EffectSocketType type);
+}
+
 public interface IDamageable
 {
     void OnDamage(double Damage);   //데미지를 입힘
-}
-
-public interface ISkill
-{
-    float speed { get; set; }   //공격 속도
-    float skill_time { get; set; }   //스킬 공격 쿨타임
-    bool is_ative_skill { get; set; }   //스킬 활성화 시 공격 멈춤
-    bool is_parabola_skill { get; set; }
-    float skill_distance { get; set; }
-    Transform my_attack_transform { get; }
-
-
-    double OnSkill(Collider2D collision);
 }
 
 public interface IAttack

@@ -3,11 +3,11 @@ using DamageNumbersPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Default.Constants;
 
-public class BattleUnit : MonoBehaviour
+public abstract class BattleUnit : MonoBehaviour, IEffectSocketProvider
 {
     //체력, 방어력 관리
-
     public float health;
     public float maxHealth;
     public float defensePower;
@@ -20,12 +20,36 @@ public class BattleUnit : MonoBehaviour
     public float respawnTime = 8f;
     protected bool isInvincible;
 
+    private Transform groundSocket;
+    private Transform handSocket;
+    private Transform toolSocket;
+    private Transform hitSocket;
+
+    private Dictionary<EffectSocketType, Transform> socketMap;
+
+
+    protected void SocketMapiing()
+    {
+        socketMap = new Dictionary<EffectSocketType, Transform>
+        {
+            { EffectSocketType.Ground, groundSocket != null ? groundSocket : transform },
+            { EffectSocketType.Hand, handSocket != null ? handSocket : transform },
+            { EffectSocketType.Tool, toolSocket != null ? toolSocket : transform },
+            { EffectSocketType.Hit, hitSocket != null ? hitSocket : transform },
+        };
+    }
+
     public IEnumerator Invincibility(float time)
     {
         isInvincible = true;
         yield return new WaitForSeconds(time);
         isInvincible = false;
         yield break;
+    }
+
+    public Transform GetEffectSocket(EffectSocketType type)
+    {
+        return socketMap.TryGetValue(type, out var socket) ? socket : transform;
     }
 
     protected void hpInit()

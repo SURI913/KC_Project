@@ -7,7 +7,9 @@ public class CharacterDataBase : ScriptableObject, IData<string>
     public string _character_id;
     public string _name;
     public double _max_hp;
-    public float _attack_interval; //공격주기
+
+    public string _model_address; // Addressable 키
+
     public string GetKey() => _character_id;
 
 }

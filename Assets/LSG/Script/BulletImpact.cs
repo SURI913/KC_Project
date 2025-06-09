@@ -32,7 +32,6 @@ public class BulletImpact : PoolAble
     }  //타겟 위치, 자식 위치로 가져와야함
 
     public IAttack my_attack_data { get; set; }
-    public ISkill my_skill_data { get; set; }
 
     bool is_loop = false; //true = attack, false = skill
     bool is_parabola = true;
@@ -49,38 +48,6 @@ public class BulletImpact : PoolAble
             my_attack_data = my_data;
             init_transform = my_data.my_attack_transform;
             transform.position = init_transform.position;
-        }
-    }
-    public void MyHitData(ISkill my_data)
-    {
-        if (my_data != null)
-        {
-            is_loop = false;
-            is_parabola = my_data.is_parabola_skill;
-            my_skill_data = my_data;
-            init_transform = my_data.my_attack_transform;
-            transform.position = init_transform.position;
-
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //불값 걸어서 중복 방지
-        if (collision.transform.gameObject.layer == 6) //"Target"레이어에 해당하는 오브젝트라면
-        {
-            bool is_dead_collision = collision.GetComponent<PoolAble>();
-            IDamageable target = collision.GetComponent<IDamageable>();
-            if (target != null && !is_dead_collision)
-            {
-                if (is_loop && my_attack_data != null) {
-                    //Debug.Log(my_attack_data);
-                    target.OnDamage(my_attack_data.OnAttack(collision)); }
-                else { target.OnDamage(my_skill_data.OnSkill(collision)); }
-                Debug.Log(name + "공격 나갔습니다."+ collision.name +"이 맞았습니다.");
-                ReleaseObject();
-                return;
-            }
-            //이펙트 실행 후
         }
     }
 
